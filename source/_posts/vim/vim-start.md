@@ -1,7 +1,7 @@
 ---
 title: Vim入门
-catagories: 
-- Notebook
+categories: 
+- Vim
 tags: 
 - vim
 ---

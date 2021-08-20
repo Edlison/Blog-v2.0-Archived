@@ -4,18 +4,18 @@
 
 # Site
 title: Edlison is talking here.
-subtitle: ''
-description: ''
-keywords:
+subtitle: 'Edlison blog'
+description: 'Edlison blog'
+keywords: Edlison,edlison,blog,code,solution
 author: Bolin Shen
 language: zh-CN
 timezone: 'Asia/Shanghai'
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://edlison.com
+url: http://blog.edlison.cc
 root: ''
-permalink: :year/:month/:day/:title/
+permalink: :hash/
 permalink_defaults:
 pretty_urls:
   trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
@@ -58,7 +58,7 @@ highlight:
 # order_by: Posts order. (Order by date descending by default)
 index_generator:
   path: ''
-  per_page: 0
+  per_page: 5
   order_by: -date
 
 # Category & Tag
@@ -74,7 +74,7 @@ meta_generator: true
 ## Hexo uses Moment.js to parse and display date
 ## You can customize the date format as defined in
 ## http://momentjs.com/docs/#/displaying/format/
-date_format: YYYY-MM-DD
+date_format: DD-MM-YYYY
 time_format: HH:mm:ss
 ## Use post's date for updated date unless set in front-matter
 use_date_for_updated: false
@@ -99,5 +99,5 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/Edlison/GitHubPages-Blog.git
+  repo: git@github.com:Edlison/edlison.github.io.git
   branch: gh-pages

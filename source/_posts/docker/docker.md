@@ -1,4 +1,10 @@
-# Docker & Docker-Compose
+---
+title: Docker - start
+catagories:
+- Docker
+---
+
+# Docker
 
 
 ## 运行docker
@@ -31,19 +37,19 @@
 ## 映射或挂载(重要)
 `宿主机:镜像`
 
-**默认挂载路径**  
+**默认挂载路径** 
 `/var/lib/docker/volumes`
 
 
 
 ## 镜像相关
 
-**生成镜像**  
+**生成镜像** 
 `docker commit -a "username" -m "msg" container_name new_image_name`
 
-**上传镜像**  
+**上传镜像** 
 将打包好的新镜像上传到 Docker Hub：
- 
+
 首先我们需要将这个新镜像打上 tag，方便在公共服务器进行上传：
 
 `docker tag new_anaconda_xgboost:latest nimendavid/machine_learning:v0.1`

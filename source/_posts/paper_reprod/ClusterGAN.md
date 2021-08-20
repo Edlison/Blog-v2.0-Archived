@@ -1,7 +1,7 @@
 ---
 title: ClusterGAN代码实现
 catagories: 
-- Paper
+- 代码复现
 tags: 
 - python
 ---

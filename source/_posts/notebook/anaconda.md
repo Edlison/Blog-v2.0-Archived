@@ -1,3 +1,20 @@
+---
+title: Install anaconda on linux
+categories:
+- Notebook
+tags:
+- linux
+- anaconda
+---
+
+# Linux
+
+```sh
+wget https://repo.anaconda.com/archive/Anaconda3-2021.05-Linux-x86_64.sh
+```
+
+
+
 # MacOS安装Anaconda
 
 ## conda配置文件
@@ -15,7 +32,7 @@
 `conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/`  
 `conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge`  
 `conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/msys2/`  
- 
+
 设置搜索时显示通道地址  
 `conda config --set show_channel_urls yes`
 
@@ -57,5 +74,4 @@ pip安装tf
 
 删除Anaconda主文件包(默认路径)
 `/opt/anaconda3`
-
 

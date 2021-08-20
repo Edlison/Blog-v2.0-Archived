@@ -1,3 +1,11 @@
+---
+title: CluasteringGANSiamese
+catagories: 
+- 代码复现
+tags: 
+- python
+---
+
 # CluasteringGANSiamese
 
 ## 代码复现
@@ -16,9 +24,9 @@ conda指定版本安装`conda install xx=version`
 
 ## GAN
 
-报错信息  
+报错信息 
 `Error while reading resource variable _AnonymousVar41 from Container: localhost. This could mean that the variable was uninitialized. Not found: Resource localhost/_AnonymousVar41/class tensorflow::Var does not exist.`
 
-解决办法  
+解决办法 
 keras改为tensorflow.keras
 

@@ -1,3 +1,12 @@
+---
+title: XLNet
+categories:
+- Paper
+- NLP
+tags:
+- XLNet
+---
+
 # XLNet Generalized Autoregressive Pretraining for Language Understanding
 
 # Abstract
@@ -108,7 +117,7 @@ XLNet其实本质上还是ELMO/GPT/BERT这一系列两阶段模型的进一步�
 
 
 
----- 
+----
 Rreference
 
 https://zhuanlan.zhihu.com/p/70257427
