@@ -1,6 +1,0 @@
----
-title: basic
-categories:
-- Research
----
-
