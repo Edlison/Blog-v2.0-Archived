@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/man-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/man-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.edlison.com","root":"/","images":"/images","scheme":"Muse","version":"8.0.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="改变Tensor形状改变Tensor形状时，原Tensor中的数据是如何重构的。 Tensor数据形状的变化同一维度每一行往前或往后拼接，直到满足这个维度要求的值。 1234567x &#x3D; torch.autograd.Variable(torch.Tensor([[1, 2], [3, 4], [5, 6]]), requires_grad&#x3D;True)tensor([[1., 2.],">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tensor的Shape操作">
+<meta property="og:url" content="https://blog.edlison.com/paper_exp/tensor_shape/index.html">
+<meta property="og:site_name" content="Edlison is talking here.">
+<meta property="og:description" content="改变Tensor形状改变Tensor形状时，原Tensor中的数据是如何重构的。 Tensor数据形状的变化同一维度每一行往前或往后拼接，直到满足这个维度要求的值。 1234567x &#x3D; torch.autograd.Variable(torch.Tensor([[1, 2], [3, 4], [5, 6]]), requires_grad&#x3D;True)tensor([[1., 2.],">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-02-04T02:49:48.656Z">
+<meta property="article:modified_time" content="2021-02-10T11:51:52.214Z">
+<meta property="article:author" content="Bolin Shen">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="pytorch">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://blog.edlison.com/paper_exp/tensor_shape/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Tensor的Shape操作 | Edlison is talking here.</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1B9EHJMCZY"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-1B9EHJMCZY');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Edlison is talking here.</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">“Edlison's blog”</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#改变Tensor形状"><span class="nav-number">1.</span> <span class="nav-text">改变Tensor形状</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Tensor数据形状的变化"><span class="nav-number">1.1.</span> <span class="nav-text">Tensor数据形状的变化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#同一维度"><span class="nav-number">1.1.1.</span> <span class="nav-text">同一维度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#跨维度"><span class="nav-number">1.1.2.</span> <span class="nav-text">跨维度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看形状的方式"><span class="nav-number">1.2.</span> <span class="nav-text">查看形状的方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-shape"><span class="nav-number">1.2.1.</span> <span class="nav-text">1. shape</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-size"><span class="nav-number">1.2.2.</span> <span class="nav-text">2. size</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#改变形状的方式"><span class="nav-number">1.3.</span> <span class="nav-text">改变形状的方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-reshape"><span class="nav-number">1.3.1.</span> <span class="nav-text">1. reshape</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-view"><span class="nav-number">1.3.2.</span> <span class="nav-text">2. view</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-squeeze-unsqueeze"><span class="nav-number">1.3.3.</span> <span class="nav-text">3. squeeze&#x2F;unsqueeze</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Tensor的拼接"><span class="nav-number">2.</span> <span class="nav-text">Tensor的拼接</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Tensor的合并"><span class="nav-number">3.</span> <span class="nav-text">Tensor的合并</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Tensor的分解"><span class="nav-number">4.</span> <span class="nav-text">Tensor的分解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-torch-split"><span class="nav-number">4.1.</span> <span class="nav-text">1. torch.split()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-torch-chunk"><span class="nav-number">4.2.</span> <span class="nav-text">2. torch.chunk()</span></a></li></ol></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Bolin Shen</p>
+  <div class="site-description" itemprop="description">Edlison blog</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">229</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">111</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2VkbGlzb24=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;edlison"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmJvbGluLmVkbGlzb24uc2hlbkBnbWFpbC5jb20=" title="E-Mail → mailto:bolin.edlison.shen@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/paper_exp/tensor_shape/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Tensor的Shape操作
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：04-02-2021 10:49:48" itemprop="dateCreated datePublished" datetime="2021-02-04T10:49:48+08:00">04-02-2021</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：10-02-2021 19:51:52" itemprop="dateModified" datetime="2021-02-10T19:51:52+08:00">10-02-2021</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="改变Tensor形状"><a href="#改变Tensor形状" class="headerlink" title="改变Tensor形状"></a>改变Tensor形状</h1><p>改变Tensor形状时，原Tensor中的数据是如何重构的。</p>
+<h2 id="Tensor数据形状的变化"><a href="#Tensor数据形状的变化" class="headerlink" title="Tensor数据形状的变化"></a>Tensor数据形状的变化</h2><h3 id="同一维度"><a href="#同一维度" class="headerlink" title="同一维度"></a>同一维度</h3><p>每一行往前或往后拼接，直到满足这个维度要求的值。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">x = torch.autograd.Variable(torch.Tensor([[<span class="number">1</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>], [<span class="number">5</span>, <span class="number">6</span>]]), requires_grad=<span class="literal">True</span>)</span><br><span class="line">tensor([[<span class="number">1.</span>, <span class="number">2.</span>],</span><br><span class="line">        [<span class="number">3.</span>, <span class="number">4.</span>],</span><br><span class="line">        [<span class="number">5.</span>, <span class="number">6.</span>]], requires_grad=<span class="literal">True</span>)</span><br><span class="line">x = x.view(<span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">tensor([[<span class="number">1.</span>, <span class="number">2.</span>, <span class="number">3.</span>],</span><br><span class="line">        [<span class="number">4.</span>, <span class="number">5.</span>, <span class="number">6.</span>]], grad_fn=&lt;ViewBackward&gt;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="跨维度"><a href="#跨维度" class="headerlink" title="跨维度"></a>跨维度</h3><p>从最低维上的数值一直到高纬进行拼接，不同维度上不够的会跨维度进行拼接。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">x = torch.autograd.Variable(torch.Tensor([[[<span class="number">1</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>], [<span class="number">5</span>, <span class="number">6</span>]], [[<span class="number">7</span>, <span class="number">8</span>], [<span class="number">9</span>, <span class="number">10</span>], [<span class="number">11</span>, <span class="number">12</span>]]]), requires_grad=<span class="literal">True</span>)</span><br><span class="line">tensor([[[ <span class="number">1.</span>,  <span class="number">2.</span>],</span><br><span class="line">         [ <span class="number">3.</span>,  <span class="number">4.</span>],</span><br><span class="line">         [ <span class="number">5.</span>,  <span class="number">6.</span>]],</span><br><span class="line"></span><br><span class="line">        [[ <span class="number">7.</span>,  <span class="number">8.</span>],</span><br><span class="line">         [ <span class="number">9.</span>, <span class="number">10.</span>],</span><br><span class="line">         [<span class="number">11.</span>, <span class="number">12.</span>]]], requires_grad=<span class="literal">True</span>)</span><br><span class="line">x = x.view(<span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line">tensor([[ <span class="number">1.</span>,  <span class="number">2.</span>,  <span class="number">3.</span>,  <span class="number">4.</span>],</span><br><span class="line">        [ <span class="number">5.</span>,  <span class="number">6.</span>,  <span class="number">7.</span>,  <span class="number">8.</span>],</span><br><span class="line">        [ <span class="number">9.</span>, <span class="number">10.</span>, <span class="number">11.</span>, <span class="number">12.</span>]], grad_fn=&lt;ViewBackward&gt;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看形状的方式"><a href="#查看形状的方式" class="headerlink" title="查看形状的方式"></a>查看形状的方式</h2><h3 id="1-shape"><a href="#1-shape" class="headerlink" title="1. shape"></a>1. shape</h3><p>通过<code>Tensor.shape</code>可以获取该Tensor的形状信息。这里的<code>shape</code>属于Field，它是一个数组。</p>
+<p>使用方法：想要获取某个维度的大小只需要<code>.shape[0]</code>就可以了。</p>
+<h3 id="2-size"><a href="#2-size" class="headerlink" title="2. size"></a>2. size</h3><p>通过<code>Tensor.size()</code>可以获取该Tensor<strong>某个维度上</strong>的信息。这里的<code>size</code>属于Method，它是一个方法，需要传dim信息。</p>
+<p>使用方法：<code>.size(0)</code></p>
+<h2 id="改变形状的方式"><a href="#改变形状的方式" class="headerlink" title="改变形状的方式"></a>改变形状的方式</h2><h3 id="1-reshape"><a href="#1-reshape" class="headerlink" title="1. reshape"></a>1. reshape</h3><ul>
+<li><p>不受该Tensor是否是连续的影响。</p>
+</li>
+<li><p>返回的<strong>可能是</strong>Tensor的copy，<strong>也可能不是</strong>。</p>
+</li>
+</ul>
+<h3 id="2-view"><a href="#2-view" class="headerlink" title="2. view"></a>2. view</h3><ul>
+<li>只能改变连续的Tensor（没有调用过<code>transpose</code>, <code>permute</code>等）。</li>
+<li>与原Tensor共享存储器（不是内存）。</li>
+</ul>
+<h3 id="3-squeeze-unsqueeze"><a href="#3-squeeze-unsqueeze" class="headerlink" title="3. squeeze/unsqueeze"></a>3. squeeze/unsqueeze</h3><p>对Tensor维度值为1的维度进行删除或增加。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">a = Tensor(<span class="number">2</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">1</span>)</span><br><span class="line"><span class="comment"># torch.Size([2, 1, 3, 1])</span></span><br><span class="line">a = a.squeeze(<span class="number">1</span>)</span><br><span class="line"><span class="comment"># torch.Size([2, 3, 1])</span></span><br><span class="line">a = a.unsqueeze(<span class="number">0</span>)</span><br><span class="line"><span class="comment"># torch.Size([1, 2, 3, 1])</span></span><br><span class="line">a = a.squeeze()</span><br><span class="line"><span class="comment"># torch.Size([2, 3])</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong></p>
+<ul>
+<li>不传参删除所有维度值为1的维度。</li>
+<li>不在原本的存储空间上操作，<strong>只是显示改变样子</strong>，想要获取需要赋值。</li>
+</ul>
+<h1 id="Tensor的拼接"><a href="#Tensor的拼接" class="headerlink" title="Tensor的拼接"></a>Tensor的拼接</h1><p>将多个Tensor进行拼接，使用<code>torch.cat(inputs, dim=0)</code>.</p>
+<p>将输入在dim维度上进行拼接。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">x = Tensor([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]])</span><br><span class="line"><span class="comment"># x:  tensor([[1., 2., 3.],</span></span><br><span class="line"><span class="comment">#         [4., 5., 6.]], device='cuda:7')</span></span><br><span class="line">y = Tensor([[<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>], [<span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]])</span><br><span class="line"><span class="comment"># y:  tensor([[4., 5., 6.],</span></span><br><span class="line"><span class="comment">#         [7., 8., 9.]], device='cuda:7')</span></span><br><span class="line">z = torch.cat([x, y], dim=<span class="number">0</span>)</span><br><span class="line"><span class="comment"># tensor([[1., 2., 3.],</span></span><br><span class="line"><span class="comment">#         [4., 5., 6.],</span></span><br><span class="line"><span class="comment">#         [4., 5., 6.],</span></span><br><span class="line"><span class="comment">#         [7., 8., 9.]], device='cuda:7') torch.Size([4, 3])</span></span><br><span class="line">z = torch.cat([x, y], dim=<span class="number">1</span>)</span><br><span class="line"><span class="comment"># tensor([[1., 2., 3., 4., 5., 6.],</span></span><br><span class="line"><span class="comment">#         [4., 5., 6., 7., 8., 9.]], device='cuda:7') torch.Size([2, 6])</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong></p>
+<ul>
+<li>传入的inputs是一个序列，<code>list</code>或<code>tuple</code>.</li>
+<li>传入的inputs在需要拼接的dim上shape必须一致。</li>
+</ul>
+<h1 id="Tensor的合并"><a href="#Tensor的合并" class="headerlink" title="Tensor的合并"></a>Tensor的合并</h1><p><code>torch.flatten(input, start_dim, end_dim)</code></p>
+<p>将<code>start_dim</code>到<code>end_dim</code>维度之间的值合并。</p>
+<p><strong>好像</strong>torch下的方法，都可以通过<code>Tensor.flatten()</code>来调用。</p>
+<h1 id="Tensor的分解"><a href="#Tensor的分解" class="headerlink" title="Tensor的分解"></a>Tensor的分解</h1><h2 id="1-torch-split"><a href="#1-torch-split" class="headerlink" title="1. torch.split()"></a>1. torch.split()</h2><p><code>torch.split(tensor, split_size, dim)</code></p>
+<p><code>split_size</code>: 间隔大小。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = Tensor(<span class="number">3</span>, <span class="number">2</span>)</span><br><span class="line">x, y, z = a.split(<span class="number">1</span>, <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong>：</p>
+<ul>
+<li>最后不足的也会被分成一个块。</li>
+<li>注意类型，返回的是一个tuple，可以用多个变量来接收，tuple里装的是Tensor。</li>
+</ul>
+<h2 id="2-torch-chunk"><a href="#2-torch-chunk" class="headerlink" title="2. torch.chunk()"></a>2. torch.chunk()</h2><p><code>torch.chunk(tensor, chunks, dim)</code></p>
+<p><code>chunks</code>: 分块数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = Tensor(<span class="number">3</span>, <span class="number">2</span>)</span><br><span class="line">x, y, z = a.chunk(<span class="number">3</span>, <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong>：最后不足的也会被分成一个块。</p>
+<hr>
+<p>Reference</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vZGlsdGhleS9wLzEyMzc2MTc5Lmh0bWw=">https://www.cnblogs.com/dilthey/p/12376179.html<i class="fa fa-external-link-alt"></i></span></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/python/" rel="tag"># python</a>
+              <a href="/tags/pytorch/" rel="tag"># pytorch</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/notebook/idea-jdk-version/" rel="prev" title="Idea编译Java版本出错">
+                  <i class="fa fa-chevron-left"></i> Idea编译Java版本出错
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/paper_exp/gan/" rel="next" title="GAN">
+                  GAN <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bolin Shen</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

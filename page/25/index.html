@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/man-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/man-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.edlison.com","root":"/","images":"/images","scheme":"Muse","version":"8.0.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="Edlison blog">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Edlison is talking here.">
+<meta property="og:url" content="https://blog.edlison.com/page/25/index.html">
+<meta property="og:site_name" content="Edlison is talking here.">
+<meta property="og:description" content="Edlison blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Bolin Shen">
+<meta property="article:tag" content="Edlison">
+<meta property="article:tag" content="edlison">
+<meta property="article:tag" content="blog">
+<meta property="article:tag" content="code">
+<meta property="article:tag" content="solution">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://blog.edlison.com/page/25/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Edlison is talking here. - “Edlison's blog”</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1B9EHJMCZY"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-1B9EHJMCZY');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Edlison is talking here.</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">“Edlison's blog”</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Bolin Shen</p>
+  <div class="site-description" itemprop="description">Edlison blog</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">229</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">111</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2VkbGlzb24=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;edlison"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmJvbGluLmVkbGlzb24uc2hlbkBnbWFpbC5jb20=" title="E-Mail → mailto:bolin.edlison.shen@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner index posts-expand">
+      
+
+      
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/spark/deploy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/spark/deploy/" class="post-title-link" itemprop="url">Spark - 部署</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：29-01-2021 11:32:37 / 修改时间：15:19:33" itemprop="dateCreated datePublished" datetime="2021-01-29T11:32:37+08:00">29-01-2021</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>从腾讯云镜像安装(这是内网地址)</p>
+<p><code>wget http://mirrors.tencentyun.com/apache/xxx</code></p>
+<p>解压到<code>~/applications</code></p>
+<p>创建软连接，方便管理不同版本。</p>
+<p><code>ln -s spark-3.0.1-bin-hadoop2.7 spark</code></p>
+<p><code>export SPARK_HOME=/home/ubuntu/applications/spark</code></p>
+<p>以后只要将软连接的指向改动到新版本，不需要改动环境变量。</p>
+<h1 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h1><h2 id="安装JDK"><a href="#安装JDK" class="headerlink" title="安装JDK"></a>安装JDK</h2><p><code>sudo apt install openjdk-11-jdk</code></p>
+<h2 id="使用Scala-Shell启动Spark"><a href="#使用Scala-Shell启动Spark" class="headerlink" title="使用Scala Shell启动Spark"></a>使用Scala Shell启动Spark</h2><p><code>spark-shell</code></p>
+<h2 id="简单的例子"><a href="#简单的例子" class="headerlink" title="简单的例子"></a>简单的例子</h2><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> file = sc.textFile(<span class="string">"/home/ubuntu/documents/xxx.txt"</span>)</span><br><span class="line"><span class="comment">// 打印行数</span></span><br><span class="line">file.count()</span><br><span class="line"><span class="comment">// 打印第一行</span></span><br><span class="line">file.first()</span><br><span class="line"><span class="comment">// 过滤打印</span></span><br><span class="line">file.filter(line =&gt; line.contains(<span class="string">"spark"</span>)).count()</span><br></pre></td></tr></table></figure>
+
+<h2 id="启动节点"><a href="#启动节点" class="headerlink" title="启动节点"></a>启动节点</h2><h3 id="主节点"><a href="#主节点" class="headerlink" title="主节点"></a>主节点</h3><p><code>cd $SPARK_HOME/sbin</code></p>
+<p><code>./start-master.sh</code></p>
+<p>通过<code>ip:8080</code>可以web访问</p>
+<p>获取Master节点的Url</p>
+<p><code>spark://localhost.localdomain:7077</code></p>
+<h3 id="从节点"><a href="#从节点" class="headerlink" title="从节点"></a>从节点</h3><p><code>./start-slave.sh spark://localhost.localdomain:7077</code></p>
+<p>可以通过<code>jps</code>（显示当前的Java进程）查看启动的服务</p>
+<p>Web端可以看到有了Workers</p>
+<h3 id="用Shell连接Master"><a href="#用Shell连接Master" class="headerlink" title="用Shell连接Master"></a>用Shell连接Master</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MASTER=spark://localhost.localdomain:7077 spark-shell</span><br></pre></td></tr></table></figure>
+
+<p>Web端可以看到RunningApplications有了Shell</p>
+<h3 id="停止服务"><a href="#停止服务" class="headerlink" title="停止服务"></a>停止服务</h3><p><code>./stop-all.sh</code></p>
+<p><code>jps</code>查看</p>
+<h1 id="集群部署"><a href="#集群部署" class="headerlink" title="集群部署"></a>集群部署</h1><h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><p>主节点配置环境变量<code>conf/spark-env.sh</code></p>
+<p>主节点配置从节点的主机名<code>conf/slaves</code>, 此时主机名要写入hosts中</p>
+<p>将spark整体文件拷贝到所有从节点，路径与主节点一致</p>
+<p>配置<strong>主节点到从节点</strong>的SSH Key无密码登录</p>
+<p>启动集群<code>sbin/start-all.sh</code></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/linux/linux-dir/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/linux/linux-dir/" class="post-title-link" itemprop="url">linux/linux-dir</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：29-01-2021 10:13:30 / 修改时间：10:47:35" itemprop="dateCreated datePublished" datetime="2021-01-29T10:13:30+08:00">29-01-2021</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><strong>常用目录</strong></p>
+<h2 id=""><a href="#" class="headerlink" title="/"></a>/</h2><p>根目录</p>
+<h2 id="bin"><a href="#bin" class="headerlink" title="/bin"></a>/bin</h2><p>/bin, /sbin, /usr/bin, /usr/sbin这些都是存放可执行文件的，sbin下只有root才可以执行。</p>
+<h2 id="boot"><a href="#boot" class="headerlink" title="/boot"></a>/boot</h2><p>启动系统时候用的</p>
+<h2 id="dev"><a href="#dev" class="headerlink" title="/dev"></a>/dev</h2><p>设备文件</p>
+<h2 id="etc"><a href="#etc" class="headerlink" title="/etc"></a>/etc</h2><p>系统的配置文件等</p>
+<h2 id="home"><a href="#home" class="headerlink" title="/home"></a>/home</h2><p>家目录</p>
+<h2 id="lib"><a href="#lib" class="headerlink" title="/lib"></a>/lib</h2><p>系统库</p>
+<h2 id="mnt"><a href="#mnt" class="headerlink" title="/mnt"></a>/mnt</h2><p>挂载目录，挂在别的文件系统</p>
+<h2 id="media"><a href="#media" class="headerlink" title="/media"></a>/media</h2><p>挂载目录</p>
+<h2 id="root"><a href="#root" class="headerlink" title="/root"></a>/root</h2><p>root用户的家目录</p>
+<h2 id="tmp"><a href="#tmp" class="headerlink" title="/tmp"></a>/tmp</h2><p>存放临时文件</p>
+<h2 id="sys"><a href="#sys" class="headerlink" title="/sys"></a>/sys</h2><p>里面的东西直接写入内存的东西，内核，驱动…</p>
+<h2 id="proc"><a href="#proc" class="headerlink" title="/proc"></a>/proc</h2><p>里面的东西直接写入内存</p>
+<h2 id="usr"><a href="#usr" class="headerlink" title="/usr"></a>/usr</h2><p>存放应用程序和文件</p>
+<h2 id="var"><a href="#var" class="headerlink" title="/var"></a>/var</h2><p>系统文档，比如/var/log</p>
+<h2 id="opt"><a href="#opt" class="headerlink" title="/opt"></a>/opt</h2><p>安装附加软件包，/opt/custom_package/bin下是软件目录</p>
+<h2 id="srv"><a href="#srv" class="headerlink" title="/srv"></a>/srv</h2><p>用于存储本机提供的服务或数据，比如/srv/www, /srv/ftp等</p>
+<hr>
+<p>References</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC8zNDM1NTQ2NzU=">https://zhuanlan.zhihu.com/p/343554675<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cDovL3d3dy5saW51eGlkYy5jb20vTGludXgvMjAxNS0wNC8xMTYwMzIuaHRt">http://www.linuxidc.com/Linux/2015-04/116032.htm<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIxMDcxNDMvYXJ0aWNsZS9kZXRhaWxzLzU0OTcyNTQ0">https://blog.csdn.net/u012107143/article/details/54972544<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/design/builder/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/design/builder/" class="post-title-link" itemprop="url">Builder生产器模式</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：28-01-2021 18:10:38" itemprop="dateCreated datePublished" datetime="2021-01-28T18:10:38+08:00">28-01-2021</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：01-02-2021 17:07:27" itemprop="dateModified" datetime="2021-02-01T17:07:27+08:00">01-02-2021</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>用于复杂对象的初始化工作，其通常有诸多的成员变量，嵌套对象。</p>
+<h1 id="模式架构"><a href="#模式架构" class="headerlink" title="模式架构"></a>模式架构</h1><h2 id="生成器"><a href="#生成器" class="headerlink" title="生成器"></a>生成器</h2><p>一个通用的产品构造器，接口中的步骤都需要进行构造。</p>
+<h2 id="具体生成器"><a href="#具体生成器" class="headerlink" title="具体生成器"></a>具体生成器</h2><p>提供具体的实现，生成器<strong>亦</strong>可以构造<strong>不遵循接口的产品</strong>，取决于生成器内的getRes()方法返回的对象。</p>
+<h2 id="产品"><a href="#产品" class="headerlink" title="产品"></a>产品</h2><p>最终生成的产品，<strong>不需要属于同一类层次结构或接口</strong>。</p>
+<h2 id="主管"><a href="#主管" class="headerlink" title="主管"></a>主管</h2><p>这里定义所有的产品的生产(初始化)步骤，传参可以是通用的接口，也可以传自定义的接口。</p>
+<p>可以都是<code>void</code>方法，<strong>重点是传的接口类型以及方法内初始化的步骤</strong>。</p>
+<h2 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h2><p>首先需要初始化一个主管。只需要关心让主管使用哪一个生产(初始化)步骤，以及传给主管的生成器，而生成器决定了最终生产的产品类型。</p>
+<p>只需要初始化<strong>一次</strong>主管，和<strong>一个</strong>生成器就可以通过主管的不同生产方法，产生不同的对象。<strong>每一次调用都会产生一个新的对象</strong>。</p>
+<hr>
+<p>Reference</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9yZWZhY3RvcmluZ2d1cnUuY24vZGVzaWduLXBhdHRlcm5zL2J1aWxkZXI=">https://refactoringguru.cn/design-patterns/builder<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/linux/linux-link/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/linux/linux-link/" class="post-title-link" itemprop="url">Linux硬连接和软连接</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：28-01-2021 15:10:21 / 修改时间：15:30:48" itemprop="dateCreated datePublished" datetime="2021-01-28T15:10:21+08:00">28-01-2021</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>Linux下的快捷方式称作硬连接(hard link)或软连接(symbolic link).</p>
+<h1 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h1><p>创建一个文件<code>file.txt</code></p>
+<p><code>echo &#39;hello world.&#39; &gt; file.txt</code></p>
+<p>创建硬连接</p>
+<p><code>ln file.txt hardlink</code></p>
+<p>创建软连接</p>
+<p><code>ln -s file.txt softlink</code></p>
+<p>查看文件属性</p>
+<p><code>ls -li</code></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">262781 -rw-rw-r-- 2 ubuntu ubuntu 13 Jan 28 15:18 file.txt</span><br><span class="line">262781 -rw-rw-r-- 2 ubuntu ubuntu 13 Jan 28 15:18 hardlink</span><br><span class="line">262991 lrwxrwxrwx 1 ubuntu ubuntu  8 Jan 28 15:19 softlink -&gt; file.txt</span><br></pre></td></tr></table></figure>
+
+
+
+<p>可以看到<code>softlink</code>指向源文件</p>
+<p>而<code>hardlink</code>与源文件共享一个<code>inode</code></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>删除源文件，硬连接不受影响，仍可读取源文件的内容；软连接无法访问源文件的内容。</p>
+<p>硬连接类似于一个文件的备份。</p>
+<p>硬连接限制多，无法给文件夹创建硬连接。</p>
+<h1 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h1><p>控制同一个软件的不同版本。</p>
+<hr>
+<p>Reference</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9jbG91ZC50ZW5jZW50LmNvbS9kZXZlbG9wZXIvYXJ0aWNsZS8xNjgzNjYw">https://cloud.tencent.com/developer/article/1683660<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/hadoop/mapreduce/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/hadoop/mapreduce/" class="post-title-link" itemprop="url">Hadoop - mapreduce</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：28-01-2021 10:44:48 / 修改时间：11:09:44" itemprop="dateCreated datePublished" datetime="2021-01-28T10:44:48+08:00">28-01-2021</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>MapReduce就是一个分布式的计算框架，用于并行处理数据。</p>
+<h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><p>分为两步Map和Reduce</p>
+<ul>
+<li>Map阶段：处理输入数据，从HDFS读取数据，映射器处理该数据，并创建中间数据。</li>
+<li>Reduce阶段：Shuffle+Reduce处理映射器中的数据，产生输出，存储在HDFS中。</li>
+</ul>
+<h1 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h1><ol>
+<li>写MapReduce程序</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ProcessUnits.java</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>编译该Java类</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javac -classpath xxx -d folder xxx.java</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>将需要处理的数据存入HDFS</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop fs -put xxx</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>运行MapReduce程序</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop jar xxx input_folder output_folder</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li><code>hadoop</code>可以操作MapReduce等其它工作及设置</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop cmd</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/24/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><span class="page-number current">25</span><a class="page-number" href="/page/26/">26</a><span class="space">&hellip;</span><a class="page-number" href="/page/46/">46</a><a class="extend next" rel="next" href="/page/26/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bolin Shen</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
