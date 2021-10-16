@@ -24,13 +24,15 @@
     var CONFIG = {"hostname":"blog.edlison.com","root":"/","images":"/images","scheme":"Muse","version":"8.0.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
 
-  <meta name="description" content="Edlison blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Edlison is talking here.">
-<meta property="og:url" content="https://blog.edlison.com/tags/%E6%B3%A8%E8%A7%A3/index.html">
+  <meta name="description" content="问题主题的submodule在这个场景下很鸡肋 如果使用submodules来管理本地的config无法同步 如果不使用submodules来管理, 自动部署会修改全部文件的修改时期, 导致所有文章发布日期全部一致">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Action部署Hexo的问题">
+<meta property="og:url" content="https://blog.edlison.com/notebook/hexo-action/index.html">
 <meta property="og:site_name" content="Edlison is talking here.">
-<meta property="og:description" content="Edlison blog">
+<meta property="og:description" content="问题主题的submodule在这个场景下很鸡肋 如果使用submodules来管理本地的config无法同步 如果不使用submodules来管理, 自动部署会修改全部文件的修改时期, 导致所有文章发布日期全部一致">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-10-16T16:29:40.715Z">
+<meta property="article:modified_time" content="2021-10-16T16:36:51.433Z">
 <meta property="article:author" content="Bolin Shen">
 <meta property="article:tag" content="Edlison">
 <meta property="article:tag" content="edlison">
@@ -40,7 +42,7 @@
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://blog.edlison.com/tags/%E6%B3%A8%E8%A7%A3/">
+<link rel="canonical" href="https://blog.edlison.com/notebook/hexo-action/">
 
 
 <script class="page-configurations">
@@ -48,12 +50,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>标签: 注解 | Edlison is talking here.</title>
+  <title>Action部署Hexo的问题 | Edlison is talking here.</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-1B9EHJMCZY"></script>
     <script>
@@ -178,7 +180,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -191,6 +193,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#问题"><span class="nav-number">1.</span> <span class="nav-text">问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#主题的submodule在这个场景下很鸡肋"><span class="nav-number">1.1.</span> <span class="nav-text">主题的submodule在这个场景下很鸡肋</span></a></li></ol></li></ol></div>
         </section>
         <!--/noindex-->
 
@@ -253,74 +256,103 @@
 </noscript>
 
 
-    <div class="main-inner tag posts-collapse">
+    <div class="main-inner post posts-expand">
       
 
       
 
   
-  
-  
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <h2 class="collection-header">注解
-          <small>标签</small>
-        </h2>
-      </div>
 
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/notebook/hexo-action/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Action部署Hexo的问题
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
       
-    <div class="collection-year">
-      <span class="collection-header">2021</span>
+
+      <time title="创建时间：17-10-2021 00:29:40 / 修改时间：00:36:51" itemprop="dateCreated datePublished" datetime="2021-10-17T00:29:40+08:00">17-10-2021</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><h2 id="主题的submodule在这个场景下很鸡肋"><a href="#主题的submodule在这个场景下很鸡肋" class="headerlink" title="主题的submodule在这个场景下很鸡肋"></a>主题的submodule在这个场景下很鸡肋</h2><ul>
+<li>如果使用submodules来管理本地的config无法同步</li>
+<li>如果不使用submodules来管理, 自动部署会修改全部文件的修改时期, 导致所有文章发布日期全部一致</li>
+</ul>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2021-02-02T16:07:01+08:00"
-              content="02-02-2021">
-          02-02
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-          <a class="post-title-link" href="/anno_reflect/reflect-anno/" itemprop="url">
-            <span itemprop="name">Java反射 - 通过反射获取注解的值</span>
-          </a>
-      </div>
+    <footer class="post-footer">
 
-      
-    </header>
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/vps/freenom-auto/" rel="prev" title="freenom auto renew">
+                  <i class="fa fa-chevron-left"></i> freenom auto renew
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
   </article>
+</div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2021-02-02T11:40:10+08:00"
-              content="02-02-2021">
-          02-02
-        </time>
-      </div>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/anno_reflect/anno-start/" itemprop="url">
-            <span itemprop="name">注解 - Start</span>
-          </a>
-      </div>
 
-      
-    </header>
-  </article>
-
-    </div>
-  </div>
-  
-  
-  
-
-  
 
 
 

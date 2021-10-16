@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.edlison.com/notebook/hexo-action/</loc>
+    
+    <lastmod>2021-10-16</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.edlison.com/deep_learning/Dropout/</loc>
     
     <lastmod>2021-10-15</lastmod>
