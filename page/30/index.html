@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">230</span>
+          <span class="site-state-item-count">231</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -256,6 +256,82 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/notebook/Fluent-Python-1.18/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/notebook/Fluent-Python-1.18/" class="post-title-link" itemprop="url">Fluent-Python-PartI-Prologue</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 18-01-2021 09:15:46 / Modified: 15:02:39" itemprop="dateCreated datePublished" datetime="2021-01-18T09:15:46+08:00">18-01-2021</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="开始Fluent-Python"><a href="#开始Fluent-Python" class="headerlink" title="开始Fluent-Python"></a>开始Fluent-Python</h1><p>前言：</p>
+<p>Here’s the plan: when someone uses a feature you don’t understand, simply shoot them.</p>
+<h1 id="1-The-Python-Data-Model"><a href="#1-The-Python-Data-Model" class="headerlink" title="1-The Python Data Model"></a>1-The Python Data Model</h1><p>魔术方法也叫做Dunder方法，一般under-under-getitem-under-under也可以叫做dunder-getitem.</p>
+<p>Example 1-1</p>
+<p>我们可以通过重写<code>__len__</code>方法与<code>__getitem__</code>方法实现对象的获取书长度，与获取数据。</p>
+<p>特殊方法的调用时隐式的，例如<code>for i in x:</code>就隐式的调用了iter(x).</p>
+<p>代码中不应该有很多对特殊方法的直接调用，除非你在进行元编程。</p>
+<p>Example 1-2</p>
+<p><code>__repr__</code>与<code>__str__</code>方法类似，但是在打印一个实例的信息时会调用<code>__repr</code>方法。如果没有重写该方法console会显示类似<code>&lt;Vector object at 0x10e100070&gt;</code>的信息。</p>
+<p><code>__str__</code>由str()函数调用，强烈建议重写<code>__repr__</code>如果没有<code>__str__</code>则会调用<code>__repr__</code>.</p>
+<p><code>bool()</code>调用<code>__bool__</code>的结果，如果没有实现<code>__bool__</code>那么会调用<code>__len__</code>如果长度为0则返回<code>False</code>.</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -739,94 +815,10 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/notebook/git/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/notebook/git/" class="post-title-link" itemprop="url">Git日常使用笔记</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 16-11-2020 00:58:51 / Modified: 01:39:25" itemprop="dateCreated datePublished" datetime="2020-11-16T00:58:51+08:00">16-11-2020</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><img src="https://upload-images.jianshu.io/upload_images/8048507-9ea56a58f75ebc00.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/617/format/webp" alt="img"></p>
-<h2 id="reset"><a href="#reset" class="headerlink" title="reset"></a>reset</h2><p><code>git reset [--soft | --mixed | --hard] [HEAD]</code></p>
-<p><code>--soft</code><br>修改版本库，保留暂存区，保留工作区。头指针全部重置到指定版本，也会重置暂存区，并且会将工作区代码也回退到这个版本。</p>
-<p><code>--hard</code><br>修改版本库，修改暂存区，修改工作区。头指针全部重置到指定版本，且将这次提交之后的所有变更都移动到暂存区。</p>
-<p>Tips:<br>使用<code>git reset --hard HEAD</code>移除当前暂存区及工作区所有的修改。</p>
-<h2 id="tag"><a href="#tag" class="headerlink" title="tag"></a>tag</h2><p>给当前commit打标签。<br><code>git tag v1.0</code></p>
-<p>删除标签<br><code>git tag -d v1.0</code></p>
-<p>显示标签修改内容<br><code>git show v1.0</code></p>
-<h2 id="log"><a href="#log" class="headerlink" title="log"></a>log</h2><p>查看最近提交的文件差异，最近两篇。<br><code>git log -p -2</code></p>
-<h2 id="clean"><a href="#clean" class="headerlink" title="clean"></a>clean</h2><p>用于删除Untracked file, 常与<code>git reset --hard</code>一起使用，完全回复到指定commit。<br><code>git clean -df</code>d为文件夹，f为文件。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/29/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><span class="page-number current">30</span><a class="page-number" href="/page/31/">31</a><span class="space">&hellip;</span><a class="page-number" href="/page/46/">46</a><a class="extend next" rel="next" href="/page/31/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/29/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><span class="page-number current">30</span><a class="page-number" href="/page/31/">31</a><span class="space">&hellip;</span><a class="page-number" href="/page/47/">47</a><a class="extend next" rel="next" href="/page/31/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
