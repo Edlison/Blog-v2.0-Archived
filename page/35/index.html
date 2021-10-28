@@ -203,20 +203,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">236</span>
+          <span class="site-state-item-count">237</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">17</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">114</span>
+        <span class="site-state-item-count">115</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -256,6 +256,78 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/nlp/word2vec/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/nlp/word2vec/" class="post-title-link" itemprop="url">nlp/word2vec</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 02-08-2020 00:44:10" itemprop="dateCreated datePublished" datetime="2020-08-02T00:44:10+08:00">02-08-2020</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 03-08-2020 13:06:37" itemprop="dateModified" datetime="2020-08-03T13:06:37+08:00">03-08-2020</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Word2Vec-note"><a href="#Word2Vec-note" class="headerlink" title="Word2Vec note"></a>Word2Vec note</h1><h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h2><p>Word2Vec是从大量文本语料中以无监督的方式学习语义知识的一种模型，它被大量的用在自然语言处理中。Word2Vec其实就是通过学习文本来用词向量的方式表征词的语义信息，即通过一个嵌入空间使得语义上相似的单词在该空间内距离很近。Embedding其实就是一个映射，将单词从原先所属的空间映射到新的多维空间中，也就是把原先词所在的空间嵌入到一个新的空间中去。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -600,72 +672,6 @@
 </ul>
 <p>SSL config</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">  server &#123;</span><br><span class="line">      listen       80 default_server;</span><br><span class="line">      listen       [::]:80 default_server;</span><br><span class="line">      server_name  api.gfgf.tech;</span><br><span class="line">      root         &#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html;</span><br><span class="line"></span><br><span class="line">   return 301 https:&#x2F;&#x2F;$server_name$request_uri;</span><br><span class="line"></span><br><span class="line">      # Load configuration files for the default server block.</span><br><span class="line">      include &#x2F;etc&#x2F;nginx&#x2F;default.d&#x2F;*.conf;</span><br><span class="line"></span><br><span class="line">      location &#x2F; &#123;</span><br><span class="line">              proxy_pass http:&#x2F;&#x2F;127.0.0.1:21000;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      error_page 404 &#x2F;404.html;</span><br><span class="line">          location &#x3D; &#x2F;40x.html &#123;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      error_page 500 502 503 504 &#x2F;50x.html;</span><br><span class="line">          location &#x3D; &#x2F;50x.html &#123;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  server &#123;</span><br><span class="line">      listen       443 ssl http2 default_server;</span><br><span class="line">      listen       [::]:443 ssl http2 default_server;</span><br><span class="line">      server_name  api.gfgf.tech;</span><br><span class="line">      root         &#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html;</span><br><span class="line"></span><br><span class="line">      ssl_certificate &quot;&#x2F;root&#x2F;.acme.sh&#x2F;api.gfgf.tech&#x2F;api.gfgf.tech.cer&quot;;</span><br><span class="line">      ssl_certificate_key &quot;&#x2F;root&#x2F;.acme.sh&#x2F;api.gfgf.tech&#x2F;api.gfgf.tech.key&quot;;</span><br><span class="line">      ssl_session_cache shared:SSL:1m;</span><br><span class="line">      ssl_session_timeout  10m;</span><br><span class="line">      ssl_ciphers HIGH:!aNULL:!MD5;</span><br><span class="line">      ssl_prefer_server_ciphers on;</span><br><span class="line"></span><br><span class="line">      # Load configuration files for the default server block.</span><br><span class="line">      include &#x2F;etc&#x2F;nginx&#x2F;default.d&#x2F;*.conf;</span><br><span class="line"></span><br><span class="line">      location &#x2F; &#123;</span><br><span class="line">proxy_pass http:&#x2F;&#x2F;localhost:21000;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      error_page 404 &#x2F;404.html;</span><br><span class="line">          location &#x3D; &#x2F;40x.html &#123;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      error_page 500 502 503 504 &#x2F;50x.html;</span><br><span class="line">          location &#x3D; &#x2F;50x.html &#123;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/docker/docker-gitlab/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/docker/docker-gitlab/" class="post-title-link" itemprop="url">docker/docker-gitlab</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 14-07-2020 23:31:04" itemprop="dateCreated datePublished" datetime="2020-07-14T23:31:04+08:00">14-07-2020</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Docker-GitLab"><a href="#Docker-GitLab" class="headerlink" title="Docker-GitLab"></a>Docker-GitLab</h1><h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>若容器端口号设置为80，如果你这时修改external_url地址为<span class="exturl" data-url="aHR0cDovL2lwOjgwODA=">http://ip:8080<i class="fa fa-external-link-alt"></i></span>.<br>那GitLab肯定访问不了，因为已经将内部的端口号修改为8080端口了，而映射的是容器的80端口。</p>
-<h2 id="故一定要将容器内部端口号与宿主机端口号映射一致！！！"><a href="#故一定要将容器内部端口号与宿主机端口号映射一致！！！" class="headerlink" title="故一定要将容器内部端口号与宿主机端口号映射一致！！！"></a>故一定要将容器内部端口号与宿主机端口号映射一致！！！</h2><p>external_utl ‘<span class="exturl" data-url="aHR0cDovLzExOS4yMy4xMDcuNjE6MTMwMDAmIzM5Ow==">http://119.23.107.61:13000&#39;<i class="fa fa-external-link-alt"></i></span><br>ports:<br>      - “13000:13000”</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3'</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">gitlab:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">gitlab/gitlab-ce</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">TZ:</span> <span class="string">"Asia/Shanghai"</span></span><br><span class="line">      <span class="attr">GITLAB_OMNIBUS_CONFIG:</span> <span class="string">|</span></span><br><span class="line">        <span class="string">external_url</span> <span class="string">'http://119.23.107.61:13000'</span> <span class="string">//</span> <span class="string">好像需要手动改</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">~/docker_gitlab/config:/etc/gitlab</span> </span><br><span class="line">      <span class="bullet">-</span> <span class="string">~/docker_gitlab/logs:/var/log/gitlab</span> </span><br><span class="line">      <span class="bullet">-</span> <span class="string">~/docker_gitlab/data:/var/opt/gitlab</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">"13000:13000"</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">"13443:443"</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">"13022:22"</span></span><br></pre></td></tr></table></figure>
       
     </div>
 

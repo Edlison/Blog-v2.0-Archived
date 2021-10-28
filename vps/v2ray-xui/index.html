@@ -31,7 +31,7 @@
 <meta property="og:description" content="docker image1docker pull thesadboy&#x2F;x-ui  docker composefor amd1234567891011121314151617version: &#39;3.9&#39;services:  xui:    image: thesadboy&#x2F;x-ui    restart: always    volumes:     - &#x2F;sys&#x2F;fs&#x2F;cgroup:&#x2F;sys&#x2F;f">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-10-09T08:32:50.461Z">
-<meta property="article:modified_time" content="2021-10-19T10:48:26.272Z">
+<meta property="article:modified_time" content="2021-10-26T14:09:15.677Z">
 <meta property="article:author" content="Bolin Shen">
 <meta property="article:tag" content="linux">
 <meta property="article:tag" content="docker">
@@ -206,20 +206,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">236</span>
+          <span class="site-state-item-count">237</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">17</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">114</span>
+        <span class="site-state-item-count">115</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -299,7 +299,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 19-10-2021 18:48:26" itemprop="dateModified" datetime="2021-10-19T18:48:26+08:00">19-10-2021</time>
+        <time title="Modified: 26-10-2021 22:09:15" itemprop="dateModified" datetime="2021-10-26T22:09:15+08:00">26-10-2021</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -332,7 +332,7 @@
 
 <h1 id="docker-compose"><a href="#docker-compose" class="headerlink" title="docker compose"></a>docker compose</h1><h2 id="for-amd"><a href="#for-amd" class="headerlink" title="for amd"></a>for amd</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3.9'</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">xui:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">thesadboy/x-ui</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">     <span class="bullet">-</span> <span class="string">/sys/fs/cgroup:/sys/fs/cgroup:ro</span></span><br><span class="line">     <span class="bullet">-</span> <span class="string">./config:/etc/x-ui</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">     <span class="bullet">-</span> <span class="number">10001</span><span class="string">:54321</span></span><br><span class="line">     <span class="bullet">-</span> <span class="number">8000</span><span class="number">-8010</span><span class="string">:8000-8010/tcp</span></span><br><span class="line">     <span class="bullet">-</span> <span class="number">8000</span><span class="number">-8010</span><span class="string">:8000-8010/udp</span></span><br><span class="line">    <span class="attr">tmpfs:</span></span><br><span class="line">     <span class="bullet">-</span> <span class="string">/tmp</span></span><br><span class="line">     <span class="bullet">-</span> <span class="string">/run</span></span><br><span class="line">     <span class="bullet">-</span> <span class="string">/run/lock</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="for-amd-and-arm"><a href="#for-amd-and-arm" class="headerlink" title="for amd and arm"></a>for amd and arm</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3.7'</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">x-ui:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">stilleshan/x-ui</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">x-ui</span></span><br><span class="line">        <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">network_mode:</span> <span class="string">host</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./config:/etc/x-ui</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./ssl:/ssl</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">     <span class="bullet">-</span> <span class="number">10001</span><span class="string">:54321</span></span><br><span class="line">     <span class="bullet">-</span> <span class="number">20000</span><span class="number">-20010</span><span class="string">:20000-20010/tcp</span></span><br><span class="line">     <span class="bullet">-</span> <span class="number">20000</span><span class="number">-20010</span><span class="string">:20000-20010/udp</span></span><br></pre></td></tr></table></figure>
+<h2 id="for-amd-and-arm"><a href="#for-amd-and-arm" class="headerlink" title="for amd and arm"></a>for amd and arm</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3.7'</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">x-ui:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">stilleshan/x-ui</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">x-ui</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">network_mode:</span> <span class="string">host</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./config:/etc/x-ui</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./ssl:/ssl</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">     <span class="bullet">-</span> <span class="number">10001</span><span class="string">:54321</span></span><br><span class="line">     <span class="bullet">-</span> <span class="number">20000</span><span class="number">-20010</span><span class="string">:20000-20010/tcp</span></span><br><span class="line">     <span class="bullet">-</span> <span class="number">20000</span><span class="number">-20010</span><span class="string">:20000-20010/udp</span></span><br></pre></td></tr></table></figure>
 
 
     </div>
