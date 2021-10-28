@@ -203,14 +203,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">237</span>
+          <span class="site-state-item-count">238</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -256,6 +256,181 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/notebook/Schedule/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/notebook/Schedule/" class="post-title-link" itemprop="url">Java中的定时任务</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 22-01-2021 10:39:41 / Modified: 13:46:21" itemprop="dateCreated datePublished" datetime="2021-01-22T10:39:41+08:00">22-01-2021</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Schedule"><a href="#Schedule" class="headerlink" title="Schedule"></a>Schedule</h1><p>只适合处理简单的计划任务，不能处理分布式计划任务。优势：是spring框架提供的计划任务，开发简单，执行效率比较高。且在计划任务数量太多的时候，可能出现阻塞，崩溃，延迟启动等问题。</p>
+<p>例子</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span>      <span class="comment">//1.主要用于标记配置类，兼备Component的效果。</span></span><br><span class="line"><span class="meta">@EnableScheduling</span>   <span class="comment">// 2.开启定时任务</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DynamicScheduleTask</span> <span class="keyword">implements</span> <span class="title">SchedulingConfigurer</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 执行定时任务.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">configureTasks</span><span class="params">(ScheduledTaskRegistrar taskRegistrar)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        taskRegistrar.addTriggerTask(</span><br><span class="line">                <span class="comment">//1.添加任务内容(Runnable)</span></span><br><span class="line">                () -&gt; System.out.println(<span class="string">"执行动态定时任务: "</span> + LocalDateTime.now().toLocalTime()),</span><br><span class="line">                <span class="comment">//2.设置执行周期(Trigger)</span></span><br><span class="line">                triggerContext -&gt; &#123;</span><br><span class="line">                    <span class="comment">//2.1 从数据库获取执行周期</span></span><br><span class="line">                    String cron = cronMapper.getCron();</span><br><span class="line">                    <span class="comment">//2.2 合法性校验.</span></span><br><span class="line">                    <span class="keyword">if</span> (StringUtils.isEmpty(cron)) &#123;</span><br><span class="line">                        <span class="comment">// Omitted Code ..</span></span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="comment">//2.3 返回执行周期(Date)</span></span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">new</span> CronTrigger(cron).nextExecutionTime(triggerContext);</span><br><span class="line">                &#125;</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Cron表达式"><a href="#Cron表达式" class="headerlink" title="Cron表达式"></a>Cron表达式</h2><p>Cron = “seconds minutes hours day month week”</p>
+<p>或</p>
+<p>cron = “seconds minutes hours day month week year”</p>
+<table>
+<thead>
+<tr>
+<th>位置</th>
+<th>时间</th>
+<th>允许值</th>
+<th>允许的特殊字符</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>秒</td>
+<td>0-59</td>
+<td>, - * /</td>
+</tr>
+<tr>
+<td>2</td>
+<td>分钟</td>
+<td>0-59</td>
+<td>, - * /</td>
+</tr>
+<tr>
+<td>3</td>
+<td>小时</td>
+<td>0-23</td>
+<td>, - * /</td>
+</tr>
+<tr>
+<td>4</td>
+<td>日</td>
+<td>1-31</td>
+<td>, - * / L W C</td>
+</tr>
+<tr>
+<td>5</td>
+<td>月</td>
+<td>1-12</td>
+<td>, - * /</td>
+</tr>
+<tr>
+<td>6</td>
+<td>星期</td>
+<td>1-7</td>
+<td>, - * ? / L C #</td>
+</tr>
+<tr>
+<td>7</td>
+<td>年（可选）</td>
+<td>1970-2099</td>
+<td>, - * /</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>星号(<em>)：可用在所有字段中，表示对应时间域的每一个时刻，例如，</em>在分钟字段时，表示“每分钟”；</p>
+<p>问号（?）：该字符只在日期和星期字段中使用，它通常指定为“无意义的值”，相当于占位符；</p>
+<p>减号(-)：表达一个范围，如在小时字段中使用“10-12”，则表示从10到12点，即10,11,12；</p>
+<p>逗号(,)：表达一个列表值，如在星期字段中使用“MON,WED,FRI”，则表示星期一，星期三和星期五；</p>
+<p>斜杠(/)：x/y表达一个等步长序列，x为起始值，y为增量步长值。如在秒数字段中使用0/15，则表示为0,15,30和45秒，而5/15在分钟字段中表示5,20,35,50，你也可以使用*/y，它等同于0/y；</p>
+<p>L：该字符只在日期和星期字段中使用，代表“Last”的意思，但它在两个字段中意思不同。L在日期字段中，表示这个月份的最后一天，如一月的31号，非闰年二月的28号；如果L用在星期中，则表示星期六，等同于7。但是，如果L出现在星期字段里，而且在前面有一个数值X，则表示“这个月的最后X天”，例如，6L表示该月的最后星期五；</p>
+<p>W：该字符只能出现在日期字段里，是对前导日期的修饰，表示离该日期最近的工作日。例如15W表示离该月15号最近的工作日，如果该月15号是星期六，则匹配14号星期五；如果15日是星期日，则匹配16号星期一；如果15号是星期二，那结果就是15号星期二。但必须注意关联的匹配日期不能够跨月，如你指定1W，如果1号是星期六，结果匹配的是3号星期一，而非上个月最后的那天。W字符串只能指定单一日期，而不能指定日期范围；</p>
+<p>LW组合：在日期字段可以组合使用LW，它的意思是当月的最后一个工作日；</p>
+<p>井号(#)：该字符只能在星期字段中使用，表示当月某个工作日。如6#3表示当月的第三个星期五(6表示星期五，#3表示当前的第三个)，而4#5表示当月的第五个星期三，假设当月没有第五个星期三，忽略不触发；</p>
+<p>C：该字符只在日期和星期字段中使用，代表“Calendar”的意思。它的意思是计划所关联的日期，如果日期没有被关联，则相当于日历中所有日期。例如5C在日期字段中就相当于日历5日以后的第一天。1C在星期字段中相当于星期日后的第一天。</p>
+</blockquote>
+<p><strong>Cron表达式对特殊字符的大小写不敏感，对代表星期的缩写英文大小写也不敏感。</strong></p>
+<h1 id="Qurtz"><a href="#Qurtz" class="headerlink" title="Qurtz"></a>Qurtz</h1><p>Quartz是OpenSymphony开源组织在Job scheduling领域又一个开源项目，它可以与J2EE与J2SE应用程序相结合也可以单独使用。Quartz可以用来创建简单或为运行十个，百个，甚至是好几万个Jobs这样复杂的程序。</p>
+<p>　　Quartz是一个完全由java编写的开源作业调度框架。不要让作业调度这个术语吓着你。尽管Quartz框架整合了许多额外功能， 但就其简易形式看，你会发现它易用得简直让人受不了！<br>在开发Quartz相关应用时，只要定义了Job（任务），Trigger（触发器）和Scheduler（调度器），即可实现一个定时调度能力。其中Scheduler是Quartz中的核心，Scheduler负责管理Quartz应用运行时环境，Scheduler不是靠自己完成所有的工作，是根据Trigger的触发标准，调用Job中的任务执行逻辑，来完成完整的定时任务调度。</p>
+<ul>
+<li>Job - 定时任务内容是什么。</li>
+<li>Trigger - 在什么时间上执行job。</li>
+<li>Scheduler - 维护定时任务环境，并让触发器生效。</li>
+<li>在SpringBoot中应用Quartz，需要依赖下述资源：</li>
+</ul>
+<ol>
+<li>创建定时任务</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTask</span> <span class="keyword">extends</span> <span class="title">QuartzJobBean</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">executeInternal</span><span class="params">(JobExecutionContext jobExecutionContext)</span> <span class="keyword">throws</span> JobExecutionException </span>&#123;</span><br><span class="line">        <span class="comment">//TODO 这里写定时任务的执行逻辑</span></span><br><span class="line">        System.out.println(<span class="string">"简单的定时任务执行时间："</span>+<span class="keyword">new</span> Date().toLocaleString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>创建配置类将定时任务添加到调度中</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">QuartzConfig</span> </span>&#123;</span><br><span class="line">	<span class="comment">//指定具体的定时任务类</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> JobDetail <span class="title">uploadTaskDetail</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        return JobBuilder.newJob(MyTask.class).withIdentity("MyTask").storeDurably().build();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Trigger <span class="title">uploadTaskTrigger</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//TODO 这里设定执行方式</span></span><br><span class="line">        CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule(<span class="string">"*/5 * * * * ?"</span>);</span><br><span class="line">        <span class="comment">// 返回任务触发器</span></span><br><span class="line">        <span class="keyword">return</span> TriggerBuilder.newTrigger().forJob(uploadTaskDetail())</span><br><span class="line">                .withIdentity(<span class="string">"MyTask"</span>)</span><br><span class="line">                .withSchedule(scheduleBuilder)</span><br><span class="line">                .build();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>还可以对定时任务进行动态暂停，修改，启动，单次执行等操作。</strong></p>
+<p>见文章：</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9jbG91ZC50ZW5jZW50LmNvbS9kZXZlbG9wZXIvYXJ0aWNsZS8xNjQwMTkw">https://cloud.tencent.com/developer/article/1640190<i class="fa fa-external-link-alt"></i></span></p>
+<hr>
+<p>References</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vamluZzk5L3AvMTE1NDY1NTkuaHRtbA==">https://www.cnblogs.com/jing99/p/11546559.html<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9jbG91ZC50ZW5jZW50LmNvbS9kZXZlbG9wZXIvYXJ0aWNsZS8xNjQwMTkw">https://cloud.tencent.com/developer/article/1640190<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -603,122 +778,6 @@
 <p>Vpn.sh</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Banner</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"</span></span><br><span class="line"><span class="string">NCEPU VPN</span></span><br><span class="line"><span class="string">port:6000 4*V100</span></span><br><span class="line"><span class="string">port:6001 2*2080Ti</span></span><br><span class="line"><span class="string">port:6002 4*T4</span></span><br><span class="line"><span class="string">"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Configueration</span></span><br><span class="line">FRP_DIR=<span class="string">"/Users/edlison/ExecApp/Frp/frpc"</span></span><br><span class="line">FRP_CFG=<span class="string">"/Users/edlison/ExecApp/Frp/cfg/frpc-ncepu.ini"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Run Frp</span></span><br><span class="line"><span class="variable">$&#123;FRP_DIR&#125;</span> -c<span class="variable">$&#123;FRP_CFG&#125;</span></span><br></pre></td></tr></table></figure>
 
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/vim/vim-start/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/vim/vim-start/" class="post-title-link" itemprop="url">Vim入门</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 20-01-2021 15:13:20" itemprop="dateCreated datePublished" datetime="2021-01-20T15:13:20+08:00">20-01-2021</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 27-05-2021 12:00:14" itemprop="dateModified" datetime="2021-05-27T12:00:14+08:00">27-05-2021</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Vim/" itemprop="url" rel="index"><span itemprop="name">Vim</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Norm-Mode"><a href="#Norm-Mode" class="headerlink" title="Norm Mode"></a>Norm Mode</h1><h2 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h2><p><code>i</code>在光标前插入</p>
-<p><code>I</code>在所在行行首插入</p>
-<p><code>a</code>在光标所在字符后</p>
-<p><code>A</code>在所在行行尾插入</p>
-<p><code>o</code>在光标所在行下一行行首插入</p>
-<p><code>O</code>在光标所在行上一行行首插入</p>
-<p><code>s</code>删除光标所在处的字符然后插入</p>
-<p><code>S</code>删除所在行并在行首插入</p>
-<h2 id="快速移动光标"><a href="#快速移动光标" class="headerlink" title="快速移动光标"></a>快速移动光标</h2><p><code>h</code>左移</p>
-<p><code>j</code>下移</p>
-<p><code>k</code>上移</p>
-<p><code>l</code>右移</p>
-<h3 id="词上的移动"><a href="#词上的移动" class="headerlink" title="词上的移动"></a>词上的移动</h3><p><code>0</code>移动到行头</p>
-<p><code>$</code>移动到行尾</p>
-<p><code>w</code>移动到下一个单词的开头</p>
-<p><code>e</code>移动到下一个单词的结尾</p>
-<p><code>b</code>移动到上一个单词的开头</p>
-<p><code>ge</code>移动到上一个单词的结尾</p>
-<h3 id="行上的移动"><a href="#行上的移动" class="headerlink" title="行上的移动"></a>行上的移动</h3><p><code>nG</code>定位到第n行行首</p>
-<p><code>gg</code>定位到第一行的行首</p>
-<p><code>G</code>定位到最后一行的行首</p>
-<p><code>H</code>定位到当前屏幕的第一行行首</p>
-<p><code>M</code>定位到当前屏幕的中间</p>
-<p><code>L</code>定位到当前屏幕的尾部</p>
-<h3 id="页上的移动"><a href="#页上的移动" class="headerlink" title="页上的移动"></a>页上的移动</h3><p><code>ctrl+f</code>下一页</p>
-<p><code>ctrl+b</code>上一页</p>
-<h2 id="编辑操作"><a href="#编辑操作" class="headerlink" title="编辑操作"></a>编辑操作</h2><p><code>dw</code>删除一个单词（dnw删除n个单词，ndd删除n行）</p>
-<p><code>dd</code>删除一行</p>
-<p><code>yw</code>复制一个单词</p>
-<p><code>yy</code>复制一行</p>
-<p><code>p</code>在光标后开始复制</p>
-<p><code>P</code>在光标前开始复制</p>
-<h2 id="撤销恢复"><a href="#撤销恢复" class="headerlink" title="撤销恢复"></a>撤销恢复</h2><p><code>u</code>undo</p>
-<p><code>ctrl+r</code>reundo</p>
-<h1 id="Command-Mode"><a href="#Command-Mode" class="headerlink" title="Command Mode"></a>Command Mode</h1><p><code>:set nu</code>显示行号</p>
-<p><code>:set nonu</code>取消行号</p>
 
       
     </div>
