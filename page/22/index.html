@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">238</span>
+          <span class="site-state-item-count">243</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -216,7 +216,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">115</span>
+        <span class="site-state-item-count">118</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -264,7 +264,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/paper_experiment/tensor/">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/paper_experiment/loss/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -278,7 +278,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/academia/paper_experiment/tensor/" class="post-title-link" itemprop="url">Pytorch中的Tensor</a>
+            <a href="/academia/paper_experiment/loss/" class="post-title-link" itemprop="url">几个损失函数</a>
         </h2>
 
         <div class="post-meta-container">
@@ -288,16 +288,10 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
+      
 
-      <time title="Created: 10-02-2021 00:47:50" itemprop="dateCreated datePublished" datetime="2021-02-10T00:47:50+08:00">10-02-2021</time>
+      <time title="Created: 13-02-2021 16:04:17 / Modified: 16:05:24" itemprop="dateCreated datePublished" datetime="2021-02-13T16:04:17+08:00">13-02-2021</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 09-03-2021 00:53:47" itemprop="dateModified" datetime="2021-03-09T00:53:47+08:00">09-03-2021</time>
-      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -318,34 +312,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><h2 id="旧版："><a href="#旧版：" class="headerlink" title="旧版："></a>旧版：</h2><p>Tensor是基本的数据类型，Variable是对Tensor的封装。只有Variable引入了计算图，实现自动求导<code>backward()</code>.</p>
-<p>定义是否需要梯度： <code>Variable(requires_grad=True)</code>.</p>
-<h2 id="新版："><a href="#新版：" class="headerlink" title="新版："></a>新版：</h2><p>Variable与Tensor进行合并了，<code>torch.Tensor</code>现在一样可以实现自动求导。</p>
-<p>定义是否需要梯度： <code>Tensor.requires_grad_()</code>.</p>
-<h2 id="初始化："><a href="#初始化：" class="headerlink" title="初始化："></a>初始化：</h2><p><code>Tensor([0, 1, 2])</code></p>
-<p><code>Tensor(2, 3).fill_(9)</code></p>
-<p><code>torch.ones(4, 5)</code></p>
-<h2 id="对Tensor内部属性的操作："><a href="#对Tensor内部属性的操作：" class="headerlink" title="对Tensor内部属性的操作："></a>对Tensor内部属性的操作：</h2><p>Tensor是一个对象，如果对其操作需要通过<code>.requires_grad_()</code>等方法对Field进行赋值。</p>
-<p><code>torch.ones(2, 3)</code>等，是一个方法，其中可以通过传<code>requires_grad=True</code>等字典对Field进行赋值，由于返回的仍是一个Tensor类型的对象，也可以使用<code>.requires_grad_()</code>等方法进行赋值。</p>
-<h2 id="浮点型"><a href="#浮点型" class="headerlink" title="浮点型"></a>浮点型</h2><p>可以通过<code>tensor.to(torch.float64)</code>将<code>Tensor</code>类型的数据转换成<code>FloatTensor</code>类型的数据。</p>
-<h1 id="梯度"><a href="#梯度" class="headerlink" title="梯度"></a>梯度</h1><p>Pytorch计算图中有两种元素：数据（Tensor）和运算（可求导运算）。</p>
-<p>Tensor分为两类：叶子结点，非叶子结点。</p>
-<p>计算Tensor梯度（即grad属性被赋值）的条件：</p>
-<ul>
-<li>叶子结点</li>
-<li><code>requires_grad=True</code></li>
-<li>依赖该Tensor的所有Tensor<code>requires_grad=True</code></li>
-</ul>
-<p>进行反向传播时，需要是一个<strong>标量</strong>。</p>
-<h1 id="梯度下降"><a href="#梯度下降" class="headerlink" title="梯度下降"></a>梯度下降</h1><p>就是在求得了grad的叶子结点，使用<code>Tensor.data + Tensor.grad.data</code>实现梯度下降。</p>
-<h1 id="Tensor在cuda上的转移"><a href="#Tensor在cuda上的转移" class="headerlink" title="Tensor在cuda上的转移"></a>Tensor在cuda上的转移</h1><p>所有需要使用GPU训练的参数以及关联的参数都需要放到cuda上。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cuda = <span class="literal">True</span> <span class="keyword">if</span> torch.cuda.is_available() <span class="keyword">else</span> <span class="literal">False</span></span><br><span class="line">device_id = <span class="number">7</span></span><br><span class="line"><span class="keyword">if</span> cuda:</span><br><span class="line">    torch.cuda.set_device(device_id)</span><br><span class="line">Tensor = torch.cuda.FloatTensor <span class="keyword">if</span> cuda <span class="keyword">else</span> torch.FloatTensor</span><br></pre></td></tr></table></figure>
-
-<p>如果已经是在<code>torch.FloatTensor</code>中的参数，可以通过<code>.type(Tensor)</code>来转移参数。</p>
-<hr>
-<p>Reference</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9weXRvcmNoLm9yZy9kb2NzL3N0YWJsZS90ZW5zb3JzLmh0bWw=">https://pytorch.org/docs/stable/tensors.html<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC84NTUwNjA5Mg==">https://zhuanlan.zhihu.com/p/85506092<i class="fa fa-external-link-alt"></i></span></p>
+          <h1 id="XE"><a href="#XE" class="headerlink" title="XE"></a>XE</h1><p>可以是one_hot矩阵与一个对应的index向量？</p>
 
       
     </div>
@@ -372,7 +339,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/paper_experiment/mv_gan/">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/paper_experiment/conv/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -386,7 +353,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/academia/paper_experiment/mv_gan/" class="post-title-link" itemprop="url">在GAN上实现Multi-View</a>
+            <a href="/academia/paper_experiment/conv/" class="post-title-link" itemprop="url">卷积与反卷积</a>
         </h2>
 
         <div class="post-meta-container">
@@ -396,16 +363,10 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
+      
 
-      <time title="Created: 09-02-2021 18:52:45" itemprop="dateCreated datePublished" datetime="2021-02-09T18:52:45+08:00">09-02-2021</time>
+      <time title="Created: 13-02-2021 12:27:38 / Modified: 12:28:35" itemprop="dateCreated datePublished" datetime="2021-02-13T12:27:38+08:00">13-02-2021</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 04-03-2021 14:51:25" itemprop="dateModified" datetime="2021-03-04T14:51:25+08:00">04-03-2021</time>
-      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -426,18 +387,84 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="遇到的坑"><a href="#遇到的坑" class="headerlink" title="遇到的坑"></a>遇到的坑</h1><h2 id="网络的组合"><a href="#网络的组合" class="headerlink" title="网络的组合"></a>网络的组合</h2><p>用列表的数据结构，存储Module。</p>
-<p>使用 Python 的 list 添加的全连接层和它们的 parameters <strong>并没有自动注册</strong>到我们的网络中。</p>
-<p><strong>解决方案：</strong>如果想要继承了nn.Module的网络组合多个子网络，需要通过<code>nn.Sequential</code>, <code>nn.ModuleList</code>等<strong>对网络参数进行注册</strong>。</p>
-<h2 id="计算Loss的两个Tensor形状不一致"><a href="#计算Loss的两个Tensor形状不一致" class="headerlink" title="计算Loss的两个Tensor形状不一致"></a>计算Loss的两个Tensor形状不一致</h2><p>由于通过网络经过各种<strong>矩阵相乘</strong>，最后得到的结果是一个二维的Tensor。自己定义的real_label是一个一维的Tensor。<code>torch.Size([256])</code> 不等于 <code>torch.Size([256, 1])</code>.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g_loss = self.losser.get_loss(d_fake, real_label)</span><br></pre></td></tr></table></figure>
+          <h1 id="卷积"><a href="#卷积" class="headerlink" title="卷积"></a>卷积</h1>
+      
+    </div>
 
-<p><strong>解决方案：</strong>在网络D最后的输出使用<code>.squeeze()</code>对维度值为1的维度进行挤压。</p>
-<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><p>对在每个View上的数据，使用list或tuple的数据结构进行存储，不必再转到Tensor上。</p>
-<p>使用Processor再训练(train)过程中对数据进行处理，虽然可能会影响效率，但是是最方便的实现方法，在Pytorch的DataLoader只能返回Batch_size的数据，无法再加一个维度，保存View。</p>
-<hr>
-<p>Reference</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9kaXNjdXNzLnB5dG9yY2gub3JnL3Qvd2hlbi1zaG91bGQtaS11c2Utbm4tbW9kdWxlbGlzdC1hbmQtd2hlbi1zaG91bGQtaS11c2Utbm4tc2VxdWVudGlhbC81NDYz">https://discuss.pytorch.org/t/when-should-i-use-nn-modulelist-and-when-should-i-use-nn-sequential/5463<i class="fa fa-external-link-alt"></i></span></p>
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/docker/docker-v2ray/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/docker/docker-v2ray/" class="post-title-link" itemprop="url">制作V2ray的Dockerfile</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 13-02-2021 02:42:39 / Modified: 02:51:49" itemprop="dateCreated datePublished" datetime="2021-02-13T02:42:39+08:00">13-02-2021</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h1><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> ubuntu:latest</span><br><span class="line"></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> /root</span></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> v2ray.sh /root</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> mkdir -p /etc/v2ray /usr/<span class="built_in">local</span>/share/v2ray /var/<span class="built_in">log</span>/v2ray \</span></span><br><span class="line"><span class="bash">					&amp;&amp; chmod +x /root/v2ray.sh \</span></span><br><span class="line"><span class="bash">					&amp;&amp; /root/v2ray.sh</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">VOLUME</span><span class="bash"> /etc/v2ray</span></span><br><span class="line"><span class="keyword">CMD</span><span class="bash"> [ <span class="string">"v2ray"</span>, <span class="string">"-config"</span>, <span class="string">"/etc/v2ray/config.json"</span> ]</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="sh"><a href="#sh" class="headerlink" title="sh"></a>sh</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">apt update \</span><br><span class="line">&amp;&amp; apt install wget zip \</span><br><span class="line">&amp;&amp; wget https://github.com/v2fly/v2ray-core/releases/download/<span class="variable">$&#123;TAG&#125;</span>/<span class="variable">$&#123;V2RAY_FILE&#125;</span> \</span><br><span class="line">&amp;&amp; unzip v2ray.zip \</span><br><span class="line">&amp;&amp; chmod +x v2ray v2ctl \</span><br><span class="line">&amp;&amp; mv v2ray v2ctl /usr/bin \</span><br><span class="line">&amp;&amp; mv geosite.dat geoip.dat /usr/<span class="built_in">local</span>/share/v2ray \</span><br><span class="line">&amp;&amp; mv config.json /etc/v2ray/config.json</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">'Done'</span></span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -464,7 +491,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/paper_experiment/batch/">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/paper_experiment/mvadg/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -478,7 +505,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/academia/paper_experiment/batch/" class="post-title-link" itemprop="url">Batch Size</a>
+            <a href="/academia/paper_experiment/mvadg/" class="post-title-link" itemprop="url">搭建MVADG网络</a>
         </h2>
 
         <div class="post-meta-container">
@@ -488,10 +515,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 09-02-2021 02:19:12 / Modified: 02:23:09" itemprop="dateCreated datePublished" datetime="2021-02-09T02:19:12+08:00">09-02-2021</time>
+      <time title="Created: 11-02-2021 02:13:46" itemprop="dateCreated datePublished" datetime="2021-02-11T02:13:46+08:00">11-02-2021</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 18-03-2021 00:14:44" itemprop="dateModified" datetime="2021-03-18T00:14:44+08:00">18-03-2021</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -512,24 +545,36 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="对Batch-size与lr的认识"><a href="#对Batch-size与lr的认识" class="headerlink" title="对Batch_size与lr的认识"></a>对Batch_size与lr的认识</h1><h2 id="大Batch-Batch-gt-Full-："><a href="#大Batch-Batch-gt-Full-：" class="headerlink" title="大Batch(Batch -&gt; Full)："></a>大Batch(Batch -&gt; Full)：</h2><p>好处：</p>
+          <h1 id="遇到的坑"><a href="#遇到的坑" class="headerlink" title="遇到的坑"></a>遇到的坑</h1><h2 id="1-np-prod"><a href="#1-np-prod" class="headerlink" title="1. np.prod()"></a>1. np.prod()</h2><p>对传入的list计算乘积，可以指定dim。</p>
+<h2 id="2-nn-ConvTranspose2d"><a href="#2-nn-ConvTranspose2d" class="headerlink" title="2. nn.ConvTranspose2d()"></a>2. nn.ConvTranspose2d()</h2><p>反卷积操作。</p>
+<h2 id="3-argument-after-must-be-an-iterable"><a href="#3-argument-after-must-be-an-iterable" class="headerlink" title="3. argument after * must be an iterable"></a>3. argument after * must be an iterable</h2><p>如果在函数内部使用了*, 对传入的参数进行unpack, 需要注意需要传入一个可以迭代的对象。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Reshape</span><span class="params">(input, shape)</span>:</span></span><br><span class="line">  <span class="keyword">return</span> input.view(input.shape[<span class="number">0</span>], *shape)</span><br></pre></td></tr></table></figure>
+
+<p>如果传的是一个标量，可以将它变为一个tuple传入。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">shape = np.prod([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line">Reshape(input, (shape,))</span><br></pre></td></tr></table></figure>
+
+<p>在传入的shape后加一个<code>,</code>就相当于是一个tuple了。</p>
+<h2 id="4-reduce-failed-to-synchronize-device-side-assert-triggered"><a href="#4-reduce-failed-to-synchronize-device-side-assert-triggered" class="headerlink" title="4. reduce failed to synchronize: device-side assert triggered."></a>4. reduce failed to synchronize: device-side assert triggered.</h2><p>这是神经网络最后一层没有normalize导致的，可以加一层Sigmoid()解决。</p>
+<h2 id="5-d-fake的batch-size一直是torch-Size-256-1"><a href="#5-d-fake的batch-size一直是torch-Size-256-1" class="headerlink" title="5. d_fake的batch_size一直是torch.Size([256, 1])"></a>5. d_fake的batch_size一直是torch.Size([256, 1])</h2><p>在计算<code>bce_loss(d_fake, real_label)</code>时，生成的d_fake没有与最后一个batch_size匹配。原因在于Net中d_fake是由gen_imgs输入D生成的，而一开始生成的噪声的batch_size决定了gen_imgs的第一维度的大小。</p>
+<p>问题出在一开始生成噪声的时候输入的是self.batch_size而不是imgs_batch.</p>
+<h2 id="6-std-evaluated-to-zero-after-conversion-to-torch-int64-leading-to-division-by-zero"><a href="#6-std-evaluated-to-zero-after-conversion-to-torch-int64-leading-to-division-by-zero" class="headerlink" title="6. std evaluated to zero after conversion to torch.int64, leading to division by zero."></a>6. std evaluated to zero after conversion to torch.int64, leading to division by zero.</h2><p>dataset在返回数据时通过<code>transform.Normalize()</code>时出现的问题。</p>
+<p>dataset在读取自制的数据集时，类型转换的问题。需要将文本的<code>str</code>格式转成<code>float</code>,而不是<code>int</code>.</p>
+<h2 id="7-output-with-shape-1-28-28-doesn’t-match-the-broadcast-shape-3-28-28"><a href="#7-output-with-shape-1-28-28-doesn’t-match-the-broadcast-shape-3-28-28" class="headerlink" title="7. output with shape [1, 28, 28] doesn’t match the broadcast shape [3, 28, 28]."></a>7. output with shape [1, 28, 28] doesn’t match the broadcast shape [3, 28, 28].</h2><p>由于MNIST数据集通道的问题。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">transforms.Normalize((<span class="number">0.5</span>, <span class="number">0.5</span>, <span class="number">0.5</span>), (<span class="number">0.5</span>, <span class="number">0.5</span>, <span class="number">0.5</span>))</span><br><span class="line"><span class="comment"># 改为</span></span><br><span class="line">transforms.Normalize((<span class="number">0.5</span>,), (<span class="number">0.5</span>,))</span><br></pre></td></tr></table></figure>
+
+<h2 id="8-pickle-UnpicklingError-A-load-persistent-id-instruction-was-encountered-but-no-persistent-load…"><a href="#8-pickle-UnpicklingError-A-load-persistent-id-instruction-was-encountered-but-no-persistent-load…" class="headerlink" title="8. _pickle.UnpicklingError: A load persistent id instruction was encountered, but no persistent_load…"></a>8. _pickle.UnpicklingError: A load persistent id instruction was encountered, but no persistent_load…</h2><p>由于pytorch版本所致，<code>torch.save()</code>, <code>torch.load()</code>里面保存了版本信息，不一样的话会报错。</p>
+<h2 id="9-Only-one-class-present-in-y-true-ROC-AUC-score-is-not-defined-in-that-case"><a href="#9-Only-one-class-present-in-y-true-ROC-AUC-score-is-not-defined-in-that-case" class="headerlink" title="9. Only one class present in y_true. ROC AUC score is not defined in that case."></a>9. Only one class present in y_true. ROC AUC score is not defined in that case.</h2><p>在计算ROC AUC时，如果一个batch中的类别都是同样的，就会报错。</p>
+<p>解决方案</p>
 <ul>
-<li>更好的代表样本总体，更准确指向极值。</li>
-<li>不同权重梯度差别大，学习率不统一。</li>
+<li>整理0，1标签数据较为均衡</li>
+<li>使用try except然后pass</li>
 </ul>
-<p>坏处：</p>
-<ul>
-<li>内存局限，无法一次性载入全部样本。</li>
-<li>每个Batch，由于<strong>采样性差异</strong>，梯度修正值<strong>相互抵消</strong>。</li>
-</ul>
-<h2 id="小Batch-Batch-gt-1-："><a href="#小Batch-Batch-gt-1-：" class="headerlink" title="小Batch(Batch -&gt; 1)："></a>小Batch(Batch -&gt; 1)：</h2><p>好处：</p>
-<ul>
-<li>可以在一个epoch上迭代很多次，参数更新多次。</li>
-</ul>
-<p>坏处：</p>
-<ul>
-<li>每次修正都向各自样本的梯度方向修正，<strong>难收敛</strong>。</li>
-</ul>
+<h2 id="10-one-of-the-variables-needed-for-gradient-computation-has-been-modified-by-an-inplace-operation-由于Pytorch版本的大坑"><a href="#10-one-of-the-variables-needed-for-gradient-computation-has-been-modified-by-an-inplace-operation-由于Pytorch版本的大坑" class="headerlink" title="10. one of the variables needed for gradient computation has been modified by an inplace operation 由于Pytorch版本的大坑"></a>10. one of the variables needed for gradient computation has been modified by an inplace operation 由于Pytorch版本的大坑</h2><p>由于pytorch版本不一样，因此报错！！！</p>
+<p>都是Python3.7</p>
+<p>Pytorch = 1.7.1 (报错)</p>
+<p>Pytorch = 1.0.0 (不报错)</p>
+<h2 id="11-Pytorch自带的mnist数据集读取库-由于Pytorch版本的坑"><a href="#11-Pytorch自带的mnist数据集读取库-由于Pytorch版本的坑" class="headerlink" title="11. Pytorch自带的mnist数据集读取库 由于Pytorch版本的坑"></a>11. Pytorch自带的mnist数据集读取库 由于Pytorch版本的坑</h2><p>Pytorch = 1.7.1 (指定到有mnist的目录)</p>
+<p>Pytorch = 1.0.0 (指定到有raw的目录)</p>
 
       
     </div>
@@ -556,7 +601,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/paper_experiment/tensor_inplace/">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/notebook/py-init/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -570,7 +615,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/academia/paper_experiment/tensor_inplace/" class="post-title-link" itemprop="url">Pytorch中的inplace</a>
+            <a href="/dev/notebook/py-init/" class="post-title-link" itemprop="url">Python的__init__.py文件</a>
         </h2>
 
         <div class="post-meta-container">
@@ -580,23 +625,17 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
+      
 
-      <time title="Created: 09-02-2021 02:18:39" itemprop="dateCreated datePublished" datetime="2021-02-09T02:18:39+08:00">09-02-2021</time>
+      <time title="Created: 11-02-2021 00:18:04 / Modified: 01:12:44" itemprop="dateCreated datePublished" datetime="2021-02-11T00:18:04+08:00">11-02-2021</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 10-02-2021 02:21:19" itemprop="dateModified" datetime="2021-02-10T02:21:19+08:00">10-02-2021</time>
-      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a>
+          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
         </span>
     </span>
 
@@ -610,143 +649,17 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Inplace操作就是将操作后的<strong>新值赋值到原变量地址</strong>上的操作。如<code>x += 1</code>.</p>
-<h1 id="Pytorch中的操作"><a href="#Pytorch中的操作" class="headerlink" title="Pytorch中的操作"></a>Pytorch中的操作</h1><p>带有<code>_</code>后缀对Tensor的操作都是Inplace操作。</p>
-<p><code>.squeeze()</code>不是Inplace操作，<code>.squeeze_()</code>是Inplace操作。</p>
-<p><code>x += 1</code>是Inplace操作，<code>x = x + 1</code>不是Inplace操作。</p>
-<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><p><strong>在 pytorch 中, 有两种情况不能使用 inplace operation:</strong></p>
+          <h1 id="init-py文件的主要作用"><a href="#init-py文件的主要作用" class="headerlink" title="init.py文件的主要作用"></a>init.py文件的主要作用</h1><p>用来管理当前目录下的<code>.py</code>文件。</p>
 <ol>
-<li>对于 requires_grad=True 的 <strong>叶子张量(leaf tensor)</strong> 不能使用 inplace operation</li>
-<li>对于在 <strong>求梯度阶段需要用到的张量</strong> 不能使用 inplace operation</li>
+<li><code>__init__.py</code>是package的标识。</li>
+<li>其中<code>__all__</code>可以用来进行模糊导入(<code>import *</code>)。</li>
 </ol>
+<p>使用<code>import</code>导入包的时候，就相当于导入了这个包的<code>__init__.py</code>。</p>
+<h1 id="import的理解"><a href="#import的理解" class="headerlink" title="import的理解"></a>import的理解</h1><p>可以导入<strong>包</strong>或<strong>文件</strong>或<strong>变量</strong>。</p>
+<h1 id="from的理解"><a href="#from的理解" class="headerlink" title="from的理解"></a>from的理解</h1><p>只能<strong>包</strong>或<strong>文件</strong>。</p>
 <hr>
 <p>Reference</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC8zODQ3NTE4Mw==">https://zhuanlan.zhihu.com/p/38475183<i class="fa fa-external-link-alt"></i></span></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/paper_experiment/gan/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/academia/paper_experiment/gan/" class="post-title-link" itemprop="url">GAN</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 04-02-2021 10:50:20" itemprop="dateCreated datePublished" datetime="2021-02-04T10:50:20+08:00">04-02-2021</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 11-02-2021 02:31:36" itemprop="dateModified" datetime="2021-02-11T02:31:36+08:00">11-02-2021</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="图片Img数组的取值范围及含义"><a href="#图片Img数组的取值范围及含义" class="headerlink" title="图片Img数组的取值范围及含义"></a>图片Img数组的取值范围及含义</h1><p>Loader返回的值形式为[batch, channel, row, col]. (N * C * H * W)</p>
-<p>channel：通道数，<strong>通道的维度上就保存了各个通道上的值</strong>，如RGB。</p>
-<p>torchvision.transforms中的<code>.toTensor()</code>就是将图片的[0, 255]范围转换为了Tensor上的[0.0, 1.0]。因此mnist数据集中每个像素点上的值在[0, 1]区间上。</p>
-<h1 id="G-与-D-进行两次前向传播"><a href="#G-与-D-进行两次前向传播" class="headerlink" title="G 与 D 进行两次前向传播"></a>G 与 D 进行两次前向传播</h1><p><strong>两次的参数均独立生成。</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># G的前向传播</span></span><br><span class="line">noise = torch.autograd.Variable(torch.randn(imgs_batch, self.latent_dim)).cuda()</span><br><span class="line">gen_imgs = self.G(noise)</span><br><span class="line">d_fake = self.D(gen_imgs)</span><br><span class="line">g_loss = sef.bce_loss(d_fake, real_label)</span><br><span class="line"><span class="comment"># 训练G</span></span><br><span class="line">...</span><br><span class="line"><span class="comment"># D的前向传播</span></span><br><span class="line">gen_imgs = self.G(noise)</span><br><span class="line">d_fake = self.D(gen_imgs)</span><br><span class="line">d_real = self.D(real_imgs)</span><br><span class="line">d_loss_fake = self.bce_loss(d_fake, fake_label)</span><br><span class="line">d_loss_real = self.bce_loss(d_real, real_label)</span><br><span class="line">d_loss = d_loss_fake + d_loss_real</span><br><span class="line"><span class="comment"># 训练D</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-
-<p><strong>注意：</strong></p>
-<p>每一次进行前向计算的参数都是独立的参数，在生成计算图时都是独立的。因此，如果计算后一个网络的时候还传的是一开始的<code>gen_imgs</code>其实没有变化，指向的还是同一个参数。但是如果再次让<code>noise</code>经过G生成一个<code>gen_imgs</code>，因为G已经更新过了，此时的<code>gen_imgs</code>也发生了变化，因此再进行前向传播，生成的就是另外一个计算图了。</p>
-<p>因此这种情况根本不需要再第一次反向传播的时候设置<code>retain_graph=True</code>.</p>
-<h1 id="G-与-D-只进行一次前向传播"><a href="#G-与-D-只进行一次前向传播" class="headerlink" title="G 与 D 只进行一次前向传播"></a>G 与 D 只进行一次前向传播</h1><p><strong>共用一次前向计算的参数。</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 参数只进行一次前向传播</span></span><br><span class="line">noise = torch.autograd.Variable(torch.randn(imgs_batch, self.latent_dim)).cuda()</span><br><span class="line">gen_imgs = self.G(noise)</span><br><span class="line">d_fake = self.D(gen_imgs)</span><br><span class="line">d_real = self.D(real_imgs)</span><br><span class="line"></span><br><span class="line">g_loss = self.bce_loss(d_fake, real_label)</span><br><span class="line">d_loss_fake = self.bce_loss(d_fake, fake_label)</span><br><span class="line">d_loss_real = self.bce_loss(d_real, real_label)</span><br><span class="line">d_loss = d_loss_fake + d_loss_real</span><br><span class="line"><span class="comment"># 同时训练</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="方法一（错误的）"><a href="#方法一（错误的）" class="headerlink" title="方法一（错误的）"></a>方法一（错误的）</h2><p>两个网络<strong>同时训练</strong>的参数的优化器同时梯度清零-&gt;损失反向传播-&gt;梯度下降，此时的网络无法得到优化。而且此时因为两个loss的反向传播有重合的部分，必须要<code>retain_graph=True</code>。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">self.optimizer_G.zero_grad()</span><br><span class="line">self.optimizer_D.zero_grad()</span><br><span class="line">g_loss.backward(retain_graph=<span class="literal">True</span>)</span><br><span class="line">d_loss.backward()</span><br><span class="line">self.optimizer_G.step()</span><br><span class="line">self.optimizer_D.step()</span><br></pre></td></tr></table></figure>
-
-<p><strong>注意：</strong></p>
-<p>此时根本不会对网络有优化的作用，并没有产生‘对抗’的效果。</p>
-<h2 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h2><p>两个网络<strong>先后训练</strong>，先优化G，后优化D。但是此时loss反向传播时，仍然会有参数重复计算梯度且没有更新的部分（网络D中的参数）。必须要在先进行反向传播的loss加上<code>retain_graph=True</code>.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">self.optimizer_G.zero_grad()</span><br><span class="line">g_loss.backward(retain_graph=<span class="literal">True</span>)</span><br><span class="line">self.optimizer_G.step()</span><br><span class="line"></span><br><span class="line">self.optimizer_D.zero_grad()</span><br><span class="line">d_loss.backward()</span><br><span class="line">self.optimizer_D.step()</span><br></pre></td></tr></table></figure>
-
-<p><strong>注意：</strong></p>
-<p>这种方法更注重的是<strong>二次</strong>求导，也就是原计算图保存的是<code>g_loss</code>对网络D中参数的梯度，然后叠加上<code>d_loss</code>对网络D中参数的梯度。一并对网络D的参数进行更新。</p>
-<h1 id="Conv2d"><a href="#Conv2d" class="headerlink" title="Conv2d"></a>Conv2d</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nn.Conv2d(in_channels, out_channels, kernel_size, stride, padding)</span><br></pre></td></tr></table></figure>
-
-<p>in_channels: 输入通道数。</p>
-<p>out_channels: 输出通道数。</p>
-<p>kernel_size: 卷积核大小。（如果长宽不一样，传一个tuple）</p>
-<p>stride: 卷积核移动步长。</p>
-<p>padding: 图片上下左右的填充。</p>
-<p>输入的shape应该是：[batch_size, channels, height, weight]</p>
-<h1 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h1><p>GAN这种结构最大的问题就是虽然<strong>可以生成很相似的东西</strong>，但是如果生成的东西有很强的类别属性，<strong>无法指定生成的类别</strong>。</p>
-<p>Optimizer<strong>优化器就是训练网络</strong>，虽然进入网络的样本也被装入了<code>Variable</code>计算图中，其实际上不会被更新，如果没有设置<code>requires_grad=False</code>本质上还是会被计算梯度的，因此对非网络中的参数指定不计算梯度，可以提升运行效率。</p>
-<p><code>retain_graph</code>实质上是<strong>对计算图进行保留</strong>，由于训练基本上是不断生成一个计算图然后反向传播，默认在反向传播后就抛弃掉了这个计算图结构。</p>
-<p>只进行一次前向计算就是<strong>同时训练两个网络</strong>（训练网络D并不是在更新了网络G的基础上）；进行两次前向计算就是<strong>分别训练两个网络</strong>（训练网络D是在网络G更新的基础上）。</p>
-<p>保留计算图或不保留计算图的本质就在于，对网络D的更新是否<strong>叠加</strong>上了网络G更新时反向传播的<code>g_loss</code>对网络D中参数的梯度。（<strong>不是计算二阶导数！</strong>）</p>
-<p>网络的最后一层要在[0, 1]上，由于没有用卷积，在数字意外部分多还是噪声的影响大，因此造成了数字以外区域黑白。</p>
-<p>batch大小的调整直接影响到了权重的迭代。（问题就出在batch=10000忘记调回来了！！！）：很大的一个作用是可以在一个epoch上迭代很多次！！！</p>
-<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>shape操作 reshape, view, squeeze, flatten…</p>
-<p>共享内存 如(a.view(-1, 1)/ b = a.view(-1, 1)) a内存中的tensor都会变吗，还是只有b拿到了？inplace</p>
-<hr>
-<p>Reference</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3NlYXJjaD9xPWJhdGNoJTIwc2l6ZSZhbXA7dXRtX2NvbnRlbnQ9c2VhcmNoX3N1Z2dlc3Rpb24mYW1wO3R5cGU9Y29udGVudA==">https://www.zhihu.com/search?q=batch%20size&amp;utm_content=search_suggestion&amp;type=content<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIwMjYzNS9hcnRpY2xlL2RldGFpbHMvODQyMDQxODA=">https://blog.csdn.net/weixin_43202635/article/details/84204180<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vQmx1ZVNreXlqL3AvOTQxNTA4Ny5odG1s">https://www.cnblogs.com/BlueSkyyj/p/9415087.html<i class="fa fa-external-link-alt"></i></span></p>
 
       
     </div>
@@ -768,7 +681,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/21/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><span class="page-number current">22</span><a class="page-number" href="/page/23/">23</a><span class="space">&hellip;</span><a class="page-number" href="/page/48/">48</a><a class="extend next" rel="next" href="/page/23/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/21/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><span class="page-number current">22</span><a class="page-number" href="/page/23/">23</a><span class="space">&hellip;</span><a class="page-number" href="/page/49/">49</a><a class="extend next" rel="next" href="/page/23/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 

@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">238</span>
+          <span class="site-state-item-count">243</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -216,7 +216,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">115</span>
+        <span class="site-state-item-count">118</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -264,7 +264,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/coin/crypto/eth-dev/">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/docker/docker-wordpress/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -278,7 +278,176 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/coin/crypto/eth-dev/" class="post-title-link" itemprop="url">ETH - 开发</a>
+            <a href="/dev/docker/docker-wordpress/" class="post-title-link" itemprop="url">DockerApp - wordpress</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 26-02-2021 03:10:34 / Modified: 15:27:33" itemprop="dateCreated datePublished" datetime="2021-02-26T03:10:34+08:00">26-02-2021</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Docker-compose"><a href="#Docker-compose" class="headerlink" title="Docker-compose"></a>Docker-compose</h1><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3.1'</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">wordpress:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">wordpress</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">depends_on:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">db</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">80</span><span class="string">:80</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">WORDPRESS_DB_HOST:</span> <span class="string">db</span></span><br><span class="line">      <span class="attr">WORDPRESS_DB_USER:</span> <span class="string">user</span></span><br><span class="line">      <span class="attr">WORDPRESS_DB_PASSWORD:</span> <span class="string">password</span></span><br><span class="line">      <span class="attr">WORDPRESS_DB_NAME:</span> <span class="string">wordpress</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">wordpress:/var/www/html</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">db:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">mysql:5.7</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">MYSQL_DATABASE:</span> <span class="string">wordpress</span></span><br><span class="line">      <span class="attr">MYSQL_USER:</span> <span class="string">user</span></span><br><span class="line">      <span class="attr">MYSQL_PASSWORD:</span> <span class="string">password</span></span><br><span class="line">      <span class="attr">MYSQL_RANDOM_ROOT_PASSWORD:</span> <span class="string">'1'</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">db:/var/lib/mysql</span></span><br><span class="line"></span><br><span class="line"><span class="attr">volumes:</span></span><br><span class="line">  <span class="attr">wordpress:</span></span><br><span class="line">  <span class="attr">db:</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><h2 id="volumes"><a href="#volumes" class="headerlink" title="volumes"></a>volumes</h2><p>挂载形式<code>host:container</code></p>
+<p>compose最后声明的volumes<strong>如果不指定目录</strong>会自动创建在<code>/etc/lib/docker/volumes/example/_data</code>下</p>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p><code>example</code>=当前文件夹名_compose中声明的volumes的名字</p>
+<h1 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker-compose -f wordpress.yml up -d</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/paper_experiment/math/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/academia/paper_experiment/math/" class="post-title-link" itemprop="url">一些数学概念</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 25-02-2021 01:38:49 / Modified: 02:10:04" itemprop="dateCreated datePublished" datetime="2021-02-25T01:38:49+08:00">25-02-2021</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="范数"><a href="#范数" class="headerlink" title="范数"></a>范数</h1><h2 id="向量范数"><a href="#向量范数" class="headerlink" title="向量范数"></a>向量范数</h2><h3 id="1-norm"><a href="#1-norm" class="headerlink" title="1-norm"></a>1-norm</h3><p>$$<br>\parallel x\parallel_1 = \sum_{i=1}^N\vert x_i\vert<br>$$</p>
+<p>元素绝对值之和。</p>
+<h3 id="2-norm"><a href="#2-norm" class="headerlink" title="2-norm"></a>2-norm</h3><p>$$<br>\parallel x\parallel = \sqrt{\sum_{i=1}^Nx_i^2}<br>$$</p>
+<p>欧几里得范数，元素绝对值的平方再开方。<br>$$<br>\parallel x\parallel_\infin = \max_i\vert x_i\vert<br>$$<br>$\infin$范数，所有元素中绝对值的最大值。<br>$$<br>\parallel x\parallel_{-\infin} = \min_i\vert x_i\vert<br>$$<br>$-\infin$范数，所有元素中绝对值最小的值。</p>
+<h2 id="p-norm"><a href="#p-norm" class="headerlink" title="p-norm"></a>p-norm</h2><p>$$<br>\parallel x\parallel_p = {(\sum_{i=1}^N\vert x_i\vert^p)}^{1/p}<br>$$</p>
+<p>元素的p次方和1/p次幂。</p>
+<h2 id="矩阵范数"><a href="#矩阵范数" class="headerlink" title="矩阵范数"></a>矩阵范数</h2><p>…</p>
+<h1 id="距离"><a href="#距离" class="headerlink" title="距离"></a>距离</h1><h2 id="欧氏距离"><a href="#欧氏距离" class="headerlink" title="欧氏距离"></a>欧氏距离</h2><p>$$<br>D(X,Y) = \sqrt{\sum_{i=1}^n(x_i-y_i)^2}<br>$$</p>
+<h2 id="明可夫斯基距离"><a href="#明可夫斯基距离" class="headerlink" title="明可夫斯基距离"></a>明可夫斯基距离</h2><p>$$<br>D(X,Y) = (\sum_{i=1}^n\vert x_i-y_i\vert^p)^{1/p}<br>$$</p>
+<p>当p=2时，就是欧氏距离。</p>
+<h2 id="曼哈顿距离"><a href="#曼哈顿距离" class="headerlink" title="曼哈顿距离"></a>曼哈顿距离</h2><p>$$<br>D(X,Y) = \sum_{i=1}^n\vert x_i-y_i\vert<br>$$</p>
+<hr>
+<p>Reference</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC82ZTVkZmY0MmE3N2U=">https://www.jianshu.com/p/6e5dff42a77e<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N1c2FuemhhbmcxMjMxL2FydGljbGUvZGV0YWlscy81MjEyNzAxMQ==">https://blog.csdn.net/susanzhang1231/article/details/52127011<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC8xMzcwNzM5Njg=">https://zhuanlan.zhihu.com/p/137073968<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/paper_experiment/metric/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/academia/paper_experiment/metric/" class="post-title-link" itemprop="url">混淆矩阵</a>
         </h2>
 
         <div class="post-meta-container">
@@ -289,98 +458,23 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 22-02-2021 23:09:34" itemprop="dateCreated datePublished" datetime="2021-02-22T23:09:34+08:00">22-02-2021</time>
+      <time title="Created: 24-02-2021 22:34:20" itemprop="dateCreated datePublished" datetime="2021-02-24T22:34:20+08:00">24-02-2021</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 23-02-2021 01:15:04" itemprop="dateModified" datetime="2021-02-23T01:15:04+08:00">23-02-2021</time>
+        <time title="Modified: 13-03-2021 18:28:51" itemprop="dateModified" datetime="2021-03-13T18:28:51+08:00">13-03-2021</time>
       </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Truffle-Suite"><a href="#Truffle-Suite" class="headerlink" title="Truffle Suite"></a>Truffle Suite</h1><p>Truffle Suite包含三个产品</p>
-<ul>
-<li>Truffle</li>
-<li>Ganache</li>
-<li>Drizzle</li>
-</ul>
-<p><strong>Truffle</strong>是一个开发框架，包括合约编译，链接，部署，二进制文件管理等。</p>
-<p><strong>Ganache</strong>可以创建一个本地的区块链，用于存储我们在本地部署的合约。</p>
-<p><strong>Drizzle</strong>是一个js库，可以很方便的处理合约中的各种值，进行Web开发。</p>
-<h1 id="Truffle"><a href="#Truffle" class="headerlink" title="Truffle"></a>Truffle</h1><p>下载<code>truffle</code></p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install truffle -g</span><br></pre></td></tr></table></figure>
-
-<p>新建项目</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">truffle init</span><br></pre></td></tr></table></figure>
-
-<p>之后会在当前目录下新建一个truffle项目。</p>
-<hr>
-<p>Reference</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly90cnVmZmxlLnRyeWJsb2NrY2hhaW4ub3JnLw==">https://truffle.tryblockchain.org/<i class="fa fa-external-link-alt"></i></span></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/coin/crypto/ipfs/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/coin/crypto/ipfs/" class="post-title-link" itemprop="url">IPFS - Start</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
+        <i class="far fa-folder"></i>
       </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 22-02-2021 20:10:18 / Modified: 23:15:12" itemprop="dateCreated datePublished" datetime="2021-02-22T20:10:18+08:00">22-02-2021</time>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a>
+        </span>
     </span>
 
   
@@ -393,303 +487,233 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="IPFS介绍"><a href="#IPFS介绍" class="headerlink" title="IPFS介绍"></a>IPFS介绍</h1><p>星际文件系统(Inter Planetary File System)。</p>
-<p>基于区块链技术的互联网。</p>
-<hr>
-<p>Reference</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC8xNTEzODYxNzg=">https://zhuanlan.zhihu.com/p/151386178<i class="fa fa-external-link-alt"></i></span></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/coin/crypto/mine/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/coin/crypto/mine/" class="post-title-link" itemprop="url">挖矿计算的本质</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 22-02-2021 19:04:04 / Modified: 21:02:25" itemprop="dateCreated datePublished" datetime="2021-02-22T19:04:04+08:00">22-02-2021</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <hr>
-<p>Reference</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuYmlsaWJpbGkuY29tL3ZpZGVvL0JWMUU3NDExVjdVTQ==">https://www.bilibili.com/video/BV1E7411V7UM<i class="fa fa-external-link-alt"></i></span></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/coin/crypto/consensus/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/coin/crypto/consensus/" class="post-title-link" itemprop="url">共识机制</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 22-02-2021 19:03:56 / Modified: 22:55:06" itemprop="dateCreated datePublished" datetime="2021-02-22T19:03:56+08:00">22-02-2021</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p>共识机制(Consensus Mechanism)，是一种确定某种共识的方式。</p>
-<p>区块链的本质是去中心化，去中心化的核心是共识机制，这决定了区块链的运作方式。如果所有人都信任这种方式，那也就会信任之于它上的服务。</p>
-<h1 id="POW"><a href="#POW" class="headerlink" title="POW"></a>POW</h1><p>工作量证明机制(Proof of Work)。</p>
-<p>谁先计算出下一个区块就归谁。没有计算出来的只能归零，重新计算。</p>
-<h1 id="POS"><a href="#POS" class="headerlink" title="POS"></a>POS</h1><p>权益证明机制(Proof of Stake)。</p>
-<p>通过持有的Token数量和时长来决定获得记账的几率。</p>
-<h1 id="PBFT"><a href="#PBFT" class="headerlink" title="PBFT"></a>PBFT</h1><p>拜占庭共识算法(Practical Byzantine Fault Tolerance)。</p>
-<p>以计算为基础，但是没有Token奖励，由链上所有人参与投票，少于(N-1)/3个节点反对就获得公示信息的权利。</p>
-<h1 id="POA"><a href="#POA" class="headerlink" title="POA"></a>POA</h1><p>Proof of Activity = POW+POS</p>
-<p>所有活跃的节点进行计算，找到满足条件的区块后对所有的活跃节点进行广播验证。在所有活跃节点中选出N个节点，他们共同决定？</p>
-<h1 id="DPOS"><a href="#DPOS" class="headerlink" title="DPOS"></a>DPOS</h1><p>委托权益证明机制(Delegated Proof of Stake)。</p>
-<p>类似于董事会投票，拥有Token的人投票给固定的节点，选取代理人，代理人负责验证和记账。</p>
-<h1 id="Pool"><a href="#Pool" class="headerlink" title="Pool"></a>Pool</h1><p>验证池共识机制。</p>
-<p>传统的分布式一致性技术，加上数据验证的机制。</p>
-<h1 id="硬分叉与软分叉"><a href="#硬分叉与软分叉" class="headerlink" title="硬分叉与软分叉"></a>硬分叉与软分叉</h1><p>分叉就是在原有的链条上出现了无法达成共识的部分。</p>
-<p><strong>硬分叉</strong>是指区块链发生永久性分歧，在新共识规则发布之后，部分没有升级的节点无法验证已经升级的节点生产的区块，已经升级的节点可以验证，<strong>大家各自延续自己认为正确的链</strong>，分成了两条链。</p>
-<p><strong>软分叉</strong>是指在新共识发布后，没有升级的节点因为不知道新共识的规则，而产生不合法的区块，就会产生临时性的分叉。</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>每一种共识机制都不能同时满足<strong>安全</strong>，<strong>效率</strong>。</p>
-<p>去中心化程度越低，安全性越低，速度越快。</p>
-<p>去中心化程度越高，安全性越高，速度越慢。</p>
-<hr>
-<p>Reference</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3F1ZXN0aW9uLzM1MTEwMzQzMw==">https://www.zhihu.com/question/351103433<i class="fa fa-external-link-alt"></i></span></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/coin/crypto/blockchain/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/coin/crypto/blockchain/" class="post-title-link" itemprop="url">区块链技术</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 22-02-2021 18:43:55 / Modified: 19:27:15" itemprop="dateCreated datePublished" datetime="2021-02-22T18:43:55+08:00">22-02-2021</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="对区块链技术新的理解"><a href="#对区块链技术新的理解" class="headerlink" title="对区块链技术新的理解"></a>对区块链技术新的理解</h1><p>底层技术目前都是一样的，通过chain将block连起来，通过代码确定<strong>共识机制</strong>，采取分布式的策略达到不可篡改性。</p>
-<p>目前感觉技术上有很大不同的是有两个代表。<strong>比特币</strong>与<strong>以太坊</strong>。</p>
-<h1 id="比特币与以太坊对比"><a href="#比特币与以太坊对比" class="headerlink" title="比特币与以太坊对比"></a>比特币与以太坊对比</h1><h2 id="比特币"><a href="#比特币" class="headerlink" title="比特币"></a>比特币</h2><h3 id="交易"><a href="#交易" class="headerlink" title="交易"></a>交易</h3><p>比特币的职能只有一个，<strong>传递价值并存储价值</strong>。</p>
-<p>其交易过程为：</p>
-<ul>
-<li>TO: 发给谁</li>
-<li>FROM: 谁发送的</li>
-<li>AMOUNT: 发送的数量</li>
-</ul>
-<h2 id="以太坊"><a href="#以太坊" class="headerlink" title="以太坊"></a>以太坊</h2><h3 id="交易-1"><a href="#交易-1" class="headerlink" title="交易"></a>交易</h3><p>以太坊最大的不同在于它在交易的时候还有一个<code>DATA</code>字段。</p>
-<ol>
-<li>传递价值（与比特币相同）</li>
+          <h1 id="Confusion-Matrix-混淆矩阵"><a href="#Confusion-Matrix-混淆矩阵" class="headerlink" title="Confusion Matrix 混淆矩阵"></a>Confusion Matrix 混淆矩阵</h1><table>
+<thead>
+<tr>
+<th>预测类别\实际类别</th>
+<th>Positive</th>
+<th>Negative</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Positive</td>
+<td>TP</td>
+<td>FP</td>
+</tr>
+<tr>
+<td>Negative</td>
+<td>FN</td>
+<td>TN</td>
+</tr>
+</tbody></table>
+<p>纵向是<strong>真实类别</strong></p>
+<p>横向是<strong>预测类别</strong></p>
+<p>左上到右下的对角线上是正确分类的个数。</p>
+<h1 id="评价指标"><a href="#评价指标" class="headerlink" title="评价指标"></a>评价指标</h1><h2 id="Accuracy-准确率"><a href="#Accuracy-准确率" class="headerlink" title="Accuracy 准确率"></a>Accuracy 准确率</h2><p>在全部集合中正确分类的个数占比。</p>
+<p><strong>分类器分对了多少</strong><br>$$<br>accuracy = {TP+TN \over TP+TN+FP+FN}<br>$$</p>
+<h2 id="Precision-精确率"><a href="#Precision-精确率" class="headerlink" title="Precision 精确率"></a>Precision 精确率</h2><p>预测为正向的样本中，预测正确的比例。</p>
+<p><strong>返回的正确的有多少</strong><br>$$<br>precision = {TP\over TP+FP}<br>$$</p>
+<h2 id="Recall-召回率"><a href="#Recall-召回率" class="headerlink" title="Recall 召回率"></a>Recall 召回率</h2><p>真实数据集为正向的样本中，预测正确的比例。</p>
+<p><strong>返回的占应该返回的多少</strong><br>$$<br>recall = {TP\over TP+FN}<br>$$</p>
+<h2 id="F1-精确率与召回率的调和平均"><a href="#F1-精确率与召回率的调和平均" class="headerlink" title="F1 精确率与召回率的调和平均"></a>F1 精确率与召回率的调和平均</h2><p>由于不能单纯的看精确率与召回率，因此需要对这两个值进行调和平均。<br>$$<br>F_1 = {2<em>Precision</em>Recall\over Precision+Recall}<br>$$</p>
+<p>$$<br>F_\beta = {(1+\beta^2)<em>{Precision</em>Recall\over \beta^2*Precision+Recall}}<br>$$</p>
+<p>比如在医疗领域，我们会对模糊的案例也判为正向，不放过每一个可能，因此就<strong>需要召回率的权重更大</strong>。</p>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><ol>
+<li>精确率与召回率属于一个<strong>此消彼长</strong>的关系，反应的结果会很片面。如果我们预测的结果全部设为正确，那么<strong>召回率就会很高</strong>，但是<strong>精确率就会很低</strong>；如果真实数据集中全部是正向的样本，那么<strong>精确率就会很高</strong>，<strong>召回率就会很低</strong>。</li>
+<li>如果是N分类问题那么可以计算<strong>宏观的(macro)指标</strong>，就是各个分类相对于正确分类的值；也可以计算<strong>微观的(micro)指标</strong>，就是只保留分类正确或错误的个数，转化为TP, TN, FP, FN.</li>
+<li>如果分类器最后只返回一个类别的label, 那么准确率，精确率，召回率都相等？</li>
 </ol>
+<h1 id="ROC-AUC"><a href="#ROC-AUC" class="headerlink" title="ROC AUC"></a>ROC AUC</h1><p>分类器返回的结果是一个概率值。我们通过不断改变阈值，来影响分类结果（大于阈值则为正向，小于阈值则为负向），从而计算各个阈值下的混淆矩阵。</p>
+<p>把所有的混淆矩阵表示在一个二维空间，就是ROC(Receiver Operator Characteristic)曲线。</p>
+<p>TPR预测为正向的占真实正向的比例；FPR预测为正向的占真实负向的比例。<br>$$<br>TPR = {TP\over TP+FN}<br>$$</p>
+<p>$$<br>FPR = {FP\over FP+TN}<br>$$</p>
+<p>坐标轴上横轴是：FPR，纵轴是：TPR。我们想让TPR尽可能的大，FPR尽可能的小。</p>
+<p>AUC就是ROC曲线与<code>x</code>轴围成的面积。</p>
+<h2 id="N分类"><a href="#N分类" class="headerlink" title="N分类"></a>N分类</h2><p>宏观：对于每一个类别都可以画一个ROC曲线，最后在所有类别上做某种平均。</p>
+<p>微观：转化为正确分类的概率与其他的概率。</p>
+<p>![image-20210224235712286](/Users/edlison/Library/Application Support/typora-user-images/image-20210224235712286.png)</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/coin/k-line/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/coin/k-line/" class="post-title-link" itemprop="url">K线 - MA, MACD, BOLL</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 24-02-2021 11:49:27 / Modified: 12:50:58" itemprop="dateCreated datePublished" datetime="2021-02-24T11:49:27+08:00">24-02-2021</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Finance/" itemprop="url" rel="index"><span itemprop="name">Finance</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="MA"><a href="#MA" class="headerlink" title="MA"></a>MA</h1><p>移动平均线(Moving Average)，指一段时间的收盘价之和除以这段时间的总天数的数据。</p>
+<p>移动平均线可以用来观察股价趋势，一般来说，现行价格在平均价之上意味着市场需求较大，行情看好；反之，行情在平均价之下，意味着供过于求，行情看淡。</p>
+<h1 id="BOLL"><a href="#BOLL" class="headerlink" title="BOLL"></a>BOLL</h1><p>布林指标，通过计算股价的<strong>标准差</strong>，再求股价的<strong>信赖区间</strong>。</p>
+<p>BOLL指标由三条线组成，上轨线，中轨线，下轨线。也是通过MA计算出来的。</p>
+<p>三条线同时向上时，短期内持续上涨，市场强势。同时向下，短期内持续下跌，市场弱势。</p>
+<h1 id="EMA"><a href="#EMA" class="headerlink" title="EMA"></a>EMA</h1><p>计算移动平均值。</p>
+<h1 id="MACD"><a href="#MACD" class="headerlink" title="MACD"></a>MACD</h1><p>意义和双移动平均线基本相同。由快，慢均线的离散聚合表征当前的多空状态和股价可能的发展变化趋势。</p>
+<p>由负数转向正数是买的信号；由正数转向负数时卖的信号。</p>
+<p>MACD指标中，快线是DIF，慢线是DEA，柱状图为MACD。</p>
 <ul>
-<li><ul>
-<li>TO: 发送给谁</li>
-<li>FROM: 谁发送的</li>
-<li>AMOUNT: 发送的数量</li>
+<li>DIF DEA 均为正，DIF向上突破DEA，买入信号。</li>
+<li>DIP DEA 均为负，DIF向下突破DEA，卖出信号。</li>
+<li>DIF线与K线发生背离，行情可能出现反转。</li>
 </ul>
-</li>
-</ul>
-<ol start="2">
-<li>创建合约</li>
-</ol>
+<h1 id="RSI"><a href="#RSI" class="headerlink" title="RSI"></a>RSI</h1><p>相对强弱指数，它是根据一定时期内上涨和下跌幅度之和的比率制作出的一种技术曲线，用以计策市场供需关系和买卖力道。RSI指标是根据供求平衡的原理，通过测量某一期间内股价上涨总幅度占股价变化总幅度平均值的百分比，来评价多空力量的强弱程度。</p>
+<p>40~60之间的作用不大，RSI从50以下向上突破代表股价转强；从50以上向下突破50代表股价转弱。</p>
+<p>短期RSI向上突破长期RSI时，为买入信号；短期RSI向下突破长期RSI时，为卖出信号。</p>
+<h1 id="KDJ"><a href="#KDJ" class="headerlink" title="KDJ"></a>KDJ</h1><p>周期内出现过的最高价，最低价，最后一个计算周期的收盘价及这三者之间的比例关系，来计算最后一个计算周期的未成熟随机值RSV。</p>
 <ul>
-<li><ul>
-<li>TO: nil(空白为触发创建智能合约)</li>
-<li>FROM: 谁创建的</li>
-<li>AMOUNT: 可以是0或是任意数量的以太币，它是我们想要给合约的存款。</li>
-<li>DATA: 包含编译为字节码的智能合约代码</li>
+<li>K D值永远介于0 100之间，D大于80时，呈现超买现象。D小于20时，呈现超卖现象。</li>
+<li>上涨趋势中，K值小于D值，K线向上突破D线时，为买进信号。反之卖出信号。</li>
 </ul>
-</li>
-</ul>
-<ol start="3">
-<li>调用合约函数</li>
-</ol>
-<ul>
-<li><ul>
-<li>TO: 目标合约账户地址</li>
-<li>FROM: 谁调用的</li>
-<li>AMOUNT: 可以是零或是任意数量的以太币，例如<strong>可以支付合约服务费用</strong>。</li>
-<li>DATA: 包含函数名和参数（标识如何调用智能合约函数）</li>
-</ul>
-</li>
-</ul>
-<p><strong>理解</strong>：每次进行代币（Token）交易的时候都会<strong>对合约进行请求</strong>，比如交易时的费用等。</p>
-<p><strong>问题</strong>：超发，被盗等操作如何实现？</p>
-<h3 id="智能合约"><a href="#智能合约" class="headerlink" title="智能合约"></a>智能合约</h3><p>由于ETH最大的区别在于可以传<code>DATA</code>, 因此<strong>衍生出来了一个智能合约的概念</strong>。</p>
-<p><strong>其本质就是可以在区块链上运行代码。</strong></p>
-<h4 id="用户账户"><a href="#用户账户" class="headerlink" title="用户账户"></a>用户账户</h4><ul>
-<li>地址</li>
-<li>余额</li>
-</ul>
-<p>该余额就是用户的钱。</p>
-<h4 id="合约账户"><a href="#合约账户" class="headerlink" title="合约账户"></a>合约账户</h4><ul>
-<li>地址</li>
-<li>余额</li>
-<li>状态</li>
-<li>代码</li>
-</ul>
-<p>合约账户也拥有<strong>余额</strong>，意味着一个<strong>实例化出来的合约对象</strong>可以<strong>通过代码管理余额</strong>，如果代码有问题，则会产生错误。</p>
-<p>合约账户的<strong>状态</strong>是只能合约中生声明的所有变量和变量的当前状态，<strong>就如同实例化的一个对象中的变量</strong>。这个对象将永远存在区块链网络中，除非程序自毁。</p>
-<p>合约账户的<strong>代码</strong>是编译后可以在客户端和节点可以运行的字节码，它在<strong>合约创建时实例化</strong>。</p>
-<p>智能合约是<strong>图灵完备</strong>的，理论上可以做任何事情。</p>
-<h3 id="GAS"><a href="#GAS" class="headerlink" title="GAS"></a>GAS</h3><p>在链上的操作（转账，合约的部署，合约的执行）都是需要占用资源的，这个GAS将被付给矿工。</p>
-<p>GAS可以自己设定，出价越高被执行的就越快。</p>
-<h1 id="理解"><a href="#理解" class="headerlink" title="理解"></a>理解</h1><p>区块存储任何东西</p>
-<p>账户可以用<strong>地址</strong>表示，交易可以用<strong>地址</strong>表示，合约账户内的代码等都可以用<strong>地址</strong>表示。</p>
 <hr>
 <p>Reference</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9sZWFybmJsb2NrY2hhaW4uY24vMjAxOC8wMS8wNC91bmRlcnN0YW5kaW5nLXNtYXJ0LWNvbnRyYWN0cw==">https://learnblockchain.cn/2018/01/04/understanding-smart-contracts<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC8zMDA4NzE1NTc=">https://zhuanlan.zhihu.com/p/300871557<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/coin/exchange/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/coin/exchange/" class="post-title-link" itemprop="url">交易订单类型</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 23-02-2021 15:19:42 / Modified: 15:28:28" itemprop="dateCreated datePublished" datetime="2021-02-23T15:19:42+08:00">23-02-2021</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Finance/" itemprop="url" rel="index"><span itemprop="name">Finance</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="市价单（Market-MKT）"><a href="#市价单（Market-MKT）" class="headerlink" title="市价单（Market, MKT）"></a>市价单（Market, MKT）</h1><p>不指定具体价位，按照当时市场上可执行的最好价格成交。</p>
+<p>优点：保证立即达成交易，防止踏空或尽快止盈/止损。</p>
+<p>缺点：不保证成交价格，当市场快速变化或流动性不足时，成交价格与下单时看到的最后价格可能相差甚远（滑点）。</p>
+<h1 id="限价单（Limit-LMT）"><a href="#限价单（Limit-LMT）" class="headerlink" title="限价单（Limit, LMT）"></a>限价单（Limit, LMT）</h1><p>若为买单，则只能以该价格或更低价买入；若为卖出，则以该价格或更高价格卖出。</p>
+<p>优点：明确知道成交的价格范围。</p>
+<p>缺点：无法保证成交速度，甚至无法成交，导致错失行情。</p>
+<hr>
+<p>Reference</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC8zMjUwOTcwNA==">https://zhuanlan.zhihu.com/p/32509704<i class="fa fa-external-link-alt"></i></span></p>
 
       
     </div>
@@ -711,7 +735,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/18/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><span class="page-number current">19</span><a class="page-number" href="/page/20/">20</a><span class="space">&hellip;</span><a class="page-number" href="/page/48/">48</a><a class="extend next" rel="next" href="/page/20/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/18/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><span class="page-number current">19</span><a class="page-number" href="/page/20/">20</a><span class="space">&hellip;</span><a class="page-number" href="/page/49/">49</a><a class="extend next" rel="next" href="/page/20/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 

@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">238</span>
+          <span class="site-state-item-count">243</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -216,7 +216,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">115</span>
+        <span class="site-state-item-count">118</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -264,7 +264,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/ml/deep_learning/Conv/">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/notebook/socketio/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -278,7 +278,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/dev/ml/deep_learning/Conv/" class="post-title-link" itemprop="url">Convolutional Neural Network</a>
+            <a href="/dev/notebook/socketio/" class="post-title-link" itemprop="url">Flask-Socktio</a>
         </h2>
 
         <div class="post-meta-container">
@@ -289,14 +289,291 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 07-07-2021 20:16:45" itemprop="dateCreated datePublished" datetime="2021-07-07T20:16:45+08:00">07-07-2021</time>
+      <time title="Created: 10-07-2021 16:28:05" itemprop="dateCreated datePublished" datetime="2021-07-10T16:28:05+08:00">10-07-2021</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 16-10-2021 03:38:33" itemprop="dateModified" datetime="2021-10-16T03:38:33+08:00">16-10-2021</time>
+        <time title="Modified: 11-07-2021 12:33:59" itemprop="dateModified" datetime="2021-07-11T12:33:59+08:00">11-07-2021</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Start"><a href="#Start" class="headerlink" title="Start"></a>Start</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask_socketio <span class="keyword">import</span> SocketIO</span><br><span class="line"></span><br><span class="line">socketio = SocketIO(app)</span><br></pre></td></tr></table></figure>
+
+<h1 id="Receiving-Messages"><a href="#Receiving-Messages" class="headerlink" title="Receiving Messages"></a>Receiving Messages</h1><p>The event name is determined. <code>&#39;message&#39;, &#39;json&#39;, &#39;xxx event&#39;</code>, you can determine these name as socket name. Particularly <code>&#39;connect&#39;, &#39;disconnecte&#39;</code> can be called when connecting or disconnecting.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@socketio.on('xxx event', namespace='/test')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">handler</span><span class="params">(json)</span>:</span></span><br><span class="line">  print(<span class="string">'receive json: '</span>, str(json))</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">	<span class="keyword">var</span> socket = io.connect(<span class="string">'http://0.0.0.0:5001'</span>)</span></span><br><span class="line"><span class="actionscript">  socket.on(<span class="string">'connect'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">    socket.emit(<span class="string">'xxx event'</span>, &#123;<span class="string">'data'</span>: <span class="string">'connected.'</span>&#125;)</span></span><br><span class="line">  &#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="Sending-Messages"><a href="#Sending-Messages" class="headerlink" title="Sending Messages"></a>Sending Messages</h1><p><code>emit()</code> used for named events , <code>send()</code> used for unamed events.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@socketio.on('xxx event', namespace='/chatroom')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">xxx_event</span><span class="params">()</span>:</span></span><br><span class="line">  emit(<span class="string">'xxx event'</span>, &#123;<span class="string">'data'</span>: <span class="string">'xxx'</span>&#125;, namespace=<span class="string">'/chatroom'</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>Important</strong></p>
+<p>You can emit message in a router with <code>socketio.emit(&#39;xxx event&#39;, resp, namespace=&#39;/chatroom&#39;)</code>.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.rout('/send')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">send</span><span class="params">()</span>:</span></span><br><span class="line">	socketio.emit(<span class="string">'xxx event'</span>, resp, namespace=<span class="string">'/chatroom'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>You can’t use <code>emit()</code> without context of <code>socketio</code>, you should use <code>socketio.emit()</code>.</p>
+<h1 id="Broadcasting"><a href="#Broadcasting" class="headerlink" title="Broadcasting"></a>Broadcasting</h1><p>If broadcasting is enabled, all the clients connected to the namespace will receive the message.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@socketio.on('xxx event', namespace='/chatroom')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">xxx_event</span><span class="params">()</span>:</span></span><br><span class="line">  emit(<span class="string">'xxx event'</span>, &#123;<span class="string">'data'</span>: <span class="string">'xxx'</span>&#125;, namespace=<span class="string">'/chatroom'</span>, broadcast=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="Rooms"><a href="#Rooms" class="headerlink" title="Rooms"></a>Rooms</h1><p>Users can receive messages from the room they are in.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@socketio.on('join')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">on_join</span><span class="params">(data)</span>:</span></span><br><span class="line">    username = data[<span class="string">'username'</span>]</span><br><span class="line">    room = data[<span class="string">'room'</span>]</span><br><span class="line">    join_room(room)</span><br><span class="line">    send(username + <span class="string">' has entered the room.'</span>, to=room)</span><br><span class="line"></span><br><span class="line"><span class="meta">@socketio.on('leave')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">on_leave</span><span class="params">(data)</span>:</span></span><br><span class="line">    username = data[<span class="string">'username'</span>]</span><br><span class="line">    room = data[<span class="string">'room'</span>]</span><br><span class="line">    leave_room(room)</span><br><span class="line">    send(username + <span class="string">' has left the room.'</span>, to=room)</span><br></pre></td></tr></table></figure>
+
+<p>Use <code>to</code> argument set which room the message should be sent to.</p>
+<h1 id="Class-Based-Events"><a href="#Class-Based-Events" class="headerlink" title="Class-Based Events"></a>Class-Based Events</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask_socketio <span class="keyword">import</span> Namespace, emit</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyCustomNamespace</span><span class="params">(Namespace)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">on_connect</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">on_disconnect</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">on_my_event</span><span class="params">(self, data)</span>:</span></span><br><span class="line">        emit(<span class="string">'my_response'</span>, data)</span><br><span class="line"></span><br><span class="line">socketio.on_namespace(MyCustomNamespace(<span class="string">'/test'</span>))  <span class="comment"># Assign namespace</span></span><br></pre></td></tr></table></figure>
+
+<p>All the event is defined by the methods with <code>on_</code> prefix.</p>
+<hr>
+<p>Reference</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9mbGFzay1zb2NrZXRpby5yZWFkdGhlZG9jcy5pbw==">https://flask-socketio.readthedocs.io<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/notebook/http/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/notebook/http/" class="post-title-link" itemprop="url">HTTP comprehension</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 07-07-2021 21:59:04" itemprop="dateCreated datePublished" datetime="2021-07-07T21:59:04+08:00">07-07-2021</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 11-07-2021 17:11:37" itemprop="dateModified" datetime="2021-07-11T17:11:37+08:00">11-07-2021</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><h2 id="Features"><a href="#Features" class="headerlink" title="Features"></a>Features</h2><ul>
+<li>no connection: process one request in each connection.</li>
+<li>no status: if current transaction needs previous information, it should be transfered again.</li>
+<li>media independent: any type of media that is able to process can be transferred.</li>
+</ul>
+<h2 id="URI-amp-URL"><a href="#URI-amp-URL" class="headerlink" title="URI &amp; URL"></a>URI &amp; URL</h2><p>URI (Uniform Resource Identifiers), is a abstract concept.</p>
+<p>URL (Uniform Resource Locator), a specific URI, can locate a specific resource.</p>
+<h1 id="Request"><a href="#Request" class="headerlink" title="Request"></a>Request</h1><h2 id="Request-contains"><a href="#Request-contains" class="headerlink" title="Request contains"></a>Request contains</h2><ul>
+<li>Request line(Method, URL, HTTP version)</li>
+<li>Header(key&amp;value)</li>
+<li>CR LF</li>
+<li>Body(Only in POST method*)</li>
+</ul>
+<h2 id="GET"><a href="#GET" class="headerlink" title="GET"></a>GET</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">GET /xxxxxxx.jpg HTTP/1.1  # section 1</span><br><span class="line">Host:img.mukewang.com  # section 2</span><br><span class="line">Accept:image/webp,image/*,*/*;q=0.8</span><br><span class="line">Accept-Encoding:gzip, deflate, sdch</span><br><span class="line">Accept-Language:zh-CN,zh;q=0.8</span><br><span class="line">CR(carriage reture) LF(line feed)  # section 3</span><br></pre></td></tr></table></figure>
+
+<p>Section1: Request line</p>
+<p>Section2: Header</p>
+<p>Section3: CR LF</p>
+<p>Body not in GET method.</p>
+<h2 id="POST"><a href="#POST" class="headerlink" title="POST"></a>POST</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">POST / HTTP1.1  # seciton 1</span><br><span class="line">Host:www.wrox.com  # section 2</span><br><span class="line">User-Agent:Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 2.0.50727; .NET CLR 3.0.04506.648; .NET CLR 3.5.21022)</span><br><span class="line"><span class="attribute">Content-Type:application/x-www-form-urlencoded</span></span><br><span class="line"><span class="attribute">Content-Length:40</span></span><br><span class="line"><span class="attribute">Connection</span>: Keep-Alive</span><br><span class="line">  # section 3</span><br><span class="line">name=Professional%20Ajax&amp;publisher=Wiley  # section 4</span><br></pre></td></tr></table></figure>
+
+<p>Section1: Request line</p>
+<p>Section2: Header</p>
+<p>Section3: CR LF</p>
+<p>Section4: Body(type defined by Content-Type in Header)</p>
+<h2 id="GET-amp-POST"><a href="#GET-amp-POST" class="headerlink" title="GET &amp; POST"></a>GET &amp; POST</h2><p>Usually GET method pass value through params which is attached to URL, and body is empty. Although in current HTTP version, GET method pass value through body is accepted. We should follow the common sense that do not put value in body.</p>
+<h1 id="Respond"><a href="#Respond" class="headerlink" title="Respond"></a>Respond</h1><h2 id="Respond-contains"><a href="#Respond-contains" class="headerlink" title="Respond contains"></a>Respond contains</h2><ul>
+<li>Respond line(HTTP version, Status code, Reason phrase)</li>
+<li>Header</li>
+<li>CR LF</li>
+<li>Body</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 <span class="number">200</span> OK  # section 1</span><br><span class="line"><span class="attribute">Date</span>: Fri, 22 May 2009 06:07:21 GMT  # section 2</span><br><span class="line"><span class="attribute">Content-Type</span>: text/html; charset=UTF-8</span><br><span class="line">  # section 3</span><br><span class="line">&lt;html&gt;  # section 4</span><br><span class="line">      &lt;head&gt;&lt;/head&gt;</span><br><span class="line">      &lt;body&gt;</span><br><span class="line">            &lt;!--body goes here--&gt;</span><br><span class="line">      &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Section1: Respond line</p>
+<p>Section2: Header</p>
+<p>Section3: CR LF</p>
+<p>Section4: Body</p>
+<h1 id="Parameters"><a href="#Parameters" class="headerlink" title="Parameters"></a>Parameters</h1><h2 id="Status-code"><a href="#Status-code" class="headerlink" title="Status code"></a>Status code</h2><table>
+<thead>
+<tr>
+<th>code</th>
+<th>describe</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1xx</td>
+<td>infomation</td>
+</tr>
+<tr>
+<td>2xx</td>
+<td>success</td>
+</tr>
+<tr>
+<td>3xx</td>
+<td>redirection</td>
+</tr>
+<tr>
+<td>4xx</td>
+<td>client error</td>
+</tr>
+<tr>
+<td>5xx</td>
+<td>server error</td>
+</tr>
+</tbody></table>
+<h2 id="Content-Type"><a href="#Content-Type" class="headerlink" title="Content-Type"></a>Content-Type</h2><p><strong>application/x-www-form-urlencoded</strong></p>
+<p>default method, only tansfer text</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">POST  HTTP&#x2F;1.1</span><br><span class="line">Host: test.app.com</span><br><span class="line">Content-Type: application&#x2F;x-www-form-urlencoded</span><br><span class="line">Cache-Control: no-cache</span><br><span class="line">Postman-Token: e00dbaf5-15e8-3667-6fc5-48ee3cc89758</span><br><span class="line"></span><br><span class="line">key1&#x3D;value1&amp;key2&#x3D;value2</span><br></pre></td></tr></table></figure>
+
+<p><strong>multipart/form-data</strong></p>
+<p>transfer text or files</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Content-Type: multipart&#x2F;form-data; boundary&#x3D;----WebKitFormBoundary7MA4YWxkTrZu0gW</span><br><span class="line"></span><br><span class="line">------WebKitFormBoundary7MA4YWxkTrZu0gW</span><br><span class="line">Content-Disposition: form-data; name&#x3D;&quot;filekey&quot;; filename&#x3D;&quot;&quot;</span><br><span class="line">Content-Type: </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">------WebKitFormBoundary7MA4YWxkTrZu0gW</span><br><span class="line">Content-Disposition: form-data; name&#x3D;&quot;textkey&quot;</span><br></pre></td></tr></table></figure>
+
+<p>You can transfer text and files at one time. The Body is seperated by boundary.</p>
+<p><strong>application/json</strong></p>
+<p>assign date type in Body</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	&#39;name&#39;: &#39;edlison&#39;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>You need to serialize the data before tansfering.</p>
+<hr>
+<p>Reference</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vcmFueW9uc3VlL3AvNTk4NDAwMS5odG1s">https://www.cnblogs.com/ranyonsue/p/5984001.html<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC80NTE3Mzg2Mg==">https://zhuanlan.zhihu.com/p/45173862<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vd2JsMDAxL3AvMTIwNTA3NTEuaHRtbA==">https://www.cnblogs.com/wbl001/p/12050751.html<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/ml/deep_learning/Dropout/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/ml/deep_learning/Dropout/" class="post-title-link" itemprop="url">Dropout</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 07-07-2021 20:49:37" itemprop="dateCreated datePublished" datetime="2021-07-07T20:49:37+08:00">07-07-2021</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 16-10-2021 03:39:26" itemprop="dateModified" datetime="2021-10-16T03:39:26+08:00">16-10-2021</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -318,10 +595,12 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="Convolutional-Layer"><a href="#Convolutional-Layer" class="headerlink" title="Convolutional Layer"></a>Convolutional Layer</h1><p>There are many conv_kernels in a Conv layer. In my perspective, one paticular kernel’s size is [kernel_size, kernel_size, in_channel]. The output of the calculation computed by the kernel is sum of all channel’s results. So you need to define filter’s num, which determine the output feature map.</p>
-<p>Parameters: filters, kernel_size, stride, padding</p>
-<h1 id="Pooling-Layer"><a href="#Pooling-Layer" class="headerlink" title="Pooling Layer"></a>Pooling Layer</h1><p>Usually a Pooling layer is after a Conv layer. It is a common use to do downsampling by calculate the value in filter of Pooling.</p>
-<p>There are 3 method in common use in Pooling layer, MaxPooling, MinPooling, AvgPooling.</p>
+          <h1 id="Dropout-Layer"><a href="#Dropout-Layer" class="headerlink" title="Dropout Layer"></a>Dropout Layer</h1><p>To avoid two main defects in training deep network, overfit and time consuming.</p>
+<p>It has the ability to achieve regulation.</p>
+<p>The process of Dropout layer is that hide a part of the node i one layer and start forward and backward. So only a part of nodes that didn’t be hidden are updated. Repeat this process.</p>
+<hr>
+<p>Reference</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC8zODIwMDk4MA==">https://zhuanlan.zhihu.com/p/38200980<i class="fa fa-external-link-alt"></i></span></p>
 
       
     </div>
@@ -348,7 +627,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/notebook/git-ssl/">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/ml/deep_learning/BatchNorm/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -362,165 +641,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/dev/notebook/git-ssl/" class="post-title-link" itemprop="url">Github push 发生SSL错误</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 07-07-2021 02:00:32 / Modified: 20:23:46" itemprop="dateCreated datePublished" datetime="2021-07-07T02:00:32+08:00">07-07-2021</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p><code>LibreSSL SSL_connect: SSL_ERROR_SYSCALL in connection to github.com:443</code></p>
-<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p><code>git config --global http.sslBackend &quot;openssl&quot;</code></p>
-<p>配置<code>~/.gitconfig</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[http]</span><br><span class="line">        sslVerify &#x3D; false</span><br><span class="line">[https]</span><br><span class="line">        sslVerify &#x3D; false</span><br></pre></td></tr></table></figure>
-
-<p>或者直接输入指令</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.sslVerify false</span><br><span class="line">git config --global https.sslVerify false</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/notebook/base64/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/notebook/base64/" class="post-title-link" itemprop="url">Base64编码</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 05-07-2021 16:02:40 / Modified: 16:05:37" itemprop="dateCreated datePublished" datetime="2021-07-05T16:02:40+08:00">05-07-2021</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h1><p>可以将二进制的文件转换为文本格式进行传输。</p>
-<p>在http协议传输中，传输<code>bytes</code>类型的数据会有很多，因此我们可以在传输前对其进行<code>base64</code>编码，转化为<code>str</code>格式，便于传输。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/notebook/tensorflow-start/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/notebook/tensorflow-start/" class="post-title-link" itemprop="url">TensorFlow 训练流程</a>
+            <a href="/dev/ml/deep_learning/BatchNorm/" class="post-title-link" itemprop="url">Batch Normalization</a>
         </h2>
 
         <div class="post-meta-container">
@@ -531,15 +652,24 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 04-07-2021 11:09:42" itemprop="dateCreated datePublished" datetime="2021-07-04T11:09:42+08:00">04-07-2021</time>
+      <time title="Created: 07-07-2021 20:49:26" itemprop="dateCreated datePublished" datetime="2021-07-07T20:49:26+08:00">07-07-2021</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 16-10-2021 03:39:03" itemprop="dateModified" datetime="2021-10-16T03:39:03+08:00">16-10-2021</time>
+        <time title="Modified: 16-10-2021 03:38:39" itemprop="dateModified" datetime="2021-10-16T03:38:39+08:00">16-10-2021</time>
       </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Deep-Learning/" itemprop="url" rel="index"><span itemprop="name">Deep Learning</span></a>
+        </span>
+    </span>
 
   
 </div>
@@ -551,8 +681,11 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="训练流程"><a href="#训练流程" class="headerlink" title="训练流程"></a>训练流程</h1><p>TODO</p>
-<h1 id="MNIST-数据集实例"><a href="#MNIST-数据集实例" class="headerlink" title="MNIST 数据集实例"></a>MNIST 数据集实例</h1><p>TODO</p>
+          <h1 id="Batch-Normalization-Layer"><a href="#Batch-Normalization-Layer" class="headerlink" title="Batch Normalization Layer"></a>Batch Normalization Layer</h1><p>It is usually used before the activation node. The most important improvement is that the speed of convergence is faster, and the model is more stable, avoiding the exploading and vanishing of grad.</p>
+<p>Algorithmn of BN is calculating the mean and variance of each batch and transfering the value of all batch to mean 0, variance 1.</p>
+<hr>
+<p>Reference</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3NlYXJjaD9xPWJhdGNoJTIwbm9ybWFsaXphdGlvbiZhbXA7dXRtX2NvbnRlbnQ9c2VhcmNoX3N1Z2dlc3Rpb24mYW1wO3R5cGU9Y29udGVudA==">https://www.zhihu.com/search?q=batch%20normalization&amp;utm_content=search_suggestion&amp;type=content<i class="fa fa-external-link-alt"></i></span></p>
 
       
     </div>
@@ -579,7 +712,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/paper_experiment/features/">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/ml/deep_learning/term/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -593,7 +726,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/academia/paper_experiment/features/" class="post-title-link" itemprop="url">特征工程</a>
+            <a href="/dev/ml/deep_learning/term/" class="post-title-link" itemprop="url">Terms in Deep Learning</a>
         </h2>
 
         <div class="post-meta-container">
@@ -604,14 +737,14 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 06-06-2021 22:41:03" itemprop="dateCreated datePublished" datetime="2021-06-06T22:41:03+08:00">06-06-2021</time>
+      <time title="Created: 07-07-2021 20:34:04" itemprop="dateCreated datePublished" datetime="2021-07-07T20:34:04+08:00">07-07-2021</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 07-06-2021 17:59:24" itemprop="dateModified" datetime="2021-06-07T17:59:24+08:00">07-06-2021</time>
+        <time title="Modified: 16-10-2021 03:38:44" itemprop="dateModified" datetime="2021-10-16T03:38:44+08:00">16-10-2021</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -619,7 +752,7 @@
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a>
+          <a href="/categories/Deep-Learning/" itemprop="url" rel="index"><span itemprop="name">Deep Learning</span></a>
         </span>
     </span>
 
@@ -633,30 +766,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="特征工程"><a href="#特征工程" class="headerlink" title="特征工程"></a>特征工程</h1><h2 id="SIFT"><a href="#SIFT" class="headerlink" title="SIFT"></a>SIFT</h2><p>尺度不变特征转换(Scale-invariant feature transform).</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># @Author  : Edlison</span></span><br><span class="line"><span class="comment"># @Date    : 5/30/21 23:26</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment"># Load</span></span><br><span class="line">imgname = <span class="string">'Image.jpeg'</span></span><br><span class="line">sift = cv2.SIFT_create()</span><br><span class="line">img = cv2.imread(imgname)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Calculate</span></span><br><span class="line">gray = cv2.cvtColor(img.numpy(), cv2.COLOR_BGR2GRAY)</span><br><span class="line">kp, des = sift.detectAndCompute(img, <span class="literal">None</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Draw sift</span></span><br><span class="line">img1 = cv2.drawKeypoints(gray, kp, img, color=(<span class="number">255</span>, <span class="number">0</span>, <span class="number">0</span>))</span><br><span class="line"></span><br><span class="line">plt.imshow(img1)</span><br><span class="line">plt.title(<span class="string">'after'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-
-<p>调用cv2中的SIFT算法。</p>
-<ol>
-<li>读取图片，cv读取通道默认是BGR，需要手动转换为RGB或其他。</li>
-<li>计算keypoints</li>
-<li>在原图上画出keypoints，可以选择keypoint的color或者flag。</li>
-</ol>
-<h2 id="LBP"><a href="#LBP" class="headerlink" title="LBP"></a>LBP</h2><p>局部二值模型（Local Binary Pattern）.</p>
-<p>是一种用来描述图像局部纹理特征的算子，它具有<strong>旋转不变性</strong>和<strong>灰度不变性</strong>的特点。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">from</span> pylab <span class="keyword">import</span>*</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LBP</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        super()</span><br><span class="line">        </span><br><span class="line">    <span class="comment">#将图像载入，并转化为灰度图，获取图像灰度图的像素信息</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">describe</span><span class="params">(self,image)</span>:</span></span><br><span class="line">        image_array=np.array(Image.open(image).convert(<span class="string">'L'</span>))</span><br><span class="line">        <span class="keyword">return</span> image_array</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#图像的LBP原始特征计算算法：将图像指定位置的像素与周围8个像素比较</span></span><br><span class="line">    <span class="comment">#比中心像素大的点赋值为1，比中心像素小的赋值为0，返回得到的二进制序列</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">calute_basic_lbp</span><span class="params">(self,image_array,i,j)</span>:</span></span><br><span class="line">        sum=[]</span><br><span class="line">        <span class="keyword">if</span> image_array[i<span class="number">-1</span>,j<span class="number">-1</span>]&gt;image_array[i,j]:</span><br><span class="line">            sum.append(<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            sum.append(<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">if</span> image_array[i<span class="number">-1</span>,j]&gt;image_array[i,j]:</span><br><span class="line">            sum.append(<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            sum.append(<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">if</span> image_array[i<span class="number">-1</span>,j+<span class="number">1</span>]&gt;image_array[i,j]:</span><br><span class="line">            sum.append(<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            sum.append(<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">if</span> image_array[i,j<span class="number">-1</span>]&gt;image_array[i,j]:</span><br><span class="line">            sum.append(<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            sum.append(<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">if</span> image_array[i,j+<span class="number">1</span>]&gt;image_array[i,j]:</span><br><span class="line">            sum.append(<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            sum.append(<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">if</span> image_array[i+<span class="number">1</span>,j<span class="number">-1</span>]&gt;image_array[i,j]:</span><br><span class="line">            sum.append(<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            sum.append(<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">if</span> image_array[i+<span class="number">1</span>,j]&gt;image_array[i,j]:</span><br><span class="line">            sum.append(<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            sum.append(<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">if</span> image_array[i+<span class="number">1</span>,j+<span class="number">1</span>]&gt;image_array[i,j]:</span><br><span class="line">            sum.append(<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            sum.append(<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> sum</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#获取二进制序列进行不断环形旋转得到新的二进制序列的最小十进制值</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_min_for_revolve</span><span class="params">(self,arr)</span>:</span> </span><br><span class="line">        values=[]</span><br><span class="line">        circle=arr</span><br><span class="line">        circle.extend(arr)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">8</span>):</span><br><span class="line">            j=<span class="number">0</span></span><br><span class="line">            sum=<span class="number">0</span></span><br><span class="line">            bit_num=<span class="number">0</span></span><br><span class="line">            <span class="keyword">while</span> j&lt;<span class="number">8</span>:</span><br><span class="line">                sum+=circle[i+j]&lt;&lt;bit_num</span><br><span class="line">                bit_num+=<span class="number">1</span></span><br><span class="line">                j+=<span class="number">1</span></span><br><span class="line">            values.append(sum)</span><br><span class="line">        <span class="keyword">return</span> min(values)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#获取值r的二进制中1的位数</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">calc_sum</span><span class="params">(self,r)</span>:</span></span><br><span class="line">        num=<span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span>(r):</span><br><span class="line">            r&amp;=(r<span class="number">-1</span>)</span><br><span class="line">            num+=<span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> num</span><br><span class="line"></span><br><span class="line">    <span class="comment">#获取图像的LBP原始模式特征</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">lbp_basic</span><span class="params">(self,image_array)</span>:</span></span><br><span class="line">        basic_array=np.zeros(image_array.shape, np.uint8)</span><br><span class="line">        width=image_array.shape[<span class="number">0</span>]</span><br><span class="line">        height=image_array.shape[<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,width<span class="number">-1</span>):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>,height<span class="number">-1</span>):</span><br><span class="line">                sum=self.calute_basic_lbp(image_array,i,j)</span><br><span class="line">                bit_num=<span class="number">0</span></span><br><span class="line">                result=<span class="number">0</span></span><br><span class="line">                <span class="keyword">for</span> s <span class="keyword">in</span> sum:</span><br><span class="line">                    result+=s&lt;&lt;bit_num</span><br><span class="line">                    bit_num+=<span class="number">1</span></span><br><span class="line">                basic_array[i,j]=result</span><br><span class="line">        <span class="keyword">return</span> basic_array</span><br><span class="line"></span><br><span class="line">    <span class="comment">#显示图像</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">show_image</span><span class="params">(self,image_array)</span>:</span></span><br><span class="line">        plt.imshow(image_array)</span><br><span class="line">        plt.show()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    image = <span class="string">'../Image.jpeg'</span></span><br><span class="line">    lbp=LBP()</span><br><span class="line">    img=lbp.describe(image)</span><br><span class="line">    <span class="comment">#获取图像原始LBP特征，并显示其统计直方图与特征图像</span></span><br><span class="line">    basic_array=lbp.lbp_basic(img)</span><br><span class="line">    lbp.show_image(basic_array)</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="GLCM"><a href="#GLCM" class="headerlink" title="GLCM"></a>GLCM</h2><p>灰度共生矩阵（Gray-Level Co-occurrence Matrix）,</p>
-<p>一种描述图像局部区域或整体区域的某像素与相邻像素或一定距离内的像素的灰度关系的矩阵。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding: utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">from</span> skimage <span class="keyword">import</span> data</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fast_glcm</span><span class="params">(img, vmin=<span class="number">0</span>, vmax=<span class="number">255</span>, nbit=<span class="number">8</span>, kernel_size=<span class="number">5</span>)</span>:</span></span><br><span class="line">    mi, ma = vmin, vmax</span><br><span class="line">    ks = kernel_size</span><br><span class="line">    h,w = img.shape</span><br><span class="line"></span><br><span class="line">    <span class="comment"># digitize</span></span><br><span class="line">    bins = np.linspace(mi, ma+<span class="number">1</span>, nbit+<span class="number">1</span>)</span><br><span class="line">    gl1 = np.digitize(img, bins) - <span class="number">1</span></span><br><span class="line">    gl2 = np.append(gl1[:,<span class="number">1</span>:], gl1[:,<span class="number">-1</span>:], axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># make glcm</span></span><br><span class="line">    glcm = np.zeros((nbit, nbit, h, w), dtype=np.uint8)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(nbit):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(nbit):</span><br><span class="line">            mask = ((gl1==i) &amp; (gl2==j))</span><br><span class="line">            glcm[i,j, mask] = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    kernel = np.ones((ks, ks), dtype=np.uint8)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(nbit):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(nbit):</span><br><span class="line">            glcm[i,j] = cv2.filter2D(glcm[i,j], <span class="number">-1</span>, kernel)</span><br><span class="line"></span><br><span class="line">    glcm = glcm.astype(np.float32)</span><br><span class="line">    <span class="keyword">return</span> glcm</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fast_glcm_mean</span><span class="params">(img, vmin=<span class="number">0</span>, vmax=<span class="number">255</span>, nbit=<span class="number">8</span>, ks=<span class="number">5</span>)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    calc glcm mean</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    h,w = img.shape</span><br><span class="line">    glcm = fast_glcm(img, vmin, vmax, nbit, ks)</span><br><span class="line">    mean = np.zeros((h,w), dtype=np.float32)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(nbit):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(nbit):</span><br><span class="line">            mean += glcm[i,j] * i / (nbit)**<span class="number">2</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> mean</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fast_glcm_std</span><span class="params">(img, vmin=<span class="number">0</span>, vmax=<span class="number">255</span>, nbit=<span class="number">8</span>, ks=<span class="number">5</span>)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    calc glcm std</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    h,w = img.shape</span><br><span class="line">    glcm = fast_glcm(img, vmin, vmax, nbit, ks)</span><br><span class="line">    mean = np.zeros((h,w), dtype=np.float32)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(nbit):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(nbit):</span><br><span class="line">            mean += glcm[i,j] * i / (nbit)**<span class="number">2</span></span><br><span class="line"></span><br><span class="line">    std2 = np.zeros((h,w), dtype=np.float32)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(nbit):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(nbit):</span><br><span class="line">            std2 += (glcm[i,j] * i - mean)**<span class="number">2</span></span><br><span class="line"></span><br><span class="line">    std = np.sqrt(std2)</span><br><span class="line">    <span class="keyword">return</span> std</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fast_glcm_contrast</span><span class="params">(img, vmin=<span class="number">0</span>, vmax=<span class="number">255</span>, nbit=<span class="number">8</span>, ks=<span class="number">5</span>)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    calc glcm contrast</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    h,w = img.shape</span><br><span class="line">    glcm = fast_glcm(img, vmin, vmax, nbit, ks)</span><br><span class="line">    cont = np.zeros((h,w), dtype=np.float32)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(nbit):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(nbit):</span><br><span class="line">            cont += glcm[i,j] * (i-j)**<span class="number">2</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> cont</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fast_glcm_dissimilarity</span><span class="params">(img, vmin=<span class="number">0</span>, vmax=<span class="number">255</span>, nbit=<span class="number">8</span>, ks=<span class="number">5</span>)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    calc glcm dissimilarity</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    h,w = img.shape</span><br><span class="line">    glcm = fast_glcm(img, vmin, vmax, nbit, ks)</span><br><span class="line">    diss = np.zeros((h,w), dtype=np.float32)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(nbit):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(nbit):</span><br><span class="line">            diss += glcm[i,j] * np.abs(i-j)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> diss</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fast_glcm_homogeneity</span><span class="params">(img, vmin=<span class="number">0</span>, vmax=<span class="number">255</span>, nbit=<span class="number">8</span>, ks=<span class="number">5</span>)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    calc glcm homogeneity</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    h,w = img.shape</span><br><span class="line">    glcm = fast_glcm(img, vmin, vmax, nbit, ks)</span><br><span class="line">    homo = np.zeros((h,w), dtype=np.float32)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(nbit):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(nbit):</span><br><span class="line">            homo += glcm[i,j] / (<span class="number">1.</span>+(i-j)**<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> homo</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fast_glcm_ASM</span><span class="params">(img, vmin=<span class="number">0</span>, vmax=<span class="number">255</span>, nbit=<span class="number">8</span>, ks=<span class="number">5</span>)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    calc glcm asm, energy</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    h,w = img.shape</span><br><span class="line">    glcm = fast_glcm(img, vmin, vmax, nbit, ks)</span><br><span class="line">    asm = np.zeros((h,w), dtype=np.float32)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(nbit):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(nbit):</span><br><span class="line">            asm  += glcm[i,j]**<span class="number">2</span></span><br><span class="line"></span><br><span class="line">    ene = np.sqrt(asm)</span><br><span class="line">    <span class="keyword">return</span> asm, ene</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fast_glcm_max</span><span class="params">(img, vmin=<span class="number">0</span>, vmax=<span class="number">255</span>, nbit=<span class="number">8</span>, ks=<span class="number">5</span>)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    calc glcm max</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    glcm = fast_glcm(img, vmin, vmax, nbit, ks)</span><br><span class="line">    max_  = np.max(glcm, axis=(<span class="number">0</span>,<span class="number">1</span>))</span><br><span class="line">    <span class="keyword">return</span> max_</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fast_glcm_entropy</span><span class="params">(img, vmin=<span class="number">0</span>, vmax=<span class="number">255</span>, nbit=<span class="number">8</span>, ks=<span class="number">5</span>)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    calc glcm entropy</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    glcm = fast_glcm(img, vmin, vmax, nbit, ks)</span><br><span class="line">    pnorm = glcm / np.sum(glcm, axis=(<span class="number">0</span>,<span class="number">1</span>)) + <span class="number">1.</span>/ks**<span class="number">2</span></span><br><span class="line">    ent  = np.sum(-pnorm * np.log(pnorm), axis=(<span class="number">0</span>,<span class="number">1</span>))</span><br><span class="line">    <span class="keyword">return</span> ent</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    nbit = <span class="number">8</span></span><br><span class="line">    ks = <span class="number">5</span></span><br><span class="line">    mi, ma = <span class="number">0</span>, <span class="number">255</span></span><br><span class="line"></span><br><span class="line">    tar_f = <span class="string">'../../data/MNIST/processed/training.pt'</span></span><br><span class="line">    imgs, labels = torch.load(tar_f)</span><br><span class="line">    img = imgs[<span class="number">2</span>]</span><br><span class="line"></span><br><span class="line">    img = fast_glcm_mean(img, vmin=mi, vmax=ma, nbit=nbit, ks=ks)</span><br><span class="line">    plt.imshow(img)</span><br><span class="line">    plt.title(<span class="string">'after'</span>)</span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="GIST"><a href="#GIST" class="headerlink" title="GIST"></a>GIST</h2><p>一种宏观意义的场景特征描述。</p>
-<p>只识别’大街上有一些行人’这个场景，无需知道图像中在那些位置有多少人，或者有其他什么对象。</p>
-<p>GIST特征向量可以一定程度表征这种宏观场景特征。</p>
+          <h1 id="Term"><a href="#Term" class="headerlink" title="Term"></a>Term</h1><h2 id="SOTA"><a href="#SOTA" class="headerlink" title="SOTA"></a>SOTA</h2><p>state of the art</p>
+<p>To illustrate the best model in the paticular task.</p>
+<h2 id="Baseline"><a href="#Baseline" class="headerlink" title="Baseline"></a>Baseline</h2><p>The experiment part that you need to compete with.</p>
+<h2 id="Benchmark"><a href="#Benchmark" class="headerlink" title="Benchmark"></a>Benchmark</h2><p>The target value of the experiment that you need to compete with.</p>
 
       
     </div>
@@ -678,7 +791,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/48/">48</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/49/">49</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
