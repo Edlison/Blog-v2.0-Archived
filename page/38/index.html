@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">247</span>
+          <span class="site-state-item-count">249</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -256,6 +256,160 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/notebook/grpc/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/notebook/grpc/" class="post-title-link" itemprop="url">dev/notebook/grpc</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 14-07-2020 23:31:04" itemprop="dateCreated datePublished" datetime="2020-07-14T23:31:04+08:00">14-07-2020</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="gRPC入门"><a href="#gRPC入门" class="headerlink" title="gRPC入门"></a>gRPC入门</h1><h2 id="下载依赖"><a href="#下载依赖" class="headerlink" title="下载依赖"></a>下载依赖</h2><p><code>pip install grpc</code><br><code>pip install proto</code><br><code>pip install grpc-tools</code>  </p>
+<h2 id="设置接口"><a href="#设置接口" class="headerlink" title="设置接口"></a>设置接口</h2><p>在.proto文件中定义接口</p>
+<h2 id="生成文件"><a href="#生成文件" class="headerlink" title="生成文件"></a>生成文件</h2><p><code>python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. api.proto</code></p>
+<h2 id="proto示例"><a href="#proto示例" class="headerlink" title="proto示例"></a>proto示例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">syntax &#x3D; &quot;proto3&quot;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; The greeting service definition.</span><br><span class="line">service Greeter &#123;</span><br><span class="line">  &#x2F;&#x2F; Sends a greeting</span><br><span class="line">  rpc SayHello (HelloRequest) returns (HelloReply) &#123;&#125;</span><br><span class="line">  &#x2F;&#x2F; Sends another greeting</span><br><span class="line">  rpc SayHelloAgain (HelloRequest) returns (HelloReply) &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; The request message containing the user&#39;s name.</span><br><span class="line">message HelloRequest &#123;</span><br><span class="line">  string name &#x3D; 1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; The response message containing the greetings</span><br><span class="line">message HelloReply &#123;</span><br><span class="line">  string message &#x3D; 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="server示例"><a href="#server示例" class="headerlink" title="server示例"></a>server示例</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Greeter</span><span class="params">(api_pb2_grpc.GreeterServicer)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">SayHello</span><span class="params">(self, request, context)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> api_pb2.HelloReply(message=<span class="string">'Hello, %s!'</span> % request.name)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">SayHelloAgain</span><span class="params">(self, request, context)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> api_pb2.HelloReply(message=<span class="string">'Hello again, %s!'</span> % request.name)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">serve</span><span class="params">()</span>:</span></span><br><span class="line">    server = grpc.server(futures.ThreadPoolExecutor(max_workers=<span class="number">4</span>))</span><br><span class="line">    api_pb2_grpc.add_GreeterServicer_to_server(Greeter(), server)</span><br><span class="line">    server.add_insecure_port(<span class="string">'localhost:50051'</span>)</span><br><span class="line">    server.start()</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            time.sleep(<span class="number">60</span> * <span class="number">60</span> * <span class="number">24</span>)</span><br><span class="line">    <span class="keyword">except</span> KeyboardInterrupt:</span><br><span class="line">        server.stop(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    serve()</span><br></pre></td></tr></table></figure>
+
+<h2 id="client示例"><a href="#client示例" class="headerlink" title="client示例"></a>client示例</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">()</span>:</span></span><br><span class="line">  channel = grpc.insecure_channel(<span class="string">'localhost:50051'</span>)</span><br><span class="line">  stub = api_pb2_grpc.GreeterStub(channel)</span><br><span class="line">  response = stub.SayHello(api_pb2.HelloRequest(name=<span class="string">'you'</span>))</span><br><span class="line">  print(<span class="string">"Greeter client received: "</span> + response.message)</span><br><span class="line">  response = stub.SayHelloAgain(api_pb2.HelloRequest(name=<span class="string">'you'</span>))</span><br><span class="line">  print(<span class="string">"Greeter client received: "</span> + response.message)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    run()</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/notebook/nginx/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/notebook/nginx/" class="post-title-link" itemprop="url">dev/notebook/nginx</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 14-07-2020 23:31:04" itemprop="dateCreated datePublished" datetime="2020-07-14T23:31:04+08:00">14-07-2020</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 10-10-2021 22:21:48" itemprop="dateModified" datetime="2021-10-10T22:21:48+08:00">10-10-2021</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h1><p>检测配置文件<br><code>nginx -t</code></p>
+<p>重启服务<br><code>nginx -s reload</code></p>
+<p>若重启报错 先运行<br><code>nginx -c /etc/nginx/nginx.conf</code></p>
+<p>配置目录文件</p>
+<ul>
+<li>/etc/nginx: nginx配置文件目录。所有的nginx配置文件都在这里。</li>
+<li>/etc/nginx/nginx.conf: Nginx的主配置文件. 可以修改他来改变nginx的全局配置。</li>
+<li>/etc/nginx/sites-available/: 这个目录存储每一个网站的”server blocks”。nginx通常不会使用这些配置，除非它们陪连接到 sites-enabled 目录 (see below)。一般所有的server block 配置都在这个目录中设置，然后软连接到别的目录 。</li>
+<li>/etc/nginx/sites-enabled/: 这个目录存储生效的 “server blocks” 配置. 通常,这个配置都是链接到 sites-available目录中的配置文件</li>
+<li>/etc/nginx/snippets: 这个目录主要可以包含在其它nginx配置文件中的配置片段。重复的配置都可以重构为配置片段。</li>
+</ul>
+<p>SSL config</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">  server &#123;</span><br><span class="line">      listen       80 default_server;</span><br><span class="line">      listen       [::]:80 default_server;</span><br><span class="line">      server_name  api.gfgf.tech;</span><br><span class="line">      root         &#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html;</span><br><span class="line"></span><br><span class="line">   return 301 https:&#x2F;&#x2F;$server_name$request_uri;</span><br><span class="line"></span><br><span class="line">      # Load configuration files for the default server block.</span><br><span class="line">      include &#x2F;etc&#x2F;nginx&#x2F;default.d&#x2F;*.conf;</span><br><span class="line"></span><br><span class="line">      location &#x2F; &#123;</span><br><span class="line">              proxy_pass http:&#x2F;&#x2F;127.0.0.1:21000;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      error_page 404 &#x2F;404.html;</span><br><span class="line">          location &#x3D; &#x2F;40x.html &#123;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      error_page 500 502 503 504 &#x2F;50x.html;</span><br><span class="line">          location &#x3D; &#x2F;50x.html &#123;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  server &#123;</span><br><span class="line">      listen       443 ssl http2 default_server;</span><br><span class="line">      listen       [::]:443 ssl http2 default_server;</span><br><span class="line">      server_name  api.gfgf.tech;</span><br><span class="line">      root         &#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html;</span><br><span class="line"></span><br><span class="line">      ssl_certificate &quot;&#x2F;root&#x2F;.acme.sh&#x2F;api.gfgf.tech&#x2F;api.gfgf.tech.cer&quot;;</span><br><span class="line">      ssl_certificate_key &quot;&#x2F;root&#x2F;.acme.sh&#x2F;api.gfgf.tech&#x2F;api.gfgf.tech.key&quot;;</span><br><span class="line">      ssl_session_cache shared:SSL:1m;</span><br><span class="line">      ssl_session_timeout  10m;</span><br><span class="line">      ssl_ciphers HIGH:!aNULL:!MD5;</span><br><span class="line">      ssl_prefer_server_ciphers on;</span><br><span class="line"></span><br><span class="line">      # Load configuration files for the default server block.</span><br><span class="line">      include &#x2F;etc&#x2F;nginx&#x2F;default.d&#x2F;*.conf;</span><br><span class="line"></span><br><span class="line">      location &#x2F; &#123;</span><br><span class="line">proxy_pass http:&#x2F;&#x2F;localhost:21000;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      error_page 404 &#x2F;404.html;</span><br><span class="line">          location &#x3D; &#x2F;40x.html &#123;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      error_page 500 502 503 504 &#x2F;50x.html;</span><br><span class="line">          location &#x3D; &#x2F;50x.html &#123;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -483,163 +637,6 @@
 <p>格式是(dockerhub用户名/仓库名:tag)  ，需要自己有一个dockerhub账号，v0.1就是自定义的版本号码</p>
 <p>然后记得登录在服务器上dockerhub，否则推送会报错：</p>
 <p><code>docker login</code></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/docker/docker-anaconda/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/docker/docker-anaconda/" class="post-title-link" itemprop="url">dev/docker/docker-anaconda</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 14-07-2020 23:31:04" itemprop="dateCreated datePublished" datetime="2020-07-14T23:31:04+08:00">14-07-2020</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="使用Docker配置Anaconda环境运行Jupyter"><a href="#使用Docker配置Anaconda环境运行Jupyter" class="headerlink" title="使用Docker配置Anaconda环境运行Jupyter"></a>使用Docker配置Anaconda环境运行Jupyter</h1><h2 id="配置Anaconda环境"><a href="#配置Anaconda环境" class="headerlink" title="配置Anaconda环境"></a>配置Anaconda环境</h2><p><strong>挂载</strong></p>
-<ul>
-<li><p>文件夹挂载<br><code>-v /root/notebook:/notebook</code><br>(宿主机目录:镜像内挂载目录)</p>
-</li>
-<li><p><em>配置文件挂载</em>(生成的文件夹)<br><code>-v /root/docker/config/anaconda3/jupyter_notebook_config.json:/root/.jupyter/jupyter_notebook_config.json</code></p>
-</li>
-</ul>
-<p><strong>Example</strong><br><code>docker run -i -t -p 11000:8888 -v ~/notebook:/notebook -v ~/docker/config/jupyter:/root/.jupyter continuumio/anaconda3 /bin/bash</code><br>挂载参数要在容器前</p>
-<h2 id="配置Jupyter-Notebook"><a href="#配置Jupyter-Notebook" class="headerlink" title="配置Jupyter Notebook"></a>配置Jupyter Notebook</h2><p><code>jupyter notebook --allow-root</code></p>
-<p>启动Notebook<br><code>jupyter notebook --port 8888 --ip 0.0.0.0 --allow-root</code></p>
-<p>后台运行Notebook<br><code>nohup jupyter notebook --port 8888 --ip 0.0.0.0 --allow-root &amp;</code></p>
-<p><strong>相关配置</strong></p>
-<p>配置文件</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">c = get_config()</span><br><span class="line">c.IPKernelApp.pylab = <span class="string">"inline"</span></span><br><span class="line">c.NotebookApp.ip = <span class="string">"*"</span></span><br><span class="line">c.NotebookAPp.open_browser = <span class="literal">False</span></span><br><span class="line">c.NotebookApp.password = <span class="string">'sha1:5295d47ebd06:cdca9499f90b4b4616c935fdff61dda71e1e4393'</span></span><br><span class="line"><span class="comment"># c.NotebookApp.certfile = u'/root/.jupyter/mycert.pem'</span></span><br><span class="line">c.NotebookApp.port= <span class="number">8888</span></span><br><span class="line">c.NotebookApp.notebook_dir = <span class="string">"/"</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p><em>docker-compose配置出问题？</em></p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3'</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">notebook:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">continuumio/anaconda3</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">"no"</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">~/notebook:/notebook</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">~/docker/config/jupyter:/root/.jupyter</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">"11000:80"</span></span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/docker/docker-chevereto/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/docker/docker-chevereto/" class="post-title-link" itemprop="url">dev/docker/docker-chevereto</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 14-07-2020 23:31:04" itemprop="dateCreated datePublished" datetime="2020-07-14T23:31:04+08:00">14-07-2020</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="使用Docker搭建图床"><a href="#使用Docker搭建图床" class="headerlink" title="使用Docker搭建图床"></a>使用Docker搭建图床</h1><p>安装容器编排工具Compose<br><code>pip3 install docker-compose</code></p>
-<p>pull镜像<br><code>docker pull mariadb:latest</code><br><code>docker pull nmtan/chevereto:latest</code>  </p>
-<p>使用Docker-Compose启动<br><code>mkdir cheverto/</code><br><code>cd cheverto</code><br><code>touch docker-compose.yaml</code></p>
-<p>docker-compose.yaml配置文件</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3'</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">db:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">mariadb</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">database:/var/lib/mysql:rw</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">networks:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">private</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">MYSQL_ROOT_PASSWORD:</span> <span class="string">chevereto_root</span></span><br><span class="line">      <span class="attr">MYSQL_DATABASE:</span> <span class="string">chevereto</span></span><br><span class="line">      <span class="attr">MYSQL_USER:</span> <span class="string">chevereto</span></span><br><span class="line">      <span class="attr">MYSQL_PASSWORD:</span> <span class="string">chevereto</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">chevereto:</span></span><br><span class="line">    <span class="attr">depends_on:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">db</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">nmtan/chevereto</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">networks:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">private</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">CHEVERETO_DB_HOST:</span> <span class="string">db</span></span><br><span class="line">      <span class="attr">CHEVERETO_DB_USERNAME:</span> <span class="string">chevereto</span></span><br><span class="line">      <span class="attr">CHEVERETO_DB_PASSWORD:</span> <span class="string">chevereto</span></span><br><span class="line">      <span class="attr">CHEVERETO_DB_NAME:</span> <span class="string">chevereto</span></span><br><span class="line">      <span class="attr">CHEVERETO_DB_PREFIX:</span> <span class="string">chv_</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">chevereto_images:/var/www/html/images:rw</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">chevereto_php_config:/usr/local/etc/php:rw</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">12000</span><span class="string">:80</span></span><br><span class="line"></span><br><span class="line"><span class="attr">networks:</span></span><br><span class="line">  <span class="attr">private:</span></span><br><span class="line"><span class="attr">volumes:</span></span><br><span class="line">  <span class="attr">database:</span></span><br><span class="line">  <span class="attr">chevereto_images:</span></span><br><span class="line">  <span class="attr">chevereto_php_config:</span></span><br></pre></td></tr></table></figure>
-
-<p>对应挂载到当前文件夹中的php.ini文件(<strong>注意</strong> php.ini文件需要先创建 否则docker会自动创建同名文件夹)<br><code>- ./php.ini:/usr/local/etc/php/php.ini:rw</code></p>
-<p>php.ini</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">memory_limit</span> = <span class="number">256</span>M<span class="comment">;</span></span><br><span class="line"><span class="attr">upload_max_filesize</span> = <span class="number">100</span>M<span class="comment">;</span></span><br><span class="line"><span class="attr">post_max_size</span> = <span class="number">100</span>M<span class="comment">;</span></span><br></pre></td></tr></table></figure>
-
-<p>运行Docker-Compose<br><code>docker-compose up -d</code></p>
 
       
     </div>
