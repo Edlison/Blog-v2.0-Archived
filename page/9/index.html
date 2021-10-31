@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">243</span>
+          <span class="site-state-item-count">245</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -216,7 +216,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">118</span>
+        <span class="site-state-item-count">119</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -256,6 +256,191 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/docker/docker-neo4j/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/docker/docker-neo4j/" class="post-title-link" itemprop="url">Install Neo4j on linux by Docker</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 05-08-2021 17:41:29 / Modified: 18:27:59" itemprop="dateCreated datePublished" datetime="2021-08-05T17:41:29+08:00">05-08-2021</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Java-Environment"><a href="#Java-Environment" class="headerlink" title="Java Environment"></a>Java Environment</h1><p>Make sure the java environment on you server is updated to <code>java11</code>, if you are going to install neo4j-4.0 or above.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install openjdk-11-jre-headless</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="docker-compose"><a href="#docker-compose" class="headerlink" title="docker-compose"></a>docker-compose</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">version: &#39;3&#39;</span><br><span class="line">services:</span><br><span class="line"></span><br><span class="line">  neo4j:</span><br><span class="line">    image: neo4j</span><br><span class="line">    volumes:</span><br><span class="line">      - .&#x2F;conf:&#x2F;var&#x2F;lib&#x2F;neo4j&#x2F;conf</span><br><span class="line">      - .&#x2F;mnt:&#x2F;var&#x2F;lib&#x2F;neo4j&#x2F;import</span><br><span class="line">      - .&#x2F;plugins:&#x2F;plugins</span><br><span class="line">      - .&#x2F;data:&#x2F;data</span><br><span class="line">      - .&#x2F;logs:&#x2F;var&#x2F;lib&#x2F;neo4j&#x2F;logs</span><br><span class="line">    restart: always</span><br><span class="line">    ports:</span><br><span class="line">      - 7474:7474</span><br><span class="line">      - 7687:7687</span><br><span class="line">    environment:</span><br><span class="line">      - NEO4J_dbms_memory_heap_maxSize&#x3D;2G</span><br><span class="line">      - NEO4J_AUTH&#x3D;neo4j&#x2F;123456  #修改默认用户密码</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<hr>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0JsYW5jaGVkaW5nZGluZy9hcnRpY2xlL2RldGFpbHMvODk4OTA2NjM=">https://blog.csdn.net/Blanchedingding/article/details/89890663<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/notebook/anaconda-rename/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/notebook/anaconda-rename/" class="post-title-link" itemprop="url">Conda create/delete/rename environments</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 30-07-2021 23:09:02" itemprop="dateCreated datePublished" datetime="2021-07-30T23:09:02+08:00">30-07-2021</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 05-08-2021 20:38:58" itemprop="dateModified" datetime="2021-08-05T20:38:58+08:00">05-08-2021</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Create"><a href="#Create" class="headerlink" title="Create"></a>Create</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create -n tensorflow20 python=3.6</span><br></pre></td></tr></table></figure>
+
+<h1 id="Delete"><a href="#Delete" class="headerlink" title="Delete"></a>Delete</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda remove -n tensorflow20 --all</span><br></pre></td></tr></table></figure>
+
+<h1 id="Rename"><a href="#Rename" class="headerlink" title="Rename"></a>Rename</h1><p>clone and delete</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda create -n tf20 --clone tensorflow20</span><br><span class="line">conda remove -n tensorflow20 --all</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<hr>
+<p>Reference</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC83MjY1MDExYmEzZjI=">https://www.jianshu.com/p/7265011ba3f2<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -481,175 +666,6 @@
 <p><code>gT</code> 前一个tab</p>
 <h3 id="分屏操作"><a href="#分屏操作" class="headerlink" title="分屏操作"></a>分屏操作</h3><p><code>ctrl w w</code> 光标来回切换</p>
 <p><code>ctrl w h/j/k/l</code> 光标左/下/上/右切换</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/docker/docker-nginx/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/docker/docker-nginx/" class="post-title-link" itemprop="url">Docker Nginx</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 24-07-2021 17:00:20" itemprop="dateCreated datePublished" datetime="2021-07-24T17:00:20+08:00">24-07-2021</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 10-10-2021 00:15:15" itemprop="dateModified" datetime="2021-10-10T00:15:15+08:00">10-10-2021</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="docker-compose"><a href="#docker-compose" class="headerlink" title="docker-compose"></a>docker-compose</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">version: &#39;3.1&#39;</span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line">  nginx:</span><br><span class="line">    image: nginx</span><br><span class="line">    volumes:</span><br><span class="line">     - .&#x2F;html:&#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html</span><br><span class="line">     - .&#x2F;conf:&#x2F;etc&#x2F;nginx</span><br><span class="line">     - .&#x2F;logs:&#x2F;var&#x2F;log&#x2F;nginx</span><br><span class="line">    ports:</span><br><span class="line">     - 80:80</span><br><span class="line">    environment:</span><br><span class="line">     - NGINX_HOST&#x3D;edlison.cc</span><br><span class="line">     - NGINX_PORT&#x3D;80</span><br></pre></td></tr></table></figure>
-
-<p>nginx默认的html文件夹在<code>/usr/share/nginx/html</code></p>
-<p>不过可以通过指定conf中的root来将根目录换到<code>/etc/www/html</code>下</p>
-<h1 id="nginx-conf"><a href="#nginx-conf" class="headerlink" title="nginx.conf"></a>nginx.conf</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">worker_processes  1;</span><br><span class="line"></span><br><span class="line">events &#123;</span><br><span class="line">   accept_mutex on;</span><br><span class="line">   multi_accept on;</span><br><span class="line">   worker_connections 1024;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line"></span><br><span class="line">server&#123;</span><br><span class="line">  listen 80;</span><br><span class="line">  server_name  edlison.tk;</span><br><span class="line"></span><br><span class="line">  location &#x2F; &#123;</span><br><span class="line">	root	&#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html;</span><br><span class="line">	index	index.html</span><br><span class="line">    proxy_pass  http:&#x2F;&#x2F;127.0.0.1:80; # 转发规则</span><br><span class="line">    proxy_set_header Host $proxy_host; # 修改转发请求头，让8080端口的应用可以受到真实的请求</span><br><span class="line">    proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>由于在域名提供商指定的域名是到IP的80端口</p>
-<p>容器需要映射到宿主机的80端口，否则需要在网址后面加<code>:8080</code></p>
-<p><strong>域名提供商</strong>或<strong>服务器商</strong>如果在国内的话，需要网站备案！</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/notebook/socketio-dev/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/notebook/socketio-dev/" class="post-title-link" itemprop="url">Flask-SocketIO development experience</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 13-07-2021 11:29:48 / Modified: 11:39:27" itemprop="dateCreated datePublished" datetime="2021-07-13T11:29:48+08:00">13-07-2021</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="socketio-init"><a href="#socketio-init" class="headerlink" title="socketio init"></a>socketio init</h1><p>socketio must input flask_app context, so the web service is constructed based socketio web service.</p>
-<h1 id="join-room"><a href="#join-room" class="headerlink" title="join_room"></a>join_room</h1><p>If you want to create private room, you need to apply <code>join_room(room_id)</code> when users entering. After this, we can use <code>emit(to=room_id)</code> to send message to specific room.</p>
-<h1 id="socketio-on"><a href="#socketio-on" class="headerlink" title="socketio.on"></a>socketio.on</h1><p>is used to receive message.</p>
-<h1 id="socketio-emit"><a href="#socketio-emit" class="headerlink" title="socketio.emit"></a>socketio.emit</h1><p>is used to send message.</p>
 
       
     </div>
