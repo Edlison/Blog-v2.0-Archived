@@ -290,7 +290,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 01-11-2021 02:04:11 / Modified: 02:16:12" itemprop="dateCreated datePublished" datetime="2021-11-01T02:04:11+08:00">01-11-2021</time>
+      <time title="Created: 01-11-2021 02:04:11 / Modified: 02:27:10" itemprop="dateCreated datePublished" datetime="2021-11-01T02:04:11+08:00">01-11-2021</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -326,6 +326,9 @@
 <li>网关指向iKuai</li>
 <li>关闭DHCP服务器</li>
 </ol>
+<h1 id="玩法"><a href="#玩法" class="headerlink" title="玩法"></a>玩法</h1><p>iKuai和OpenWRT的网关互指, 实现所有设备接入都可以hello world</p>
+<p>iKuai网关指向自己, OpenWRT网关指向iKuai, 手动设置终端设备的router为OpenWRT, 可以实现分流</p>
+<p>todo…</p>
 <h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><p>ISO文件可以直接通过PVE面板上传至local, 然后虚拟机可以选择引导</p>
 <p>img文件需要通过指令挂载, 文件格式的问题</p>
 <p>PVE的noVNC管理工具是vim输入!</p>
@@ -382,7 +385,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 01-11-2021 01:42:27 / Modified: 02:07:00" itemprop="dateCreated datePublished" datetime="2021-11-01T01:42:27+08:00">01-11-2021</time>
+      <time title="Created: 01-11-2021 01:42:27 / Modified: 02:25:03" itemprop="dateCreated datePublished" datetime="2021-11-01T01:42:27+08:00">01-11-2021</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -423,7 +426,7 @@
 <h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>mbp的hostname由于回环造成了路由器里有两个一样的设备</p>
 <h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>网络的知识忘的差不多了</p>
 <p>内网种只有在同一个子网才能访问到</p>
-<p>网关相当于连接着多个子网, 一般来说就是路由器</p>
+<p><strong>网关</strong>相当于连接着多个子网, 一般来说就是路由器</p>
 <p>但本质上是通过网关去找路由表, 可以把网关设为某个设备, 然后该设备再跳到真正的网关, 如iKuai作为网关且网关指向自己, OpenWRT网关指向iKuai, 如果路由设置为OpenWRT则流量先被OpenWRT接管, 如果网关直接指向iKuai则流量不会被OpenWRT接管.</p>
 <hr>
 

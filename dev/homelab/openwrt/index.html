@@ -23,15 +23,15 @@
     var CONFIG = {"hostname":"blog.edlison.com","root":"/","images":"/images","scheme":"Muse","version":"8.0.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
   </script>
 
-  <meta name="description" content="IntroOpenWRT作为旁路由 Process安装恩山论坛上有很多编译版本 通过scp上传到PVE的root目录下 使用img2kvm将镜像挂载到指定的虚拟机下 设置通过该镜像引导虚拟机 配置配置IP到同一个子网下 1vi &#x2F;etc&#x2F;config&#x2F;network  重启后进入Web进行配置 设置接口  网关指向iKuai 关闭DHCP服务器  注意ISO文件可以直接通过PVE面板上传至loca">
+  <meta name="description" content="IntroOpenWRT作为旁路由 Process安装恩山论坛上有很多编译版本 通过scp上传到PVE的root目录下 使用img2kvm将镜像挂载到指定的虚拟机下 设置通过该镜像引导虚拟机 配置配置IP到同一个子网下 1vi &#x2F;etc&#x2F;config&#x2F;network  重启后进入Web进行配置 设置接口  网关指向iKuai 关闭DHCP服务器  玩法iKuai和OpenWRT的网关互指, 实现所">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Home Lab | OpenWRT">
 <meta property="og:url" content="https://blog.edlison.com/dev/homelab/openwrt/index.html">
 <meta property="og:site_name" content="Edlison is talking here.">
-<meta property="og:description" content="IntroOpenWRT作为旁路由 Process安装恩山论坛上有很多编译版本 通过scp上传到PVE的root目录下 使用img2kvm将镜像挂载到指定的虚拟机下 设置通过该镜像引导虚拟机 配置配置IP到同一个子网下 1vi &#x2F;etc&#x2F;config&#x2F;network  重启后进入Web进行配置 设置接口  网关指向iKuai 关闭DHCP服务器  注意ISO文件可以直接通过PVE面板上传至loca">
+<meta property="og:description" content="IntroOpenWRT作为旁路由 Process安装恩山论坛上有很多编译版本 通过scp上传到PVE的root目录下 使用img2kvm将镜像挂载到指定的虚拟机下 设置通过该镜像引导虚拟机 配置配置IP到同一个子网下 1vi &#x2F;etc&#x2F;config&#x2F;network  重启后进入Web进行配置 设置接口  网关指向iKuai 关闭DHCP服务器  玩法iKuai和OpenWRT的网关互指, 实现所">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-10-31T18:04:11.593Z">
-<meta property="article:modified_time" content="2021-10-31T18:16:12.960Z">
+<meta property="article:modified_time" content="2021-10-31T18:27:10.938Z">
 <meta property="article:author" content="Bolin Shen">
 <meta property="article:tag" content="openwrt">
 <meta name="twitter:card" content="summary">
@@ -188,7 +188,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <section class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Intro"><span class="nav-number">1.</span> <span class="nav-text">Intro</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Process"><span class="nav-number">2.</span> <span class="nav-text">Process</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">2.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-number">2.2.</span> <span class="nav-text">配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#注意"><span class="nav-number">3.</span> <span class="nav-text">注意</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Intro"><span class="nav-number">1.</span> <span class="nav-text">Intro</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Process"><span class="nav-number">2.</span> <span class="nav-text">Process</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">2.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-number">2.2.</span> <span class="nav-text">配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#玩法"><span class="nav-number">3.</span> <span class="nav-text">玩法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#注意"><span class="nav-number">4.</span> <span class="nav-text">注意</span></a></li></ol></div>
         </section>
         <!--/noindex-->
 
@@ -289,7 +289,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 01-11-2021 02:04:11 / Modified: 02:16:12" itemprop="dateCreated datePublished" datetime="2021-11-01T02:04:11+08:00">01-11-2021</time>
+      <time title="Created: 01-11-2021 02:04:11 / Modified: 02:27:10" itemprop="dateCreated datePublished" datetime="2021-11-01T02:04:11+08:00">01-11-2021</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -332,6 +332,9 @@
 <li>网关指向iKuai</li>
 <li>关闭DHCP服务器</li>
 </ol>
+<h1 id="玩法"><a href="#玩法" class="headerlink" title="玩法"></a>玩法</h1><p>iKuai和OpenWRT的网关互指, 实现所有设备接入都可以hello world</p>
+<p>iKuai网关指向自己, OpenWRT网关指向iKuai, 手动设置终端设备的router为OpenWRT, 可以实现分流</p>
+<p>todo…</p>
 <h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><p>ISO文件可以直接通过PVE面板上传至local, 然后虚拟机可以选择引导</p>
 <p>img文件需要通过指令挂载, 文件格式的问题</p>
 <p>PVE的noVNC管理工具是vim输入!</p>
