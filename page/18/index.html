@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">245</span>
+          <span class="site-state-item-count">247</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -216,7 +216,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">119</span>
+        <span class="site-state-item-count">121</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -256,6 +256,160 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/paper_experiment/buildin/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/academia/paper_experiment/buildin/" class="post-title-link" itemprop="url">Python原生高阶用法</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 05-03-2021 16:12:25 / Modified: 16:46:02" itemprop="dateCreated datePublished" datetime="2021-03-05T16:12:25+08:00">05-03-2021</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="new"><a href="#new" class="headerlink" title="new"></a>new</h1><p>静态方法，传入<code>cls</code>类，返回<code>self</code>实例。在<code>__init__</code>之前调用。</p>
+<h1 id="init"><a href="#init" class="headerlink" title="init"></a>init</h1><p>接收<code>__new__</code>返回的实例，对实例进行初始化。</p>
+<h1 id="call"><a href="#call" class="headerlink" title="call"></a>call</h1><p>使实例化后的对象变成了<code>callable</code>可以调用的对象（）。同时</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Hello</span>:</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__call__</span><span class="params">(self, arg)</span>:</span></span><br><span class="line">  	print(<span class="string">'hello'</span> + arg)</span><br><span class="line">    </span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'hello word'</span>)</span><br><span class="line">h = Hello()</span><br><span class="line">h(<span class="string">'world'</span>)</span><br><span class="line"><span class="comment"># hello world</span></span><br><span class="line">h.hello.__call__()</span><br><span class="line"><span class="comment"># hello world</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="getitem"><a href="#getitem" class="headerlink" title="getitem"></a>getitem</h1><p><code>getitem</code>可以直接对对象进行取值。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__getitem__</span><span class="params">(self, idx)</span>:</span></span><br><span class="line">  <span class="keyword">return</span> self.data[idx]</span><br></pre></td></tr></table></figure>
+
+<h1 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h1><p>Python也有<strong>反射</strong>，即可以通过字符串的形式操作实例的属性。</p>
+<p><code>__hasattr__</code>, <code>__getattr__</code>, <code>__setattr__</code>, <code>__delattr__</code></p>
+<h1 id="类变量"><a href="#类变量" class="headerlink" title="类变量"></a>类变量</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span>:</span></span><br><span class="line">  var_class = <span class="number">0</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">    self.var_instance = <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p>类似静态成员。</p>
+<hr>
+<p>Reference</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC8zYWNhNzhhODRkZWY=">https://www.jianshu.com/p/3aca78a84def<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/paper_experiment/plt/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/academia/paper_experiment/plt/" class="post-title-link" itemprop="url">matplotlib的使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 04-03-2021 14:51:46 / Modified: 15:47:42" itemprop="dateCreated datePublished" datetime="2021-03-04T14:51:46+08:00">04-03-2021</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="子图"><a href="#子图" class="headerlink" title="子图"></a>子图</h1><h2 id="subplot"><a href="#subplot" class="headerlink" title="subplot"></a>subplot</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">100</span>):</span><br><span class="line">    plt.subplot(<span class="number">10</span>, <span class="number">10</span>, i + <span class="number">1</span>)</span><br><span class="line">    plt.xticks([])</span><br><span class="line">    plt.yticks([])</span><br><span class="line">    plt.imshow(np.vstack((multiview_data[<span class="number">0</span>][i], multiview_data[<span class="number">1</span>][i])), cmap=plt.gray())</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="subplots"><a href="#subplots" class="headerlink" title="subplots"></a>subplots</h2><h1 id="出现的BUG"><a href="#出现的BUG" class="headerlink" title="出现的BUG"></a>出现的BUG</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">100</span>):</span><br><span class="line">    plt.subplot(<span class="number">10</span>, <span class="number">10</span>, i + <span class="number">1</span>)</span><br><span class="line">    plt.xticks([])</span><br><span class="line">    plt.yticks([])</span><br><span class="line">    <span class="keyword">if</span> labels[i] == <span class="number">1</span>:  <span class="comment"># 需要是(i-1)才能确定我们想要的位置</span></span><br><span class="line">        print(<span class="string">'highlight: '</span>, i, end=<span class="string">' '</span>)</span><br><span class="line">        plt.title(labels[i], fontsize=<span class="number">3</span>)</span><br><span class="line">        plt.imshow(np.vstack((multiview_data[<span class="number">0</span>][i], multiview_data[<span class="number">1</span>][i])), cmap=plt.hot())  <span class="comment"># 但是这里显示还是第i个，不知道是什么bug</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        plt.imshow(np.vstack((multiview_data[<span class="number">0</span>][i], multiview_data[<span class="number">1</span>][i])), cmap=plt.gray())</span><br><span class="line">plt.tight_layout()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -516,143 +670,10 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/life/toefl/word-conn/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/life/toefl/word-conn/" class="post-title-link" itemprop="url">连读现象</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 26-02-2021 22:05:12 / Modified: 22:06:09" itemprop="dateCreated datePublished" datetime="2021-02-26T22:05:12+08:00">26-02-2021</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/notebook/vpn/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/notebook/vpn/" class="post-title-link" itemprop="url">VPN协议比较</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 26-02-2021 21:11:47 / Modified: 21:12:50" itemprop="dateCreated datePublished" datetime="2021-02-26T21:11:47+08:00">26-02-2021</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="PPTP-对-L2TP-对-OpenVPN-对SSTP-对-IKEv2"><a href="#PPTP-对-L2TP-对-OpenVPN-对SSTP-对-IKEv2" class="headerlink" title="PPTP 对 L2TP 对 OpenVPN 对SSTP 对 IKEv2"></a>PPTP 对 L2TP 对 OpenVPN 对SSTP 对 IKEv2</h1><hr>
-<p>Reference</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly96aC52cG5tZW50b3IuY29tL2Jsb2cvJUU2JUFGJTk0JUU4JUJFJTgzdnBuJUU1JThEJThGJUU4JUFFJUFFLXBwdHAtJUU1JUFGJUI5LWwydHAtJUU1JUFGJUI5LW9wZW52cG4tJUU1JUFGJUI5c3N0cC0lRTUlQUYlQjktaWtldjIv">https://zh.vpnmentor.com/blog/%E6%AF%94%E8%BE%83vpn%E5%8D%8F%E8%AE%AE-pptp-%E5%AF%B9-l2tp-%E5%AF%B9-openvpn-%E5%AF%B9sstp-%E5%AF%B9-ikev2/<i class="fa fa-external-link-alt"></i></span></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/17/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><span class="page-number current">18</span><a class="page-number" href="/page/19/">19</a><span class="space">&hellip;</span><a class="page-number" href="/page/49/">49</a><a class="extend next" rel="next" href="/page/19/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/17/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><span class="page-number current">18</span><a class="page-number" href="/page/19/">19</a><span class="space">&hellip;</span><a class="page-number" href="/page/50/">50</a><a class="extend next" rel="next" href="/page/19/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 

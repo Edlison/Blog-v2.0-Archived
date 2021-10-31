@@ -9,6 +9,27 @@
   </url>
   
   <url>
+    <loc>https://blog.edlison.com/dev/homelab/openwrt/</loc>
+    
+    <lastmod>2021-10-31</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.edlison.com/dev/homelab/ikuai/</loc>
+    
+    <lastmod>2021-10-31</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.edlison.com/dev/homelab/synology/</loc>
+    
+    <lastmod>2021-10-31</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.edlison.com/dev/error/virtualization/</loc>
     
     <lastmod>2021-10-31</lastmod>
@@ -45,13 +66,6 @@
   
   <url>
     <loc>https://blog.edlison.com/dev/error/fanerror/</loc>
-    
-    <lastmod>2021-10-29</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.edlison.com/dev/homelab/synology/</loc>
     
     <lastmod>2021-10-29</lastmod>
     
@@ -2567,6 +2581,20 @@
   
   <url>
     <loc>https://blog.edlison.com/tags/kvm/</loc>
+    <lastmod>2021-10-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.edlison.com/tags/ikuai/</loc>
+    <lastmod>2021-10-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.edlison.com/tags/openwrt/</loc>
     <lastmod>2021-10-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
