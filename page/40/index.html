@@ -203,20 +203,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">249</span>
+          <span class="site-state-item-count">254</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">121</span>
+        <span class="site-state-item-count">122</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -264,7 +264,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/ml/KNN-%E6%89%8B%E5%8A%A8%E5%AE%9E%E7%8E%B0/">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/docker/docker-anaconda/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -278,7 +278,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/dev/ml/KNN-%E6%89%8B%E5%8A%A8%E5%AE%9E%E7%8E%B0/" class="post-title-link" itemprop="url">dev/ml/KNN-手动实现</a>
+            <a href="/dev/docker/docker-anaconda/" class="post-title-link" itemprop="url">dev/docker/docker-anaconda</a>
         </h2>
 
         <div class="post-meta-container">
@@ -288,9 +288,8 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 05-17-2020 16:34:34 / Modified: 16:36:05" itemprop="dateCreated datePublished" datetime="2020-05-17T16:34:34+08:00">05-17-2020</time>
+      <time title="Created: 07-14-2020 23:31:04" itemprop="dateCreated datePublished" datetime="2020-07-14T23:31:04+08:00">07-14-2020</time>
     </span>
 
   
@@ -303,133 +302,25 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="手动实现KNN"><a href="#手动实现KNN" class="headerlink" title="手动实现KNN"></a>手动实现KNN</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">raw_data_x = [[<span class="number">3.393533211</span>, <span class="number">2.331273381</span>],</span><br><span class="line">              [<span class="number">3.110073483</span>, <span class="number">1.781539638</span>],</span><br><span class="line">              [<span class="number">1.343808831</span>, <span class="number">3.368360954</span>],</span><br><span class="line">              [<span class="number">3.582294042</span>, <span class="number">4.679179110</span>],</span><br><span class="line">              [<span class="number">2.280362439</span>, <span class="number">2.866990263</span>],</span><br><span class="line">              [<span class="number">7.423436942</span>, <span class="number">4.696522875</span>],</span><br><span class="line">              [<span class="number">5.745051997</span>, <span class="number">3.533989803</span>],</span><br><span class="line">              [<span class="number">9.172168622</span>, <span class="number">2.511101045</span>],</span><br><span class="line">              [<span class="number">7.792783481</span>, <span class="number">3.424088941</span>],</span><br><span class="line">              [<span class="number">7.939820817</span>, <span class="number">0.791637231</span>]</span><br><span class="line">             ]</span><br><span class="line">raw_data_y = [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>]</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x_train = np.array(raw_data_x)</span><br><span class="line">y_train = np.array(raw_data_y)</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x_train</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>array([[3.39353321, 2.33127338],
-       [3.11007348, 1.78153964],
-       [1.34380883, 3.36836095],
-       [3.58229404, 4.67917911],
-       [2.28036244, 2.86699026],
-       [7.42343694, 4.69652288],
-       [5.745052  , 3.5339898 ],
-       [9.17216862, 2.51110105],
-       [7.79278348, 3.42408894],
-       [7.93982082, 0.79163723]])</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">y_train==<span class="number">1</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>array([False, False, False, False, False,  True,  True,  True,  True,
-        True])</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">plt.scatter(x_train[y_train==<span class="number">1</span>, <span class="number">0</span>], x_train[y_train==<span class="number">1</span>, <span class="number">1</span>], color=<span class="string">'r'</span>, label=<span class="string">'1'</span>)</span><br><span class="line">plt.scatter(x_train[y_train==<span class="number">0</span>, <span class="number">0</span>], x_train[y_train==<span class="number">0</span>, <span class="number">1</span>], color=<span class="string">'g'</span>, label=<span class="string">'0'</span>)</span><br><span class="line">plt.legend()</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&lt;matplotlib.legend.Legend at 0x122311ad0&gt;</code></pre><p><img src="data/output_6_1.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">x = np.array([<span class="number">8.093607318</span>, <span class="number">3.365731514</span>])</span><br><span class="line"></span><br><span class="line">plt.scatter(x_train[y_train==<span class="number">1</span>, <span class="number">0</span>], x_train[y_train==<span class="number">1</span>, <span class="number">1</span>], color=<span class="string">'r'</span>, label=<span class="string">'1'</span>)</span><br><span class="line">plt.scatter(x_train[y_train==<span class="number">0</span>, <span class="number">0</span>], x_train[y_train==<span class="number">0</span>, <span class="number">1</span>], color=<span class="string">'g'</span>, label=<span class="string">'0'</span>)</span><br><span class="line">plt.scatter(x[<span class="number">0</span>], x[<span class="number">1</span>], color=<span class="string">'b'</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-
-
-<p><img src="data/output_7_0.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line">distance = []</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> each <span class="keyword">in</span> x_train:</span><br><span class="line">    d = math.sqrt(np.sum((each - x) ** <span class="number">2</span>))</span><br><span class="line">    distance.append(d)</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">distance</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>[4.812566907609877,
- 5.229270827235305,
- 6.749798999160064,
- 4.6986266144110695,
- 5.83460014556857,
- 1.4900114024329525,
- 2.354574897431513,
- 1.3761132675144652,
- 0.3064319992975,
- 2.5786840957478887]</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">distances = [math.sqrt(np.sum((each - x) ** <span class="number">2</span>)) <span class="keyword">for</span> each <span class="keyword">in</span> x_train]</span><br><span class="line">distances</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>[4.812566907609877,
- 5.229270827235305,
- 6.749798999160064,
- 4.6986266144110695,
- 5.83460014556857,
- 1.4900114024329525,
- 2.354574897431513,
- 1.3761132675144652,
- 0.3064319992975,
- 2.5786840957478887]</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nearest = np.argsort(distances)</span><br><span class="line">nearest</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>array([8, 7, 5, 6, 9, 3, 0, 1, 4, 2])</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">k = <span class="number">6</span></span><br><span class="line">topK_y = [y_train[i] <span class="keyword">for</span> i <span class="keyword">in</span> nearest[:k]]</span><br><span class="line">topK_y</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>[1, 1, 1, 1, 1, 0]</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> collections</span><br><span class="line">votes = collections.Counter(topK_y)</span><br><span class="line">votes</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>Counter({1: 5, 0: 1})</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">votes.most_common(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>[(1, 5)]</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">predict_y = votes.most_common(<span class="number">1</span>)[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line">predict_y</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>1</code></pre><h1 id="scikit-learn实现KNN"><a href="#scikit-learn实现KNN" class="headerlink" title="scikit-learn实现KNN"></a>scikit-learn实现KNN</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> sklearn.neighbors <span class="keyword">import</span> KNeighborsClassifier</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">raw_data_x = [[<span class="number">3.393533211</span>, <span class="number">2.331273381</span>],</span><br><span class="line">              [<span class="number">3.110073483</span>, <span class="number">1.781539638</span>],</span><br><span class="line">              [<span class="number">1.343808831</span>, <span class="number">3.368360954</span>],</span><br><span class="line">              [<span class="number">3.582294042</span>, <span class="number">4.679179110</span>],</span><br><span class="line">              [<span class="number">2.280362439</span>, <span class="number">2.866990263</span>],</span><br><span class="line">              [<span class="number">7.423436942</span>, <span class="number">4.696522875</span>],</span><br><span class="line">              [<span class="number">5.745051997</span>, <span class="number">3.533989803</span>],</span><br><span class="line">              [<span class="number">9.172168622</span>, <span class="number">2.511101045</span>],</span><br><span class="line">              [<span class="number">7.792783481</span>, <span class="number">3.424088941</span>],</span><br><span class="line">              [<span class="number">7.939820817</span>, <span class="number">0.791637231</span>]</span><br><span class="line">             ]</span><br><span class="line">raw_data_y = [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">x_train = np.array(raw_data_x)</span><br><span class="line">y_train = np.array(raw_data_y)</span><br><span class="line"></span><br><span class="line">target = np.array([<span class="number">8.093607318</span>, <span class="number">3.365731514</span>])</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">KNN_classifier = KNeighborsClassifier(n_neighbors=<span class="number">6</span>)</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">KNN_classifier.fit(x_train, y_train)</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>KNeighborsClassifier(algorithm=&apos;auto&apos;, leaf_size=30, metric=&apos;minkowski&apos;,
-                     metric_params=None, n_jobs=None, n_neighbors=6, p=2,
-                     weights=&apos;uniform&apos;)</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">target = x.reshape(<span class="number">1</span>, <span class="number">-1</span>)</span><br><span class="line">print(target)</span><br></pre></td></tr></table></figure>
-
-<pre><code>[[8.09360732 3.36573151]]</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">KNN_classifier.predict(target)</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>array([1])</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">res = KNN_classifier.predict(target)</span><br><span class="line">res[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>1</code></pre>
+          <h1 id="使用Docker配置Anaconda环境运行Jupyter"><a href="#使用Docker配置Anaconda环境运行Jupyter" class="headerlink" title="使用Docker配置Anaconda环境运行Jupyter"></a>使用Docker配置Anaconda环境运行Jupyter</h1><h2 id="配置Anaconda环境"><a href="#配置Anaconda环境" class="headerlink" title="配置Anaconda环境"></a>配置Anaconda环境</h2><p><strong>挂载</strong></p>
+<ul>
+<li><p>文件夹挂载<br><code>-v /root/notebook:/notebook</code><br>(宿主机目录:镜像内挂载目录)</p>
+</li>
+<li><p><em>配置文件挂载</em>(生成的文件夹)<br><code>-v /root/docker/config/anaconda3/jupyter_notebook_config.json:/root/.jupyter/jupyter_notebook_config.json</code></p>
+</li>
+</ul>
+<p><strong>Example</strong><br><code>docker run -i -t -p 11000:8888 -v ~/notebook:/notebook -v ~/docker/config/jupyter:/root/.jupyter continuumio/anaconda3 /bin/bash</code><br>挂载参数要在容器前</p>
+<h2 id="配置Jupyter-Notebook"><a href="#配置Jupyter-Notebook" class="headerlink" title="配置Jupyter Notebook"></a>配置Jupyter Notebook</h2><p><code>jupyter notebook --allow-root</code></p>
+<p>启动Notebook<br><code>jupyter notebook --port 8888 --ip 0.0.0.0 --allow-root</code></p>
+<p>后台运行Notebook<br><code>nohup jupyter notebook --port 8888 --ip 0.0.0.0 --allow-root &amp;</code></p>
+<p><strong>相关配置</strong></p>
+<p>配置文件</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">c = get_config()</span><br><span class="line">c.IPKernelApp.pylab = <span class="string">"inline"</span></span><br><span class="line">c.NotebookApp.ip = <span class="string">"*"</span></span><br><span class="line">c.NotebookAPp.open_browser = <span class="literal">False</span></span><br><span class="line">c.NotebookApp.password = <span class="string">'sha1:5295d47ebd06:cdca9499f90b4b4616c935fdff61dda71e1e4393'</span></span><br><span class="line"><span class="comment"># c.NotebookApp.certfile = u'/root/.jupyter/mycert.pem'</span></span><br><span class="line">c.NotebookApp.port= <span class="number">8888</span></span><br><span class="line">c.NotebookApp.notebook_dir = <span class="string">"/"</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><em>docker-compose配置出问题？</em></p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3'</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">notebook:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">continuumio/anaconda3</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">"no"</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">~/notebook:/notebook</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">~/docker/config/jupyter:/root/.jupyter</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">"11000:80"</span></span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -455,7 +346,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/ml/Python-%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E4%B9%8B%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90/">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/docker/docker-chevereto/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -469,7 +360,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/dev/ml/Python-%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E4%B9%8B%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90/" class="post-title-link" itemprop="url">dev/ml/Python-数据探索之可视化分析</a>
+            <a href="/dev/docker/docker-chevereto/" class="post-title-link" itemprop="url">dev/docker/docker-chevereto</a>
         </h2>
 
         <div class="post-meta-container">
@@ -479,9 +370,8 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 05-17-2020 16:28:04 / Modified: 16:33:14" itemprop="dateCreated datePublished" datetime="2020-05-17T16:28:04+08:00">05-17-2020</time>
+      <time title="Created: 07-14-2020 23:31:04" itemprop="dateCreated datePublished" datetime="2020-07-14T23:31:04+08:00">07-14-2020</time>
     </span>
 
   
@@ -494,668 +384,17 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="Python-数据可视化分析"><a href="#Python-数据可视化分析" class="headerlink" title="Python 数据可视化分析"></a>Python 数据可视化分析</h2><hr>
-<h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><p>在机器学习领域中，可视化是十分重要的。在开始一项新任务时，通过可视化手段探索数据能更好地帮助人们把握数据的要点。在分析模型表现和模型报告的结果时，可视化能使分析显得更加生动鲜明。有时候，为了理解复杂的模型，我们还可以将高维空间映射为视觉上更直观的二维或三维图形。</p>
-<p>总而言之，可视化是一个相对快捷的从数据中挖掘信息的手段。本文将使用 Pandas、Matplotlib、seaborn 等流行的库，带你上手可视化。</p>
-<h4 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h4><ul>
-<li>单变量可视化的常用方法</li>
-<li>多变量可视化的常用方法</li>
-<li>t-SNE</li>
-</ul>
-<h3 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h3><p>首先使用 <code>import</code> 载入相关依赖。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line">sns.set()</span><br></pre></td></tr></table></figure>
-
-<p>在第一篇文章中，我们使用的是某电信运营商的客户离网数据集，本次实验仍旧使用这个数据集。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df = pd.read_csv(<span class="string">'./data/telecom_churn.csv'</span>)</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.head()</span><br></pre></td></tr></table></figure>
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-<pre><code>.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}</code></pre><p></style></p>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>State</th>
-      <th>Account length</th>
-      <th>Area code</th>
-      <th>International plan</th>
-      <th>Voice mail plan</th>
-      <th>Number vmail messages</th>
-      <th>Total day minutes</th>
-      <th>Total day calls</th>
-      <th>Total day charge</th>
-      <th>Total eve minutes</th>
-      <th>Total eve calls</th>
-      <th>Total eve charge</th>
-      <th>Total night minutes</th>
-      <th>Total night calls</th>
-      <th>Total night charge</th>
-      <th>Total intl minutes</th>
-      <th>Total intl calls</th>
-      <th>Total intl charge</th>
-      <th>Customer service calls</th>
-      <th>Churn</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>KS</td>
-      <td>128</td>
-      <td>415</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>25</td>
-      <td>265.1</td>
-      <td>110</td>
-      <td>45.07</td>
-      <td>197.4</td>
-      <td>99</td>
-      <td>16.78</td>
-      <td>244.7</td>
-      <td>91</td>
-      <td>11.01</td>
-      <td>10.0</td>
-      <td>3</td>
-      <td>2.70</td>
-      <td>1</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>OH</td>
-      <td>107</td>
-      <td>415</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>26</td>
-      <td>161.6</td>
-      <td>123</td>
-      <td>27.47</td>
-      <td>195.5</td>
-      <td>103</td>
-      <td>16.62</td>
-      <td>254.4</td>
-      <td>103</td>
-      <td>11.45</td>
-      <td>13.7</td>
-      <td>3</td>
-      <td>3.70</td>
-      <td>1</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>NJ</td>
-      <td>137</td>
-      <td>415</td>
-      <td>No</td>
-      <td>No</td>
-      <td>0</td>
-      <td>243.4</td>
-      <td>114</td>
-      <td>41.38</td>
-      <td>121.2</td>
-      <td>110</td>
-      <td>10.30</td>
-      <td>162.6</td>
-      <td>104</td>
-      <td>7.32</td>
-      <td>12.2</td>
-      <td>5</td>
-      <td>3.29</td>
-      <td>0</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>OH</td>
-      <td>84</td>
-      <td>408</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>0</td>
-      <td>299.4</td>
-      <td>71</td>
-      <td>50.90</td>
-      <td>61.9</td>
-      <td>88</td>
-      <td>5.26</td>
-      <td>196.9</td>
-      <td>89</td>
-      <td>8.86</td>
-      <td>6.6</td>
-      <td>7</td>
-      <td>1.78</td>
-      <td>2</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>OK</td>
-      <td>75</td>
-      <td>415</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>0</td>
-      <td>166.7</td>
-      <td>113</td>
-      <td>28.34</td>
-      <td>148.3</td>
-      <td>122</td>
-      <td>12.61</td>
-      <td>186.9</td>
-      <td>121</td>
-      <td>8.41</td>
-      <td>10.1</td>
-      <td>3</td>
-      <td>2.73</td>
-      <td>3</td>
-      <td>False</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-<p>最后一个数据列 Churn 离网率 是我们的目标特征，它是布尔变量，其中 True 表示公司最终丢失了此客户，False 表示客户被保留。稍后，将构建基于其他特征预测 Churn 特征的模型。 </p>
-<h3 id="单变量可视化"><a href="#单变量可视化" class="headerlink" title="单变量可视化"></a>单变量可视化</h3><p>单变量（univariate）分析一次只关注一个变量。当我们独立地分析一个特征时，通常最关心的是该特征值的分布情况。下面考虑不同统计类型的变量，以及相应的可视化工具。</p>
-<h4 id="数量特征"><a href="#数量特征" class="headerlink" title="数量特征"></a>数量特征</h4><p>数量特征（quantitative feature）的值为有序数值。这些值可能是离散的，例如整数，也可能是连续的，例如实数。</p>
-<h4 id="直方图和密度图"><a href="#直方图和密度图" class="headerlink" title="直方图和密度图"></a>直方图和密度图</h4><p>直方图依照相等的间隔将值分组为柱，它的形状可能包含了数据分布的一些信息，如高斯分布、指数分布等。当分布总体呈现规律性，但有个别异常值时，你可以通过直方图辨认出来。当你使用的机器学习方法预设了某一特定分布类型（通常是高斯分布）时，知道特征值的分布是非常重要的。</p>
-<p>最简单的查看数值变量分布的方法是使用 DataFrame 的 <a href="https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.hist.html" target="_blank" rel="noopener"><i class="fa fa-external-link-square" aria-hidden="true"> <code>hist()</code></i></a> 方法绘制直方图。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">features = [<span class="string">'Total day minutes'</span>, <span class="string">'Total intl calls'</span>]</span><br><span class="line">df[features].hist(figsize = (<span class="number">10</span>, <span class="number">4</span>))</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>array([[&lt;matplotlib.axes._subplots.AxesSubplot object at 0x12e3076d0&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x12f4cbe90&gt;]],
-      dtype=object)</code></pre><p><img src="data/output_21_1.png" alt="png"></p>
-<p>上图表明，变量 Total day minutes 每日通话时长 呈高斯分布，而 Total intl calls 总国际呼叫数 显著右倾（它右侧的尾巴更长）。</p>
-<p>密度图（density plots），也叫核密度图（ <a href="https://en.wikipedia.org/wiki/Kernel_density_estimation" target="_blank" rel="noopener"><i class="fa fa-external-link-square" aria-hidden="true"> kernel density estimate</i></a>，KDE）是理解数值变量分布的另一个方法。它可以看成是直方图平滑（ <a href="https://en.wikipedia.org/wiki/Kernel_smoother" target="_blank" rel="noopener"><i class="fa fa-external-link-square" aria-hidden="true"> smoothed</i></a> ）的版本。相比直方图，它的主要优势是不依赖于柱的尺寸，更加清晰。</p>
-<p>让我们为上面两个变量创建密度图。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df[features].plot(kind=<span class="string">'density'</span>, subplots=<span class="literal">True</span>, layout=(<span class="number">1</span>,<span class="number">2</span>),</span><br><span class="line">                 sharex=<span class="literal">False</span>, figsize=(<span class="number">10</span>, <span class="number">4</span>), legend=<span class="literal">False</span>, title=features)</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>array([[&lt;matplotlib.axes._subplots.AxesSubplot object at 0x133bcc050&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x1343f1ad0&gt;]],
-      dtype=object)</code></pre><p><img src="data/output_25_1.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.distplot(df[<span class="string">'Total day calls'</span>])</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x12e4f8810&gt;</code></pre><p><img src="data/output_26_1.png" alt="png"></p>
-<p>当然，还可以使用 seaborn 的 <a href="https://seaborn.pydata.org/generated/seaborn.distplot.html" target="_blank" rel="noopener"><i class="fa fa-external-link-square" aria-hidden="true"> <code>distplot()</code></i></a> 方法观测数值变量的分布。例如，Total day minutes 每日通话时长 的分布。默认情况下，该方法将同时显示直方图和密度图。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.distplot(df[<span class="string">'Total intl calls'</span>])</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x12e5134d0&gt;</code></pre><p><img src="data/output_28_1.png" alt="png"></p>
-<p>上图中直方图的柱形高度已进行归一化处理，表示的是密度而不是样本数。</p>
-<h4 id="箱型图"><a href="#箱型图" class="headerlink" title="箱型图"></a>箱型图</h4><p>箱形图的主要组成部分是箱子（box），须（whisker）和一些单独的数据点（离群值），分别简单介绍如下：</p>
-<ul>
-<li>箱子显示了分布的四分位距，它的长度由 $25th , （\text{Q1，下四分位数}）$ 和 $75th , （\text{Q3，上四分位数}）$ 决定，箱中的水平线表示中位数  （$50%$）。</li>
-<li>须是从箱子处延伸出来的线，它们表示数据点的总体散布，具体而言，是位于区间 $（\text{Q1} - 1.5 \cdot \text{IQR}, \text{Q3} + 1.5 \cdot \text{IQR}）$的数据点，其中 $\text{IQR} = \text{Q3} - \text{Q1}$，也就是四分位距。</li>
-<li>离群值是须之外的数据点，它们作为单独的数据点，沿着中轴绘制。</li>
-</ul>
-<p>使用 seaborn 的 <code>boxplot()</code> 方法绘制箱形图。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.boxplot(df[<span class="string">'Total intl calls'</span>])</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x12e6e1750&gt;</code></pre><p><img src="data/output_34_1.png" alt="png"></p>
-<p>上图表明，在该数据集中，大量的国际呼叫是相当少见的。</p>
-<h4 id="提琴形图"><a href="#提琴形图" class="headerlink" title="提琴形图"></a>提琴形图</h4><p>我们最后考虑的分布图形是提琴形图（violin plot）。提琴形图和箱形图的区别是，提琴形图聚焦于平滑后的整体分布，而箱形图显示了单独样本的特定统计数据。</p>
-<p>使用 <code>violinplot()</code> 方法绘制提琴形图。下图左侧是箱形图，右侧是提琴形图。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">_, ax = plt.subplots(<span class="number">1</span>, <span class="number">2</span>, sharey=<span class="literal">True</span>, figsize=(<span class="number">10</span>, <span class="number">4</span>))</span><br><span class="line"></span><br><span class="line">sns.boxplot(df[<span class="string">'Total intl calls'</span>], ax=ax[<span class="number">0</span>])</span><br><span class="line">sns.violinplot(df[<span class="string">'Total intl calls'</span>], ax=ax[<span class="number">1</span>])</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1380219d0&gt;</code></pre><p><img src="data/output_39_1.png" alt="png"></p>
-<h4 id="数据描述"><a href="#数据描述" class="headerlink" title="数据描述"></a>数据描述</h4><p>除图形工具外，还可以使用 DataFrame 的 <a href="https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.describe.html" target="_blank" rel="noopener"><i class="fa fa-external-link-square" aria-hidden="true"> <code>describe()</code></i></a> 方法来获取分布的精确数值统计。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[features].describe()</span><br></pre></td></tr></table></figure>
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-<pre><code>.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}</code></pre><p></style></p>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Total day minutes</th>
-      <th>Total intl calls</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>count</th>
-      <td>3333.000000</td>
-      <td>3333.000000</td>
-    </tr>
-    <tr>
-      <th>mean</th>
-      <td>179.775098</td>
-      <td>4.479448</td>
-    </tr>
-    <tr>
-      <th>std</th>
-      <td>54.467389</td>
-      <td>2.461214</td>
-    </tr>
-    <tr>
-      <th>min</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>25%</th>
-      <td>143.700000</td>
-      <td>3.000000</td>
-    </tr>
-    <tr>
-      <th>50%</th>
-      <td>179.400000</td>
-      <td>4.000000</td>
-    </tr>
-    <tr>
-      <th>75%</th>
-      <td>216.400000</td>
-      <td>6.000000</td>
-    </tr>
-    <tr>
-      <th>max</th>
-      <td>350.800000</td>
-      <td>20.000000</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-<p><code>describe()</code> 的输出基本上是自解释性的，25%，50% 和 75% 是相应的百分数 <a href="https://en.wikipedia.org/wiki/Percentile" target="_blank" rel="noopener"><i class="fa fa-external-link-square" aria-hidden="true"> percentiles</i></a>。</p>
-<h4 id="类别特征和二元特征"><a href="#类别特征和二元特征" class="headerlink" title="类别特征和二元特征"></a>类别特征和二元特征</h4><p>类别特征（categorical features take）反映了样本的某个定性属性，它具有固定数目的值，每个值将一个观测数据分配到相应的组，这些组称为类别（category）。如果类别变量的值具有顺序，称为有序（ordinal）类别变量。</p>
-<p>二元（binary）特征是类别特征的特例，其可能值有 2 个。</p>
-<h4 id="频率表"><a href="#频率表" class="headerlink" title="频率表"></a>频率表</h4><p>让我们查看一下目标变量 Churn 离网率 的分布情况。首先，使用 <a href="https://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.value_counts.html" target="_blank" rel="noopener"><i class="fa fa-external-link-square" aria-hidden="true"> <code>value_counts()</code></i></a> 方法得到一张频率表。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'Churn'</span>].value_counts()</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>False    2850
-True      483
-Name: Churn, dtype: int64</code></pre><p>上表显示，该数据集的 Churn 有 2850 个属于 False（Churn==0），有 483 个属于 True（Churn==1），数据集中忠实客户（Churn==0）和不忠实客户（Churn==1）的比例并不相等。我们将在以后的文章中看到，这种数据不平衡的情况会导致建立的分类模型存在一定的问题。在这种情况下，构建分类模型可能需要加重对「少数数据（在这里是 Churn==1）分类错误」这一情况的惩罚。</p>
-<h4 id="条形图"><a href="#条形图" class="headerlink" title="条形图"></a>条形图</h4><p>频率表的图形化表示是条形图。创建条形图最简单的方法是使用 seaborn 的 <a href="https://seaborn.pydata.org/generated/seaborn.countplot.html" target="_blank" rel="noopener"><i class="fa fa-external-link-square" aria-hidden="true"> <code>countplot()</code></i></a> 函数。让我们来画出两个分类变量的分布。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fig, ax = plt.subplots(<span class="number">1</span>, <span class="number">2</span>, figsize=[<span class="number">10</span>, <span class="number">4</span>])</span><br><span class="line"></span><br><span class="line">sns.countplot(df[<span class="string">'Churn'</span>], ax=ax[<span class="number">0</span>])</span><br><span class="line">sns.countplot(df[<span class="string">'Customer service calls'</span>], ax=ax[<span class="number">1</span>])</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1382242d0&gt;</code></pre><p><img src="data/output_53_1.png" alt="png"></p>
-<p>条形图和直方图的区别如下：</p>
-<ul>
-<li>直方图适合查看数值变量的分布，而条形图用于查看类别特征。</li>
-<li>直方图的 X 轴是数值；条形图的 X 轴可能是任何类型，如数字、字符串、布尔值。</li>
-<li>直方图的 X 轴是一个笛卡尔坐标轴；条形图的顺序则没有事先定义。</li>
-</ul>
-<p>上左图清晰地表明了目标变量的失衡性。上右图则表明大部分客户最多打了 2-3 个客服电话就解决了他们的问题。不过，既然想要预测少数数据的分类（Churn==1），我们可能对少数不满意的客户的表现更感兴趣。所以让我们尝试一下更有趣的可视化方法：多变量可视化，看能否对预测有所帮助。</p>
-<h3 id="多变量可视化"><a href="#多变量可视化" class="headerlink" title="多变量可视化"></a>多变量可视化</h3><p>多变量（multivariate）图形可以在单张图像中查看两个以上变量的联系，和单变量图形一样，可视化的类型取决于将要分析的变量的类型。</p>
-<p>先来看看数量变量之间的相互作用。</p>
-<h4 id="相关矩阵"><a href="#相关矩阵" class="headerlink" title="相关矩阵"></a>相关矩阵</h4><p>相关矩阵可揭示数据集中的数值变量的相关性。这一信息很重要，因为有一些机器学习算法（比如，线性回归和逻辑回归）不能很好地处理高度相关的输入变量。</p>
-<p>首先，我们使用 DataFrame 的 <a href="https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.corr.html" target="_blank" rel="noopener"><i class="fa fa-external-link-square" aria-hidden="true"> <code>corr()</code></i></a> 方法计算出每对特征间的相关性。接着，我们将所得的相关矩阵（correlation matrix）传给 seaborn 的 <a href="https://seaborn.pydata.org/generated/seaborn.heatmap.html" target="_blank" rel="noopener"><i class="fa fa-external-link-square" aria-hidden="true"> <code>heatmap()</code></i></a>方法，该方法根据提供的数值，渲染出一个基于色彩编码的矩阵。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">numerical = list(set(df.columns) - set([<span class="string">'State'</span>, <span class="string">'International plan'</span>, <span class="string">'Voice mail plan'</span>, <span class="string">'Area code'</span>, <span class="string">'Churn'</span>, <span class="string">'Customer service calls'</span>]))</span><br><span class="line"></span><br><span class="line">corr = df[numerical].corr()</span><br><span class="line">sns.heatmap(corr)</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1388bad50&gt;</code></pre><p><img src="data/output_63_1.png" alt="png"></p>
-<p>上图中，Total day charge 日话费总额 是直接基于 Total day minutes 电话的分钟数 计算得到，它被称为因变量。除了 Total day charege 外，还有 3 个因变量：Total eve charge，Total night charge，Total intl charge。这 4 个因变量并不贡献任何额外信息，我们直接去除。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">numerical = list(set(numerical) - set([<span class="string">'Total day charge'</span>, <span class="string">'Total eve charge'</span>, <span class="string">'Total night charge'</span>, <span class="string">'Total intl charge'</span>]))</span><br><span class="line"></span><br><span class="line">corr = df[numerical].corr()</span><br><span class="line">sns.heatmap(corr)</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1396822d0&gt;</code></pre><p><img src="data/output_65_1.png" alt="png"></p>
-<h4 id="散点图"><a href="#散点图" class="headerlink" title="散点图"></a>散点图</h4><p>散点图（scatter plot）将两个数值变量的值显示为二维空间中的笛卡尔坐标（Cartesian coordinate）。通过 matplotlib 库的 <a href="https://matplotlib.org/devdocs/api/_as_gen/matplotlib.pyplot.scatter.html" target="_blank" rel="noopener"><i class="fa fa-external-link-square" aria-hidden="true"> <code>scatter()</code></i></a> 方法可以绘制散点图。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plt.scatter(df[<span class="string">'Total day minutes'</span>], df[<span class="string">'Total night minutes'</span>])</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&lt;matplotlib.collections.PathCollection at 0x139a17c10&gt;</code></pre><p><img src="data/output_67_1.png" alt="png"></p>
-<p>我们得到了两个正态分布变量的散点图，看起来这两个变量并不相关，因为上图的形状和轴是对齐的。</p>
-<p>seaborn 库的 <a href="https://seaborn.pydata.org/generated/seaborn.jointplot.html" target="_blank" rel="noopener"><i class="fa fa-external-link-square" aria-hidden="true"> <code>jointplot()</code></i></a> 方法在绘制散点图的同时会绘制两张直方图，某些情形下它们可能会更有用。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.jointplot(df[<span class="string">'Total day minutes'</span>], df[<span class="string">'Total night minutes'</span>])</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&lt;seaborn.axisgrid.JointGrid at 0x139888cd0&gt;</code></pre><p><img src="data/output_70_1.png" alt="png"></p>
-<p><code>jointplot()</code> 方法还可以绘制平滑过的散点直方图。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.jointplot(df[<span class="string">'Total day minutes'</span>], df[<span class="string">'Total night minutes'</span>], kind=<span class="string">'kde'</span>, color=<span class="string">'g'</span>)</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&lt;seaborn.axisgrid.JointGrid at 0x139dc1890&gt;</code></pre><p><img src="data/output_72_1.png" alt="png"></p>
-<p>上图基本上就是之前讨论过的核密度图的双变量版本。</p>
-<h4 id="散点图矩阵"><a href="#散点图矩阵" class="headerlink" title="散点图矩阵"></a>散点图矩阵</h4><p>在某些情形下，我们可能想要绘制如下所示的散点图矩阵（scatterplot matrix）。它的对角线包含变量的分布，并且每对变量的散点图填充了矩阵的其余部分。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># %config InlineBackend.figure_format = 'png'</span></span><br><span class="line">sns.pairplot(df[numerical])</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&lt;seaborn.axisgrid.PairGrid at 0x139cb5810&gt;</code></pre><p><img src="data/output_76_1.png" alt="png"></p>
-<h4 id="数量和类别"><a href="#数量和类别" class="headerlink" title="数量和类别"></a>数量和类别</h4><p>为了让图形更有趣一点，可以尝试从数值和类别特征的相互作用中得到预测 Churn 的新信息，更具体地，让我们看看输入变量和目标变量 Churn 的关系。使用 <a href="https://seaborn.pydata.org/generated/seaborn.lmplot.html" target="_blank" rel="noopener"><i class="fa fa-external-link-square" aria-hidden="true"> <code>lmplot()</code></i></a> 方法的 hue 参数来指定感兴趣的类别特征。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.lmplot(<span class="string">'Total day minutes'</span>, <span class="string">'Total night minutes'</span>, data=df, hue=<span class="string">'Churn'</span>, fit_reg=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x13e7df950&gt;</code></pre><p><img src="data/output_79_2.png" alt="png"></p>
-<p>看起来不忠实客户偏向右上角，也就是倾向于在白天和夜间打更多电话的客户。当然，这不是非常明显，我们也不会基于这一图形下任何确定性的结论。</p>
-<p>现在，创建箱形图，以可视化忠实客户（Churn=0）和离网客户（Churn=1）这两个互斥分组中数值变量分布的统计数据。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">numerical.append(<span class="string">'Customer service calls'</span>)</span><br><span class="line">print(numerical)</span><br><span class="line">fig, axes = plt.subplots(<span class="number">3</span>, <span class="number">4</span>, figsize=[<span class="number">10</span>, <span class="number">7</span>])</span><br><span class="line"><span class="keyword">for</span> index, feat <span class="keyword">in</span> enumerate(numerical):</span><br><span class="line">    ax = axes[int(index / <span class="number">4</span>), index % <span class="number">4</span>]</span><br><span class="line">    sns.boxplot(df[<span class="string">'Churn'</span>], df[feat], ax=ax)</span><br><span class="line">    ax.set_xlabel(<span class="string">''</span>)</span><br><span class="line">    ax.set_ylabel(feat)</span><br><span class="line">fig.tight_layout()</span><br></pre></td></tr></table></figure>
-
-<pre><code>[&apos;Total day minutes&apos;, &apos;Total night minutes&apos;, &apos;Number vmail messages&apos;, &apos;Total eve calls&apos;, &apos;Account length&apos;, &apos;Total intl calls&apos;, &apos;Total eve minutes&apos;, &apos;Total night calls&apos;, &apos;Total day calls&apos;, &apos;Total intl minutes&apos;, &apos;Customer service calls&apos;, &apos;Customer service calls&apos;, &apos;Customer service calls&apos;, &apos;Customer service calls&apos;, &apos;Customer service calls&apos;, &apos;Customer service calls&apos;, &apos;Customer service calls&apos;, &apos;Customer service calls&apos;]
-
-
-
----------------------------------------------------------------------------
-
-IndexError                                Traceback (most recent call last)
-
-&lt;ipython-input-47-539701aff8ff&gt; in &lt;module&gt;
-      3 fig, axes = plt.subplots(3, 4, figsize=[10, 7])
-      4 for index, feat in enumerate(numerical):
-----&gt; 5     ax = axes[int(index / 4), index % 4]
-      6     sns.boxplot(df[&apos;Churn&apos;], df[feat], ax=ax)
-      7     ax.set_xlabel(&apos;&apos;)
-
-
-IndexError: index 3 is out of bounds for axis 0 with size 3</code></pre><p><img src="data/output_82_2.png" alt="png"></p>
-<p>上面的图表表明，两组之间分歧最大的分布是这三个变量：Total day minutes 日通话分钟数、Customer service calls 客服呼叫数、Number vmail messages 语音邮件数。在后续的课程中，我们将学习如何使用随机森林（Random Forest）或梯度提升（Gradient Boosting）来判定特征对分类的重要性，届时可以清晰地看到，前两个特征对于离网预测模型而言确实非常重要。</p>
-<p>创建箱型图和提琴形图，查看忠实客户和不忠实客户的日通话分钟数。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">_, axes = plt.subplots(<span class="number">2</span>, <span class="number">2</span>, sharex=<span class="literal">True</span>, sharey=<span class="literal">True</span>, figsize=[<span class="number">10</span>, <span class="number">8</span>])</span><br><span class="line">sns.boxplot(x=<span class="string">'Churn'</span>, y=<span class="string">'Total day minutes'</span>, data=df, ax=axes[<span class="number">0</span>][<span class="number">0</span>])</span><br><span class="line">sns.violinplot(x=<span class="string">'Churn'</span>, y=<span class="string">"Total day minutes"</span>, data=df, ax=axes[<span class="number">0</span>][<span class="number">1</span>])</span><br><span class="line">sns.boxplot(x=<span class="string">'Churn'</span>, y=<span class="string">'Total night minutes'</span>, data=df, ax=axes[<span class="number">1</span>][<span class="number">0</span>])</span><br><span class="line">sns.violinplot(x=<span class="string">'Churn'</span>, y=<span class="string">"Total night minutes"</span>, data=df, ax=axes[<span class="number">1</span>][<span class="number">1</span>])</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x140f70290&gt;</code></pre><p><img src="data/output_85_1.png" alt="png"></p>
-<p>上图表明，不忠实客户倾向于打更多的电话。</p>
-<p>我们还可以发现一个有趣的信息：平均而言，离网客户是通讯服务更活跃的用户。或许是他们对话费不满意，所以预防离网的一个可能措施是降低通话费。当然，公司需要进行额外的经济分析，以查明这样做是否真的有利。</p>
-<p>当想要一次性分析两个类别维度下的数量变量时，可以用 seaborn 库的 <a href="https://seaborn.pydata.org/generated/seaborn.factorplot.html" target="_blank" rel="noopener"><i class="fa fa-external-link-square" aria-hidden="true"> <code>catplot()</code></i></a> 函数。例如，在同一图形中可视化 Total day minutes 日通话分钟数 和两个类别变量（Churn 和 Customer service calls）的相互作用。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sns.catplot(x=<span class="string">'Churn'</span>, y=<span class="string">'Total day minutes'</span>, col=<span class="string">'Customer service calls'</span>,</span><br><span class="line">          data=df[df[<span class="string">'Customer service calls'</span>] &lt; <span class="number">8</span>], kind=<span class="string">'box'</span>, col_wrap=<span class="number">4</span>, height=<span class="number">3</span>, aspect=<span class="number">.8</span>)</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x140728250&gt;</code></pre><p><img src="data/output_89_1.png" alt="png"></p>
-<p>上图表明，从第 4 次客服呼叫开始，Total day minutes 日通话分钟数 可能不再是客户离网（Churn==1）的主要因素。也许，除了我们之前猜测的话费原因，还有其他问题导致客户对服务不满意，这可能会导致日通话分钟数更少。</p>
-<h4 id="类别与类别"><a href="#类别与类别" class="headerlink" title="类别与类别"></a>类别与类别</h4><p>正如之前提到的，变量 Customer service calls 客服呼叫数 的重复值很多，因此，既可以看成数值变量，也可以看成有序类别变量。之前已通过计数图（count plot）查看过它的分布了，现在我们感兴趣的是这一有序特征和目标变量 Churn 离网率 之间的关系。</p>
-<p>使用 <code>countplot()</code> 方法查看客服呼叫数的分布，这次传入 <code>hue=Churn</code> 参数，以便在图形中加入类别维度。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.countplot(x=<span class="string">'Customer service calls'</span>, hue=<span class="string">'Churn'</span>, data=df[df[<span class="string">"Customer service calls"</span>] &lt; <span class="number">10</span>])</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x140cb7990&gt;</code></pre><p><img src="data/output_94_1.png" alt="png"></p>
-<p>上图表明，呼叫客服达到 4 次以上后，离网率显著增加了。</p>
-<p>使用 <code>countplot()</code> 方法查看 Churn 离网率 和二元特征 International plan 国际套餐、Voice mail plan 语音邮件套餐 的关系。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">_, axes = plt.subplots(<span class="number">1</span>, <span class="number">2</span>, sharey=<span class="literal">True</span>, figsize=(<span class="number">10</span>, <span class="number">4</span>))</span><br><span class="line"></span><br><span class="line">sns.countplot(x=<span class="string">'International plan'</span>, hue=<span class="string">'Churn'</span>, data=df, ax=axes[<span class="number">0</span>])</span><br><span class="line">sns.countplot(x=<span class="string">'Voice mail plan'</span>, hue=<span class="string">'Churn'</span>, data=df, ax=axes[<span class="number">1</span>])</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x142344290&gt;</code></pre><p><img src="data/output_97_1.png" alt="png"></p>
-<p>上图表明，开通国际套餐后，离网率会高很多，即 International plan 是否开通国际套餐 是一个重要的特征。我们在 Vocie mail plan 语音邮件套餐 特征上没有观察到类似的效果。</p>
-<h4 id="交叉表"><a href="#交叉表" class="headerlink" title="交叉表"></a>交叉表</h4><p>除了使用图形进行类别分析之外，还可以使用统计学的传统工具：交叉表（cross tabulation），即使用表格形式表示多个类别变量的频率分布。通过它可以查看某一列或某一行以了解某个变量在另一变量的作用下的分布情况。</p>
-<p>通过交叉表查看 Churn 离网率 和类别变量 State 州 的关系。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.crosstab(df[<span class="string">'State'</span>], df[<span class="string">'Churn'</span>]).T</span><br></pre></td></tr></table></figure>
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-<pre><code>.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}</code></pre><p></style></p>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th>State</th>
-      <th>AK</th>
-      <th>AL</th>
-      <th>AR</th>
-      <th>AZ</th>
-      <th>CA</th>
-      <th>CO</th>
-      <th>CT</th>
-      <th>DC</th>
-      <th>DE</th>
-      <th>FL</th>
-      <th>...</th>
-      <th>SD</th>
-      <th>TN</th>
-      <th>TX</th>
-      <th>UT</th>
-      <th>VA</th>
-      <th>VT</th>
-      <th>WA</th>
-      <th>WI</th>
-      <th>WV</th>
-      <th>WY</th>
-    </tr>
-    <tr>
-      <th>Churn</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>False</th>
-      <td>49</td>
-      <td>72</td>
-      <td>44</td>
-      <td>60</td>
-      <td>25</td>
-      <td>57</td>
-      <td>62</td>
-      <td>49</td>
-      <td>52</td>
-      <td>55</td>
-      <td>...</td>
-      <td>52</td>
-      <td>48</td>
-      <td>54</td>
-      <td>62</td>
-      <td>72</td>
-      <td>65</td>
-      <td>52</td>
-      <td>71</td>
-      <td>96</td>
-      <td>68</td>
-    </tr>
-    <tr>
-      <th>True</th>
-      <td>3</td>
-      <td>8</td>
-      <td>11</td>
-      <td>4</td>
-      <td>9</td>
-      <td>9</td>
-      <td>12</td>
-      <td>5</td>
-      <td>9</td>
-      <td>8</td>
-      <td>...</td>
-      <td>8</td>
-      <td>5</td>
-      <td>18</td>
-      <td>10</td>
-      <td>5</td>
-      <td>8</td>
-      <td>14</td>
-      <td>7</td>
-      <td>10</td>
-      <td>9</td>
-    </tr>
-  </tbody>
-</table>
-<p>2 rows × 51 columns</p>
-</div>
-
-
-
-<p>上表显示，State 州 有 51 个不同的值，并且每个州只有 3 到 17 个客户抛弃了运营商。通过 <code>groupby()</code> 方法计算每个州的离网率，由高到低排列。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.groupby([<span class="string">'State'</span>])[<span class="string">'Churn'</span>].agg([np.mean]).sort_values(by=<span class="string">'mean'</span>, ascending=<span class="literal">False</span>).T</span><br></pre></td></tr></table></figure>
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-<pre><code>.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}</code></pre><p></style></p>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th>State</th>
-      <th>NJ</th>
-      <th>CA</th>
-      <th>TX</th>
-      <th>MD</th>
-      <th>SC</th>
-      <th>MI</th>
-      <th>MS</th>
-      <th>NV</th>
-      <th>WA</th>
-      <th>ME</th>
-      <th>...</th>
-      <th>RI</th>
-      <th>WI</th>
-      <th>IL</th>
-      <th>NE</th>
-      <th>LA</th>
-      <th>IA</th>
-      <th>VA</th>
-      <th>AZ</th>
-      <th>AK</th>
-      <th>HI</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>mean</th>
-      <td>0.264706</td>
-      <td>0.264706</td>
-      <td>0.25</td>
-      <td>0.242857</td>
-      <td>0.233333</td>
-      <td>0.219178</td>
-      <td>0.215385</td>
-      <td>0.212121</td>
-      <td>0.212121</td>
-      <td>0.209677</td>
-      <td>...</td>
-      <td>0.092308</td>
-      <td>0.089744</td>
-      <td>0.086207</td>
-      <td>0.081967</td>
-      <td>0.078431</td>
-      <td>0.068182</td>
-      <td>0.064935</td>
-      <td>0.0625</td>
-      <td>0.057692</td>
-      <td>0.056604</td>
-    </tr>
-  </tbody>
-</table>
-<p>1 rows × 51 columns</p>
-</div>
-
-
-
-<p>上表显示，新泽西和加利福尼亚的离网率超过了 25%，夏威夷和阿拉斯加的离网率则不到 6%。然而，这些结论是基于极少的样本得出的，可能仅适用于这一特定数据集，不太具有泛用性。</p>
-<h3 id="全局数据集可视化"><a href="#全局数据集可视化" class="headerlink" title="全局数据集可视化"></a>全局数据集可视化</h3><p>上面我们一直在研究数据集的不同方面（facet），通过猜测有趣的特征并一次选择少量特征进行可视化。如果我们想一次性显示所有特征并仍然能够解释生成的可视化，该怎么办？</p>
-<h4 id="降维"><a href="#降维" class="headerlink" title="降维"></a>降维</h4><p>大多数现实世界的数据集有很多特征，每一个特征都可以被看成数据空间的一个维度。因此，我们经常需要处理高维数据集，然而可视化整个高维数据集相当难。为了从整体上查看一个数据集，需要在不损失很多数据信息的前提下，降低用于可视化的维度。这一任务被称为降维（dimensionality reduction）。降维是一个无监督学习（unsupervised learning）问题，因为它需要在不借助任何监督输入（如标签）的前提下，从数据自身得到新的低维特征。</p>
-<p>主成分分析（Principal Component Analysis, PCA）是一个著名的降维方法，我们会在之后的课程中讨论它。但主成分分析的局限性在于，它是线性（linear）算法，这意味着对数据有某些特定的限制。</p>
-<p>与线性方法相对的，有许多非线性方法，统称流形学习（Manifold Learning）。著名的流形学习方法之一是 t-SNE。</p>
-<h3 id="实验总结"><a href="#实验总结" class="headerlink" title="实验总结"></a>实验总结</h3><p>本章节首先介绍了 Pandas、Matplotlib 和 seaborn 库的一些常用可视化方法，并对客户离网数据集进行了可视化分析和 t-SNE 降维。可视化是一个相对快捷的从数据中挖掘信息的手段，因此，学习这一技术并将其纳入你的日常机器学习工具箱，是很有必要的。</p>
+          <h1 id="使用Docker搭建图床"><a href="#使用Docker搭建图床" class="headerlink" title="使用Docker搭建图床"></a>使用Docker搭建图床</h1><p>安装容器编排工具Compose<br><code>pip3 install docker-compose</code></p>
+<p>pull镜像<br><code>docker pull mariadb:latest</code><br><code>docker pull nmtan/chevereto:latest</code>  </p>
+<p>使用Docker-Compose启动<br><code>mkdir cheverto/</code><br><code>cd cheverto</code><br><code>touch docker-compose.yaml</code></p>
+<p>docker-compose.yaml配置文件</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3'</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">db:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">mariadb</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">database:/var/lib/mysql:rw</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">networks:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">private</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">MYSQL_ROOT_PASSWORD:</span> <span class="string">chevereto_root</span></span><br><span class="line">      <span class="attr">MYSQL_DATABASE:</span> <span class="string">chevereto</span></span><br><span class="line">      <span class="attr">MYSQL_USER:</span> <span class="string">chevereto</span></span><br><span class="line">      <span class="attr">MYSQL_PASSWORD:</span> <span class="string">chevereto</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">chevereto:</span></span><br><span class="line">    <span class="attr">depends_on:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">db</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">nmtan/chevereto</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">networks:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">private</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">CHEVERETO_DB_HOST:</span> <span class="string">db</span></span><br><span class="line">      <span class="attr">CHEVERETO_DB_USERNAME:</span> <span class="string">chevereto</span></span><br><span class="line">      <span class="attr">CHEVERETO_DB_PASSWORD:</span> <span class="string">chevereto</span></span><br><span class="line">      <span class="attr">CHEVERETO_DB_NAME:</span> <span class="string">chevereto</span></span><br><span class="line">      <span class="attr">CHEVERETO_DB_PREFIX:</span> <span class="string">chv_</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">chevereto_images:/var/www/html/images:rw</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">chevereto_php_config:/usr/local/etc/php:rw</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">12000</span><span class="string">:80</span></span><br><span class="line"></span><br><span class="line"><span class="attr">networks:</span></span><br><span class="line">  <span class="attr">private:</span></span><br><span class="line"><span class="attr">volumes:</span></span><br><span class="line">  <span class="attr">database:</span></span><br><span class="line">  <span class="attr">chevereto_images:</span></span><br><span class="line">  <span class="attr">chevereto_php_config:</span></span><br></pre></td></tr></table></figure>
+
+<p>对应挂载到当前文件夹中的php.ini文件(<strong>注意</strong> php.ini文件需要先创建 否则docker会自动创建同名文件夹)<br><code>- ./php.ini:/usr/local/etc/php/php.ini:rw</code></p>
+<p>php.ini</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">memory_limit</span> = <span class="number">256</span>M<span class="comment">;</span></span><br><span class="line"><span class="attr">upload_max_filesize</span> = <span class="number">100</span>M<span class="comment">;</span></span><br><span class="line"><span class="attr">post_max_size</span> = <span class="number">100</span>M<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+
+<p>运行Docker-Compose<br><code>docker-compose up -d</code></p>
 
       
     </div>
@@ -1182,7 +421,7 @@ IndexError: index 3 is out of bounds for axis 0 with size 3</code></pre><p><img 
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/ml/%E4%BD%BF%E7%94%A8-Pandas-%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2/">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/ml/deep_learning/week-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -1196,2489 +435,7 @@ IndexError: index 3 is out of bounds for axis 0 with size 3</code></pre><p><img 
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/dev/ml/%E4%BD%BF%E7%94%A8-Pandas-%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2/" class="post-title-link" itemprop="url">dev/ml/使用-Pandas-进行数据探索</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 05-17-2020 16:27:48 / Modified: 16:33:47" itemprop="dateCreated datePublished" datetime="2020-05-17T16:27:48+08:00">05-17-2020</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="使用-Pandas-进行数据探索"><a href="#使用-Pandas-进行数据探索" class="headerlink" title="使用 Pandas 进行数据探索"></a>使用 Pandas 进行数据探索</h2><p>本次实验通过分析电信运营商的客户离网率数据集来熟悉 Pandas 数据探索的常用方法，并构建一个预测客户离网率的简单模型。</p>
-<h3 id="Pandas-的主要方法"><a href="#Pandas-的主要方法" class="headerlink" title="Pandas 的主要方法"></a>Pandas 的主要方法</h3><p>Pandas 是基于 NumPy 的一种工具，提供了大量数据探索的方法。Pandas 可以使用类似 SQL 的方式对 .csv、.tsv、.xlsx 等格式的数据进行处理分析。</p>
-<p>Pandas 主要使用的数据结构是 Series 和 DataFrame 类。下面简要介绍下这两类：</p>
-<ul>
-<li>Series 是一种类似于一维数组的对象，它由一组数据（各种 NumPy 数据类型）及一组与之相关的数据标签（即索引）组成。</li>
-<li>DataFrame 是一个二维数据结构，即一张表格，其中每列数据的类型相同。你可以把它看成由 Series 实例构成的字典。</li>
-</ul>
-<p>下面开始此次实验，我们将通过分析电信运营商的客户离网率数据集来展示 Pandas 的主要方法。</p>
-<p>首先载入必要的库，即 NumPy 和 Pandas。</p>
-<p><i class="fa fa-arrow-circle-down" aria-hidden="true"> 教学代码：</i></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br></pre></td></tr></table></figure>
-
-<p>通过 <code>read_csv()</code> 方法读取数据，然后使用 <code>head()</code> 方法查看前 5 行数据。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dataFrame = pd.read_csv(<span class="string">'./data/telecom_churn.csv'</span>)</span><br></pre></td></tr></table></figure>
-
-<p>上图中的每行对应一位客户，每列对应客户的一个特征。</p>
-<p>让我们查看一下该数据库的维度、特征名称和特征类型。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dataFrame.shape</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>(3333, 20)</code></pre><p>上述结果表明，我们的列表包含 3333 行和 20 列。下面我们尝试打印列名。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dataFrame.columns</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>Index([&apos;State&apos;, &apos;Account length&apos;, &apos;Area code&apos;, &apos;International plan&apos;,
-       &apos;Voice mail plan&apos;, &apos;Number vmail messages&apos;, &apos;Total day minutes&apos;,
-       &apos;Total day calls&apos;, &apos;Total day charge&apos;, &apos;Total eve minutes&apos;,
-       &apos;Total eve calls&apos;, &apos;Total eve charge&apos;, &apos;Total night minutes&apos;,
-       &apos;Total night calls&apos;, &apos;Total night charge&apos;, &apos;Total intl minutes&apos;,
-       &apos;Total intl calls&apos;, &apos;Total intl charge&apos;, &apos;Customer service calls&apos;,
-       &apos;Churn&apos;],
-      dtype=&apos;object&apos;)</code></pre><p>我们还可以使用 <code>info()</code> 方法输出 DataFrame 的一些总体信息。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dataFrame.info()</span><br></pre></td></tr></table></figure>
-
-<pre><code>&lt;class &apos;pandas.core.frame.DataFrame&apos;&gt;
-RangeIndex: 3333 entries, 0 to 3332
-Data columns (total 20 columns):
-State                     3333 non-null object
-Account length            3333 non-null int64
-Area code                 3333 non-null int64
-International plan        3333 non-null object
-Voice mail plan           3333 non-null object
-Number vmail messages     3333 non-null int64
-Total day minutes         3333 non-null float64
-Total day calls           3333 non-null int64
-Total day charge          3333 non-null float64
-Total eve minutes         3333 non-null float64
-Total eve calls           3333 non-null int64
-Total eve charge          3333 non-null float64
-Total night minutes       3333 non-null float64
-Total night calls         3333 non-null int64
-Total night charge        3333 non-null float64
-Total intl minutes        3333 non-null float64
-Total intl calls          3333 non-null int64
-Total intl charge         3333 non-null float64
-Customer service calls    3333 non-null int64
-Churn                     3333 non-null bool
-dtypes: bool(1), float64(8), int64(8), object(3)
-memory usage: 498.1+ KB</code></pre><p><code>bool</code>、<code>int64</code>、<code>float64</code> 和 <code>object</code> 是该数据库特征的数据类型。这一方法同时也会显示是否有缺失值，上述结果表明在该数据集中不存在缺失值，因为每列都包含 3333 个观测，和我们之前使用 <code>shape</code> 方法得到的数字是一致的。</p>
-<p><code>astype()</code> 方法可以更改列的类型，下列公式将 Churn 离网率 特征修改为 <code>int64</code> 类型。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">df = dataFrame</span><br><span class="line">df.head(<span class="number">5</span>)</span><br><span class="line">df[<span class="string">'Churn'</span>] = df[<span class="string">'Churn'</span>].astype(<span class="string">'int64'</span>)</span><br><span class="line">df.head(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-<pre><code>.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}</code></pre><p></style></p>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>State</th>
-      <th>Account length</th>
-      <th>Area code</th>
-      <th>International plan</th>
-      <th>Voice mail plan</th>
-      <th>Number vmail messages</th>
-      <th>Total day minutes</th>
-      <th>Total day calls</th>
-      <th>Total day charge</th>
-      <th>Total eve minutes</th>
-      <th>Total eve calls</th>
-      <th>Total eve charge</th>
-      <th>Total night minutes</th>
-      <th>Total night calls</th>
-      <th>Total night charge</th>
-      <th>Total intl minutes</th>
-      <th>Total intl calls</th>
-      <th>Total intl charge</th>
-      <th>Customer service calls</th>
-      <th>Churn</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>KS</td>
-      <td>128</td>
-      <td>415</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>25</td>
-      <td>265.1</td>
-      <td>110</td>
-      <td>45.07</td>
-      <td>197.4</td>
-      <td>99</td>
-      <td>16.78</td>
-      <td>244.7</td>
-      <td>91</td>
-      <td>11.01</td>
-      <td>10.0</td>
-      <td>3</td>
-      <td>2.70</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>OH</td>
-      <td>107</td>
-      <td>415</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>26</td>
-      <td>161.6</td>
-      <td>123</td>
-      <td>27.47</td>
-      <td>195.5</td>
-      <td>103</td>
-      <td>16.62</td>
-      <td>254.4</td>
-      <td>103</td>
-      <td>11.45</td>
-      <td>13.7</td>
-      <td>3</td>
-      <td>3.70</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>NJ</td>
-      <td>137</td>
-      <td>415</td>
-      <td>No</td>
-      <td>No</td>
-      <td>0</td>
-      <td>243.4</td>
-      <td>114</td>
-      <td>41.38</td>
-      <td>121.2</td>
-      <td>110</td>
-      <td>10.30</td>
-      <td>162.6</td>
-      <td>104</td>
-      <td>7.32</td>
-      <td>12.2</td>
-      <td>5</td>
-      <td>3.29</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>OH</td>
-      <td>84</td>
-      <td>408</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>0</td>
-      <td>299.4</td>
-      <td>71</td>
-      <td>50.90</td>
-      <td>61.9</td>
-      <td>88</td>
-      <td>5.26</td>
-      <td>196.9</td>
-      <td>89</td>
-      <td>8.86</td>
-      <td>6.6</td>
-      <td>7</td>
-      <td>1.78</td>
-      <td>2</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>OK</td>
-      <td>75</td>
-      <td>415</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>0</td>
-      <td>166.7</td>
-      <td>113</td>
-      <td>28.34</td>
-      <td>148.3</td>
-      <td>122</td>
-      <td>12.61</td>
-      <td>186.9</td>
-      <td>121</td>
-      <td>8.41</td>
-      <td>10.1</td>
-      <td>3</td>
-      <td>2.73</td>
-      <td>3</td>
-      <td>0</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-<p><code>describe()</code> 方法可以显示数值特征（<code>int64</code> 和 <code>float64</code>）的基本统计学特性，如未缺失值的数值、均值、标准差、范围、四分位数等。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.describe()</span><br></pre></td></tr></table></figure>
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-<pre><code>.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}</code></pre><p></style></p>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Account length</th>
-      <th>Area code</th>
-      <th>Number vmail messages</th>
-      <th>Total day minutes</th>
-      <th>Total day calls</th>
-      <th>Total day charge</th>
-      <th>Total eve minutes</th>
-      <th>Total eve calls</th>
-      <th>Total eve charge</th>
-      <th>Total night minutes</th>
-      <th>Total night calls</th>
-      <th>Total night charge</th>
-      <th>Total intl minutes</th>
-      <th>Total intl calls</th>
-      <th>Total intl charge</th>
-      <th>Customer service calls</th>
-      <th>Churn</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>count</th>
-      <td>3333.000000</td>
-      <td>3333.000000</td>
-      <td>3333.000000</td>
-      <td>3333.000000</td>
-      <td>3333.000000</td>
-      <td>3333.000000</td>
-      <td>3333.000000</td>
-      <td>3333.000000</td>
-      <td>3333.000000</td>
-      <td>3333.000000</td>
-      <td>3333.000000</td>
-      <td>3333.000000</td>
-      <td>3333.000000</td>
-      <td>3333.000000</td>
-      <td>3333.000000</td>
-      <td>3333.000000</td>
-      <td>3333.000000</td>
-    </tr>
-    <tr>
-      <th>mean</th>
-      <td>101.064806</td>
-      <td>437.182418</td>
-      <td>8.099010</td>
-      <td>179.775098</td>
-      <td>100.435644</td>
-      <td>30.562307</td>
-      <td>200.980348</td>
-      <td>100.114311</td>
-      <td>17.083540</td>
-      <td>200.872037</td>
-      <td>100.107711</td>
-      <td>9.039325</td>
-      <td>10.237294</td>
-      <td>4.479448</td>
-      <td>2.764581</td>
-      <td>1.562856</td>
-      <td>0.144914</td>
-    </tr>
-    <tr>
-      <th>std</th>
-      <td>39.822106</td>
-      <td>42.371290</td>
-      <td>13.688365</td>
-      <td>54.467389</td>
-      <td>20.069084</td>
-      <td>9.259435</td>
-      <td>50.713844</td>
-      <td>19.922625</td>
-      <td>4.310668</td>
-      <td>50.573847</td>
-      <td>19.568609</td>
-      <td>2.275873</td>
-      <td>2.791840</td>
-      <td>2.461214</td>
-      <td>0.753773</td>
-      <td>1.315491</td>
-      <td>0.352067</td>
-    </tr>
-    <tr>
-      <th>min</th>
-      <td>1.000000</td>
-      <td>408.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>23.200000</td>
-      <td>33.000000</td>
-      <td>1.040000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>25%</th>
-      <td>74.000000</td>
-      <td>408.000000</td>
-      <td>0.000000</td>
-      <td>143.700000</td>
-      <td>87.000000</td>
-      <td>24.430000</td>
-      <td>166.600000</td>
-      <td>87.000000</td>
-      <td>14.160000</td>
-      <td>167.000000</td>
-      <td>87.000000</td>
-      <td>7.520000</td>
-      <td>8.500000</td>
-      <td>3.000000</td>
-      <td>2.300000</td>
-      <td>1.000000</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>50%</th>
-      <td>101.000000</td>
-      <td>415.000000</td>
-      <td>0.000000</td>
-      <td>179.400000</td>
-      <td>101.000000</td>
-      <td>30.500000</td>
-      <td>201.400000</td>
-      <td>100.000000</td>
-      <td>17.120000</td>
-      <td>201.200000</td>
-      <td>100.000000</td>
-      <td>9.050000</td>
-      <td>10.300000</td>
-      <td>4.000000</td>
-      <td>2.780000</td>
-      <td>1.000000</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>75%</th>
-      <td>127.000000</td>
-      <td>510.000000</td>
-      <td>20.000000</td>
-      <td>216.400000</td>
-      <td>114.000000</td>
-      <td>36.790000</td>
-      <td>235.300000</td>
-      <td>114.000000</td>
-      <td>20.000000</td>
-      <td>235.300000</td>
-      <td>113.000000</td>
-      <td>10.590000</td>
-      <td>12.100000</td>
-      <td>6.000000</td>
-      <td>3.270000</td>
-      <td>2.000000</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>max</th>
-      <td>243.000000</td>
-      <td>510.000000</td>
-      <td>51.000000</td>
-      <td>350.800000</td>
-      <td>165.000000</td>
-      <td>59.640000</td>
-      <td>363.700000</td>
-      <td>170.000000</td>
-      <td>30.910000</td>
-      <td>395.000000</td>
-      <td>175.000000</td>
-      <td>17.770000</td>
-      <td>20.000000</td>
-      <td>20.000000</td>
-      <td>5.400000</td>
-      <td>9.000000</td>
-      <td>1.000000</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-<p>通过 include 参数显式指定包含的数据类型，可以查看非数值特征的统计数据。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.describe(include=[<span class="string">'object'</span>, <span class="string">'bool'</span>])</span><br></pre></td></tr></table></figure>
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-<pre><code>.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}</code></pre><p></style></p>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>State</th>
-      <th>International plan</th>
-      <th>Voice mail plan</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>count</th>
-      <td>3333</td>
-      <td>3333</td>
-      <td>3333</td>
-    </tr>
-    <tr>
-      <th>unique</th>
-      <td>51</td>
-      <td>2</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>top</th>
-      <td>WV</td>
-      <td>No</td>
-      <td>No</td>
-    </tr>
-    <tr>
-      <th>freq</th>
-      <td>106</td>
-      <td>3010</td>
-      <td>2411</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-<p><code>value_counts()</code> 方法可以查看类别（类型为 object ）和布尔值（类型为 bool ）特征。让我们看下 Churn 离网率 的分布。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'Churn'</span>].value_counts()</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>0    2850
-1     483
-Name: Churn, dtype: int64</code></pre><p>上述结果表明，在 3333 位客户中， 2850 位是忠实客户，他们的 <code>Churn</code> 值为 0。调用 <code>value_counts()</code> 函数时，加上 <code>normalize=True</code> 参数可以显示比例。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'Churn'</span>].value_counts(normalize=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>0    0.855086
-1    0.144914
-Name: Churn, dtype: float64</code></pre><h3 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h3><p>DataFrame 可以根据某个变量的值（也就是列）排序。比如，根据每日消费额排序（设置 ascending=False 倒序排列）。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.sort_values(by=<span class="string">'Total day charge'</span>, ascending=<span class="literal">False</span>).head(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-<pre><code>.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}</code></pre><p></style></p>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>State</th>
-      <th>Account length</th>
-      <th>Area code</th>
-      <th>International plan</th>
-      <th>Voice mail plan</th>
-      <th>Number vmail messages</th>
-      <th>Total day minutes</th>
-      <th>Total day calls</th>
-      <th>Total day charge</th>
-      <th>Total eve minutes</th>
-      <th>Total eve calls</th>
-      <th>Total eve charge</th>
-      <th>Total night minutes</th>
-      <th>Total night calls</th>
-      <th>Total night charge</th>
-      <th>Total intl minutes</th>
-      <th>Total intl calls</th>
-      <th>Total intl charge</th>
-      <th>Customer service calls</th>
-      <th>Churn</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>365</th>
-      <td>CO</td>
-      <td>154</td>
-      <td>415</td>
-      <td>No</td>
-      <td>No</td>
-      <td>0</td>
-      <td>350.8</td>
-      <td>75</td>
-      <td>59.64</td>
-      <td>216.5</td>
-      <td>94</td>
-      <td>18.40</td>
-      <td>253.9</td>
-      <td>100</td>
-      <td>11.43</td>
-      <td>10.1</td>
-      <td>9</td>
-      <td>2.73</td>
-      <td>1</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>985</th>
-      <td>NY</td>
-      <td>64</td>
-      <td>415</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>0</td>
-      <td>346.8</td>
-      <td>55</td>
-      <td>58.96</td>
-      <td>249.5</td>
-      <td>79</td>
-      <td>21.21</td>
-      <td>275.4</td>
-      <td>102</td>
-      <td>12.39</td>
-      <td>13.3</td>
-      <td>9</td>
-      <td>3.59</td>
-      <td>1</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>2594</th>
-      <td>OH</td>
-      <td>115</td>
-      <td>510</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>0</td>
-      <td>345.3</td>
-      <td>81</td>
-      <td>58.70</td>
-      <td>203.4</td>
-      <td>106</td>
-      <td>17.29</td>
-      <td>217.5</td>
-      <td>107</td>
-      <td>9.79</td>
-      <td>11.8</td>
-      <td>8</td>
-      <td>3.19</td>
-      <td>1</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>156</th>
-      <td>OH</td>
-      <td>83</td>
-      <td>415</td>
-      <td>No</td>
-      <td>No</td>
-      <td>0</td>
-      <td>337.4</td>
-      <td>120</td>
-      <td>57.36</td>
-      <td>227.4</td>
-      <td>116</td>
-      <td>19.33</td>
-      <td>153.9</td>
-      <td>114</td>
-      <td>6.93</td>
-      <td>15.8</td>
-      <td>7</td>
-      <td>4.27</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>605</th>
-      <td>MO</td>
-      <td>112</td>
-      <td>415</td>
-      <td>No</td>
-      <td>No</td>
-      <td>0</td>
-      <td>335.5</td>
-      <td>77</td>
-      <td>57.04</td>
-      <td>212.5</td>
-      <td>109</td>
-      <td>18.06</td>
-      <td>265.0</td>
-      <td>132</td>
-      <td>11.93</td>
-      <td>12.7</td>
-      <td>8</td>
-      <td>3.43</td>
-      <td>2</td>
-      <td>1</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-<p>此外，还可以根据多个列的数值排序。下面函数实现的功能为：先按 Churn 离网率 升序排列，再按 Total day charge 每日总话费 降序排列，优先级 Churn &gt; Tatal day charge。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.sort_values(by=[<span class="string">'Churn'</span>, <span class="string">'Total day charge'</span>], ascending=[<span class="literal">True</span>, <span class="literal">False</span>]).head()</span><br></pre></td></tr></table></figure>
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-<pre><code>.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}</code></pre><p></style></p>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>State</th>
-      <th>Account length</th>
-      <th>Area code</th>
-      <th>International plan</th>
-      <th>Voice mail plan</th>
-      <th>Number vmail messages</th>
-      <th>Total day minutes</th>
-      <th>Total day calls</th>
-      <th>Total day charge</th>
-      <th>Total eve minutes</th>
-      <th>Total eve calls</th>
-      <th>Total eve charge</th>
-      <th>Total night minutes</th>
-      <th>Total night calls</th>
-      <th>Total night charge</th>
-      <th>Total intl minutes</th>
-      <th>Total intl calls</th>
-      <th>Total intl charge</th>
-      <th>Customer service calls</th>
-      <th>Churn</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>688</th>
-      <td>MN</td>
-      <td>13</td>
-      <td>510</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>21</td>
-      <td>315.6</td>
-      <td>105</td>
-      <td>53.65</td>
-      <td>208.9</td>
-      <td>71</td>
-      <td>17.76</td>
-      <td>260.1</td>
-      <td>123</td>
-      <td>11.70</td>
-      <td>12.1</td>
-      <td>3</td>
-      <td>3.27</td>
-      <td>3</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>2259</th>
-      <td>NC</td>
-      <td>210</td>
-      <td>415</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>31</td>
-      <td>313.8</td>
-      <td>87</td>
-      <td>53.35</td>
-      <td>147.7</td>
-      <td>103</td>
-      <td>12.55</td>
-      <td>192.7</td>
-      <td>97</td>
-      <td>8.67</td>
-      <td>10.1</td>
-      <td>7</td>
-      <td>2.73</td>
-      <td>3</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>534</th>
-      <td>LA</td>
-      <td>67</td>
-      <td>510</td>
-      <td>No</td>
-      <td>No</td>
-      <td>0</td>
-      <td>310.4</td>
-      <td>97</td>
-      <td>52.77</td>
-      <td>66.5</td>
-      <td>123</td>
-      <td>5.65</td>
-      <td>246.5</td>
-      <td>99</td>
-      <td>11.09</td>
-      <td>9.2</td>
-      <td>10</td>
-      <td>2.48</td>
-      <td>4</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>575</th>
-      <td>SD</td>
-      <td>114</td>
-      <td>415</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>36</td>
-      <td>309.9</td>
-      <td>90</td>
-      <td>52.68</td>
-      <td>200.3</td>
-      <td>89</td>
-      <td>17.03</td>
-      <td>183.5</td>
-      <td>105</td>
-      <td>8.26</td>
-      <td>14.2</td>
-      <td>2</td>
-      <td>3.83</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>2858</th>
-      <td>AL</td>
-      <td>141</td>
-      <td>510</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>28</td>
-      <td>308.0</td>
-      <td>123</td>
-      <td>52.36</td>
-      <td>247.8</td>
-      <td>128</td>
-      <td>21.06</td>
-      <td>152.9</td>
-      <td>103</td>
-      <td>6.88</td>
-      <td>7.4</td>
-      <td>3</td>
-      <td>2.00</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-<h3 id="索引和获取数据"><a href="#索引和获取数据" class="headerlink" title="索引和获取数据"></a>索引和获取数据</h3><p>DataFrame 可以以不同的方式进行索引。</p>
-<p>使用 <code>DataFrame[&#39;Name&#39;]</code> 可以得到一个单独的列。比如，离网率有多高？</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'Churn'</span>].mean()</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>0.14491449144914492</code></pre><p>对一家公司而言，14.5% 的离网率是一个很糟糕的数据，这么高的离网率可能导致公司破产。</p>
-<p>布尔值索引同样很方便，语法是 <code>df[P(df[&#39;Name&#39;])]</code>，P 是在检查 Name 列每个元素时所使用的逻辑条件。这一索引的输出是 DataFrame 的 Name 列中满足 P 条件的行。</p>
-<p>让我们使用布尔值索引来回答这样以下问题：离网用户的数值变量的均值是多少？</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[df[<span class="string">'Churn'</span>] == <span class="number">1</span>].mean()</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>Account length            102.664596
-Area code                 437.817805
-Number vmail messages       5.115942
-Total day minutes         206.914079
-Total day calls           101.335404
-Total day charge           35.175921
-Total eve minutes         212.410145
-Total eve calls           100.561077
-Total eve charge           18.054969
-Total night minutes       205.231677
-Total night calls         100.399586
-Total night charge          9.235528
-Total intl minutes         10.700000
-Total intl calls            4.163561
-Total intl charge           2.889545
-Customer service calls      2.229814
-Churn                       1.000000
-dtype: float64</code></pre><p>离网用户在白天打电话的总时长的均值是多少？</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[df[<span class="string">'Churn'</span>] == <span class="number">1</span>][<span class="string">'Total day minutes'</span>].mean()</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>206.91407867494823</code></pre><p>未使用国际套餐（<code>International plan == NO</code>）的忠实用户（<code>Churn == 0</code>）所打的最长的国际长途是多久？</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df[(df[<span class="string">'Churn'</span>] == <span class="number">1</span>) &amp; (df[<span class="string">'International plan'</span>] == <span class="string">'No'</span>)][<span class="string">'Total intl minutes'</span>].max()</span><br><span class="line">df[(df[<span class="string">'Churn'</span>] == <span class="number">0</span>) &amp; (df[<span class="string">'International plan'</span>] == <span class="string">'No'</span>)][<span class="string">'Total intl minutes'</span>].max()</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>18.9</code></pre><p>DataFrame 可以通过列名、行名、行号进行索引。<code>loc</code> 方法为通过名称索引，<code>iloc</code> 方法为通过数字索引。</p>
-<p>通过 <code>loc</code> 方法输出 0 至 5 行、State 州 至 Area code 区号 的数据。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.loc[<span class="number">0</span>:<span class="number">5</span>, [<span class="string">'State'</span>,<span class="string">'Area code'</span>]]</span><br></pre></td></tr></table></figure>
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-<pre><code>.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}</code></pre><p></style></p>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>State</th>
-      <th>Area code</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>KS</td>
-      <td>415</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>OH</td>
-      <td>415</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>NJ</td>
-      <td>415</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>OH</td>
-      <td>408</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>OK</td>
-      <td>415</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>AL</td>
-      <td>510</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-<p>通过 <code>ilo</code> 方法输出前 5 行的前 3 列数据（和典型的 Python 切片一样，不含最大值）。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.iloc[<span class="number">0</span>:<span class="number">5</span>, <span class="number">0</span>:<span class="number">3</span>]</span><br></pre></td></tr></table></figure>
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-<pre><code>.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}</code></pre><p></style></p>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>State</th>
-      <th>Account length</th>
-      <th>Area code</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>KS</td>
-      <td>128</td>
-      <td>415</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>OH</td>
-      <td>107</td>
-      <td>415</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>NJ</td>
-      <td>137</td>
-      <td>415</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>OH</td>
-      <td>84</td>
-      <td>408</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>OK</td>
-      <td>75</td>
-      <td>415</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-<p><code>df[:1]</code> 和 <code>df[-1:]</code> 可以得到 DataFrame 的首行和末行。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="number">-2</span>:]</span><br></pre></td></tr></table></figure>
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-<pre><code>.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}</code></pre><p></style></p>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>State</th>
-      <th>Account length</th>
-      <th>Area code</th>
-      <th>International plan</th>
-      <th>Voice mail plan</th>
-      <th>Number vmail messages</th>
-      <th>Total day minutes</th>
-      <th>Total day calls</th>
-      <th>Total day charge</th>
-      <th>Total eve minutes</th>
-      <th>Total eve calls</th>
-      <th>Total eve charge</th>
-      <th>Total night minutes</th>
-      <th>Total night calls</th>
-      <th>Total night charge</th>
-      <th>Total intl minutes</th>
-      <th>Total intl calls</th>
-      <th>Total intl charge</th>
-      <th>Customer service calls</th>
-      <th>Churn</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>3331</th>
-      <td>CT</td>
-      <td>184</td>
-      <td>510</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>0</td>
-      <td>213.8</td>
-      <td>105</td>
-      <td>36.35</td>
-      <td>159.6</td>
-      <td>84</td>
-      <td>13.57</td>
-      <td>139.2</td>
-      <td>137</td>
-      <td>6.26</td>
-      <td>5.0</td>
-      <td>10</td>
-      <td>1.35</td>
-      <td>2</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>3332</th>
-      <td>TN</td>
-      <td>74</td>
-      <td>415</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>25</td>
-      <td>234.4</td>
-      <td>113</td>
-      <td>39.85</td>
-      <td>265.9</td>
-      <td>82</td>
-      <td>22.60</td>
-      <td>241.4</td>
-      <td>77</td>
-      <td>10.86</td>
-      <td>13.7</td>
-      <td>4</td>
-      <td>3.70</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-<h3 id="应用函数到单元格、列、行"><a href="#应用函数到单元格、列、行" class="headerlink" title="应用函数到单元格、列、行"></a>应用函数到单元格、列、行</h3><p>下面通过 <code>apply()</code> 方法应用函数 <code>max</code> 至每一列，即输出每列的最大值。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.apply(np.max)</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>State                        WY
-Account length              243
-Area code                   510
-International plan          Yes
-Voice mail plan             Yes
-Number vmail messages        51
-Total day minutes         350.8
-Total day calls             165
-Total day charge          59.64
-Total eve minutes         363.7
-Total eve calls             170
-Total eve charge          30.91
-Total night minutes         395
-Total night calls           175
-Total night charge        17.77
-Total intl minutes           20
-Total intl calls             20
-Total intl charge           5.4
-Customer service calls        9
-Churn                         1
-dtype: object</code></pre><p><code>apply()</code> 方法也可以应用函数至每一行，指定 axis=1 即可。在这种情况下，使用 <code>lambda</code> 函数十分方便。比如，下面函数选中了所有以 W 开头的州。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[df[<span class="string">'State'</span>].apply(<span class="keyword">lambda</span> state: state[<span class="number">0</span>] == <span class="string">'W'</span>)].head()</span><br></pre></td></tr></table></figure>
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-<pre><code>.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}</code></pre><p></style></p>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>State</th>
-      <th>Account length</th>
-      <th>Area code</th>
-      <th>International plan</th>
-      <th>Voice mail plan</th>
-      <th>Number vmail messages</th>
-      <th>Total day minutes</th>
-      <th>Total day calls</th>
-      <th>Total day charge</th>
-      <th>Total eve minutes</th>
-      <th>Total eve calls</th>
-      <th>Total eve charge</th>
-      <th>Total night minutes</th>
-      <th>Total night calls</th>
-      <th>Total night charge</th>
-      <th>Total intl minutes</th>
-      <th>Total intl calls</th>
-      <th>Total intl charge</th>
-      <th>Customer service calls</th>
-      <th>Churn</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>9</th>
-      <td>WV</td>
-      <td>141</td>
-      <td>415</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>37</td>
-      <td>258.6</td>
-      <td>84</td>
-      <td>43.96</td>
-      <td>222.0</td>
-      <td>111</td>
-      <td>18.87</td>
-      <td>326.4</td>
-      <td>97</td>
-      <td>14.69</td>
-      <td>11.2</td>
-      <td>5</td>
-      <td>3.02</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>26</th>
-      <td>WY</td>
-      <td>57</td>
-      <td>408</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>39</td>
-      <td>213.0</td>
-      <td>115</td>
-      <td>36.21</td>
-      <td>191.1</td>
-      <td>112</td>
-      <td>16.24</td>
-      <td>182.7</td>
-      <td>115</td>
-      <td>8.22</td>
-      <td>9.5</td>
-      <td>3</td>
-      <td>2.57</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>44</th>
-      <td>WI</td>
-      <td>64</td>
-      <td>510</td>
-      <td>No</td>
-      <td>No</td>
-      <td>0</td>
-      <td>154.0</td>
-      <td>67</td>
-      <td>26.18</td>
-      <td>225.8</td>
-      <td>118</td>
-      <td>19.19</td>
-      <td>265.3</td>
-      <td>86</td>
-      <td>11.94</td>
-      <td>3.5</td>
-      <td>3</td>
-      <td>0.95</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>49</th>
-      <td>WY</td>
-      <td>97</td>
-      <td>415</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>24</td>
-      <td>133.2</td>
-      <td>135</td>
-      <td>22.64</td>
-      <td>217.2</td>
-      <td>58</td>
-      <td>18.46</td>
-      <td>70.6</td>
-      <td>79</td>
-      <td>3.18</td>
-      <td>11.0</td>
-      <td>3</td>
-      <td>2.97</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>54</th>
-      <td>WY</td>
-      <td>87</td>
-      <td>415</td>
-      <td>No</td>
-      <td>No</td>
-      <td>0</td>
-      <td>151.0</td>
-      <td>83</td>
-      <td>25.67</td>
-      <td>219.7</td>
-      <td>116</td>
-      <td>18.67</td>
-      <td>203.9</td>
-      <td>127</td>
-      <td>9.18</td>
-      <td>9.7</td>
-      <td>3</td>
-      <td>2.62</td>
-      <td>5</td>
-      <td>1</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-<p><code>map()</code> 方法可以通过一个 {old_value:new_value} 形式的字典替换某一列中的值。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">d = &#123;<span class="string">'No'</span>: <span class="literal">False</span>, <span class="string">'Yes'</span>: <span class="literal">True</span>&#125;</span><br><span class="line">df[<span class="string">'International plan'</span>] = df[<span class="string">'International plan'</span>].map(d)</span><br><span class="line">df.head()</span><br></pre></td></tr></table></figure>
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-<pre><code>.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}</code></pre><p></style></p>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>State</th>
-      <th>Account length</th>
-      <th>Area code</th>
-      <th>International plan</th>
-      <th>Voice mail plan</th>
-      <th>Number vmail messages</th>
-      <th>Total day minutes</th>
-      <th>Total day calls</th>
-      <th>Total day charge</th>
-      <th>Total eve minutes</th>
-      <th>Total eve calls</th>
-      <th>Total eve charge</th>
-      <th>Total night minutes</th>
-      <th>Total night calls</th>
-      <th>Total night charge</th>
-      <th>Total intl minutes</th>
-      <th>Total intl calls</th>
-      <th>Total intl charge</th>
-      <th>Customer service calls</th>
-      <th>Churn</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>KS</td>
-      <td>128</td>
-      <td>415</td>
-      <td>False</td>
-      <td>Yes</td>
-      <td>25</td>
-      <td>265.1</td>
-      <td>110</td>
-      <td>45.07</td>
-      <td>197.4</td>
-      <td>99</td>
-      <td>16.78</td>
-      <td>244.7</td>
-      <td>91</td>
-      <td>11.01</td>
-      <td>10.0</td>
-      <td>3</td>
-      <td>2.70</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>OH</td>
-      <td>107</td>
-      <td>415</td>
-      <td>False</td>
-      <td>Yes</td>
-      <td>26</td>
-      <td>161.6</td>
-      <td>123</td>
-      <td>27.47</td>
-      <td>195.5</td>
-      <td>103</td>
-      <td>16.62</td>
-      <td>254.4</td>
-      <td>103</td>
-      <td>11.45</td>
-      <td>13.7</td>
-      <td>3</td>
-      <td>3.70</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>NJ</td>
-      <td>137</td>
-      <td>415</td>
-      <td>False</td>
-      <td>No</td>
-      <td>0</td>
-      <td>243.4</td>
-      <td>114</td>
-      <td>41.38</td>
-      <td>121.2</td>
-      <td>110</td>
-      <td>10.30</td>
-      <td>162.6</td>
-      <td>104</td>
-      <td>7.32</td>
-      <td>12.2</td>
-      <td>5</td>
-      <td>3.29</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>OH</td>
-      <td>84</td>
-      <td>408</td>
-      <td>True</td>
-      <td>No</td>
-      <td>0</td>
-      <td>299.4</td>
-      <td>71</td>
-      <td>50.90</td>
-      <td>61.9</td>
-      <td>88</td>
-      <td>5.26</td>
-      <td>196.9</td>
-      <td>89</td>
-      <td>8.86</td>
-      <td>6.6</td>
-      <td>7</td>
-      <td>1.78</td>
-      <td>2</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>OK</td>
-      <td>75</td>
-      <td>415</td>
-      <td>True</td>
-      <td>No</td>
-      <td>0</td>
-      <td>166.7</td>
-      <td>113</td>
-      <td>28.34</td>
-      <td>148.3</td>
-      <td>122</td>
-      <td>12.61</td>
-      <td>186.9</td>
-      <td>121</td>
-      <td>8.41</td>
-      <td>10.1</td>
-      <td>3</td>
-      <td>2.73</td>
-      <td>3</td>
-      <td>0</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-<p>当然，使用 <code>repalce()</code> 方法一样可以达到替换的目的。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df = df.replace(&#123;<span class="string">'Voice mail plan'</span>: d&#125;)</span><br><span class="line">df.head()</span><br></pre></td></tr></table></figure>
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-<pre><code>.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}</code></pre><p></style></p>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>State</th>
-      <th>Account length</th>
-      <th>Area code</th>
-      <th>International plan</th>
-      <th>Voice mail plan</th>
-      <th>Number vmail messages</th>
-      <th>Total day minutes</th>
-      <th>Total day calls</th>
-      <th>Total day charge</th>
-      <th>Total eve minutes</th>
-      <th>Total eve calls</th>
-      <th>Total eve charge</th>
-      <th>Total night minutes</th>
-      <th>Total night calls</th>
-      <th>Total night charge</th>
-      <th>Total intl minutes</th>
-      <th>Total intl calls</th>
-      <th>Total intl charge</th>
-      <th>Customer service calls</th>
-      <th>Churn</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>KS</td>
-      <td>128</td>
-      <td>415</td>
-      <td>False</td>
-      <td>True</td>
-      <td>25</td>
-      <td>265.1</td>
-      <td>110</td>
-      <td>45.07</td>
-      <td>197.4</td>
-      <td>99</td>
-      <td>16.78</td>
-      <td>244.7</td>
-      <td>91</td>
-      <td>11.01</td>
-      <td>10.0</td>
-      <td>3</td>
-      <td>2.70</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>OH</td>
-      <td>107</td>
-      <td>415</td>
-      <td>False</td>
-      <td>True</td>
-      <td>26</td>
-      <td>161.6</td>
-      <td>123</td>
-      <td>27.47</td>
-      <td>195.5</td>
-      <td>103</td>
-      <td>16.62</td>
-      <td>254.4</td>
-      <td>103</td>
-      <td>11.45</td>
-      <td>13.7</td>
-      <td>3</td>
-      <td>3.70</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>NJ</td>
-      <td>137</td>
-      <td>415</td>
-      <td>False</td>
-      <td>False</td>
-      <td>0</td>
-      <td>243.4</td>
-      <td>114</td>
-      <td>41.38</td>
-      <td>121.2</td>
-      <td>110</td>
-      <td>10.30</td>
-      <td>162.6</td>
-      <td>104</td>
-      <td>7.32</td>
-      <td>12.2</td>
-      <td>5</td>
-      <td>3.29</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>OH</td>
-      <td>84</td>
-      <td>408</td>
-      <td>True</td>
-      <td>False</td>
-      <td>0</td>
-      <td>299.4</td>
-      <td>71</td>
-      <td>50.90</td>
-      <td>61.9</td>
-      <td>88</td>
-      <td>5.26</td>
-      <td>196.9</td>
-      <td>89</td>
-      <td>8.86</td>
-      <td>6.6</td>
-      <td>7</td>
-      <td>1.78</td>
-      <td>2</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>OK</td>
-      <td>75</td>
-      <td>415</td>
-      <td>True</td>
-      <td>False</td>
-      <td>0</td>
-      <td>166.7</td>
-      <td>113</td>
-      <td>28.34</td>
-      <td>148.3</td>
-      <td>122</td>
-      <td>12.61</td>
-      <td>186.9</td>
-      <td>121</td>
-      <td>8.41</td>
-      <td>10.1</td>
-      <td>3</td>
-      <td>2.73</td>
-      <td>3</td>
-      <td>0</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-<h3 id="增减-DataFrame-的行列"><a href="#增减-DataFrame-的行列" class="headerlink" title="增减 DataFrame 的行列"></a>增减 DataFrame 的行列</h3><p>在 DataFrame 中新增列有很多方法，比如，使用 <code>insert()</code>方法添加列，为所有用户计算总的 Total calls 电话量。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">total_calls = df[<span class="string">'Total day calls'</span>] + df[<span class="string">'Total eve calls'</span>] + \</span><br><span class="line">df[<span class="string">'Total night calls'</span>] + df[<span class="string">'Total intl calls'</span>]</span><br><span class="line"></span><br><span class="line">df.insert(loc=len(df.columns), column=<span class="string">'Total calls 2'</span>, value=total_calls)</span><br><span class="line"></span><br><span class="line">df.head()</span><br></pre></td></tr></table></figure>
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-<pre><code>.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}</code></pre><p></style></p>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>State</th>
-      <th>Account length</th>
-      <th>Area code</th>
-      <th>International plan</th>
-      <th>Voice mail plan</th>
-      <th>Number vmail messages</th>
-      <th>Total day minutes</th>
-      <th>Total day calls</th>
-      <th>Total day charge</th>
-      <th>Total eve minutes</th>
-      <th>...</th>
-      <th>Total night minutes</th>
-      <th>Total night calls</th>
-      <th>Total night charge</th>
-      <th>Total intl minutes</th>
-      <th>Total intl calls</th>
-      <th>Total intl charge</th>
-      <th>Customer service calls</th>
-      <th>Churn</th>
-      <th>Total calls</th>
-      <th>Total calls 2</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>KS</td>
-      <td>128</td>
-      <td>415</td>
-      <td>False</td>
-      <td>True</td>
-      <td>25</td>
-      <td>265.1</td>
-      <td>110</td>
-      <td>45.07</td>
-      <td>197.4</td>
-      <td>...</td>
-      <td>244.7</td>
-      <td>91</td>
-      <td>11.01</td>
-      <td>10.0</td>
-      <td>3</td>
-      <td>2.70</td>
-      <td>1</td>
-      <td>0</td>
-      <td>303</td>
-      <td>303</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>OH</td>
-      <td>107</td>
-      <td>415</td>
-      <td>False</td>
-      <td>True</td>
-      <td>26</td>
-      <td>161.6</td>
-      <td>123</td>
-      <td>27.47</td>
-      <td>195.5</td>
-      <td>...</td>
-      <td>254.4</td>
-      <td>103</td>
-      <td>11.45</td>
-      <td>13.7</td>
-      <td>3</td>
-      <td>3.70</td>
-      <td>1</td>
-      <td>0</td>
-      <td>332</td>
-      <td>332</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>NJ</td>
-      <td>137</td>
-      <td>415</td>
-      <td>False</td>
-      <td>False</td>
-      <td>0</td>
-      <td>243.4</td>
-      <td>114</td>
-      <td>41.38</td>
-      <td>121.2</td>
-      <td>...</td>
-      <td>162.6</td>
-      <td>104</td>
-      <td>7.32</td>
-      <td>12.2</td>
-      <td>5</td>
-      <td>3.29</td>
-      <td>0</td>
-      <td>0</td>
-      <td>333</td>
-      <td>333</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>OH</td>
-      <td>84</td>
-      <td>408</td>
-      <td>True</td>
-      <td>False</td>
-      <td>0</td>
-      <td>299.4</td>
-      <td>71</td>
-      <td>50.90</td>
-      <td>61.9</td>
-      <td>...</td>
-      <td>196.9</td>
-      <td>89</td>
-      <td>8.86</td>
-      <td>6.6</td>
-      <td>7</td>
-      <td>1.78</td>
-      <td>2</td>
-      <td>0</td>
-      <td>255</td>
-      <td>255</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>OK</td>
-      <td>75</td>
-      <td>415</td>
-      <td>True</td>
-      <td>False</td>
-      <td>0</td>
-      <td>166.7</td>
-      <td>113</td>
-      <td>28.34</td>
-      <td>148.3</td>
-      <td>...</td>
-      <td>186.9</td>
-      <td>121</td>
-      <td>8.41</td>
-      <td>10.1</td>
-      <td>3</td>
-      <td>2.73</td>
-      <td>3</td>
-      <td>0</td>
-      <td>359</td>
-      <td>359</td>
-    </tr>
-  </tbody>
-</table>
-<p>5 rows × 22 columns</p>
-</div>
-
-
-
-<p>上面的代码创建了一个中间 Series 实例，即 tatal_calls，其实可以在不创造这个实例的情况下直接添加列。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'Total charge'</span>] = df[<span class="string">'Total day charge'</span>] + df[<span class="string">'Total eve charge'</span>] + \</span><br><span class="line">df[<span class="string">'Total night charge'</span>] + df[<span class="string">'Total intl charge'</span>]</span><br><span class="line">df.head()</span><br></pre></td></tr></table></figure>
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-<pre><code>.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}</code></pre><p></style></p>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>State</th>
-      <th>Account length</th>
-      <th>Area code</th>
-      <th>International plan</th>
-      <th>Voice mail plan</th>
-      <th>Number vmail messages</th>
-      <th>Total day minutes</th>
-      <th>Total day calls</th>
-      <th>Total day charge</th>
-      <th>Total eve minutes</th>
-      <th>...</th>
-      <th>Total night calls</th>
-      <th>Total night charge</th>
-      <th>Total intl minutes</th>
-      <th>Total intl calls</th>
-      <th>Total intl charge</th>
-      <th>Customer service calls</th>
-      <th>Churn</th>
-      <th>Total calls</th>
-      <th>Total calls 2</th>
-      <th>Total charge</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>KS</td>
-      <td>128</td>
-      <td>415</td>
-      <td>False</td>
-      <td>True</td>
-      <td>25</td>
-      <td>265.1</td>
-      <td>110</td>
-      <td>45.07</td>
-      <td>197.4</td>
-      <td>...</td>
-      <td>91</td>
-      <td>11.01</td>
-      <td>10.0</td>
-      <td>3</td>
-      <td>2.70</td>
-      <td>1</td>
-      <td>0</td>
-      <td>303</td>
-      <td>303</td>
-      <td>75.56</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>OH</td>
-      <td>107</td>
-      <td>415</td>
-      <td>False</td>
-      <td>True</td>
-      <td>26</td>
-      <td>161.6</td>
-      <td>123</td>
-      <td>27.47</td>
-      <td>195.5</td>
-      <td>...</td>
-      <td>103</td>
-      <td>11.45</td>
-      <td>13.7</td>
-      <td>3</td>
-      <td>3.70</td>
-      <td>1</td>
-      <td>0</td>
-      <td>332</td>
-      <td>332</td>
-      <td>59.24</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>NJ</td>
-      <td>137</td>
-      <td>415</td>
-      <td>False</td>
-      <td>False</td>
-      <td>0</td>
-      <td>243.4</td>
-      <td>114</td>
-      <td>41.38</td>
-      <td>121.2</td>
-      <td>...</td>
-      <td>104</td>
-      <td>7.32</td>
-      <td>12.2</td>
-      <td>5</td>
-      <td>3.29</td>
-      <td>0</td>
-      <td>0</td>
-      <td>333</td>
-      <td>333</td>
-      <td>62.29</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>OH</td>
-      <td>84</td>
-      <td>408</td>
-      <td>True</td>
-      <td>False</td>
-      <td>0</td>
-      <td>299.4</td>
-      <td>71</td>
-      <td>50.90</td>
-      <td>61.9</td>
-      <td>...</td>
-      <td>89</td>
-      <td>8.86</td>
-      <td>6.6</td>
-      <td>7</td>
-      <td>1.78</td>
-      <td>2</td>
-      <td>0</td>
-      <td>255</td>
-      <td>255</td>
-      <td>66.80</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>OK</td>
-      <td>75</td>
-      <td>415</td>
-      <td>True</td>
-      <td>False</td>
-      <td>0</td>
-      <td>166.7</td>
-      <td>113</td>
-      <td>28.34</td>
-      <td>148.3</td>
-      <td>...</td>
-      <td>121</td>
-      <td>8.41</td>
-      <td>10.1</td>
-      <td>3</td>
-      <td>2.73</td>
-      <td>3</td>
-      <td>0</td>
-      <td>359</td>
-      <td>359</td>
-      <td>52.09</td>
-    </tr>
-  </tbody>
-</table>
-<p>5 rows × 23 columns</p>
-</div>
-
-
-
-<p>使用 <code>drop()</code> 方法删除列和行。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df1 = df.drop([<span class="number">1</span>, <span class="number">2</span>])</span><br><span class="line">df1.head()</span><br></pre></td></tr></table></figure>
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-<pre><code>.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}</code></pre><p></style></p>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>State</th>
-      <th>Account length</th>
-      <th>Area code</th>
-      <th>International plan</th>
-      <th>Voice mail plan</th>
-      <th>Number vmail messages</th>
-      <th>Total day minutes</th>
-      <th>Total day calls</th>
-      <th>Total day charge</th>
-      <th>Total eve minutes</th>
-      <th>...</th>
-      <th>Total night minutes</th>
-      <th>Total night calls</th>
-      <th>Total night charge</th>
-      <th>Total intl minutes</th>
-      <th>Total intl calls</th>
-      <th>Total intl charge</th>
-      <th>Customer service calls</th>
-      <th>Churn</th>
-      <th>Total calls</th>
-      <th>Total charge</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>KS</td>
-      <td>128</td>
-      <td>415</td>
-      <td>False</td>
-      <td>True</td>
-      <td>25</td>
-      <td>265.1</td>
-      <td>110</td>
-      <td>45.07</td>
-      <td>197.4</td>
-      <td>...</td>
-      <td>244.7</td>
-      <td>91</td>
-      <td>11.01</td>
-      <td>10.0</td>
-      <td>3</td>
-      <td>2.70</td>
-      <td>1</td>
-      <td>0</td>
-      <td>303</td>
-      <td>75.56</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>OH</td>
-      <td>84</td>
-      <td>408</td>
-      <td>True</td>
-      <td>False</td>
-      <td>0</td>
-      <td>299.4</td>
-      <td>71</td>
-      <td>50.90</td>
-      <td>61.9</td>
-      <td>...</td>
-      <td>196.9</td>
-      <td>89</td>
-      <td>8.86</td>
-      <td>6.6</td>
-      <td>7</td>
-      <td>1.78</td>
-      <td>2</td>
-      <td>0</td>
-      <td>255</td>
-      <td>66.80</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>OK</td>
-      <td>75</td>
-      <td>415</td>
-      <td>True</td>
-      <td>False</td>
-      <td>0</td>
-      <td>166.7</td>
-      <td>113</td>
-      <td>28.34</td>
-      <td>148.3</td>
-      <td>...</td>
-      <td>186.9</td>
-      <td>121</td>
-      <td>8.41</td>
-      <td>10.1</td>
-      <td>3</td>
-      <td>2.73</td>
-      <td>3</td>
-      <td>0</td>
-      <td>359</td>
-      <td>52.09</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>AL</td>
-      <td>118</td>
-      <td>510</td>
-      <td>True</td>
-      <td>False</td>
-      <td>0</td>
-      <td>223.4</td>
-      <td>98</td>
-      <td>37.98</td>
-      <td>220.6</td>
-      <td>...</td>
-      <td>203.9</td>
-      <td>118</td>
-      <td>9.18</td>
-      <td>6.3</td>
-      <td>6</td>
-      <td>1.70</td>
-      <td>0</td>
-      <td>0</td>
-      <td>323</td>
-      <td>67.61</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>MA</td>
-      <td>121</td>
-      <td>510</td>
-      <td>False</td>
-      <td>True</td>
-      <td>24</td>
-      <td>218.2</td>
-      <td>88</td>
-      <td>37.09</td>
-      <td>348.5</td>
-      <td>...</td>
-      <td>212.6</td>
-      <td>118</td>
-      <td>9.57</td>
-      <td>7.5</td>
-      <td>7</td>
-      <td>2.03</td>
-      <td>3</td>
-      <td>0</td>
-      <td>321</td>
-      <td>78.31</td>
-    </tr>
-  </tbody>
-</table>
-<p>5 rows × 22 columns</p>
-</div>
-
-
-
-<p>对上述代码的部分解释：</p>
-<ul>
-<li>将相应的索引 <code>[&#39;Total charge&#39;, &#39;Total calls&#39;]</code> 和 <code>axis</code> 参数（1 表示删除列，0 表示删除行，默认值为 0）传给 <code>drop</code>。</li>
-<li><code>inplace</code> 参数表示是否修改原始 DataFrame （False 表示不修改现有 DataFrame，返回一个新 DataFrame，True 表示修改当前 DataFrame）。</li>
-</ul>
-<h2 id="预测离网率"><a href="#预测离网率" class="headerlink" title="预测离网率"></a>预测离网率</h2><p>首先，通过 <code>crosstab()</code> 方法构建一个交叉表来查看 International plan 国际套餐 变量和 Churn 离网率 的相关性，同时使用 <code>countplot()</code> 方法构建计数直方图来可视化结果。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 加载模块，配置绘图</span></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.countplot(x=<span class="string">'International plan'</span>, hue=<span class="string">'Churn'</span>, data=df)</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11f0c8450&gt;</code></pre><p><img src="data/output_75_1.png" alt="png"></p>
-<p>上图表明，开通了国际套餐的用户的离网率要高很多，这是一个很有趣的观测结果。也许，国际电话高昂的话费让客户很不满意。</p>
-<p>同理，查看 Customer service calls 客服呼叫 变量与 Chunrn 离网率 的相关性，并可视化结果。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.crosstab(df[<span class="string">'Churn'</span>], df[<span class="string">'Customer service calls'</span>], margins=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-<pre><code>.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}</code></pre><p></style></p>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th>Customer service calls</th>
-      <th>0</th>
-      <th>1</th>
-      <th>2</th>
-      <th>3</th>
-      <th>4</th>
-      <th>5</th>
-      <th>6</th>
-      <th>7</th>
-      <th>8</th>
-      <th>9</th>
-      <th>All</th>
-    </tr>
-    <tr>
-      <th>Churn</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>605</td>
-      <td>1059</td>
-      <td>672</td>
-      <td>385</td>
-      <td>90</td>
-      <td>26</td>
-      <td>8</td>
-      <td>4</td>
-      <td>1</td>
-      <td>0</td>
-      <td>2850</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>92</td>
-      <td>122</td>
-      <td>87</td>
-      <td>44</td>
-      <td>76</td>
-      <td>40</td>
-      <td>14</td>
-      <td>5</td>
-      <td>1</td>
-      <td>2</td>
-      <td>483</td>
-    </tr>
-    <tr>
-      <th>All</th>
-      <td>697</td>
-      <td>1181</td>
-      <td>759</td>
-      <td>429</td>
-      <td>166</td>
-      <td>66</td>
-      <td>22</td>
-      <td>9</td>
-      <td>2</td>
-      <td>2</td>
-      <td>3333</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.countplot(x=<span class="string">'Customer service calls'</span>, hue=<span class="string">'Churn'</span>, data=df)</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11cb70d50&gt;</code></pre><p><img src="data/output_79_1.png" alt="png"></p>
-<p>上图表明，在客服呼叫 4 次之后，客户的离网率显著提升。</p>
-<p>为了更好的突出 Customer service call 客服呼叫 和 Churn 离网率 的关系，可以给 DataFrame 添加一个二元属性 Many_service_calls，即客户呼叫超过 3 次（Customer service calls &gt; 3）。看下它与离网率的相关性，并可视化结果。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'Many_service_calls'</span>] = (df[<span class="string">'Customer service calls'</span>] &gt; <span class="number">3</span>).astype(<span class="string">'int'</span>)</span><br><span class="line"></span><br><span class="line">pd.crosstab(df[<span class="string">'Many_service_calls'</span>], df[<span class="string">'Churn'</span>], margins=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-<pre><code>.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}</code></pre><p></style></p>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th>Churn</th>
-      <th>0</th>
-      <th>1</th>
-      <th>All</th>
-    </tr>
-    <tr>
-      <th>Many_service_calls</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>2721</td>
-      <td>345</td>
-      <td>3066</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>129</td>
-      <td>138</td>
-      <td>267</td>
-    </tr>
-    <tr>
-      <th>All</th>
-      <td>2850</td>
-      <td>483</td>
-      <td>3333</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.countplot(x=<span class="string">'Many_service_calls'</span>, hue=<span class="string">'Churn'</span>, data=df)</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11ce1c850&gt;</code></pre><p><img src="data/output_83_1.png" alt="png"></p>
-<p>现在我们可以创建另一张交叉表，将 Churn 离网率 与 International plan 国际套餐 及新创建的 Many_service_calls 多次客服呼叫 关联起来。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.crosstab(df[<span class="string">'Many_service_calls'</span>] &amp; df[<span class="string">'International plan'</span>], df[<span class="string">'Churn'</span>])</span><br></pre></td></tr></table></figure>
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-<pre><code>.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}</code></pre><p></style></p>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th>Churn</th>
-      <th>0</th>
-      <th>1</th>
-    </tr>
-    <tr>
-      <th>row_0</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>False</th>
-      <td>2841</td>
-      <td>464</td>
-    </tr>
-    <tr>
-      <th>True</th>
-      <td>9</td>
-      <td>19</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-<p>上表表明，在客服呼叫次数超过 3 次并且已办理 International Plan 国际套餐 的情况下，预测一名客户不忠诚的准确率（Accuracy）可以达到 85.8％，计算公式如下：</p>
-<p>$$准确率（Accuracy）=\frac{TP+TN}{TP+TN+FP+FN}=\frac{2841+19}{2841+9+19+464}\times100%$$</p>
-<p>其中，TP 表示将 True 预测为 True 的数量，TN 表示将 Flase 预测为 Flase 的数量，FP 表示将 Flase 预测为 True 的数量，FN 表示将 True 预测为 Flase 的数量。</p>
-<p>复习一下本次实验的内容：</p>
-<ul>
-<li>样本中忠实客户的份额为 85.5%。这意味着最简单的预测「忠实客户」的模型有 85.5% 的概率猜对。也就是说，后续模型的准确率（Accuracy）不应该比这个数字少，并且很有希望显著高于这个数字。</li>
-<li>基于一个简单的「（客服呼叫次数 &gt; 3） &amp; （国际套餐 = True） =&gt; Churn = 1, else Churn = 0」规则的预测模型，可以得到 85.8% 的准确率。以后我们将讨论决策树，看看如何仅仅基于输入数据自动找出类似的规则，而不需要我们手工设定。我们没有应用机器学习方法就得到了两个准确率（85.5% 和 85.8%），它们可作为后续其他模型的基线。如果经过大量的努力，我们仅将准确率提高了 0.5%，那么我们努力的方向可能出现了偏差，因为仅仅使用一个包含两个限制规则的简单模型就已提升了 0.3% 的准确率。</li>
-<li>在训练复杂模型之前，建议预处理一下数据，绘制一些图表，做一些简单的假设。此外，在实际任务上应用机器学习时，通常从简单的方案开始，接着尝试更复杂的方案。</li>
-</ul>
-<h3 id="实验总结"><a href="#实验总结" class="headerlink" title="实验总结"></a>实验总结</h3><p>本次实验使用 Pandas 对数据进行了一定程度的分析和探索，交叉表、透视表等方法的运用将使你在数据探索过程中事半功倍。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/notebook/anaconda/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/notebook/anaconda/" class="post-title-link" itemprop="url">Install anaconda on linux</a>
+            <a href="/dev/ml/deep_learning/week-1/" class="post-title-link" itemprop="url">NLP文本分类引导</a>
         </h2>
 
         <div class="post-meta-container">
@@ -3689,14 +446,14 @@ dtype: object</code></pre><p><code>apply()</code> 方法也可以应用函数至
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 05-14-2020 19:15:25" itemprop="dateCreated datePublished" datetime="2020-05-14T19:15:25+08:00">05-14-2020</time>
+      <time title="Created: 07-14-2020 23:31:04" itemprop="dateCreated datePublished" datetime="2020-07-14T23:31:04+08:00">07-14-2020</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 08-05-2021 20:09:52" itemprop="dateModified" datetime="2021-08-05T20:09:52+08:00">08-05-2021</time>
+        <time title="Modified: 01-26-2021 17:25:12" itemprop="dateModified" datetime="2021-01-26T17:25:12+08:00">01-26-2021</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -3718,28 +475,44 @@ dtype: object</code></pre><p><code>apply()</code> 方法也可以应用函数至
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://repo.anaconda.com/archive/Anaconda3-2021.05-Linux-x86_64.sh</span><br></pre></td></tr></table></figure>
+          <h1 id="NLP文本分类引导"><a href="#NLP文本分类引导" class="headerlink" title="NLP文本分类引导"></a>NLP文本分类引导</h1><h2 id="en"><a href="#en" class="headerlink" title="en"></a>en</h2><h2 id="1-数据读取"><a href="#1-数据读取" class="headerlink" title="1. 数据读取"></a>1. 数据读取</h2><h3 id="python原生读取txt文件"><a href="#python原生读取txt文件" class="headerlink" title="python原生读取txt文件"></a>python原生读取txt文件</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f = open(filedir, mode=<span class="string">'r'</span>)</span><br></pre></td></tr></table></figure>
 
-
-
-<h1 id="MacOS安装Anaconda"><a href="#MacOS安装Anaconda" class="headerlink" title="MacOS安装Anaconda"></a>MacOS安装Anaconda</h1><h2 id="conda配置文件"><a href="#conda配置文件" class="headerlink" title="conda配置文件"></a>conda配置文件</h2><p>位置<br><code>~/.condarc</code></p>
-<p>配置zsh环境变量<br><code>export PATH=/Applications/anaconda3/bin:$PATH</code></p>
-<h2 id="conda镜像源"><a href="#conda镜像源" class="headerlink" title="conda镜像源"></a>conda镜像源</h2><p>添加镜像指令(亦可以直接在配置文件中添加)<br><code>conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</code><br><code>conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge</code><br><code>conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/msys2/</code>  </p>
-<p>设置搜索时显示通道地址<br><code>conda config --set show_channel_urls yes</code></p>
-<h2 id="shell虚拟环境"><a href="#shell虚拟环境" class="headerlink" title="shell虚拟环境"></a>shell虚拟环境</h2><p><strong>取消命令行前出现的(base)</strong></p>
 <ul>
-<li><p>每次在命令行通过<code>conda deactivate</code>退出base环境回到系统自动的环境</p>
-</li>
-<li><p><code>conda config --set auto_activate_base false</code></p>
-</li>
+<li><code>f.read()</code>一次读取全部数据。</li>
+<li><code>f.readline()</code>分行读取，一次读取一行。</li>
+<li><code>f.readlines()</code>读取全部数据，保留<code>\n</code>换行符。</li>
 </ul>
-<h2 id="安装TensorFlow环境"><a href="#安装TensorFlow环境" class="headerlink" title="安装TensorFlow环境"></a>安装TensorFlow环境</h2><p>新建一个tf环境<br><code>conda create -n tensorflow python=3.7</code></p>
-<p>进入tf环境<br><code>conda activate tensorflow</code></p>
-<p>pip安装tf<br><code>pip install -i https://pypi.tuna.tsinghua.edu.cn/simple tensorflow</code></p>
-<p>指定版本安装<br><code>conda install tensorflow=1.4</code><br><code>pip install tensorflow==1.4</code></p>
-<h2 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h2><p>安装clean包<br><code>conda install anaconda-clean</code></p>
-<p>文件进行删除<br><code>anaconda-clean</code></p>
-<p>删除Anaconda主文件包(默认路径)<br><code>/opt/anaconda3</code></p>
+<h3 id="pandas读取txt文件"><a href="#pandas读取txt文件" class="headerlink" title="pandas读取txt文件"></a>pandas读取txt文件</h3><p>pd.read_table(filedir, splitsign, header=指定第几行为列名, names=如果没有列名手动指定[‘x’, ‘y’])</p>
+<h2 id="2-数据预处理"><a href="#2-数据预处理" class="headerlink" title="2. 数据预处理"></a>2. 数据预处理</h2><h3 id="分词"><a href="#分词" class="headerlink" title="分词"></a>分词</h3><h3 id="去除停词-去除低频词"><a href="#去除停词-去除低频词" class="headerlink" title="去除停词 去除低频词"></a>去除停词 去除低频词</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">optimize_words_dict</span><span class="params">(self, data, stop_words, threshold)</span>:</span></span><br><span class="line">    freq_dict = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> data:  <span class="comment"># 去除停词 + 计算词频</span></span><br><span class="line">        <span class="keyword">for</span> word <span class="keyword">in</span> line:</span><br><span class="line">            <span class="keyword">if</span> word <span class="keyword">in</span> stop_words:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            <span class="keyword">if</span> word <span class="keyword">not</span> <span class="keyword">in</span> freq_dict:</span><br><span class="line">                freq_dict[word] = <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                freq_dict[word] += <span class="number">1</span></span><br><span class="line">    words_list = []</span><br><span class="line">    values = sorted(list(set(freq_dict.values())), reverse=<span class="literal">True</span>)</span><br><span class="line">    <span class="keyword">for</span> w <span class="keyword">in</span> values:  <span class="comment"># 通过阈值筛选词表 算法可以优化？？？</span></span><br><span class="line">        <span class="keyword">if</span> w &lt; threshold:</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        <span class="keyword">for</span> k, v <span class="keyword">in</span> freq_dict.items():</span><br><span class="line">            <span class="keyword">if</span> v == w:</span><br><span class="line">                words_list.append((k, v))</span><br><span class="line">    <span class="keyword">return</span> words_list</span><br></pre></td></tr></table></figure>
+
+<h3 id="通过TF-IDF算法筛选单词"><a href="#通过TF-IDF算法筛选单词" class="headerlink" title="通过TF-IDF算法筛选单词"></a>通过TF-IDF算法筛选单词</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">tf_idf</span><span class="params">(self, data)</span>:</span></span><br><span class="line">    doc_num = len(data)</span><br><span class="line">    df = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> sample <span class="keyword">in</span> data:</span><br><span class="line">        <span class="keyword">for</span> word <span class="keyword">in</span> set(sample):  <span class="comment"># 避免一个单词在一个Sample里出现多次</span></span><br><span class="line">            <span class="keyword">if</span> word <span class="keyword">not</span> <span class="keyword">in</span> df:</span><br><span class="line">                df[word] = <span class="number">1.0</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                df[word] += <span class="number">1.0</span></span><br><span class="line">    <span class="keyword">for</span> word <span class="keyword">in</span> df:  <span class="comment"># 计算document frequency 文档总数/单词出现过的文档数</span></span><br><span class="line">        df[word] = log10(doc_num / df[word])</span><br><span class="line">    res = &#123;&#125;</span><br><span class="line">    index = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> sample <span class="keyword">in</span> data:</span><br><span class="line">        res[index] = &#123;&#125;</span><br><span class="line">        tf = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> word <span class="keyword">in</span> sample:  <span class="comment"># 计算term frequency 一个样本里单词的频率</span></span><br><span class="line">            <span class="keyword">if</span> word <span class="keyword">not</span> <span class="keyword">in</span> tf:</span><br><span class="line">                tf[word] = <span class="number">1.0</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                tf[word] += <span class="number">1.0</span></span><br><span class="line">        sample_len = len(sample)</span><br><span class="line">        <span class="keyword">for</span> word <span class="keyword">in</span> sample:  <span class="comment"># 计算tf * idf 一个样本中各单词的tf_idf</span></span><br><span class="line">            tf_idf = tf[word] / sample_len * df[word]</span><br><span class="line">            res[index][word] = tf_idf</span><br><span class="line">        index += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> res  <span class="comment"># res格式为每一个样本中每一个单词对应的tf_idf值</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>在预处理时，因为是要为生成词典做准备，所以TF-IDF应该是以整个corpus计算TF，而提取特征时建立词袋模型中的TF-IDF方法则是对每个Sample的单词计算TF-IDF值。</strong></p>
+<h2 id="3-建立词典"><a href="#3-建立词典" class="headerlink" title="3. 建立词典"></a>3. 建立词典</h2><p>词典 = {‘单词’:索引}</p>
+<h2 id="4-提取特征"><a href="#4-提取特征" class="headerlink" title="4. 提取特征"></a>4. 提取特征</h2><h3 id="词袋模型（BOW）"><a href="#词袋模型（BOW）" class="headerlink" title="词袋模型（BOW）"></a>词袋模型（BOW）</h3><p>假设建立的词典有1000维，那么我们将为数据集中的每一个Sample建立一个1000维的向量。</p>
+<p>词袋模型有三种形式：</p>
+<ul>
+<li>对于每个Smaple单词是否出现</li>
+<li>对于每个Sample单词出现次数</li>
+<li>对于每个Smaple单词的TF-IDF值</li>
+</ul>
+<p><strong>在预处理时，因为是要为生成词典做准备，所以TF-IDF应该是以整个corpus计算TF，而提取特征时建立词袋模型中的TF-IDF方法则是对每个Sample的单词计算TF-IDF值。</strong></p>
+<p>例：<br>词典：1000. [北京，天气，真，好，北京] = [0, 1, 0, …,0], 或 [0, 2, 0, …,0]，或 [0, 0.4, 0, …, 0]</p>
+<h4 id="独热编码（One-Hot）"><a href="#独热编码（One-Hot）" class="headerlink" title="独热编码（One-Hot）"></a>独热编码（One-Hot）</h4><p>对于一个特征有N个状态则可以用N位来表示</p>
+<p>例：Feature_2有2个状态</p>
+<p>Sample_1 = [0, 1], Sample_2 = [1, 0] …</p>
+<p>例：Feature_1有4个状态</p>
+<p>Sample_1 = [0, 0, 1, 0], Sample_2 = [0, 1, 0, 0] …</p>
+<p>当一个样本有多个状态时</p>
+<p>Sample_1 = [0, 1, 0, 0, 1, 0], Sample_2 = [1, 0, 0, 1, 0, 0] …</p>
+<hr>
+<p>一点想法<br>不确定应该建立多大的词典时，可以考虑Corpus的大小或是每个Sample中Word的个数<br>词典的大小就与Corpus或Sample中Word的个数成某个比例</p>
+<h2 id="zh"><a href="#zh" class="headerlink" title="zh"></a>zh</h2><h2 id="1-数据处理"><a href="#1-数据处理" class="headerlink" title="1. 数据处理"></a>1. 数据处理</h2><ul>
+<li>去除空格</li>
+<li>符号转换（省略号-&gt;句号）？</li>
+<li>去除无意义符号</li>
+<li>繁体转换简体</li>
+</ul>
 
       
     </div>
@@ -3766,7 +539,7 @@ dtype: object</code></pre><p><code>apply()</code> 方法也可以应用函数至
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/leetcode/[DP]MSM/">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/ml/KNN-%E6%89%8B%E5%86%99%E4%BD%93%E6%95%B0%E5%AD%97%E6%95%B0%E6%8D%AE%E9%9B%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -3780,7 +553,7 @@ dtype: object</code></pre><p><code>apply()</code> 方法也可以应用函数至
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/dev/leetcode/%5BDP%5DMSM/" class="post-title-link" itemprop="url">dev/leetcode/[DP]MSM</a>
+            <a href="/dev/ml/KNN-%E6%89%8B%E5%86%99%E4%BD%93%E6%95%B0%E5%AD%97%E6%95%B0%E6%8D%AE%E9%9B%86/" class="post-title-link" itemprop="url">dev/ml/KNN-手写体数字数据集</a>
         </h2>
 
         <div class="post-meta-container">
@@ -3792,7 +565,7 @@ dtype: object</code></pre><p><code>apply()</code> 方法也可以应用函数至
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 04-28-2020 21:22:24 / Modified: 21:27:41" itemprop="dateCreated datePublished" datetime="2020-04-28T21:22:24+08:00">04-28-2020</time>
+      <time title="Created: 05-17-2020 16:37:20 / Modified: 16:38:09" itemprop="dateCreated datePublished" datetime="2020-05-17T16:37:20+08:00">05-17-2020</time>
     </span>
 
   
@@ -3805,8 +578,574 @@ dtype: object</code></pre><p><code>apply()</code> 方法也可以应用函数至
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="矩阵连乘-Multiplying-a-sequence-of-matrices"><a href="#矩阵连乘-Multiplying-a-sequence-of-matrices" class="headerlink" title="矩阵连乘 (Multiplying a sequence of matrices)"></a>矩阵连乘 (Multiplying a sequence of matrices)</h1><p>我们想从两个以上矩阵连乘的式子中得到最佳的次序，使得计算时乘法运算最少。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DynamicProgramming</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> N = <span class="number">5</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span>[][] C = <span class="keyword">new</span> <span class="keyword">int</span>[N][N];</span><br><span class="line">		<span class="keyword">int</span>[][] S = <span class="keyword">new</span> <span class="keyword">int</span>[N][N];</span><br><span class="line">		<span class="keyword">int</span>[] r = &#123;<span class="number">4</span>, <span class="number">5</span>, <span class="number">3</span>, <span class="number">6</span>, <span class="number">4</span>, <span class="number">5</span>&#125;;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;<span class="comment">// 初始化 最小乘运算数组</span></span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; N; j++) &#123;</span><br><span class="line">				C[i][j] = <span class="number">0</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;<span class="comment">// 初始化 分割位置</span></span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; N; j++) &#123;</span><br><span class="line">				S[i][j] = <span class="number">0</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> p = <span class="number">2</span>; p &lt;= N; p++) &#123;<span class="comment">// P 为间隔</span></span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>, j; i &lt; N - p + <span class="number">1</span>; i++) &#123;<span class="comment">// i 为起始值</span></span><br><span class="line">				j = i + p - <span class="number">1</span>;<span class="comment">// j 为终止值</span></span><br><span class="line">				C[i][j] = C[i][i] + C[i + <span class="number">1</span>][j] + r[i] * r[i + <span class="number">1</span>] * r[j + <span class="number">1</span>];<span class="comment">// 赋 C[i][j] 的初值方便下文比较取得最小值</span></span><br><span class="line">				S[i][j] = i;</span><br><span class="line">				<span class="keyword">for</span> (<span class="keyword">int</span> k = i; k&lt; j; k++) &#123;<span class="comment">// k 为中间分割值 </span></span><br><span class="line">					<span class="keyword">int</span> temp = C[i][k] + C[k + <span class="number">1</span>][j] + r[i] * r[k + <span class="number">1</span>] * r[j + <span class="number">1</span>];</span><br><span class="line">					</span><br><span class="line">					<span class="keyword">if</span> (temp &lt; C[i][j]) &#123;<span class="comment">// 取得每次分割后的最小值</span></span><br><span class="line">						C[i][j] = temp;</span><br><span class="line">						S[i][j] = k;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; N; j++) &#123;</span><br><span class="line">				System.out.print(C[i][j] + <span class="string">"\t"</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			System.out.println();</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		System.out.println();</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; N; j++) &#123;</span><br><span class="line">				<span class="keyword">if</span> (j &gt; i) System.out.print(S[i][j] + <span class="number">1</span> + <span class="string">"\t"</span>);</span><br><span class="line">				<span class="keyword">else</span> System.out.print(<span class="number">0</span> + <span class="string">"\t"</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			System.out.println();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* result</span></span><br><span class="line"><span class="comment">0	60	132	180	252	</span></span><br><span class="line"><span class="comment">0	0	90	132	207	</span></span><br><span class="line"><span class="comment">0	0	0	72	132	</span></span><br><span class="line"><span class="comment">0	0	0	0	120	</span></span><br><span class="line"><span class="comment">0	0	0	0	0	</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">0	1	2	2	2	</span></span><br><span class="line"><span class="comment">0	0	2	2	2	</span></span><br><span class="line"><span class="comment">0	0	0	3	4	</span></span><br><span class="line"><span class="comment">0	0	0	0	4	</span></span><br><span class="line"><span class="comment">0	0	0	0	0</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">(A1 * A2) * ((A3 * A4) * A5)</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+          <h1 id="KNN-手写体数字数据集"><a href="#KNN-手写体数字数据集" class="headerlink" title="KNN-手写体数字数据集"></a>KNN-手写体数字数据集</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> datasets</span><br><span class="line"><span class="keyword">from</span> sklearn.neighbors <span class="keyword">import</span> KNeighborsClassifier</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">digits = datasets.load_digits()</span><br><span class="line">X = digits.data</span><br><span class="line">X.shape</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>(1797, 64)</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">y = digits.target</span><br><span class="line">y.shape</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>(1797,)</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">one = X[<span class="number">100</span>]</span><br><span class="line">one = one.reshape(<span class="number">8</span>, <span class="number">8</span>)</span><br><span class="line">one</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>array([[ 0.,  0.,  0.,  2., 13.,  0.,  0.,  0.],
+       [ 0.,  0.,  0.,  8., 15.,  0.,  0.,  0.],
+       [ 0.,  0.,  5., 16.,  5.,  2.,  0.,  0.],
+       [ 0.,  0., 15., 12.,  1., 16.,  4.,  0.],
+       [ 0.,  4., 16.,  2.,  9., 16.,  8.,  0.],
+       [ 0.,  0., 10., 14., 16., 16.,  4.,  0.],
+       [ 0.,  0.,  0.,  0., 13.,  8.,  0.,  0.],
+       [ 0.,  0.,  0.,  0., 13.,  6.,  0.,  0.]])</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plt.imshow(one)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>&lt;matplotlib.image.AxesImage at 0x1a203a9ad0&gt;</code></pre><p><img src="data/output_5_1.png" alt="png"></p>
+<h1 id="分离训练测试集"><a href="#分离训练测试集" class="headerlink" title="分离训练测试集"></a>分离训练测试集</h1><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line">train_test_split?</span><br></pre></td></tr></table></figure>
+
+
+<pre><code>[0;31mSignature:[0m [0mtrain_test_split[0m[0;34m([0m[0;34m*[0m[0marrays[0m[0;34m,[0m [0;34m**[0m[0moptions[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;31mDocstring:[0m
+Split arrays or matrices into random train and test subsets
+
+Quick utility that wraps input validation and
+``next(ShuffleSplit().split(X, y))`` and application to input data
+into a single call for splitting (and optionally subsampling) data in a
+oneliner.
+
+Read more in the :ref:`User Guide &lt;cross_validation&gt;`.
+
+Parameters
+----------
+*arrays : sequence of indexables with same length / shape[0]
+    Allowed inputs are lists, numpy arrays, scipy-sparse
+    matrices or pandas dataframes.
+
+test_size : float, int or None, optional (default=None)
+    If float, should be between 0.0 and 1.0 and represent the proportion
+    of the dataset to include in the test split. If int, represents the
+    absolute number of test samples. If None, the value is set to the
+    complement of the train size. If ``train_size`` is also None, it will
+    be set to 0.25.
+
+train_size : float, int, or None, (default=None)
+    If float, should be between 0.0 and 1.0 and represent the
+    proportion of the dataset to include in the train split. If
+    int, represents the absolute number of train samples. If None,
+    the value is automatically set to the complement of the test size.
+
+random_state : int, RandomState instance or None, optional (default=None)
+    If int, random_state is the seed used by the random number generator;
+    If RandomState instance, random_state is the random number generator;
+    If None, the random number generator is the RandomState instance used
+    by `np.random`.
+
+shuffle : boolean, optional (default=True)
+    Whether or not to shuffle the data before splitting. If shuffle=False
+    then stratify must be None.
+
+stratify : array-like or None (default=None)
+    If not None, data is split in a stratified fashion, using this as
+    the class labels.
+
+Returns
+-------
+splitting : list, length=2 * len(arrays)
+    List containing train-test split of inputs.
+
+    .. versionadded:: 0.16
+        If the input is sparse, the output will be a
+        ``scipy.sparse.csr_matrix``. Else, output type is the same as the
+        input type.
+
+Examples
+--------
+&gt;&gt;&gt; import numpy as np
+&gt;&gt;&gt; from sklearn.model_selection import train_test_split
+&gt;&gt;&gt; X, y = np.arange(10).reshape((5, 2)), range(5)
+&gt;&gt;&gt; X
+array([[0, 1],
+       [2, 3],
+       [4, 5],
+       [6, 7],
+       [8, 9]])
+&gt;&gt;&gt; list(y)
+[0, 1, 2, 3, 4]
+
+&gt;&gt;&gt; X_train, X_test, y_train, y_test = train_test_split(
+...     X, y, test_size=0.33, random_state=42)
+...
+&gt;&gt;&gt; X_train
+array([[4, 5],
+       [0, 1],
+       [6, 7]])
+&gt;&gt;&gt; y_train
+[2, 0, 3]
+&gt;&gt;&gt; X_test
+array([[2, 3],
+       [8, 9]])
+&gt;&gt;&gt; y_test
+[1, 4]
+
+&gt;&gt;&gt; train_test_split(y, shuffle=False)
+[[0, 1, 2], [3, 4]]
+[0;31mFile:[0m      /Applications/anaconda3/lib/python3.7/site-packages/sklearn/model_selection/_split.py
+[0;31mType:[0m      function</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=<span class="number">0.2</span>)</span><br><span class="line">print(X_train.shape)</span><br><span class="line">print(y_train.shape)</span><br><span class="line">print(X_test.shape)</span><br><span class="line">print(y_test.shape)</span><br></pre></td></tr></table></figure>
+
+<pre><code>(1437, 64)
+(1437,)
+(360, 64)
+(360,)</code></pre><h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">KNNClf = KNeighborsClassifier(n_neighbors=<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">KNNClf.fit(X_train, y_train)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>KNeighborsClassifier(algorithm=&apos;auto&apos;, leaf_size=30, metric=&apos;minkowski&apos;,
+                     metric_params=None, n_jobs=None, n_neighbors=3, p=2,
+                     weights=&apos;uniform&apos;)</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">res = KNNClf.predict(X_test)</span><br><span class="line">res</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>array([3, 4, 8, 5, 5, 7, 0, 3, 1, 4, 7, 5, 5, 8, 0, 7, 4, 7, 1, 7, 9, 4,
+       4, 7, 6, 1, 2, 9, 1, 3, 3, 3, 7, 0, 7, 0, 2, 8, 9, 1, 1, 5, 4, 8,
+       9, 0, 4, 9, 4, 9, 7, 2, 7, 3, 3, 4, 1, 9, 9, 9, 0, 4, 0, 6, 1, 0,
+       0, 3, 6, 2, 3, 2, 8, 5, 9, 3, 1, 1, 6, 9, 8, 1, 2, 3, 2, 6, 8, 8,
+       4, 6, 8, 6, 3, 9, 2, 8, 3, 6, 5, 7, 1, 7, 3, 8, 8, 8, 0, 0, 9, 1,
+       9, 8, 5, 1, 1, 0, 1, 6, 5, 1, 7, 6, 5, 7, 7, 2, 2, 7, 3, 1, 9, 5,
+       9, 5, 5, 3, 8, 4, 9, 5, 4, 6, 0, 5, 4, 8, 6, 1, 2, 8, 0, 9, 0, 9,
+       7, 9, 7, 0, 2, 8, 2, 4, 0, 6, 2, 6, 7, 5, 6, 3, 8, 8, 0, 3, 2, 0,
+       6, 1, 0, 6, 0, 5, 9, 3, 3, 0, 4, 0, 4, 2, 4, 9, 0, 6, 7, 4, 6, 5,
+       9, 7, 2, 2, 3, 3, 0, 3, 9, 4, 9, 8, 5, 6, 9, 0, 1, 3, 5, 0, 5, 1,
+       6, 4, 6, 6, 6, 7, 9, 1, 0, 7, 6, 6, 7, 8, 0, 3, 8, 5, 6, 8, 1, 3,
+       0, 3, 6, 0, 3, 5, 6, 7, 0, 6, 9, 7, 0, 0, 2, 1, 6, 6, 9, 1, 6, 9,
+       8, 7, 0, 2, 5, 1, 8, 6, 4, 3, 8, 2, 9, 2, 8, 4, 6, 4, 8, 9, 3, 1,
+       1, 5, 0, 7, 8, 2, 3, 8, 4, 7, 7, 7, 7, 9, 4, 1, 7, 0, 2, 9, 1, 8,
+       2, 4, 1, 0, 7, 5, 6, 0, 7, 1, 1, 5, 7, 1, 1, 6, 5, 6, 2, 2, 3, 9,
+       7, 5, 3, 1, 5, 9, 9, 2, 5, 1, 6, 8, 2, 2, 4, 2, 1, 0, 6, 1, 2, 9,
+       7, 5, 3, 5, 6, 1, 8, 1])</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">y_test</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>array([3, 4, 8, 5, 5, 7, 0, 3, 1, 4, 7, 5, 5, 8, 0, 7, 4, 7, 1, 7, 9, 4,
+       4, 7, 6, 1, 2, 9, 1, 3, 3, 3, 7, 0, 7, 0, 2, 8, 9, 1, 1, 5, 4, 8,
+       9, 0, 4, 9, 4, 9, 7, 2, 7, 8, 3, 4, 1, 9, 9, 9, 0, 4, 0, 6, 1, 0,
+       0, 3, 6, 2, 3, 2, 8, 5, 9, 3, 1, 1, 6, 9, 8, 1, 2, 3, 2, 6, 8, 8,
+       4, 6, 8, 6, 3, 9, 2, 8, 3, 6, 5, 7, 1, 7, 9, 8, 8, 8, 0, 0, 9, 1,
+       4, 8, 5, 1, 1, 0, 1, 6, 5, 1, 7, 6, 5, 7, 7, 2, 2, 7, 3, 1, 9, 5,
+       9, 5, 5, 3, 8, 4, 9, 5, 4, 6, 0, 5, 4, 8, 6, 1, 2, 8, 0, 9, 0, 9,
+       7, 9, 7, 0, 2, 8, 2, 4, 0, 6, 2, 6, 7, 5, 6, 3, 8, 8, 0, 3, 2, 0,
+       6, 1, 0, 6, 0, 5, 9, 3, 3, 0, 4, 0, 4, 2, 4, 9, 0, 6, 7, 4, 6, 5,
+       9, 7, 2, 2, 3, 3, 0, 3, 9, 4, 9, 8, 5, 6, 9, 0, 1, 3, 5, 0, 5, 1,
+       6, 4, 6, 6, 6, 7, 9, 1, 0, 7, 6, 6, 7, 8, 0, 3, 8, 5, 6, 8, 1, 3,
+       0, 3, 6, 0, 3, 5, 6, 7, 0, 6, 9, 7, 0, 0, 2, 1, 6, 6, 9, 1, 6, 9,
+       8, 7, 0, 2, 5, 1, 8, 6, 4, 3, 8, 2, 9, 2, 8, 4, 6, 4, 8, 9, 3, 1,
+       1, 5, 0, 7, 8, 2, 3, 8, 4, 7, 7, 7, 7, 7, 4, 1, 3, 0, 2, 9, 1, 8,
+       2, 4, 1, 0, 7, 5, 6, 0, 7, 1, 1, 5, 7, 1, 1, 6, 5, 6, 2, 2, 3, 9,
+       7, 5, 3, 1, 5, 9, 9, 2, 5, 1, 6, 8, 2, 2, 4, 2, 1, 0, 6, 1, 2, 9,
+       7, 5, 3, 5, 6, 1, 8, 8])</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">num = sum(res == y_test)</span><br><span class="line">num</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>354</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">'accuracy '</span>, num / len(y_test))</span><br></pre></td></tr></table></figure>
+
+<pre><code>accuracy  0.9833333333333333</code></pre><h4 id="使用sklearn中封装的计算精确度的方法"><a href="#使用sklearn中封装的计算精确度的方法" class="headerlink" title="使用sklearn中封装的计算精确度的方法"></a>使用sklearn中封装的计算精确度的方法</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> accuracy_score <span class="keyword">as</span> accuracy</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">accuracy(res, y_test)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>0.9833333333333333</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/ml/KNN-%E9%B8%A2%E5%B0%BE%E8%8A%B1%E6%95%B0%E6%8D%AE%E9%9B%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/ml/KNN-%E9%B8%A2%E5%B0%BE%E8%8A%B1%E6%95%B0%E6%8D%AE%E9%9B%86/" class="post-title-link" itemprop="url">dev/ml/KNN-鸢尾花数据集</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 05-17-2020 16:36:25 / Modified: 16:37:09" itemprop="dateCreated datePublished" datetime="2020-05-17T16:36:25+08:00">05-17-2020</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="KNN-鸢尾花数据集"><a href="#KNN-鸢尾花数据集" class="headerlink" title="KNN-鸢尾花数据集"></a>KNN-鸢尾花数据集</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> datasets</span><br></pre></td></tr></table></figure>
+
+<h4 id="使用sklearn本地数据集中的鸢尾花数据集"><a href="#使用sklearn本地数据集中的鸢尾花数据集" class="headerlink" title="使用sklearn本地数据集中的鸢尾花数据集"></a>使用sklearn本地数据集中的鸢尾花数据集</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">iris = datasets.load_iris()</span><br><span class="line">iris.keys()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>dict_keys([&apos;data&apos;, &apos;target&apos;, &apos;target_names&apos;, &apos;DESCR&apos;, &apos;feature_names&apos;, &apos;filename&apos;])</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X = iris.data</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Y = iris.target</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X.shape</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>(150, 4)</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Y.shape</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>(150,)</code></pre><h1 id="手动分离测试数据"><a href="#手动分离测试数据" class="headerlink" title="手动分离测试数据"></a>手动分离测试数据</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">shuffled_indexes = np.random.permutation(len(X))</span><br><span class="line">shuffled_indexes</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>array([ 47,  10, 144,  57, 135,  58,  36, 136,  73, 109,  64,  15, 104,
+       143, 108,  83,  23, 126, 125, 131, 137,  22,  16,  29, 118,  31,
+        33,  52,  32, 132,  45,  38,  78, 139,  30,  37,  61,  97, 122,
+        56, 107,  66, 114,  87,  43,  76,  84,  79, 142,  70,  77,  42,
+         7, 138, 141, 120, 129,  44,  24,  53, 116,  13,  91, 119,  93,
+         6,  60,  50,  67,  20,  54,  71,  89,  68,  21, 133, 148,  81,
+        25,  48, 130, 127,  28,  90,  82, 146, 100, 105,  80,  94,  14,
+        55, 111, 106, 101, 103,  35,  99,   3,  26,  69, 124,  95,  96,
+       140,  46,  19,  34,  75,  59,   1, 117, 121,  49, 110,   0, 115,
+        72,   9,  18, 149,  40, 145,  92, 123,  51,   4,  11,  39,  85,
+        62, 147, 102,  74,   2,  86,   8,  17,   5,  27, 112, 128,  12,
+        65,  41, 134,  63,  88, 113,  98])</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">test_ratio = <span class="number">0.2</span></span><br><span class="line">test_size = int(len(X) * test_ratio)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">test_indexes = shuffled_indexes[:test_size]</span><br><span class="line">train_indexes = shuffled_indexes[test_size:]</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">X_train = X[train_indexes]</span><br><span class="line">Y_train = Y[train_indexes]</span><br><span class="line"></span><br><span class="line">X_test = X[test_indexes]</span><br><span class="line">Y_test = Y[test_indexes]</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(X_train.shape);print(Y_train.shape);print(X_test.shape);print(Y_test.shape)</span><br></pre></td></tr></table></figure>
+
+<pre><code>(120, 4)
+(120,)
+(30, 4)
+(30,)</code></pre><h1 id="使用sklearn分离"><a href="#使用sklearn分离" class="headerlink" title="使用sklearn分离"></a>使用sklearn分离</h1><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line">train_test_split?</span><br></pre></td></tr></table></figure>
+
+
+<pre><code>[0;31mSignature:[0m [0mtrain_test_split[0m[0;34m([0m[0;34m*[0m[0marrays[0m[0;34m,[0m [0;34m**[0m[0moptions[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;31mDocstring:[0m
+Split arrays or matrices into random train and test subsets
+
+Quick utility that wraps input validation and
+``next(ShuffleSplit().split(X, y))`` and application to input data
+into a single call for splitting (and optionally subsampling) data in a
+oneliner.
+
+Read more in the :ref:`User Guide &lt;cross_validation&gt;`.
+
+Parameters
+----------
+*arrays : sequence of indexables with same length / shape[0]
+    Allowed inputs are lists, numpy arrays, scipy-sparse
+    matrices or pandas dataframes.
+
+test_size : float, int or None, optional (default=None)
+    If float, should be between 0.0 and 1.0 and represent the proportion
+    of the dataset to include in the test split. If int, represents the
+    absolute number of test samples. If None, the value is set to the
+    complement of the train size. If ``train_size`` is also None, it will
+    be set to 0.25.
+
+train_size : float, int, or None, (default=None)
+    If float, should be between 0.0 and 1.0 and represent the
+    proportion of the dataset to include in the train split. If
+    int, represents the absolute number of train samples. If None,
+    the value is automatically set to the complement of the test size.
+
+random_state : int, RandomState instance or None, optional (default=None)
+    If int, random_state is the seed used by the random number generator;
+    If RandomState instance, random_state is the random number generator;
+    If None, the random number generator is the RandomState instance used
+    by `np.random`.
+
+shuffle : boolean, optional (default=True)
+    Whether or not to shuffle the data before splitting. If shuffle=False
+    then stratify must be None.
+
+stratify : array-like or None (default=None)
+    If not None, data is split in a stratified fashion, using this as
+    the class labels.
+
+Returns
+-------
+splitting : list, length=2 * len(arrays)
+    List containing train-test split of inputs.
+
+    .. versionadded:: 0.16
+        If the input is sparse, the output will be a
+        ``scipy.sparse.csr_matrix``. Else, output type is the same as the
+        input type.
+
+Examples
+--------
+&gt;&gt;&gt; import numpy as np
+&gt;&gt;&gt; from sklearn.model_selection import train_test_split
+&gt;&gt;&gt; X, y = np.arange(10).reshape((5, 2)), range(5)
+&gt;&gt;&gt; X
+array([[0, 1],
+       [2, 3],
+       [4, 5],
+       [6, 7],
+       [8, 9]])
+&gt;&gt;&gt; list(y)
+[0, 1, 2, 3, 4]
+
+&gt;&gt;&gt; X_train, X_test, y_train, y_test = train_test_split(
+...     X, y, test_size=0.33, random_state=42)
+...
+&gt;&gt;&gt; X_train
+array([[4, 5],
+       [0, 1],
+       [6, 7]])
+&gt;&gt;&gt; y_train
+[2, 0, 3]
+&gt;&gt;&gt; X_test
+array([[2, 3],
+       [8, 9]])
+&gt;&gt;&gt; y_test
+[1, 4]
+
+&gt;&gt;&gt; train_test_split(y, shuffle=False)
+[[0, 1, 2], [3, 4]]
+[0;31mFile:[0m      /Applications/anaconda3/lib/python3.7/site-packages/sklearn/model_selection/_split.py
+[0;31mType:[0m      function</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=<span class="number">0.2</span>, random_state=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">print(X_train.shape)</span><br><span class="line">print(Y_train.shape)</span><br><span class="line">print(X_test.shape)</span><br><span class="line">print(Y_test.shape)</span><br></pre></td></tr></table></figure>
+
+<pre><code>(120, 4)
+(120,)
+(30, 4)
+(30,)</code></pre><h1 id="使用sklearn中的KNN分离器测试"><a href="#使用sklearn中的KNN分离器测试" class="headerlink" title="使用sklearn中的KNN分离器测试"></a>使用sklearn中的KNN分离器测试</h1><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.neighbors <span class="keyword">import</span> KNeighborsClassifier</span><br><span class="line">KNeighborsClassifier?</span><br></pre></td></tr></table></figure>
+
+
+<pre><code>[0;31mInit signature:[0m
+[0mKNeighborsClassifier[0m[0;34m([0m[0;34m[0m
+[0;34m[0m    [0mn_neighbors[0m[0;34m=[0m[0;36m5[0m[0;34m,[0m[0;34m[0m
+[0;34m[0m    [0mweights[0m[0;34m=[0m[0;34m&apos;uniform&apos;[0m[0;34m,[0m[0;34m[0m
+[0;34m[0m    [0malgorithm[0m[0;34m=[0m[0;34m&apos;auto&apos;[0m[0;34m,[0m[0;34m[0m
+[0;34m[0m    [0mleaf_size[0m[0;34m=[0m[0;36m30[0m[0;34m,[0m[0;34m[0m
+[0;34m[0m    [0mp[0m[0;34m=[0m[0;36m2[0m[0;34m,[0m[0;34m[0m
+[0;34m[0m    [0mmetric[0m[0;34m=[0m[0;34m&apos;minkowski&apos;[0m[0;34m,[0m[0;34m[0m
+[0;34m[0m    [0mmetric_params[0m[0;34m=[0m[0;32mNone[0m[0;34m,[0m[0;34m[0m
+[0;34m[0m    [0mn_jobs[0m[0;34m=[0m[0;32mNone[0m[0;34m,[0m[0;34m[0m
+[0;34m[0m    [0;34m**[0m[0mkwargs[0m[0;34m,[0m[0;34m[0m
+[0;34m[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;31mDocstring:[0m     
+Classifier implementing the k-nearest neighbors vote.
+
+Read more in the :ref:`User Guide &lt;classification&gt;`.
+
+Parameters
+----------
+n_neighbors : int, optional (default = 5)
+    Number of neighbors to use by default for :meth:`kneighbors` queries.
+
+weights : str or callable, optional (default = &apos;uniform&apos;)
+    weight function used in prediction.  Possible values:
+
+    - &apos;uniform&apos; : uniform weights.  All points in each neighborhood
+      are weighted equally.
+    - &apos;distance&apos; : weight points by the inverse of their distance.
+      in this case, closer neighbors of a query point will have a
+      greater influence than neighbors which are further away.
+    - [callable] : a user-defined function which accepts an
+      array of distances, and returns an array of the same shape
+      containing the weights.
+
+algorithm : {&apos;auto&apos;, &apos;ball_tree&apos;, &apos;kd_tree&apos;, &apos;brute&apos;}, optional
+    Algorithm used to compute the nearest neighbors:
+
+    - &apos;ball_tree&apos; will use :class:`BallTree`
+    - &apos;kd_tree&apos; will use :class:`KDTree`
+    - &apos;brute&apos; will use a brute-force search.
+    - &apos;auto&apos; will attempt to decide the most appropriate algorithm
+      based on the values passed to :meth:`fit` method.
+
+    Note: fitting on sparse input will override the setting of
+    this parameter, using brute force.
+
+leaf_size : int, optional (default = 30)
+    Leaf size passed to BallTree or KDTree.  This can affect the
+    speed of the construction and query, as well as the memory
+    required to store the tree.  The optimal value depends on the
+    nature of the problem.
+
+p : integer, optional (default = 2)
+    Power parameter for the Minkowski metric. When p = 1, this is
+    equivalent to using manhattan_distance (l1), and euclidean_distance
+    (l2) for p = 2. For arbitrary p, minkowski_distance (l_p) is used.
+
+metric : string or callable, default &apos;minkowski&apos;
+    the distance metric to use for the tree.  The default metric is
+    minkowski, and with p=2 is equivalent to the standard Euclidean
+    metric. See the documentation of the DistanceMetric class for a
+    list of available metrics.
+    If metric is &quot;precomputed&quot;, X is assumed to be a distance matrix and
+    must be square during fit. X may be a :term:`Glossary &lt;sparse graph&gt;`,
+    in which case only &quot;nonzero&quot; elements may be considered neighbors.
+
+metric_params : dict, optional (default = None)
+    Additional keyword arguments for the metric function.
+
+n_jobs : int or None, optional (default=None)
+    The number of parallel jobs to run for neighbors search.
+    ``None`` means 1 unless in a :obj:`joblib.parallel_backend` context.
+    ``-1`` means using all processors. See :term:`Glossary &lt;n_jobs&gt;`
+    for more details.
+    Doesn&apos;t affect :meth:`fit` method.
+
+Attributes
+----------
+classes_ : array of shape (n_classes,)
+    Class labels known to the classifier
+
+effective_metric_ : string or callble
+    The distance metric used. It will be same as the `metric` parameter
+    or a synonym of it, e.g. &apos;euclidean&apos; if the `metric` parameter set to
+    &apos;minkowski&apos; and `p` parameter set to 2.
+
+effective_metric_params_ : dict
+    Additional keyword arguments for the metric function. For most metrics
+    will be same with `metric_params` parameter, but may also contain the
+    `p` parameter value if the `effective_metric_` attribute is set to
+    &apos;minkowski&apos;.
+
+outputs_2d_ : bool
+    False when `y`&apos;s shape is (n_samples, ) or (n_samples, 1) during fit
+    otherwise True.
+
+Examples
+--------
+&gt;&gt;&gt; X = [[0], [1], [2], [3]]
+&gt;&gt;&gt; y = [0, 0, 1, 1]
+&gt;&gt;&gt; from sklearn.neighbors import KNeighborsClassifier
+&gt;&gt;&gt; neigh = KNeighborsClassifier(n_neighbors=3)
+&gt;&gt;&gt; neigh.fit(X, y)
+KNeighborsClassifier(...)
+&gt;&gt;&gt; print(neigh.predict([[1.1]]))
+[0]
+&gt;&gt;&gt; print(neigh.predict_proba([[0.9]]))
+[[0.66666667 0.33333333]]
+
+See also
+--------
+RadiusNeighborsClassifier
+KNeighborsRegressor
+RadiusNeighborsRegressor
+NearestNeighbors
+
+Notes
+-----
+See :ref:`Nearest Neighbors &lt;neighbors&gt;` in the online documentation
+for a discussion of the choice of ``algorithm`` and ``leaf_size``.
+
+.. warning::
+
+   Regarding the Nearest Neighbors algorithms, if it is found that two
+   neighbors, neighbor `k+1` and `k`, have identical distances
+   but different labels, the results will depend on the ordering of the
+   training data.
+
+https://en.wikipedia.org/wiki/K-nearest_neighbor_algorithm
+[0;31mFile:[0m           /Applications/anaconda3/lib/python3.7/site-packages/sklearn/neighbors/_classification.py
+[0;31mType:[0m           ABCMeta
+[0;31mSubclasses:[0m     </code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">KNNClf = KNeighborsClassifier(n_neighbors=<span class="number">3</span>)</span><br><span class="line">KNNClf.fit(X_train, Y_train)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>KNeighborsClassifier(algorithm=&apos;auto&apos;, leaf_size=30, metric=&apos;minkowski&apos;,
+                     metric_params=None, n_jobs=None, n_neighbors=3, p=2,
+                     weights=&apos;uniform&apos;)</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">res = KNNClf.predict(X_test)</span><br><span class="line">res</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>array([0, 1, 1, 0, 2, 1, 2, 0, 0, 2, 1, 0, 2, 1, 1, 0, 1, 1, 0, 0, 1, 1,
+       1, 0, 2, 1, 0, 0, 1, 2])</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Y_test</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>array([0, 1, 1, 0, 2, 1, 2, 0, 0, 2, 1, 0, 2, 1, 1, 0, 1, 1, 0, 0, 1, 1,
+       1, 0, 2, 1, 0, 0, 1, 2])</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">acc = sum(res == Y_test)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">'accuracy '</span>, acc / len(Y_test))</span><br></pre></td></tr></table></figure>
+
+<pre><code>accuracy  1.0</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -3827,7 +1166,7 @@ dtype: object</code></pre><p><code>apply()</code> 方法也可以应用函数至
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/39/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/39/">39</a><span class="page-number current">40</span><a class="page-number" href="/page/41/">41</a><span class="space">&hellip;</span><a class="page-number" href="/page/50/">50</a><a class="extend next" rel="next" href="/page/41/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/39/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/39/">39</a><span class="page-number current">40</span><a class="page-number" href="/page/41/">41</a><span class="space">&hellip;</span><a class="page-number" href="/page/51/">51</a><a class="extend next" rel="next" href="/page/41/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
