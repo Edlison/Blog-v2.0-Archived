@@ -31,7 +31,7 @@
 <meta property="og:description" content="Intro搭建Cloudreve 挂载OneDrive 连接Aria2">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-11-12T04:41:36.708Z">
-<meta property="article:modified_time" content="2021-11-12T13:27:05.437Z">
+<meta property="article:modified_time" content="2021-11-14T15:46:03.006Z">
 <meta property="article:author" content="Bolin Shen">
 <meta property="article:tag" content="cloudreve">
 <meta name="twitter:card" content="summary">
@@ -188,7 +188,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <section class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Intro"><span class="nav-number">1.</span> <span class="nav-text">Intro</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Cloudreve"><span class="nav-number">2.</span> <span class="nav-text">Cloudreve</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#挂载Onedrive"><span class="nav-number">3.</span> <span class="nav-text">挂载Onedrive</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用Aria2离线下载"><span class="nav-number">4.</span> <span class="nav-text">使用Aria2离线下载</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#问题"><span class="nav-number">5.</span> <span class="nav-text">问题</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Intro"><span class="nav-number">1.</span> <span class="nav-text">Intro</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Cloudreve"><span class="nav-number">2.</span> <span class="nav-text">Cloudreve</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#挂载Onedrive"><span class="nav-number">3.</span> <span class="nav-text">挂载Onedrive</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用Aria2离线下载"><span class="nav-number">4.</span> <span class="nav-text">使用Aria2离线下载</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#问题"><span class="nav-number">5.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#大坑"><span class="nav-number">6.</span> <span class="nav-text">大坑</span></a></li></ol></div>
         </section>
         <!--/noindex-->
 
@@ -202,7 +202,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">254</span>
+          <span class="site-state-item-count">255</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -215,7 +215,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">122</span>
+        <span class="site-state-item-count">124</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -287,10 +287,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 11-12-2021 12:41:36 / Modified: 21:27:05" itemprop="dateCreated datePublished" datetime="2021-11-12T12:41:36+08:00">11-12-2021</time>
+      <time title="Created: 11-12-2021 12:41:36" itemprop="dateCreated datePublished" datetime="2021-11-12T12:41:36+08:00">11-12-2021</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 11-14-2021 23:46:03" itemprop="dateModified" datetime="2021-11-14T23:46:03+08:00">11-14-2021</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -338,17 +344,12 @@
 <li>本机开一个aria2</li>
 <li>Cloudreve连接</li>
 </ol>
+<p>当Cloudreve转存完毕的时候自动删除下载的文件, 很方便, 不占用注意的存储</p>
 <h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><ol>
-<li>离线下载一直提示<code>Permission Denied</code></li>
-</ol>
-<p>aria2和Cloudreve都是root权限启动的</p>
-<p>临时下载目录试了两个程序的目录都不行</p>
-<ol start="2">
 <li>不知道内置数据库保存在哪了</li>
 </ol>
-<p>尝试:</p>
-<p>更改cloudreve创建离线文件的路径格式: 没找到可以修改的地方</p>
-<p>手动创建它指定的路径: 还是不行</p>
+<h1 id="大坑"><a href="#大坑" class="headerlink" title="大坑"></a>大坑</h1><p>Cloudreve离线下载指定的临时目录既是aria2的下载目录, 又是Cloudreve进行转存的目录.</p>
+<p>因此docker挂载<code>Aria2</code>和<code>Cloudreve</code>的<code>/downloads</code>路径必须一致!!!</p>
 
     </div>
 

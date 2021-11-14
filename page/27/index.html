@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">254</span>
+          <span class="site-state-item-count">255</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -216,7 +216,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">122</span>
+        <span class="site-state-item-count">124</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -256,6 +256,91 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/java/spring/aop-two/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/java/spring/aop-two/" class="post-title-link" itemprop="url">SpringAOP - 自定义切面实现AOP</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 02-02-2021 22:33:19 / Modified: 22:55:33" itemprop="dateCreated datePublished" datetime="2021-02-02T22:33:19+08:00">02-02-2021</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notebook/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="自定义切面实现AOP"><a href="#自定义切面实现AOP" class="headerlink" title="自定义切面实现AOP"></a>自定义切面实现AOP</h1><p>通过切面来实现AOP</p>
+<h2 id="Aspect"><a href="#Aspect" class="headerlink" title="Aspect"></a>Aspect</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomAspect</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">before</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"[Log] Before..."</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">after</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"[Log] After..."</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">ref</span>=<span class="string">"customAspect"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">"first"</span></span></span><br><span class="line"><span class="tag">                          <span class="attr">expression</span>=<span class="string">"execution(* com.edlison.design.spring.aop.style_api.service.UserServiceImpl.*(..))"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="tag">&lt;<span class="name">aop:before</span> <span class="attr">method</span>=<span class="string">"before"</span> <span class="attr">pointcut-ref</span>=<span class="string">"first"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">aop:after</span> <span class="attr">method</span>=<span class="string">"after"</span> <span class="attr">pointcut-ref</span>=<span class="string">"first"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这种方式更加简便，只需要定义一个切面类，类中的方法即可通过配置，来对切点进行操作，不再需要繁琐的实现接口。</p>
+<p>但是无法实现更复杂的操作，比如打印调用的切点方法，类名等。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -612,125 +697,6 @@
 <li>通过<code>invoke</code>执行获得的类的方法：(需要执行的对象，形参…)</li>
 <li>通过<code>set</code>对类的属性进行赋值：(需要赋值的对象，形参)</li>
 <li>如果属性或方法的可见性为<code>private</code>，可以通过设置<code>setAccessible(true)</code>来访问。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/java/anno_reflect/reflect-start/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/java/anno_reflect/reflect-start/" class="post-title-link" itemprop="url">反射 - Start</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 02-02-2021 13:22:59 / Modified: 14:36:21" itemprop="dateCreated datePublished" datetime="2021-02-02T13:22:59+08:00">02-02-2021</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>Java是静态语言。</p>
-<p>反射机制的引入，使Java能在执行期借助反射API<strong>获取任何类</strong>的内部信息，并能直接操作任何类的内部属性及方法。</p>
-<p>正常方法：</p>
-<p>引入’包类’名称 -&gt; new实例化 -&gt; 获得实例化对象</p>
-<p>反射方法：</p>
-<p>实例化对象 -&gt; <code>getClass()</code>方法 -&gt; 得到’包类’名称</p>
-<p><strong>优点</strong>：实现动态创建对象和编译。</p>
-<p><strong>缺点</strong>：性能有影响。</p>
-<h1 id="获得反射对象"><a href="#获得反射对象" class="headerlink" title="获得反射对象"></a>获得反射对象</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Class c1 = Class.forName(<span class="string">"com.edlison.design.v1.reflection.User"</span>);</span><br><span class="line">Class c2 = Class.forName(<span class="string">"com.edlison.design.v1.reflection.User"</span>);</span><br><span class="line"></span><br><span class="line">System.out.println(c1 == c2);  <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>一个类</strong>在内存中只有<strong>一个</strong><code>Class</code>对象</li>
-<li>类被加载后，类的<strong>所有信息</strong>都封装在<code>Class</code>对象中</li>
-</ul>
-<h2 id="1-通过对象获得"><a href="#1-通过对象获得" class="headerlink" title="1. 通过对象获得"></a>1. 通过对象获得</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Class c1 = person.getClass();</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-通过forName获得"><a href="#2-通过forName获得" class="headerlink" title="2. 通过forName获得"></a>2. 通过<code>forName</code>获得</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Class c2=Class.forName(<span class="string">"com.edlison.design.v1.reflection.Student"</span>);</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-通过类-class获得"><a href="#3-通过类-class获得" class="headerlink" title="3. 通过类.class获得"></a>3. 通过类.class获得</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Class c3 = Student<span class="class">.<span class="keyword">class</span></span>;</span><br></pre></td></tr></table></figure>
-
-<h2 id="4-内置类型的Type属性"><a href="#4-内置类型的Type属性" class="headerlink" title="4. 内置类型的Type属性"></a>4. 内置类型的Type属性</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Class c4 = Integer.TYPE;</span><br></pre></td></tr></table></figure>
-
-<h2 id="5-通过子类获取父类"><a href="#5-通过子类获取父类" class="headerlink" title="5. 通过子类获取父类"></a>5. 通过子类获取父类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Class c5 = Student<span class="class">.<span class="keyword">class</span>.<span class="title">getSuperclass</span>()</span>;</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="类的初始化"><a href="#类的初始化" class="headerlink" title="类的初始化"></a>类的初始化</h1><h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><p>加载 -&gt; 链接 -&gt; 初始化</p>
-<ul>
-<li>类的主动引用（一定会发生类的初始化）</li>
-<li>类的被动引用（不会发生类的初始化）</li>
-</ul>
-<p>结合JVM进行理解。</p>
-<h1 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h1><p>类加载器是用来把类(Class)装载进内存的，JVM自顶向下定义了如下加载器。</p>
-<ul>
-<li>引导类加载器：C++编写，负责Java核心库，<strong>类加载器获取不到</strong>。</li>
-<li>扩展类加载器：负责<code>jre/lib/ext</code>下的Jar包的导入。</li>
-<li>系统类加载器：负责<code>java --classpath</code>所指目录下类与Jar包的导入。</li>
-</ul>
-<p>系统类加载器 -父类&gt; 扩展类加载器 -父类&gt; 引导类加载器</p>
-<p>可以依次根据<code>ClassLoader.getParent()</code>取得其父类。</p>
-<p><strong>注意</strong>：</p>
-<ul>
-<li>只有类加载器加载的路径下的Jar包才可以使用。</li>
-<li>双亲委派机制。</li>
 </ul>
 
       

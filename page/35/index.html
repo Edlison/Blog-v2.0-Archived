@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">254</span>
+          <span class="site-state-item-count">255</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -216,7 +216,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">122</span>
+        <span class="site-state-item-count">124</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -256,6 +256,96 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/paper_learning/AnomalyDetectionViaRobust/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/academia/paper_learning/AnomalyDetectionViaRobust/" class="post-title-link" itemprop="url">Multi-view Anomaly Detection via Robust Probabilistic Latent Variable Models</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 01-15-2021 13:24:35" itemprop="dateCreated datePublished" datetime="2021-01-15T13:24:35+08:00">01-15-2021</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 02-04-2021 13:49:35" itemprop="dateModified" datetime="2021-02-04T13:49:35+08:00">02-04-2021</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>对于多视图的异常检测提出了概率隐变量模型。</p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>多视图的异常检测与传统的单视图的异常检测不同。单视图的异常检测发现那些与预期行为不符的实例。图1显示了在一个2个视图的数据上，一个多视图异常与一个单视图异常的不同。M是一个多视图异常，M在不同的视图上属于不同的聚类，且M的视图不连续。S是一个单视图异常，S在任何视图上与其它实例都很远。然而，视图S与其它实例有相同的关系。</p>
+<p>S不是一个多视图的异常。单视图的异常检测方法，例如SVM或是基于张量的异常检测，就认为S是异常的。另一方面我们想开发一个多视图的异常检测方法去检测M是否为异常而不是S。尽管单视图的异常不是普遍的实例，如果他们是不连续的跨了多个视图，多视图的异常检测会是主要的成分。</p>
+<p>我们针对多视图的异常检测提出了一个概率隐空间变量模型。有一个隐空间跨了所有视图。我们假设正常实例的所有视图都是用一个单一隐向量生成。另一方面，一个异常实例被假设有多个隐向量，它的不同视图使用不同的隐向量生成。</p>
+<p>每一个非多视图的两个视图的异常(?)可以由隐向量生成。另一方面，两个视图的多视图异常M不是连续的，由两个视图使用映射向量生成。</p>
+<p>对于每个实例的隐向量的数量是未知的，我们根据数据使用Dirichlet priors自动的推测。预测模型是基于EM算法。</p>
+<p>在E-step中…</p>
+<p>在M-step中…</p>
+<p>通过迭代E,M-steps我们推测每一个实例使用的隐向量，并计算它的异常分数通过使用多余一个隐向量的可能性。</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>先生成隐向量，只要拿到隐向量，就可以通过<strong>EM算法</strong>，对类别进行判断。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -715,100 +805,6 @@
 <p>显示标签修改内容<br><code>git show v1.0</code></p>
 <h2 id="log"><a href="#log" class="headerlink" title="log"></a>log</h2><p>查看最近提交的文件差异，最近两篇。<br><code>git log -p -2</code></p>
 <h2 id="clean"><a href="#clean" class="headerlink" title="clean"></a>clean</h2><p>用于删除Untracked file, 常与<code>git reset --hard</code>一起使用，完全回复到指定commit。<br><code>git clean -df</code>d为文件夹，f为文件。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/linux/linux-path/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/linux/linux-path/" class="post-title-link" itemprop="url">修改环境变量</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 11-07-2020 02:09:33" itemprop="dateCreated datePublished" datetime="2020-11-07T02:09:33+08:00">11-07-2020</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 11-12-2020 02:18:32" itemprop="dateModified" datetime="2020-11-12T02:18:32+08:00">11-12-2020</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Linux下修改环境变量"><a href="#Linux下修改环境变量" class="headerlink" title="Linux下修改环境变量"></a>Linux下修改环境变量</h1><h2 id="查看PATH"><a href="#查看PATH" class="headerlink" title="查看PATH"></a>查看PATH</h2><p>echo $PATH<br>以添加mongodb server为列</p>
-<h2 id="修改方法一"><a href="#修改方法一" class="headerlink" title="修改方法一"></a>修改方法一</h2><p>export PATH=/usr/local/mongodb/bin:$PATH<br>//配置完后可以通过echo $PATH查看配置结果。<br>生效方法：立即生效<br>有效期限：临时改变，只能在当前的终端窗口中有效，当前窗口关闭后就会恢复原有的path配置<br>用户局限：仅对当前用户</p>
-<h2 id="修改方法二"><a href="#修改方法二" class="headerlink" title="修改方法二"></a>修改方法二</h2><p>通过修改.bashrc文件:<br>vim ~/.bashrc<br>//在最后一行添上：<br>export PATH=/usr/local/mongodb/bin:$PATH<br>生效方法：（有以下两种）<br>1、关闭当前终端窗口，重新打开一个新终端窗口就能生效<br>2、输入“source ~/.bashrc”命令，立即生效<br>有效期限：永久有效<br>用户局限：仅对当前用户</p>
-<h2 id="修改方法三"><a href="#修改方法三" class="headerlink" title="修改方法三"></a>修改方法三</h2><p>通过修改profile文件:<br>vim /etc/profile<br>/export PATH //找到设置PATH的行，添加<br>export PATH=/usr/local/mongodb/bin:$PATH<br>生效方法：系统重启<br>有效期限：永久有效<br>用户局限：对所有用户</p>
-<h2 id="修改方法四"><a href="#修改方法四" class="headerlink" title="修改方法四"></a>修改方法四</h2><p>通过修改environment文件:<br>vim /etc/environment<br>在PATH=”/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games”中加入“:/usr/local/mongodb/bin”<br>生效方法：系统重启<br>有效期限：永久有效<br>用户局限：对所有用户</p>
-<h2 id="MacOS"><a href="#MacOS" class="headerlink" title="MacOS"></a>MacOS</h2><p>MAC OS X环境配置的加载顺序</p>
-<ul>
-<li><p>系统级别<br>/etc/profile<br>/etc/paths </p>
-</li>
-<li><p>用户级别<br>~/.bash_profile<br>~/.bash_login<br>~/.profile<br>~/.bashrc  （在打开shell时加载）</p>
-</li>
-</ul>
-<p>/etc/paths 全局建议修改这个文件<br>/etc/profile 不建议修改这个文件，全局共有配置，用户登录时候都会加载该文件<br>/etc/bashrc 一般在这个文件中添加系统级别的环境变量，全局共有配置，bash shell执行时候都会加载</p>
-<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><p>想要立即生效执行<code>source</code></p>
 
       
     </div>
