@@ -203,20 +203,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">256</span>
+          <span class="site-state-item-count">259</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">124</span>
+        <span class="site-state-item-count">126</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -256,6 +256,305 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/coin/crypto/blockchain/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/coin/crypto/blockchain/" class="post-title-link" itemprop="url">区块链技术</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 02-22-2021 18:43:55 / Modified: 19:27:15" itemprop="dateCreated datePublished" datetime="2021-02-22T18:43:55+08:00">02-22-2021</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="对区块链技术新的理解"><a href="#对区块链技术新的理解" class="headerlink" title="对区块链技术新的理解"></a>对区块链技术新的理解</h1><p>底层技术目前都是一样的，通过chain将block连起来，通过代码确定<strong>共识机制</strong>，采取分布式的策略达到不可篡改性。</p>
+<p>目前感觉技术上有很大不同的是有两个代表。<strong>比特币</strong>与<strong>以太坊</strong>。</p>
+<h1 id="比特币与以太坊对比"><a href="#比特币与以太坊对比" class="headerlink" title="比特币与以太坊对比"></a>比特币与以太坊对比</h1><h2 id="比特币"><a href="#比特币" class="headerlink" title="比特币"></a>比特币</h2><h3 id="交易"><a href="#交易" class="headerlink" title="交易"></a>交易</h3><p>比特币的职能只有一个，<strong>传递价值并存储价值</strong>。</p>
+<p>其交易过程为：</p>
+<ul>
+<li>TO: 发给谁</li>
+<li>FROM: 谁发送的</li>
+<li>AMOUNT: 发送的数量</li>
+</ul>
+<h2 id="以太坊"><a href="#以太坊" class="headerlink" title="以太坊"></a>以太坊</h2><h3 id="交易-1"><a href="#交易-1" class="headerlink" title="交易"></a>交易</h3><p>以太坊最大的不同在于它在交易的时候还有一个<code>DATA</code>字段。</p>
+<ol>
+<li>传递价值（与比特币相同）</li>
+</ol>
+<ul>
+<li><ul>
+<li>TO: 发送给谁</li>
+<li>FROM: 谁发送的</li>
+<li>AMOUNT: 发送的数量</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li>创建合约</li>
+</ol>
+<ul>
+<li><ul>
+<li>TO: nil(空白为触发创建智能合约)</li>
+<li>FROM: 谁创建的</li>
+<li>AMOUNT: 可以是0或是任意数量的以太币，它是我们想要给合约的存款。</li>
+<li>DATA: 包含编译为字节码的智能合约代码</li>
+</ul>
+</li>
+</ul>
+<ol start="3">
+<li>调用合约函数</li>
+</ol>
+<ul>
+<li><ul>
+<li>TO: 目标合约账户地址</li>
+<li>FROM: 谁调用的</li>
+<li>AMOUNT: 可以是零或是任意数量的以太币，例如<strong>可以支付合约服务费用</strong>。</li>
+<li>DATA: 包含函数名和参数（标识如何调用智能合约函数）</li>
+</ul>
+</li>
+</ul>
+<p><strong>理解</strong>：每次进行代币（Token）交易的时候都会<strong>对合约进行请求</strong>，比如交易时的费用等。</p>
+<p><strong>问题</strong>：超发，被盗等操作如何实现？</p>
+<h3 id="智能合约"><a href="#智能合约" class="headerlink" title="智能合约"></a>智能合约</h3><p>由于ETH最大的区别在于可以传<code>DATA</code>, 因此<strong>衍生出来了一个智能合约的概念</strong>。</p>
+<p><strong>其本质就是可以在区块链上运行代码。</strong></p>
+<h4 id="用户账户"><a href="#用户账户" class="headerlink" title="用户账户"></a>用户账户</h4><ul>
+<li>地址</li>
+<li>余额</li>
+</ul>
+<p>该余额就是用户的钱。</p>
+<h4 id="合约账户"><a href="#合约账户" class="headerlink" title="合约账户"></a>合约账户</h4><ul>
+<li>地址</li>
+<li>余额</li>
+<li>状态</li>
+<li>代码</li>
+</ul>
+<p>合约账户也拥有<strong>余额</strong>，意味着一个<strong>实例化出来的合约对象</strong>可以<strong>通过代码管理余额</strong>，如果代码有问题，则会产生错误。</p>
+<p>合约账户的<strong>状态</strong>是只能合约中生声明的所有变量和变量的当前状态，<strong>就如同实例化的一个对象中的变量</strong>。这个对象将永远存在区块链网络中，除非程序自毁。</p>
+<p>合约账户的<strong>代码</strong>是编译后可以在客户端和节点可以运行的字节码，它在<strong>合约创建时实例化</strong>。</p>
+<p>智能合约是<strong>图灵完备</strong>的，理论上可以做任何事情。</p>
+<h3 id="GAS"><a href="#GAS" class="headerlink" title="GAS"></a>GAS</h3><p>在链上的操作（转账，合约的部署，合约的执行）都是需要占用资源的，这个GAS将被付给矿工。</p>
+<p>GAS可以自己设定，出价越高被执行的就越快。</p>
+<h1 id="理解"><a href="#理解" class="headerlink" title="理解"></a>理解</h1><p>区块存储任何东西</p>
+<p>账户可以用<strong>地址</strong>表示，交易可以用<strong>地址</strong>表示，合约账户内的代码等都可以用<strong>地址</strong>表示。</p>
+<hr>
+<p>Reference</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9sZWFybmJsb2NrY2hhaW4uY24vMjAxOC8wMS8wNC91bmRlcnN0YW5kaW5nLXNtYXJ0LWNvbnRyYWN0cw==">https://learnblockchain.cn/2018/01/04/understanding-smart-contracts<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/coin/crypto/mine-start/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/coin/crypto/mine-start/" class="post-title-link" itemprop="url">挖矿 - Start</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 02-22-2021 15:52:54 / Modified: 15:53:21" itemprop="dateCreated datePublished" datetime="2021-02-22T15:52:54+08:00">02-22-2021</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/coin/crypto/eth-token/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/coin/crypto/eth-token/" class="post-title-link" itemprop="url">ETH - 发行自己的Token</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 02-22-2021 15:50:50 / Modified: 20:07:54" itemprop="dateCreated datePublished" datetime="2021-02-22T15:50:50+08:00">02-22-2021</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p>通过以太坊的<strong>智能合约</strong>可以编写自己的代币(Token)，可以代表任何可以交易的东西，如：积分，财产，证书等等。</p>
+<h1 id="合约代码"><a href="#合约代码" class="headerlink" title="合约代码"></a>合约代码</h1><p>如果想要在以太坊的区块链上创建代币，就需要实现它的<strong>代币标准</strong>。</p>
+<h2 id="ZZC-Token源码"><a href="#ZZC-Token源码" class="headerlink" title="ZZC Token源码"></a>ZZC Token源码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^0.4.16;</span><br><span class="line"></span><br><span class="line">interface tokenRecipient &#123; function receiveApproval(address _from, uint256 _value, address _token, bytes _extraData) public; &#125;</span><br><span class="line"></span><br><span class="line">contract TokenERC20 &#123;</span><br><span class="line">    string public name;</span><br><span class="line">    string public symbol;</span><br><span class="line">    uint8 public decimals &#x3D; 18;  &#x2F;&#x2F; 18 是建议的默认值</span><br><span class="line">    uint256 public totalSupply;</span><br><span class="line"></span><br><span class="line">    mapping (address &#x3D;&gt; uint256) public balanceOf;  &#x2F;&#x2F;</span><br><span class="line">    mapping (address &#x3D;&gt; mapping (address &#x3D;&gt; uint256)) public allowance;</span><br><span class="line"></span><br><span class="line">    event Transfer(address indexed from, address indexed to, uint256 value);</span><br><span class="line"></span><br><span class="line">    event Burn(address indexed from, uint256 value);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    function TokenERC20(uint256 initialSupply, string tokenName, string tokenSymbol) public &#123;</span><br><span class="line">        totalSupply &#x3D; initialSupply * 10 ** uint256(decimals);</span><br><span class="line">        balanceOf[msg.sender] &#x3D; totalSupply;</span><br><span class="line">        name &#x3D; tokenName;</span><br><span class="line">        symbol &#x3D; tokenSymbol;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    function _transfer(address _from, address _to, uint _value) internal &#123;</span><br><span class="line">        require(_to !&#x3D; 0x0);</span><br><span class="line">        require(balanceOf[_from] &gt;&#x3D; _value);</span><br><span class="line">        require(balanceOf[_to] + _value &gt; balanceOf[_to]);</span><br><span class="line">        uint previousBalances &#x3D; balanceOf[_from] + balanceOf[_to];</span><br><span class="line">        balanceOf[_from] -&#x3D; _value;</span><br><span class="line">        balanceOf[_to] +&#x3D; _value;</span><br><span class="line">        Transfer(_from, _to, _value);</span><br><span class="line">        assert(balanceOf[_from] + balanceOf[_to] &#x3D;&#x3D; previousBalances);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function transfer(address _to, uint256 _value) public returns (bool) &#123;</span><br><span class="line">        _transfer(msg.sender, _to, _value);</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function transferFrom(address _from, address _to, uint256 _value) public returns (bool success) &#123;</span><br><span class="line">        require(_value &lt;&#x3D; allowance[_from][msg.sender]);     &#x2F;&#x2F; Check allowance</span><br><span class="line">        allowance[_from][msg.sender] -&#x3D; _value;</span><br><span class="line">        _transfer(_from, _to, _value);</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function approve(address _spender, uint256 _value) public</span><br><span class="line">        returns (bool success) &#123;</span><br><span class="line">        allowance[msg.sender][_spender] &#x3D; _value;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function approveAndCall(address _spender, uint256 _value, bytes _extraData) public returns (bool success) &#123;</span><br><span class="line">        tokenRecipient spender &#x3D; tokenRecipient(_spender);</span><br><span class="line">        if (approve(_spender, _value)) &#123;</span><br><span class="line">            spender.receiveApproval(msg.sender, _value, this, _extraData);</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function burn(uint256 _value) public returns (bool success) &#123;</span><br><span class="line">        require(balanceOf[msg.sender] &gt;&#x3D; _value);</span><br><span class="line">        balanceOf[msg.sender] -&#x3D; _value;</span><br><span class="line">        totalSupply -&#x3D; _value;</span><br><span class="line">        Burn(msg.sender, _value);</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function burnFrom(address _from, uint256 _value) public returns (bool success) &#123;</span><br><span class="line">        require(balanceOf[_from] &gt;&#x3D; _value);</span><br><span class="line">        require(_value &lt;&#x3D; allowance[_from][msg.sender]);</span><br><span class="line">        balanceOf[_from] -&#x3D; _value;</span><br><span class="line">        allowance[_from][msg.sender] -&#x3D; _value;</span><br><span class="line">        totalSupply -&#x3D; _value;</span><br><span class="line">        Burn(_from, _value);</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="部署合约"><a href="#部署合约" class="headerlink" title="部署合约"></a>部署合约</h1><h2 id="方式"><a href="#方式" class="headerlink" title="方式"></a>方式</h2><ol>
+<li>Geth编译代码</li>
+<li>etherrum wallet钱包部署合约</li>
+<li>MetaMask钱包 + Remix Solidity IDE部署</li>
+</ol>
+<h2 id="Meta-Mask-Remix-Solidity-IDE"><a href="#Meta-Mask-Remix-Solidity-IDE" class="headerlink" title="Meta Mask + Remix Solidity IDE"></a>Meta Mask + Remix Solidity IDE</h2><ol>
+<li>创建钱包，转到测试网络Ropsten.</li>
+<li>在Remix Solidity IDE中对合约代码进行编程。</li>
+<li>对其<strong>编译</strong></li>
+</ol>
+<p>选择对应的编译器版本。</p>
+<ol start="4">
+<li>进行<strong>发布</strong></li>
+</ol>
+<p>Environment: Injected Web3</p>
+<p>Account: xxxxx(会自动读取Meta Mask的账户)</p>
+<p>选择编译好的文件</p>
+<p>构造函数传参</p>
+<p>在Meta Mask中对合约部署进行确认。</p>
+<ol start="5">
+<li>添加自定义的Token</li>
+</ol>
+<h1 id="公布源码"><a href="#公布源码" class="headerlink" title="公布源码"></a>公布源码</h1><p>在etherscan.io上进入到合约地址。</p>
+<p>贴上源代码，它会对<strong>源码进行编译</strong>，将字节码与区块<code>DATA</code>内的<strong>字节码进行比对</strong>，需要完全一样。</p>
+<p>之后就可以ICO了。</p>
+<hr>
+<p>Reference</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9sZWFybmJsb2NrY2hhaW4uY24vMjAxOC8wMS8xMi9jcmVhdGVfdG9rZW4=">https://learnblockchain.cn/2018/01/12/create_token<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2phdmFfaGhoaC9hcnRpY2xlL2RldGFpbHMvNzk3NzE3NTI=">https://blog.csdn.net/java_hhhh/article/details/79771752<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -423,264 +722,6 @@
 <h1 id="自习室的一些东西"><a href="#自习室的一些东西" class="headerlink" title="自习室的一些东西"></a>自习室的一些东西</h1><h2 id="Video"><a href="#Video" class="headerlink" title="Video"></a>Video</h2><p>录制好的视频可以通过AE的Mocha特效变成卡通风格～</p>
 <h2 id="Audio"><a href="#Audio" class="headerlink" title="Audio"></a>Audio</h2><p>Chill &amp; Lofi Beats</p>
 
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/notebook/ce-start/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/notebook/ce-start/" class="post-title-link" itemprop="url">Cheat Engine 入门</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 02-17-2021 13:44:06 / Modified: 15:23:13" itemprop="dateCreated datePublished" datetime="2021-02-17T13:44:06+08:00">02-17-2021</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>Cheat Engine通过修改内存的方式对应用程序进行修改。</p>
-<p>能够实现简单的逆向工程。</p>
-<h2 id="查找内存地址并修改值"><a href="#查找内存地址并修改值" class="headerlink" title="查找内存地址并修改值"></a>查找内存地址并修改值</h2><ol>
-<li>初始查找</li>
-</ol>
-<p>可以使用精确查找(exact)，比大小(bigger smaller)，间值(between)，未知(unknown)这几种方法。</p>
-<ol start="2">
-<li>进一步筛选</li>
-</ol>
-<p>可以使用精确，大于，小于，增减的具体值等等。</p>
-<p>通过不断筛选，可以得到我们需要的内存地址。</p>
-<ol start="3">
-<li>修改值</li>
-</ol>
-<p>对内存地址位置的值进行修改就可以了</p>
-<p><strong>注意</strong></p>
-<ul>
-<li>绿色的是基址，黑色的是动态地址。</li>
-<li>win程序中的变量一般都是4个字节。</li>
-</ul>
-<h2 id="代码替换"><a href="#代码替换" class="headerlink" title="代码替换"></a>代码替换</h2><p>首先找到内存地址。</p>
-<p><code>find out what writes to this address</code>找到改写这个地址的代码。直接点击<code>replace</code>就会将该条汇编代码用<code>nop</code>覆盖掉。</p>
-<h2 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h2><h3 id="多级指针"><a href="#多级指针" class="headerlink" title="多级指针"></a>多级指针</h3><p>先查找是什么访问了这个地址(代码)，再查找是什么访问了这个地址(寄存器)。</p>
-<p>一步一步找到最开始的<strong>基址</strong>。手动添加一个地址，在基址的基础上按照指针的顺序，依次可以找到需要改变的地址。</p>
-<h2 id="反汇编"><a href="#反汇编" class="headerlink" title="反汇编"></a>反汇编</h2><p>找到改写地址值的代码，显示反汇编程序。</p>
-<ul>
-<li>从模版导入CT表框架代码</li>
-<li>代码注入</li>
-<li>更改源码</li>
-<li>保存当前脚本</li>
-</ul>
-<h2 id="共享代码"><a href="#共享代码" class="headerlink" title="共享代码"></a>共享代码</h2><p>一个对象的所有实例的表结构都是一样的。因此获取实例的内存位置，可以看到该实例的其他属性。比如敌人，队友等。通过这个判断，加入到注入代码中，就可以实现对队友和敌人分开操作。</p>
-<hr>
-<p>Reference</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9jbmJsb2dzLmNvbS9MeVNoYXJr">https://cnblogs.com/LyShark<i class="fa fa-external-link-alt"></i></span></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/paper_experiment/loss/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/academia/paper_experiment/loss/" class="post-title-link" itemprop="url">几个损失函数</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 02-13-2021 16:04:17 / Modified: 16:05:24" itemprop="dateCreated datePublished" datetime="2021-02-13T16:04:17+08:00">02-13-2021</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="XE"><a href="#XE" class="headerlink" title="XE"></a>XE</h1><p>可以是one_hot矩阵与一个对应的index向量？</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/paper_experiment/conv/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/academia/paper_experiment/conv/" class="post-title-link" itemprop="url">卷积与反卷积</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 02-13-2021 12:27:38 / Modified: 12:28:35" itemprop="dateCreated datePublished" datetime="2021-02-13T12:27:38+08:00">02-13-2021</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="卷积"><a href="#卷积" class="headerlink" title="卷积"></a>卷积</h1>
       
     </div>
 
