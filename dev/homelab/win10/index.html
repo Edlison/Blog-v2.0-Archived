@@ -31,7 +31,7 @@
 <meta property="og:description" content="Intro在PVE虚拟机上安装Win10">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-11-20T16:50:20.511Z">
-<meta property="article:modified_time" content="2021-11-20T16:57:17.845Z">
+<meta property="article:modified_time" content="2021-11-21T08:17:55.899Z">
 <meta property="article:author" content="Bolin Shen">
 <meta property="article:tag" content="win10">
 <meta name="twitter:card" content="summary">
@@ -188,7 +188,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <section class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Intro"><span class="nav-number">1.</span> <span class="nav-text">Intro</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Preperation"><span class="nav-number">2.</span> <span class="nav-text">Preperation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Installation"><span class="nav-number">3.</span> <span class="nav-text">Installation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#显卡直通"><span class="nav-number">4.</span> <span class="nav-text">显卡直通</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Intro"><span class="nav-number">1.</span> <span class="nav-text">Intro</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Preperation"><span class="nav-number">2.</span> <span class="nav-text">Preperation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Installation"><span class="nav-number">3.</span> <span class="nav-text">Installation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#显卡直通"><span class="nav-number">4.</span> <span class="nav-text">显卡直通</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#grub文件"><span class="nav-number">4.1.</span> <span class="nav-text">grub文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#blacklist"><span class="nav-number">4.2.</span> <span class="nav-text">blacklist</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#绑定到vfio模块"><span class="nav-number">4.3.</span> <span class="nav-text">绑定到vfio模块</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#问题"><span class="nav-number">5.</span> <span class="nav-text">问题</span></a></li></ol></div>
         </section>
         <!--/noindex-->
 
@@ -202,7 +202,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">259</span>
+          <span class="site-state-item-count">260</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -215,7 +215,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">126</span>
+        <span class="site-state-item-count">127</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -289,7 +289,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 11-21-2021 00:50:20 / Modified: 00:57:17" itemprop="dateCreated datePublished" datetime="2021-11-21T00:50:20+08:00">11-21-2021</time>
+      <time title="Created: 11-21-2021 00:50:20 / Modified: 16:17:55" itemprop="dateCreated datePublished" datetime="2021-11-21T00:50:20+08:00">11-21-2021</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -324,7 +324,37 @@
 <h1 id="Preperation"><a href="#Preperation" class="headerlink" title="Preperation"></a>Preperation</h1><p><span class="exturl" data-url="aHR0cHM6Ly9uZXh0Lml0ZWxseW91LmNuL09yaWdpbmFsL0luZGV4">下载Win10镜像<i class="fa fa-external-link-alt"></i></span></p>
 <p><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmZlZG9yYXByb2plY3Qub3JnL2VuLVVTL3F1aWNrLWRvY3MvY3JlYXRpbmctd2luZG93cy12aXJ0dWFsLW1hY2hpbmVzLXVzaW5nLXZpcnRpby1kcml2ZXJzL2luZGV4Lmh0bWw=">下载Virtio驱动<i class="fa fa-external-link-alt"></i></span></p>
 <h1 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h1><p>虚拟机创建好后再创建一个CD驱动器, 选择Virtio驱动</p>
-<h1 id="显卡直通"><a href="#显卡直通" class="headerlink" title="显卡直通"></a>显卡直通</h1>
+<h1 id="显卡直通"><a href="#显卡直通" class="headerlink" title="显卡直通"></a>显卡直通</h1><h2 id="grub文件"><a href="#grub文件" class="headerlink" title="grub文件"></a>grub文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GRUB_CMDLINE_LINUX_DEFAULT&#x3D;&quot;quiet intel_iommu&#x3D;on video&#x3D;efifb:off&quot;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update-grub</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="blacklist"><a href="#blacklist" class="headerlink" title="blacklist"></a>blacklist</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">blacklist nvidiafb</span><br><span class="line">blacklist radeon</span><br><span class="line">blacklist nvidia</span><br><span class="line">blacklist amdgpu</span><br><span class="line">blacklist snd_hda_intel</span><br><span class="line">blacklist snd_hda_codec_hdmi</span><br><span class="line">blacklist i915</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update-initramfs -u</span><br></pre></td></tr></table></figure>
+
+<h2 id="绑定到vfio模块"><a href="#绑定到vfio模块" class="headerlink" title="绑定到vfio模块"></a>绑定到vfio模块</h2><p>查看显示和音频设备</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lspci -n | grep -E <span class="string">"0300|0403"</span></span><br></pre></td></tr></table></figure>
+
+<p>添加到vfio</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"options vfio-pci ids=10de:1187,8086:8c20"</span> &gt; /etc/modprobe.d/vfio.conf</span><br></pre></td></tr></table></figure>
+
+<p>添加options防止VM死机</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"options kvm ignore_msrs=1"</span> &gt; /etc/modprobe.d/kvm.conf</span><br></pre></td></tr></table></figure>
+
+<p>更新配置 重启</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">update-initramfs -u</span><br><span class="line">reboot</span><br></pre></td></tr></table></figure>
+
+<p>查看是否正常加载</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsmod | grep vfio</span><br></pre></td></tr></table></figure>
+
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>只要添加PCIE设备PVE就会卡死</p>
+<hr>
+<p>References</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuc2ltYWVrLmNvbS9hcmNoaXZlcy82OS8=">https://www.simaek.com/archives/69/<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuMTBiZXN0cy5jb20vd2luMTAtaHRwYy1vbi1wdmUv">https://www.10bests.com/win10-htpc-on-pve/<i class="fa fa-external-link-alt"></i></span></p>
+
     </div>
 
     
