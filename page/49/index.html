@@ -203,20 +203,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">260</span>
+          <span class="site-state-item-count">263</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-count">22</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">127</span>
+        <span class="site-state-item-count">129</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -256,6 +256,256 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/leetcode/validparentheses/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/leetcode/validparentheses/" class="post-title-link" itemprop="url">dev/leetcode/validparentheses</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 03-15-2020 22:42:26 / Modified: 22:46:46" itemprop="dateCreated datePublished" datetime="2020-03-15T22:42:26+08:00">03-15-2020</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Valid-Parentheses"><a href="#Valid-Parentheses" class="headerlink" title="Valid Parentheses"></a>Valid Parentheses</h1><p>Given a string containing just the characters ‘(‘, ‘)’, ‘{‘, ‘}’, ‘[‘ and ‘]’, determine if the input string is valid.</p>
+<p>An input string is valid if:</p>
+<p>Open brackets must be closed by the same type of brackets.<br>Open brackets must be closed in the correct order.<br>Note that an empty string is also considered valid.</p>
+<p><strong>Example 1:</strong></p>
+<p>Input: “()”<br>Output: true</p>
+<p><strong>Example 2:</strong></p>
+<p>Input: “()[]{}”<br>Output: true</p>
+<p><strong>Example 3:</strong></p>
+<p>Input: “(]”<br>Output: false</p>
+<p><strong>Example 4:</strong></p>
+<p>Input: “([)]”<br>Output: false</p>
+<p><strong>Example 5:</strong></p>
+<p>Input: “{[]}”<br>Output: true</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isValid</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">char</span>[] charArray = s.toCharArray();</span><br><span class="line">        Stack&lt;Integer&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        <span class="keyword">if</span> (s == <span class="keyword">null</span> || s.length() == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; charArray.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (trans(charArray[i]) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                stack.push(trans(charArray[i]));</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (trans(charArray[i]) &lt; <span class="number">0</span> ) &#123;</span><br><span class="line">                <span class="keyword">if</span> (!stack.isEmpty() &amp;&amp; stack.pop() + trans(charArray[i]) == <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (stack.size() == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">trans</span><span class="params">(<span class="keyword">char</span> c)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">switch</span> (c) &#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">'('</span>: <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">')'</span>: <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">'['</span>: <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">']'</span>: <span class="keyword">return</span> -<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">'&#123;'</span>: <span class="keyword">return</span> <span class="number">3</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">'&#125;'</span>: <span class="keyword">return</span> -<span class="number">3</span>;</span><br><span class="line">            <span class="keyword">default</span>: <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">执行用时 :2 ms, 在所有 Java 提交中击败了91.77%的用户</span></span><br><span class="line"><span class="comment">内存消耗 :37.2 MB, 在所有 Java 提交中击败了5.05%的用户</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Source code is easy to see.</p>
+<blockquote>
+<p>Reference<br><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvdmFsaWQtcGFyZW50aGVzZXM=">https://leetcode-cn.com/problems/valid-parentheses<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/leetcode/maxpublicex/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/leetcode/maxpublicex/" class="post-title-link" itemprop="url">dev/leetcode/maxpublicex</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 03-14-2020 22:51:58 / Modified: 22:59:09" itemprop="dateCreated datePublished" datetime="2020-03-14T22:51:58+08:00">03-14-2020</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Longest-Common-Prefix"><a href="#Longest-Common-Prefix" class="headerlink" title="Longest Common Prefix"></a>Longest Common Prefix</h1><p>Write a function to find the longest common prefix string amongst an array of strings.</p>
+<p>If there is no common prefix, return an empty string “”.</p>
+<p><strong>Example 1:</strong></p>
+<p>Input: [“flower”,”flow”,”flight”]<br>Output: “fl”</p>
+<p><strong>Example 2:</strong></p>
+<p>Input: [“dog”,”racecar”,”car”]<br>Output: “”<br>Explanation: There is no common prefix among the input strings.</p>
+<p><strong>Note:</strong></p>
+<p>All given inputs are in lowercase letters a-z.</p>
+<p><em>Unsolved</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">[&quot;aa&quot;,&quot;a&quot;]</span><br><span class="line">Output:</span><br><span class="line">&quot;aa&quot;</span><br><span class="line">Answer:</span><br><span class="line">&quot;a&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">longestCommonPrefix</span><span class="params">(String[] strs)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (strs == <span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line"></span><br><span class="line">        String res = strs[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">char</span>[] resChar = res.toCharArray();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; strs.length; i++) &#123;</span><br><span class="line">            <span class="keyword">char</span>[] tempChar = strs[i].toCharArray();</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; tempChar.length &amp; j &lt; resChar.length; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (resChar[j] != tempChar[j]) &#123;</span><br><span class="line">                    res = strs[i].substring(<span class="number">0</span>, j);</span><br><span class="line">                    resChar = res.toCharArray();</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>LeetCode Solution</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">longestCommonPrefix</span><span class="params">(String[] strs)</span> </span>&#123;</span><br><span class="line">   <span class="keyword">if</span> (strs.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">   String prefix = strs[<span class="number">0</span>];</span><br><span class="line">   <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; strs.length; i++)</span><br><span class="line">       <span class="keyword">while</span> (strs[i].indexOf(prefix) != <span class="number">0</span>) &#123;</span><br><span class="line">           prefix = prefix.substring(<span class="number">0</span>, prefix.length() - <span class="number">1</span>);</span><br><span class="line">           <span class="keyword">if</span> (prefix.isEmpty()) <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">       &#125;        </span><br><span class="line">   <span class="keyword">return</span> prefix;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Nice idea to use substring to find out what index is it. If <code>strs</code> doesn’t have a substring the index can not be 0. All we need to do is cut the <code>prefix</code>‘s length.</p>
+<blockquote>
+<p>Reference<br><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvbG9uZ2VzdC1jb21tb24tcHJlZml4">https://leetcode-cn.com/problems/longest-common-prefix<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/leetcode/romantointeger/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/leetcode/romantointeger/" class="post-title-link" itemprop="url">dev/leetcode/romantointeger</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 03-13-2020 17:29:24 / Modified: 17:35:01" itemprop="dateCreated datePublished" datetime="2020-03-13T17:29:24+08:00">03-13-2020</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Roman-to-Integer"><a href="#Roman-to-Integer" class="headerlink" title="Roman to Integer"></a>Roman to Integer</h1><p>Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.</p>
+<p>Symbol       Value<br>I             1<br>V             5<br>X             10<br>L             50<br>C             100<br>D             500<br>M             1000<br>For example, two is written as II in Roman numeral, just two one’s added together. Twelve is written as, XII, which is simply X + II. The number twenty seven is written as XXVII, which is XX + V + II.</p>
+<p>Roman numerals are usually written largest to smallest from left to right. However, the numeral for four is not IIII. Instead, the number four is written as IV. Because the one is before the five we subtract it making four. The same principle applies to the number nine, which is written as IX. There are six instances where subtraction is used:</p>
+<p>I can be placed before V (5) and X (10) to make 4 and 9.<br>X can be placed before L (50) and C (100) to make 40 and 90.<br>C can be placed before D (500) and M (1000) to make 400 and 900.<br>Given a roman numeral, convert it to an integer. Input is guaranteed to be within the range from 1 to 3999.</p>
+<p><strong>Example 1:</strong></p>
+<p>Input: “III”<br>Output: 3  </p>
+<p><strong>Example 2:</strong></p>
+<p>Input: “IV”<br>Output: 4  </p>
+<p><strong>Example 3:</strong></p>
+<p>Input: “IX”<br>Output: 9  </p>
+<p><strong>Example 4:</strong></p>
+<p>Input: “LVIII”<br>Output: 58<br>Explanation: L = 50, V= 5, III = 3.</p>
+<p><strong>Example 5:</strong></p>
+<p>Input: “MCMXCIV”<br>Output: 1994<br>Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">romanToInt</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">char</span>[] array = s.toCharArray();</span><br><span class="line">            <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; array.length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (trans(array[i]) &gt;= trans(array[i + <span class="number">1</span>])) &#123;</span><br><span class="line">                    sum += trans(array[i]);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    sum -= trans(array[i]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (array.length - <span class="number">1</span> &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                sum += trans(array[array.length - <span class="number">1</span>]);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> sum;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">trans</span><span class="params">(<span class="keyword">char</span> c)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">switch</span> (c) &#123;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">'I'</span>: </span><br><span class="line">                    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">            </span><br><span class="line">                <span class="keyword">case</span> <span class="string">'V'</span>:</span><br><span class="line">                    <span class="keyword">return</span> <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">case</span> <span class="string">'X'</span>:</span><br><span class="line">                    <span class="keyword">return</span> <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">case</span> <span class="string">'L'</span>:</span><br><span class="line">                    <span class="keyword">return</span> <span class="number">50</span>;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">case</span> <span class="string">'C'</span>:</span><br><span class="line">                    <span class="keyword">return</span> <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">case</span> <span class="string">'D'</span>:</span><br><span class="line">                    <span class="keyword">return</span> <span class="number">500</span>;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">case</span> <span class="string">'M'</span>:</span><br><span class="line">                    <span class="keyword">return</span> <span class="number">1000</span>;</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">default</span>:</span><br><span class="line">                    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>We just need to get right number what each character meaning for. And judge the next character implies whether larger than the current character, then we can get it.</p>
+<blockquote>
+<p>Reference<br><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvcm9tYW4tdG8taW50ZWdlcg==">https://leetcode-cn.com/problems/roman-to-integer<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -446,295 +696,10 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/notebook/innerclass/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/notebook/innerclass/" class="post-title-link" itemprop="url">dev/notebook/innerclass</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 03-11-2020 23:49:48 / Modified: 23:52:31" itemprop="dateCreated datePublished" datetime="2020-03-11T23:49:48+08:00">03-11-2020</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="java-内部类和静态内部类的区别"><a href="#java-内部类和静态内部类的区别" class="headerlink" title="java 内部类和静态内部类的区别"></a>java 内部类和静态内部类的区别</h1><p>下面说一说内部类（Inner Class）和静态内部类（Static Nested Class）的区别：<br>定义在一个类内部的类叫内部类，包含内部类的类称为外部类。内部类可以声明public、protected、private等访问限制，可以声明 为abstract的供其他内部类或外部类继承与扩展，或者声明为static、final的，也可以实现特定的接口。外部类按常规的类访问方式使用内部 类，唯一的差别是外部类可以访问内部类的所有方法与属性，包括私有方法与属性。</p>
-<h2 id="一-创建实例"><a href="#一-创建实例" class="headerlink" title="一. 创建实例"></a>一. 创建实例</h2><p>   OutClass.InnerClass obj = outClassInstance.new InnerClass(); //注意是外部类实例.new，内部类</p>
-<p>   AAA.StaticInner in = new AAA.StaticInner();//注意是外部类本身，静态内部类</p>
-<h2 id="二-内部类中的this"><a href="#二-内部类中的this" class="headerlink" title="二. 内部类中的this"></a>二. 内部类中的this</h2><p>   内 部类中的this与其他类一样是指的本身。创建内部类对象时，它会与创造它的外围对象有了某种联系，于是能访问外围类的所有成员，不需任何特殊条件，可理 解为内部类链接到外部类。 用外部类创建内部类对象时，此内部类对象会秘密的捕获一个指向外部类的引用，于是，可以通过这个引用来访问外围类的成员。</p>
-<h2 id="三-外部类访问内部类"><a href="#三-外部类访问内部类" class="headerlink" title="三. 外部类访问内部类"></a>三. 外部类访问内部类</h2><p>   内部类类似外部类的属性，因此访问内部类对象时总是需要一个创建好的外部类对象。内部类对象通过‘外部类名.this.xxx’的形式访问外部类的属性与方法。如：<br>       System.out.println(“Print in inner Outer.index=” + pouter.this.index);<br>       System.out.println(“Print in inner Inner.index=” + this.index);</p>
-<h2 id="四-内部类向上转型"><a href="#四-内部类向上转型" class="headerlink" title="四. 内部类向上转型"></a>四. 内部类向上转型</h2><p>   内部类也可以和普通类一样拥有向上转型的特性。将内部类向上转型为基类型，尤其是接口时，内部类就有了用武之地。如果内部类是private的，只可以被它的外部类问，从而完全隐藏实现的细节。</p>
-<h2 id="五-方法内的类"><a href="#五-方法内的类" class="headerlink" title="五. 方法内的类"></a>五. 方法内的类</h2><p>   方法内创建的类（注意方法中也能定义类），不能加访问修饰符。另外，方法内部的类也不是在调用方法时才会创建的，它们一样也被事先编译了。</p>
-<h2 id="六-静态内部类"><a href="#六-静态内部类" class="headerlink" title="六. 静态内部类"></a>六. 静态内部类</h2><p>   定义静态内部类：在定义内部类的时候，可以在其前面加上一个权限修饰符static。此时这个内部类就变为了静态内部类。</p>
-<p>通常称为嵌套类，当内部类是static时，意味着：</p>
-<p>   [1]要创建嵌套类的对象，并不需要其外围类的对象；</p>
-<p>   [2]不能从嵌套类的对象中访问非静态的外围类对象（不能够从静态内部类的对象中访问外部类的非静态成员）；</p>
-<p>   嵌 套类与普通的内部类还有一个区别：普通内部类的字段与方法，只能放在类的外部层次上，所以普通的内部类不能有static数据和static字段， 也不能包含嵌套类。但是在嵌套类里可以包含所有这些东西。也就是说，在非静态内部类中不可以声明静态成员，只有将某个内部类修饰为静态类，然后才能够在这 个类中定义静态的成员变量与成员方法。</p>
-<p>   另外，在创建静态内部类时不需要将静态内部类的实例绑定在外部类的实例上。普通非静态内部类的 对象是依附在外部类对象之中的，要在一个外部类中定义一个静态的内部类，不需要利用关键字new来创建内部类的实例。静态类和方法只属于类本身，并不属于 该类的对象，更不属于其他外部类的对象。</p>
-<h2 id="七-内部类标识符"><a href="#七-内部类标识符" class="headerlink" title="七. 内部类标识符"></a>七. 内部类标识符</h2><p>   每个类会产生一个.class文件，文件名即为类名。同样，内部类也会产生这么一个.class文件，但是它的名称却不是内部类的类名，而是有着严格的限制：外围类的名字，加上$,再加上内部类名字。</p>
-<h2 id="八-为何要用内部类？"><a href="#八-为何要用内部类？" class="headerlink" title="八. 为何要用内部类？"></a>八. 为何要用内部类？</h2><ol>
-<li><p>内部类一般只为其外部类使用；</p>
-</li>
-<li><p>内部类提供了某种进入外部类的窗户；</p>
-</li>
-<li><p>也是最吸引人的原因，每个内部类都能独立地继承一个接口，而无论外部类是否已经继承了某个接口。因此，内部类使多重继承的解决方案变得更加完整。</p>
-</li>
-</ol>
-<p>加深印象，参考一下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.test.xml;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OutClassTest</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> a;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> b;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"outer class static function"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        OutClassTest oc = <span class="keyword">new</span> OutClassTest();</span><br><span class="line">        <span class="comment">// new一个外部类</span></span><br><span class="line">        OutClassTest oc1 = <span class="keyword">new</span> OutClassTest();</span><br><span class="line">        <span class="comment">// 通过外部类的对象new一个非静态的内部类</span></span><br><span class="line">        OutClassTest.InnerClass no_static_inner = oc1.<span class="keyword">new</span> InnerClass();</span><br><span class="line">        <span class="comment">// 调用非静态内部类的方法</span></span><br><span class="line">        System.out.println(no_static_inner.getKey());</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 调用静态内部类的静态变量</span></span><br><span class="line">        System.out.println(OutClassTest.InnerStaticClass.static_value);</span><br><span class="line">        <span class="comment">// 不依赖于外部类实例,直接实例化内部静态类</span></span><br><span class="line">        OutClassTest.InnerStaticClass inner = <span class="keyword">new</span> OutClassTest.InnerStaticClass();</span><br><span class="line">        <span class="comment">// 调用静态内部类的非静态方法</span></span><br><span class="line">        System.out.println(inner.getValue());</span><br><span class="line">        <span class="comment">// 调用内部静态类的静态方法</span></span><br><span class="line">        System.out.println(OutClassTest.InnerStaticClass.getMessage());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">InnerClass</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 只有在静态内部类中才能够声明或定义静态成员</span></span><br><span class="line">        <span class="comment">// private static String tt = "0";</span></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">int</span> flag = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">InnerClass</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="comment">// 三.非静态内部类的非静态成员可以访问外部类的非静态变量和静态变量</span></span><br><span class="line">            System.out.println(<span class="string">"InnerClass create a:"</span> + a);</span><br><span class="line">            System.out.println(<span class="string">"InnerClass create b:"</span> + b);</span><br><span class="line">            System.out.println(<span class="string">"InnerClass create flag:"</span> + flag);</span><br><span class="line">            <span class="comment">//</span></span><br><span class="line">            System.out.println(<span class="string">"InnerClass call outer static function"</span>);</span><br><span class="line">            <span class="comment">// 调用外部类的静态方法</span></span><br><span class="line">            test();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span>  String <span class="title">getKey</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"no-static-inner"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">InnerStaticClass</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 静态内部类可以有静态成员，而非静态内部类则不能有静态成员。</span></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> String static_value = <span class="string">"0"</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">int</span> flag = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">InnerStaticClass</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            System.out.println(<span class="string">"InnerClass create a:"</span> + a);</span><br><span class="line">            <span class="comment">// 静态内部类不能够访问外部类的非静态成员</span></span><br><span class="line">            <span class="comment">// System.out.println("InnerClass create b:" + b);</span></span><br><span class="line">            System.out.println(<span class="string">"InnerStaticClass flag is "</span> + flag);</span><br><span class="line">            System.out.println(<span class="string">"InnerStaticClass tt is "</span> + static_value);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getValue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="comment">// 静态内部类访问外部类的静态方法</span></span><br><span class="line">            test();</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getMessage</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"static-inner"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">OutClassTest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// new一个非静态的内部类</span></span><br><span class="line">        InnerClass ic = <span class="keyword">new</span> InnerClass();</span><br><span class="line">        System.out.println(<span class="string">"OuterClass create"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>总结：</strong> </p>
-<ul>
-<li>1.静态内部类可以有静态成员(方法，属性)，而非静态内部类则不能有静态成员(方法，属性)。</li>
-<li>2.静态内部类只能够访问外部类的静态成员,而非静态内部类则可以访问外部类的所有成员(方法，属性)。</li>
-<li>3.实例化一个非静态的内部类的方法：</li>
-<li>a.先生成一个外部类对象实例</li>
-<li>OutClassTest oc1 = new OutClassTest();</li>
-<li>b.通过外部类的对象实例生成内部类对象</li>
-<li>OutClassTest.InnerClass no_static_inner = oc1.new InnerClass();</li>
-<li>4.实例化一个静态内部类的方法：</li>
-<li>a.不依赖于外部类的实例,直接实例化内部类对象</li>
-<li>OutClassTest.InnerStaticClass inner = new OutClassTest.InnerStaticClass();</li>
-<li>b.调用内部静态类的方法或静态变量,通过类名直接调用</li>
-<li>OutClassTest.InnerStaticClass.static_value</li>
-<li>OutClassTest.InnerStaticClass.getMessage()</li>
-</ul>
-<blockquote>
-<p>references:<br><span class="exturl" data-url="aHR0cDovL2hpLmJhaWR1LmNvbS96aHVtdWxhbmdtYS9pdGVtL2JjZDQ3OGMxNDA0MjdiMmNlZjQ2NjUzMg==">http://hi.baidu.com/zhumulangma/item/bcd478c140427b2cef466532<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cDovL2R1cWlhbmdjaXNlLml0ZXllLmNvbS9ibG9nLzY5NzQ3Ng==">http://duqiangcise.iteye.com/blog/697476<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/notebook/final/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/notebook/final/" class="post-title-link" itemprop="url">dev/notebook/final</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 03-11-2020 21:50:04" itemprop="dateCreated datePublished" datetime="2020-03-11T21:50:04+08:00">03-11-2020</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 03-12-2020 00:10:48" itemprop="dateModified" datetime="2020-03-12T00:10:48+08:00">03-12-2020</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Final-理解"><a href="#Final-理解" class="headerlink" title="Final 理解"></a>Final 理解</h1><h2 id="一．Final-修饰成员变量的注意事项"><a href="#一．Final-修饰成员变量的注意事项" class="headerlink" title="一．Final 修饰成员变量的注意事项"></a>一．Final 修饰成员变量的注意事项</h2><p>final修饰成员变量，该成员变量必须在创建对象之前进行赋值，否则编译失败<br>final修饰成员变量，固定的不是成员变量拥有的默认值，如果固定的是默认值，那么将导致被final修饰的成员变量的值永远无法修改，只能是默认值，这也不符合语法规则  </p>
-<p>成员变量的赋值有三种实现方式：</p>
-<ul>
-<li>定义成员变量的时候手动赋值</li>
-<li>利用构造器对成员变量进行赋值</li>
-<li>利用set函数进行赋值（也即利用一般的方法进行赋值）</li>
-</ul>
-<p><strong>注意</strong><br>被final修饰的成员变量，只能拥有3中所描述的赋值方法的1，2。3为什么不行？</p>
-<p>解释：如1所描述，被final修饰的成员变量必须在对象创建之前进行赋值，如果方法3可以，那么我们知道对象创建后，才能调用方法3，也就是说成员变量利用方法3进行赋值，会导致成员变量的赋值发生在对象创建之后</p>
-<h2 id="二-为什么被Final修饰的成员变量必须在对象创建之前进行赋值？"><a href="#二-为什么被Final修饰的成员变量必须在对象创建之前进行赋值？" class="headerlink" title="二. 为什么被Final修饰的成员变量必须在对象创建之前进行赋值？"></a>二. 为什么被Final修饰的成员变量必须在对象创建之前进行赋值？</h2><p>理解：<br>被final关键字修饰的东西有一个特点，那就是一旦被修饰，那么它的值也就终生不变，可见final关键字起到了固定的作用，既然起到固定那么，你就要提前告诉final固定的是谁，如果允许被final修饰的成员变量赋值发生在对象创建之后，那么对象创建完成后final固定的值还是未可知的</p>
-<h2 id="三-final修饰成员变量和final修饰局部变量的区别与联系："><a href="#三-final修饰成员变量和final修饰局部变量的区别与联系：" class="headerlink" title="三. final修饰成员变量和final修饰局部变量的区别与联系："></a>三. final修饰成员变量和final修饰局部变量的区别与联系：</h2><ol>
-<li>被final修饰的成员变量与局部变量均具有：一旦赋值，该值就终身不变</li>
-<li>被final修饰的成员变量必须要在创建对象之前进行赋值，否则会编译失败，但是局部变量可以不赋值，但是没有被赋值的局部变量不能够被使用，一旦被使用就会编译失败</li>
-<li>综上：一旦决定使用final关键字来修饰成员变量或者局部变量，一定要做到提前赋值</li>
-</ol>
-<h2 id="四．Final修饰成员方法："><a href="#四．Final修饰成员方法：" class="headerlink" title="四．Final修饰成员方法："></a>四．Final修饰成员方法：</h2><ol>
-<li>final修饰成员方法，该成员方法就不能被子类重写，但是仍然可以被子类继承并可以通过子类对象调用该方法</li>
-</ol>
-<h2 id="五．Final修饰类"><a href="#五．Final修饰类" class="headerlink" title="五．Final修饰类"></a>五．Final修饰类</h2><p>1.final修饰类，该类便不能被其他类继承，但是该类仍然能够创建对象，并且，可以利用该对象调用该类的成员变量或者成员方法</p>
-<h2 id="六．Final使用范围："><a href="#六．Final使用范围：" class="headerlink" title="六．Final使用范围："></a>六．Final使用范围：</h2><p>Final关键字可以修饰类，类的成员变量，类的成员方法，成员方法的局部变量，等等，</p>
-<p>但是final关键字不能用来修饰构造方法？<br>理解：<br>final修饰普通方法，将导致子类无法重写该方法，而构造方法本身就不能够被子类重写，故如果用final修饰，如同多此一举</p>
-<blockquote>
-<p>Reference<br><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3hpY2hlbmdmZW5neXVsb3UvYXJ0aWNsZS9kZXRhaWxzLzgxMTU1Mjkw">https://blog.csdn.net/xichengfengyulou/article/details/81155290<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/leetcode/removeend/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/leetcode/removeend/" class="post-title-link" itemprop="url">dev/leetcode/removeend</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 03-11-2020 21:10:04 / Modified: 21:19:54" itemprop="dateCreated datePublished" datetime="2020-03-11T21:10:04+08:00">03-11-2020</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Remove-Nth-Node-From-End-of-List"><a href="#Remove-Nth-Node-From-End-of-List" class="headerlink" title="Remove Nth Node From End of List"></a>Remove Nth Node From End of List</h1><p>Given a linked list, remove the n-th node from the end of list and return its head.</p>
-<p><strong>Example</strong>:</p>
-<p>Given linked list: 1-&gt;2-&gt;3-&gt;4-&gt;5, and n = 2.</p>
-<p>After removing the second node from the end, the linked list becomes 1-&gt;2-&gt;3-&gt;5.</p>
-<p><strong>Note</strong>:</p>
-<p>Given n will always be valid.</p>
-<p><strong>Solution One</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">removeNthFromEnd</span><span class="params">(ListNode head, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        ListNode p = head;</span><br><span class="line">        ListNode temp = head;</span><br><span class="line">        <span class="keyword">int</span> len = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (p == <span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (p.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">            len++;</span><br><span class="line">            p = p.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> loc = len - n;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (loc == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> head.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; loc; i++) &#123;</span><br><span class="line">            temp = temp.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        temp.next = temp.next.next;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Pass one time and get the length of LinkedList, so just count <code>length - n - 1</code> times we can find the pre pointer. All we need to do is point pre pointer.next equal the next of which pointer we should delete.</p>
-<p><strong>Solution Two</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">removeNthFromEnd</span><span class="params">(ListNode head, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        List&lt;ListNode&gt; stack = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        ListNode temp = head;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (temp != <span class="keyword">null</span>) &#123;</span><br><span class="line">            stack.add(temp);</span><br><span class="line">            temp = temp.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        ListNode[] list = stack.toArray(<span class="keyword">new</span> ListNode[stack.size()]);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> ((list.length - n - <span class="number">1</span>) &lt; <span class="number">0</span>) <span class="keyword">return</span> head.next;</span><br><span class="line"></span><br><span class="line">        list[list.length - n - <span class="number">1</span>].next = list[list.length - n].next;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Just let the List structure give a help, we can transfer a <code>LinkedList</code> to an <code>Array</code>. So all we need to do is let <code>list[list.length - n - 1].next</code> equals <code>list[list.length - n].next</code>. </p>
-<p>Base case: if delete the head node we just need to return <code>head.next</code>.</p>
-<blockquote>
-<p>Reference<br><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvcmVtb3ZlLW50aC1ub2RlLWZyb20tZW5kLW9mLWxpc3Q=">https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/48/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/48/">48</a><span class="page-number current">49</span><a class="page-number" href="/page/50/">50</a><span class="space">&hellip;</span><a class="page-number" href="/page/52/">52</a><a class="extend next" rel="next" href="/page/50/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/48/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/48/">48</a><span class="page-number current">49</span><a class="page-number" href="/page/50/">50</a><span class="space">&hellip;</span><a class="page-number" href="/page/53/">53</a><a class="extend next" rel="next" href="/page/50/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
