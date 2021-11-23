@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">263</span>
+          <span class="site-state-item-count">264</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -256,6 +256,84 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/notebook/socketio-dev/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/notebook/socketio-dev/" class="post-title-link" itemprop="url">Flask-SocketIO development experience</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 07-13-2021 11:29:48 / Modified: 11:39:27" itemprop="dateCreated datePublished" datetime="2021-07-13T11:29:48+08:00">07-13-2021</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="socketio-init"><a href="#socketio-init" class="headerlink" title="socketio init"></a>socketio init</h1><p>socketio must input flask_app context, so the web service is constructed based socketio web service.</p>
+<h1 id="join-room"><a href="#join-room" class="headerlink" title="join_room"></a>join_room</h1><p>If you want to create private room, you need to apply <code>join_room(room_id)</code> when users entering. After this, we can use <code>emit(to=room_id)</code> to send message to specific room.</p>
+<h1 id="socketio-on"><a href="#socketio-on" class="headerlink" title="socketio.on"></a>socketio.on</h1><p>is used to receive message.</p>
+<h1 id="socketio-emit"><a href="#socketio-emit" class="headerlink" title="socketio.emit"></a>socketio.emit</h1><p>is used to send message.</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -686,90 +764,6 @@
 <hr>
 <p>Reference</p>
 <p><span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3NlYXJjaD9xPWJhdGNoJTIwbm9ybWFsaXphdGlvbiZhbXA7dXRtX2NvbnRlbnQ9c2VhcmNoX3N1Z2dlc3Rpb24mYW1wO3R5cGU9Y29udGVudA==">https://www.zhihu.com/search?q=batch%20normalization&amp;utm_content=search_suggestion&amp;type=content<i class="fa fa-external-link-alt"></i></span></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/ml/deep_learning/term/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/ml/deep_learning/term/" class="post-title-link" itemprop="url">Terms in Deep Learning</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 07-07-2021 20:34:04" itemprop="dateCreated datePublished" datetime="2021-07-07T20:34:04+08:00">07-07-2021</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 10-16-2021 03:38:44" itemprop="dateModified" datetime="2021-10-16T03:38:44+08:00">10-16-2021</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Deep-Learning/" itemprop="url" rel="index"><span itemprop="name">Deep Learning</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Term"><a href="#Term" class="headerlink" title="Term"></a>Term</h1><h2 id="SOTA"><a href="#SOTA" class="headerlink" title="SOTA"></a>SOTA</h2><p>state of the art</p>
-<p>To illustrate the best model in the paticular task.</p>
-<h2 id="Baseline"><a href="#Baseline" class="headerlink" title="Baseline"></a>Baseline</h2><p>The experiment part that you need to compete with.</p>
-<h2 id="Benchmark"><a href="#Benchmark" class="headerlink" title="Benchmark"></a>Benchmark</h2><p>The target value of the experiment that you need to compete with.</p>
 
       
     </div>
