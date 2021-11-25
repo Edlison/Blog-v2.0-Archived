@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">264</span>
+          <span class="site-state-item-count">265</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -216,7 +216,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">129</span>
+        <span class="site-state-item-count">130</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -256,6 +256,118 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/docker/docker-lineloss/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/docker/docker-lineloss/" class="post-title-link" itemprop="url">dev/docker/docker-lineloss</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 09-15-2020 12:11:47" itemprop="dateCreated datePublished" datetime="2020-09-15T12:11:47+08:00">09-15-2020</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 09-16-2020 20:52:06" itemprop="dateModified" datetime="2020-09-16T20:52:06+08:00">09-16-2020</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Docker-部署-Lineloss"><a href="#Docker-部署-Lineloss" class="headerlink" title="Docker 部署 Lineloss"></a>Docker 部署 Lineloss</h1><h2 id="1-拉取redhat镜像"><a href="#1-拉取redhat镜像" class="headerlink" title="1 拉取redhat镜像"></a>1 拉取redhat镜像</h2><p><code>docker pull yjjy0921/redhat7.2</code></p>
+<h2 id="2-进入镜像换yum源"><a href="#2-进入镜像换yum源" class="headerlink" title="2 进入镜像换yum源"></a>2 进入镜像换yum源</h2><ul>
+<li>rpm安装wget(docker cp host.path cotainer:container.path)</li>
+<li>wget下载yum相关包</li>
+<li>rpm安装下载的相关包</li>
+</ul>
+<p><strong>报错：</strong><br>python-urlgrabber &gt;= 3.10-8 is needed by yum-3.4.3-167.el7.centos.noarch<br>rpm &gt;= 0:4.11.3-22 is needed by yum-3.4.3-167.el7.centos.noarch</p>
+<p>查询存在的python-urlgrabber包<br><code>rpm -q python-urlgrabber</code>~~</p>
+<p>删除python-urlgrabber包<br><code>rpm -e python-urlgrabber</code></p>
+<p>更新rpm包<br><code>rpm -Uvh rpm-4.11.3-43.el7.x86_64.rpm --nodeps</code></p>
+<h2 id="3-创建aliyun-repo"><a href="#3-创建aliyun-repo" class="headerlink" title="3 创建aliyun.repo"></a>3 创建aliyun.repo</h2><p><code>cd /etc/yum.repo.d/</code><br><code>vim aliyun.repo</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">[base]</span><br><span class="line">name&#x3D;CentOS-$releasever - Base</span><br><span class="line">baseurl&#x3D;http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;centos&#x2F;7.8.2003&#x2F;os&#x2F;$basearch&#x2F;</span><br><span class="line">gpgcheck&#x3D;1</span><br><span class="line">gpgkey&#x3D;http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;centos&#x2F;7.8.2003&#x2F;os&#x2F;x86_64&#x2F;RPM-GPG-KEY-CentOS-7</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#released updates</span><br><span class="line">[updates]</span><br><span class="line">name&#x3D;CentOS-$releasever - Updates</span><br><span class="line">baseurl&#x3D;http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;centos&#x2F;7.8.2003&#x2F;updates&#x2F;$basearch&#x2F;</span><br><span class="line">gpgcheck&#x3D;1</span><br><span class="line">gpgkey&#x3D;http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;centos&#x2F;7.8.2003&#x2F;os&#x2F;x86_64&#x2F;RPM-GPG-KEY-CentOS-7</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[extras]</span><br><span class="line">name&#x3D;CentOS-$releasever - Extras</span><br><span class="line">baseurl&#x3D;http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;centos&#x2F;7.8.2003&#x2F;extras&#x2F;&#x2F;$basearch&#x2F;</span><br><span class="line">gpgcheck&#x3D;1</span><br><span class="line">gpgkey&#x3D;http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;centos&#x2F;7.8.2003&#x2F;os&#x2F;x86_64&#x2F;RPM-GPG-KEY-CentOS-7</span><br><span class="line"></span><br><span class="line">[centosplus]</span><br><span class="line">name&#x3D;CentOS-$releasever - Plus</span><br><span class="line">baseurl&#x3D;http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;centos&#x2F;7.8.2003&#x2F;centosplus&#x2F;&#x2F;$basearch&#x2F;</span><br><span class="line">gpgcheck&#x3D;1</span><br><span class="line">enabled&#x3D;0</span><br></pre></td></tr></table></figure>
+
+<p>清除redhat.repo<br><code>mv redhat.repo redhat.temp</code></p>
+<p>检验yum配置成功<br><code>yum update -y --skip-broken</code></p>
+<h2 id="4-安装mariadb"><a href="#4-安装mariadb" class="headerlink" title="4 安装mariadb"></a>4 安装mariadb</h2><p>安装<br><code>yum install -y mysql</code></p>
+<p><strong>注意</strong><br>docker无法使用systemctl指令使mysql后台运行</p>
+<p>查看容器配置文件<br><code>docker inspect containerID</code></p>
+<p><em>修改已经运行的容器配置文件</em><br><code>/usr/lib/docker...</code></p>
+<p>运行镜像时需要<br><code>docker run --privileged --name=lineloss -d -it edlison/lineloss /usr/sbin/init</code></p>
+<p><code>--privileged</code>赋予额外权限<br><code>/usr/sbin/init</code>将cmd设置为这个 dbus服务就会运行</p>
+<p><code>systemctl start mariadb</code> 启动服务<br><code>systemctl enable mariadb</code> 设置开机启动<br><code>systemctl restart mariadb</code> 重新启动<br><code>systemctl stop mariadb.service</code> 停止MariaDB</p>
+<p>初始化数据库<br><code>mysql_secure_installation</code></p>
+<p>设置密码<br><code>mysqladmin -u root password &#39;newpassword&#39;</code></p>
+<p>导入数据<br><code>create database lineloss;</code><br><code>use lineloss;</code><br><code>source /home/xs_project/sql/lineloss.sql</code></p>
+<h2 id="5-Java环境"><a href="#5-Java环境" class="headerlink" title="5 Java环境"></a>5 Java环境</h2><p>安装Java<br><code>yum install java</code></p>
+<h2 id="6-Python环境"><a href="#6-Python环境" class="headerlink" title="6 Python环境"></a>6 Python环境</h2><p>安装python3<br><code>yum install python3</code></p>
+<p>安装依赖<br><code>pip3 install Flask</code><br><code>pip3 install flask_sqlalchemy</code><br><code>pip3 install pymysql</code><br><code>pip3 install numpy</code><br><code>pip3 install sklearn</code><br><code>pip3 install jieba</code><br><code>pip3 install pandas</code><br><code>pip3 install statsmodels</code></p>
+<h2 id="7-运行测试"><a href="#7-运行测试" class="headerlink" title="7 运行测试"></a>7 运行测试</h2><p>运行镜像<br><code>docker run --privileged --name=lineloss -d -p 18084:18084 -it edlison/lineloss /usr/sbin/init</code></p>
+<p>Java<br><code>cd /home/xs_project/java</code><br><code>java -jar RuoYi.jar</code></p>
+<p>Python<br><code>cd /home/xs_project/python/LineLoss</code><br><code>python3 service.py</code></p>
+<h2 id="8-Dockerfile"><a href="#8-Dockerfile" class="headerlink" title="8 Dockerfile"></a>8 Dockerfile</h2><p>只是构建镜像？？？不便于执行镜像内程序？？？</p>
+<h2 id="9-其他"><a href="#9-其他" class="headerlink" title="9 其他"></a>9 其他</h2><h2 id="复制文件"><a href="#复制文件" class="headerlink" title="复制文件"></a>复制文件</h2><p>容器内新建文件夹<br><code>mkdir /home/xs_project/java</code><br><code>mkdir /home/xs_project/python</code><br><code>mkdir /home/xs_project/sql</code></p>
+<p>将文件复制到容器内<br><code>cp RuoYi.jar containerID:/home/xs_project/java</code><br><code>cp LineLoss.zip containerID:/home/xs_project/python</code><br><code>cp lineloss.sql containerID:/home/xs_project/sql</code></p>
+<h2 id="容器提交成镜像"><a href="#容器提交成镜像" class="headerlink" title="容器提交成镜像"></a>容器提交成镜像</h2><p><code>docker commit -a &quot;userid&quot; -m &quot;comment&quot; containerID imageName:tag</code></p>
+<h2 id="镜像上传仓库"><a href="#镜像上传仓库" class="headerlink" title="镜像上传仓库"></a>镜像上传仓库</h2><p><code>docker push userName/imageName</code></p>
+<p><strong>注意</strong></p>
+<p>tag命令修改为规范的镜像名<br><code>docker tag lineloss:latest edlison/lineloss</code></p>
+<p>push到用户仓库<br><code>docker push edlison/lineloss</code></p>
+<h2 id="镜像导出导入"><a href="#镜像导出导入" class="headerlink" title="镜像导出导入"></a>镜像导出导入</h2><p>导出镜像<br><code>docker save -o lineloss.tar edlison/lineloss</code>或<br><code>docker save edlison/lineloss&gt;/home/lineloss.tar</code></p>
+<p>导入镜像<br><code>docker load&lt;lineloss.tar</code></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -849,71 +961,6 @@
 <li>获取预训练的词向量</li>
 </ul>
 
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/docker/docker-nextcloud/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/docker/docker-nextcloud/" class="post-title-link" itemprop="url">dev/docker/docker-nextcloud</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 07-26-2020 01:48:17 / Modified: 01:48:50" itemprop="dateCreated datePublished" datetime="2020-07-26T01:48:17+08:00">07-26-2020</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Docker-NextCloud"><a href="#Docker-NextCloud" class="headerlink" title="Docker-NextCloud"></a>Docker-NextCloud</h1><h2 id="docker-compose-yml"><a href="#docker-compose-yml" class="headerlink" title="docker-compose.yml"></a>docker-compose.yml</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">version: &#39;3&#39;</span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line">  nextcloud:</span><br><span class="line">    image: nextcloud</span><br><span class="line">    restart: &quot;no&quot;</span><br><span class="line">    volumes:</span><br><span class="line">      - ~&#x2F;docker_nextcloud&#x2F;data&#x2F;:&#x2F;var&#x2F;www&#x2F;html</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;25000:80&quot;</span><br></pre></td></tr></table></figure>
       
     </div>
 

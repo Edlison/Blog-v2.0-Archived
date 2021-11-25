@@ -31,7 +31,7 @@
 <meta property="og:description" content="rclonedownload 1curl https:&#x2F;&#x2F;rclone.org&#x2F;install.sh | sudo bash  configure 1rclone config  follow the promt mount1nohup rclone mount &#39;remote&#39;:&#x2F;remoteLoc &#x2F;mnt&#x2F;GoogleDrive --allow-other &amp;&gt; mnt_gd.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-10-09T11:27:48.747Z">
-<meta property="article:modified_time" content="2021-10-15T05:43:30.017Z">
+<meta property="article:modified_time" content="2021-11-24T13:28:00.570Z">
 <meta property="article:author" content="Bolin Shen">
 <meta property="article:tag" content="linux">
 <meta property="article:tag" content="ubuntu">
@@ -190,7 +190,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <section class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#rclone"><span class="nav-number">1.</span> <span class="nav-text">rclone</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mount"><span class="nav-number">2.</span> <span class="nav-text">mount</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#deamon-file"><span class="nav-number">3.</span> <span class="nav-text">deamon file</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#rclone"><span class="nav-number">1.</span> <span class="nav-text">rclone</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mount"><span class="nav-number">2.</span> <span class="nav-text">mount</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#deamon-file"><span class="nav-number">3.</span> <span class="nav-text">deamon file</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bug"><span class="nav-number">4.</span> <span class="nav-text">bug</span></a></li></ol></div>
         </section>
         <!--/noindex-->
 
@@ -204,7 +204,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">264</span>
+          <span class="site-state-item-count">265</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -217,7 +217,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">129</span>
+        <span class="site-state-item-count">130</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -297,7 +297,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 10-15-2021 13:43:30" itemprop="dateModified" datetime="2021-10-15T13:43:30+08:00">10-15-2021</time>
+        <time title="Modified: 11-24-2021 21:28:00" itemprop="dateModified" datetime="2021-11-24T21:28:00+08:00">11-24-2021</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -340,6 +340,14 @@
 
 <p><strong>the mount process need to be hang on at backgrount!</strong></p>
 <h1 id="deamon-file"><a href="#deamon-file" class="headerlink" title="deamon file"></a>deamon file</h1><p><span class="exturl" data-url="aHR0cHM6Ly96aHVqaXRpcHMuY29tL3NoL3JjbG9uZWQ=">refer<i class="fa fa-external-link-alt"></i></span></p>
+<h1 id="bug"><a href="#bug" class="headerlink" title="bug"></a>bug</h1><p>好像是个bug</p>
+<p>在copy文件到OneDrive时会报错</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">2021&#x2F;11&#x2F;24 13:23:29 ERROR : : error listing: directory not found</span><br><span class="line">2021&#x2F;11&#x2F;24 13:23:29 Failed to ls with 2 errors: last error was: directory not found</span><br></pre></td></tr></table></figure>
+
+<p>需要执行一遍</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rclone ls OneDrive:</span><br></pre></td></tr></table></figure>
+
+<p>然后再执行<code>copy</code>指令才可以</p>
 <hr>
 <p>References</p>
 <p><span class="exturl" data-url="aHR0cHM6Ly93d3cubWlzdGVybWEuY29tL2FyY2hpdmVzLzkwMC8=">https://www.misterma.com/archives/900/<i class="fa fa-external-link-alt"></i></span></p>
