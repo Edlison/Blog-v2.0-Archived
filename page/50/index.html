@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">265</span>
+          <span class="site-state-item-count">267</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -256,6 +256,173 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/leetcode/maxpublicex/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/leetcode/maxpublicex/" class="post-title-link" itemprop="url">dev/leetcode/maxpublicex</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 03-14-2020 22:51:58 / Modified: 22:59:09" itemprop="dateCreated datePublished" datetime="2020-03-14T22:51:58+08:00">03-14-2020</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Longest-Common-Prefix"><a href="#Longest-Common-Prefix" class="headerlink" title="Longest Common Prefix"></a>Longest Common Prefix</h1><p>Write a function to find the longest common prefix string amongst an array of strings.</p>
+<p>If there is no common prefix, return an empty string “”.</p>
+<p><strong>Example 1:</strong></p>
+<p>Input: [“flower”,”flow”,”flight”]<br>Output: “fl”</p>
+<p><strong>Example 2:</strong></p>
+<p>Input: [“dog”,”racecar”,”car”]<br>Output: “”<br>Explanation: There is no common prefix among the input strings.</p>
+<p><strong>Note:</strong></p>
+<p>All given inputs are in lowercase letters a-z.</p>
+<p><em>Unsolved</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">[&quot;aa&quot;,&quot;a&quot;]</span><br><span class="line">Output:</span><br><span class="line">&quot;aa&quot;</span><br><span class="line">Answer:</span><br><span class="line">&quot;a&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">longestCommonPrefix</span><span class="params">(String[] strs)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (strs == <span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line"></span><br><span class="line">        String res = strs[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">char</span>[] resChar = res.toCharArray();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; strs.length; i++) &#123;</span><br><span class="line">            <span class="keyword">char</span>[] tempChar = strs[i].toCharArray();</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; tempChar.length &amp; j &lt; resChar.length; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (resChar[j] != tempChar[j]) &#123;</span><br><span class="line">                    res = strs[i].substring(<span class="number">0</span>, j);</span><br><span class="line">                    resChar = res.toCharArray();</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>LeetCode Solution</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">longestCommonPrefix</span><span class="params">(String[] strs)</span> </span>&#123;</span><br><span class="line">   <span class="keyword">if</span> (strs.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">   String prefix = strs[<span class="number">0</span>];</span><br><span class="line">   <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; strs.length; i++)</span><br><span class="line">       <span class="keyword">while</span> (strs[i].indexOf(prefix) != <span class="number">0</span>) &#123;</span><br><span class="line">           prefix = prefix.substring(<span class="number">0</span>, prefix.length() - <span class="number">1</span>);</span><br><span class="line">           <span class="keyword">if</span> (prefix.isEmpty()) <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">       &#125;        </span><br><span class="line">   <span class="keyword">return</span> prefix;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Nice idea to use substring to find out what index is it. If <code>strs</code> doesn’t have a substring the index can not be 0. All we need to do is cut the <code>prefix</code>‘s length.</p>
+<blockquote>
+<p>Reference<br><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvbG9uZ2VzdC1jb21tb24tcHJlZml4">https://leetcode-cn.com/problems/longest-common-prefix<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/leetcode/romantointeger/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/leetcode/romantointeger/" class="post-title-link" itemprop="url">dev/leetcode/romantointeger</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 03-13-2020 17:29:24 / Modified: 17:35:01" itemprop="dateCreated datePublished" datetime="2020-03-13T17:29:24+08:00">03-13-2020</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Roman-to-Integer"><a href="#Roman-to-Integer" class="headerlink" title="Roman to Integer"></a>Roman to Integer</h1><p>Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.</p>
+<p>Symbol       Value<br>I             1<br>V             5<br>X             10<br>L             50<br>C             100<br>D             500<br>M             1000<br>For example, two is written as II in Roman numeral, just two one’s added together. Twelve is written as, XII, which is simply X + II. The number twenty seven is written as XXVII, which is XX + V + II.</p>
+<p>Roman numerals are usually written largest to smallest from left to right. However, the numeral for four is not IIII. Instead, the number four is written as IV. Because the one is before the five we subtract it making four. The same principle applies to the number nine, which is written as IX. There are six instances where subtraction is used:</p>
+<p>I can be placed before V (5) and X (10) to make 4 and 9.<br>X can be placed before L (50) and C (100) to make 40 and 90.<br>C can be placed before D (500) and M (1000) to make 400 and 900.<br>Given a roman numeral, convert it to an integer. Input is guaranteed to be within the range from 1 to 3999.</p>
+<p><strong>Example 1:</strong></p>
+<p>Input: “III”<br>Output: 3  </p>
+<p><strong>Example 2:</strong></p>
+<p>Input: “IV”<br>Output: 4  </p>
+<p><strong>Example 3:</strong></p>
+<p>Input: “IX”<br>Output: 9  </p>
+<p><strong>Example 4:</strong></p>
+<p>Input: “LVIII”<br>Output: 58<br>Explanation: L = 50, V= 5, III = 3.</p>
+<p><strong>Example 5:</strong></p>
+<p>Input: “MCMXCIV”<br>Output: 1994<br>Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">romanToInt</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">char</span>[] array = s.toCharArray();</span><br><span class="line">            <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; array.length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (trans(array[i]) &gt;= trans(array[i + <span class="number">1</span>])) &#123;</span><br><span class="line">                    sum += trans(array[i]);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    sum -= trans(array[i]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (array.length - <span class="number">1</span> &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                sum += trans(array[array.length - <span class="number">1</span>]);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> sum;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">trans</span><span class="params">(<span class="keyword">char</span> c)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">switch</span> (c) &#123;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">'I'</span>: </span><br><span class="line">                    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">            </span><br><span class="line">                <span class="keyword">case</span> <span class="string">'V'</span>:</span><br><span class="line">                    <span class="keyword">return</span> <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">case</span> <span class="string">'X'</span>:</span><br><span class="line">                    <span class="keyword">return</span> <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">case</span> <span class="string">'L'</span>:</span><br><span class="line">                    <span class="keyword">return</span> <span class="number">50</span>;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">case</span> <span class="string">'C'</span>:</span><br><span class="line">                    <span class="keyword">return</span> <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">case</span> <span class="string">'D'</span>:</span><br><span class="line">                    <span class="keyword">return</span> <span class="number">500</span>;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">case</span> <span class="string">'M'</span>:</span><br><span class="line">                    <span class="keyword">return</span> <span class="number">1000</span>;</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">default</span>:</span><br><span class="line">                    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>We just need to get right number what each character meaning for. And judge the next character implies whether larger than the current character, then we can get it.</p>
+<blockquote>
+<p>Reference<br><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvcm9tYW4tdG8taW50ZWdlcg==">https://leetcode-cn.com/problems/roman-to-integer<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -555,186 +722,10 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/notebook/final/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/notebook/final/" class="post-title-link" itemprop="url">dev/notebook/final</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 03-11-2020 21:50:04" itemprop="dateCreated datePublished" datetime="2020-03-11T21:50:04+08:00">03-11-2020</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 03-12-2020 00:10:48" itemprop="dateModified" datetime="2020-03-12T00:10:48+08:00">03-12-2020</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Final-理解"><a href="#Final-理解" class="headerlink" title="Final 理解"></a>Final 理解</h1><h2 id="一．Final-修饰成员变量的注意事项"><a href="#一．Final-修饰成员变量的注意事项" class="headerlink" title="一．Final 修饰成员变量的注意事项"></a>一．Final 修饰成员变量的注意事项</h2><p>final修饰成员变量，该成员变量必须在创建对象之前进行赋值，否则编译失败<br>final修饰成员变量，固定的不是成员变量拥有的默认值，如果固定的是默认值，那么将导致被final修饰的成员变量的值永远无法修改，只能是默认值，这也不符合语法规则  </p>
-<p>成员变量的赋值有三种实现方式：</p>
-<ul>
-<li>定义成员变量的时候手动赋值</li>
-<li>利用构造器对成员变量进行赋值</li>
-<li>利用set函数进行赋值（也即利用一般的方法进行赋值）</li>
-</ul>
-<p><strong>注意</strong><br>被final修饰的成员变量，只能拥有3中所描述的赋值方法的1，2。3为什么不行？</p>
-<p>解释：如1所描述，被final修饰的成员变量必须在对象创建之前进行赋值，如果方法3可以，那么我们知道对象创建后，才能调用方法3，也就是说成员变量利用方法3进行赋值，会导致成员变量的赋值发生在对象创建之后</p>
-<h2 id="二-为什么被Final修饰的成员变量必须在对象创建之前进行赋值？"><a href="#二-为什么被Final修饰的成员变量必须在对象创建之前进行赋值？" class="headerlink" title="二. 为什么被Final修饰的成员变量必须在对象创建之前进行赋值？"></a>二. 为什么被Final修饰的成员变量必须在对象创建之前进行赋值？</h2><p>理解：<br>被final关键字修饰的东西有一个特点，那就是一旦被修饰，那么它的值也就终生不变，可见final关键字起到了固定的作用，既然起到固定那么，你就要提前告诉final固定的是谁，如果允许被final修饰的成员变量赋值发生在对象创建之后，那么对象创建完成后final固定的值还是未可知的</p>
-<h2 id="三-final修饰成员变量和final修饰局部变量的区别与联系："><a href="#三-final修饰成员变量和final修饰局部变量的区别与联系：" class="headerlink" title="三. final修饰成员变量和final修饰局部变量的区别与联系："></a>三. final修饰成员变量和final修饰局部变量的区别与联系：</h2><ol>
-<li>被final修饰的成员变量与局部变量均具有：一旦赋值，该值就终身不变</li>
-<li>被final修饰的成员变量必须要在创建对象之前进行赋值，否则会编译失败，但是局部变量可以不赋值，但是没有被赋值的局部变量不能够被使用，一旦被使用就会编译失败</li>
-<li>综上：一旦决定使用final关键字来修饰成员变量或者局部变量，一定要做到提前赋值</li>
-</ol>
-<h2 id="四．Final修饰成员方法："><a href="#四．Final修饰成员方法：" class="headerlink" title="四．Final修饰成员方法："></a>四．Final修饰成员方法：</h2><ol>
-<li>final修饰成员方法，该成员方法就不能被子类重写，但是仍然可以被子类继承并可以通过子类对象调用该方法</li>
-</ol>
-<h2 id="五．Final修饰类"><a href="#五．Final修饰类" class="headerlink" title="五．Final修饰类"></a>五．Final修饰类</h2><p>1.final修饰类，该类便不能被其他类继承，但是该类仍然能够创建对象，并且，可以利用该对象调用该类的成员变量或者成员方法</p>
-<h2 id="六．Final使用范围："><a href="#六．Final使用范围：" class="headerlink" title="六．Final使用范围："></a>六．Final使用范围：</h2><p>Final关键字可以修饰类，类的成员变量，类的成员方法，成员方法的局部变量，等等，</p>
-<p>但是final关键字不能用来修饰构造方法？<br>理解：<br>final修饰普通方法，将导致子类无法重写该方法，而构造方法本身就不能够被子类重写，故如果用final修饰，如同多此一举</p>
-<blockquote>
-<p>Reference<br><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3hpY2hlbmdmZW5neXVsb3UvYXJ0aWNsZS9kZXRhaWxzLzgxMTU1Mjkw">https://blog.csdn.net/xichengfengyulou/article/details/81155290<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/leetcode/removeend/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/leetcode/removeend/" class="post-title-link" itemprop="url">dev/leetcode/removeend</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 03-11-2020 21:10:04 / Modified: 21:19:54" itemprop="dateCreated datePublished" datetime="2020-03-11T21:10:04+08:00">03-11-2020</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Remove-Nth-Node-From-End-of-List"><a href="#Remove-Nth-Node-From-End-of-List" class="headerlink" title="Remove Nth Node From End of List"></a>Remove Nth Node From End of List</h1><p>Given a linked list, remove the n-th node from the end of list and return its head.</p>
-<p><strong>Example</strong>:</p>
-<p>Given linked list: 1-&gt;2-&gt;3-&gt;4-&gt;5, and n = 2.</p>
-<p>After removing the second node from the end, the linked list becomes 1-&gt;2-&gt;3-&gt;5.</p>
-<p><strong>Note</strong>:</p>
-<p>Given n will always be valid.</p>
-<p><strong>Solution One</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">removeNthFromEnd</span><span class="params">(ListNode head, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        ListNode p = head;</span><br><span class="line">        ListNode temp = head;</span><br><span class="line">        <span class="keyword">int</span> len = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (p == <span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (p.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">            len++;</span><br><span class="line">            p = p.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> loc = len - n;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (loc == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> head.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; loc; i++) &#123;</span><br><span class="line">            temp = temp.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        temp.next = temp.next.next;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Pass one time and get the length of LinkedList, so just count <code>length - n - 1</code> times we can find the pre pointer. All we need to do is point pre pointer.next equal the next of which pointer we should delete.</p>
-<p><strong>Solution Two</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">removeNthFromEnd</span><span class="params">(ListNode head, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        List&lt;ListNode&gt; stack = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        ListNode temp = head;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (temp != <span class="keyword">null</span>) &#123;</span><br><span class="line">            stack.add(temp);</span><br><span class="line">            temp = temp.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        ListNode[] list = stack.toArray(<span class="keyword">new</span> ListNode[stack.size()]);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> ((list.length - n - <span class="number">1</span>) &lt; <span class="number">0</span>) <span class="keyword">return</span> head.next;</span><br><span class="line"></span><br><span class="line">        list[list.length - n - <span class="number">1</span>].next = list[list.length - n].next;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Just let the List structure give a help, we can transfer a <code>LinkedList</code> to an <code>Array</code>. So all we need to do is let <code>list[list.length - n - 1].next</code> equals <code>list[list.length - n].next</code>. </p>
-<p>Base case: if delete the head node we just need to return <code>head.next</code>.</p>
-<blockquote>
-<p>Reference<br><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvcmVtb3ZlLW50aC1ub2RlLWZyb20tZW5kLW9mLWxpc3Q=">https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/49/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/49/">49</a><span class="page-number current">50</span><a class="page-number" href="/page/51/">51</a><span class="space">&hellip;</span><a class="page-number" href="/page/53/">53</a><a class="extend next" rel="next" href="/page/51/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/49/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/49/">49</a><span class="page-number current">50</span><a class="page-number" href="/page/51/">51</a><span class="space">&hellip;</span><a class="page-number" href="/page/54/">54</a><a class="extend next" rel="next" href="/page/51/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
