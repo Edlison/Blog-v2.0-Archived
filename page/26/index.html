@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">268</span>
+          <span class="site-state-item-count">270</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -216,7 +216,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">130</span>
+        <span class="site-state-item-count">131</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -256,6 +256,230 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/coin/crypto/consensus/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/coin/crypto/consensus/" class="post-title-link" itemprop="url">共识机制</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 02-22-2021 19:03:56 / Modified: 22:55:06" itemprop="dateCreated datePublished" datetime="2021-02-22T19:03:56+08:00">02-22-2021</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p>共识机制(Consensus Mechanism)，是一种确定某种共识的方式。</p>
+<p>区块链的本质是去中心化，去中心化的核心是共识机制，这决定了区块链的运作方式。如果所有人都信任这种方式，那也就会信任之于它上的服务。</p>
+<h1 id="POW"><a href="#POW" class="headerlink" title="POW"></a>POW</h1><p>工作量证明机制(Proof of Work)。</p>
+<p>谁先计算出下一个区块就归谁。没有计算出来的只能归零，重新计算。</p>
+<h1 id="POS"><a href="#POS" class="headerlink" title="POS"></a>POS</h1><p>权益证明机制(Proof of Stake)。</p>
+<p>通过持有的Token数量和时长来决定获得记账的几率。</p>
+<h1 id="PBFT"><a href="#PBFT" class="headerlink" title="PBFT"></a>PBFT</h1><p>拜占庭共识算法(Practical Byzantine Fault Tolerance)。</p>
+<p>以计算为基础，但是没有Token奖励，由链上所有人参与投票，少于(N-1)/3个节点反对就获得公示信息的权利。</p>
+<h1 id="POA"><a href="#POA" class="headerlink" title="POA"></a>POA</h1><p>Proof of Activity = POW+POS</p>
+<p>所有活跃的节点进行计算，找到满足条件的区块后对所有的活跃节点进行广播验证。在所有活跃节点中选出N个节点，他们共同决定？</p>
+<h1 id="DPOS"><a href="#DPOS" class="headerlink" title="DPOS"></a>DPOS</h1><p>委托权益证明机制(Delegated Proof of Stake)。</p>
+<p>类似于董事会投票，拥有Token的人投票给固定的节点，选取代理人，代理人负责验证和记账。</p>
+<h1 id="Pool"><a href="#Pool" class="headerlink" title="Pool"></a>Pool</h1><p>验证池共识机制。</p>
+<p>传统的分布式一致性技术，加上数据验证的机制。</p>
+<h1 id="硬分叉与软分叉"><a href="#硬分叉与软分叉" class="headerlink" title="硬分叉与软分叉"></a>硬分叉与软分叉</h1><p>分叉就是在原有的链条上出现了无法达成共识的部分。</p>
+<p><strong>硬分叉</strong>是指区块链发生永久性分歧，在新共识规则发布之后，部分没有升级的节点无法验证已经升级的节点生产的区块，已经升级的节点可以验证，<strong>大家各自延续自己认为正确的链</strong>，分成了两条链。</p>
+<p><strong>软分叉</strong>是指在新共识发布后，没有升级的节点因为不知道新共识的规则，而产生不合法的区块，就会产生临时性的分叉。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>每一种共识机制都不能同时满足<strong>安全</strong>，<strong>效率</strong>。</p>
+<p>去中心化程度越低，安全性越低，速度越快。</p>
+<p>去中心化程度越高，安全性越高，速度越慢。</p>
+<hr>
+<p>Reference</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3F1ZXN0aW9uLzM1MTEwMzQzMw==">https://www.zhihu.com/question/351103433<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/coin/crypto/blockchain/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/coin/crypto/blockchain/" class="post-title-link" itemprop="url">区块链技术</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 02-22-2021 18:43:55 / Modified: 19:27:15" itemprop="dateCreated datePublished" datetime="2021-02-22T18:43:55+08:00">02-22-2021</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="对区块链技术新的理解"><a href="#对区块链技术新的理解" class="headerlink" title="对区块链技术新的理解"></a>对区块链技术新的理解</h1><p>底层技术目前都是一样的，通过chain将block连起来，通过代码确定<strong>共识机制</strong>，采取分布式的策略达到不可篡改性。</p>
+<p>目前感觉技术上有很大不同的是有两个代表。<strong>比特币</strong>与<strong>以太坊</strong>。</p>
+<h1 id="比特币与以太坊对比"><a href="#比特币与以太坊对比" class="headerlink" title="比特币与以太坊对比"></a>比特币与以太坊对比</h1><h2 id="比特币"><a href="#比特币" class="headerlink" title="比特币"></a>比特币</h2><h3 id="交易"><a href="#交易" class="headerlink" title="交易"></a>交易</h3><p>比特币的职能只有一个，<strong>传递价值并存储价值</strong>。</p>
+<p>其交易过程为：</p>
+<ul>
+<li>TO: 发给谁</li>
+<li>FROM: 谁发送的</li>
+<li>AMOUNT: 发送的数量</li>
+</ul>
+<h2 id="以太坊"><a href="#以太坊" class="headerlink" title="以太坊"></a>以太坊</h2><h3 id="交易-1"><a href="#交易-1" class="headerlink" title="交易"></a>交易</h3><p>以太坊最大的不同在于它在交易的时候还有一个<code>DATA</code>字段。</p>
+<ol>
+<li>传递价值（与比特币相同）</li>
+</ol>
+<ul>
+<li><ul>
+<li>TO: 发送给谁</li>
+<li>FROM: 谁发送的</li>
+<li>AMOUNT: 发送的数量</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li>创建合约</li>
+</ol>
+<ul>
+<li><ul>
+<li>TO: nil(空白为触发创建智能合约)</li>
+<li>FROM: 谁创建的</li>
+<li>AMOUNT: 可以是0或是任意数量的以太币，它是我们想要给合约的存款。</li>
+<li>DATA: 包含编译为字节码的智能合约代码</li>
+</ul>
+</li>
+</ul>
+<ol start="3">
+<li>调用合约函数</li>
+</ol>
+<ul>
+<li><ul>
+<li>TO: 目标合约账户地址</li>
+<li>FROM: 谁调用的</li>
+<li>AMOUNT: 可以是零或是任意数量的以太币，例如<strong>可以支付合约服务费用</strong>。</li>
+<li>DATA: 包含函数名和参数（标识如何调用智能合约函数）</li>
+</ul>
+</li>
+</ul>
+<p><strong>理解</strong>：每次进行代币（Token）交易的时候都会<strong>对合约进行请求</strong>，比如交易时的费用等。</p>
+<p><strong>问题</strong>：超发，被盗等操作如何实现？</p>
+<h3 id="智能合约"><a href="#智能合约" class="headerlink" title="智能合约"></a>智能合约</h3><p>由于ETH最大的区别在于可以传<code>DATA</code>, 因此<strong>衍生出来了一个智能合约的概念</strong>。</p>
+<p><strong>其本质就是可以在区块链上运行代码。</strong></p>
+<h4 id="用户账户"><a href="#用户账户" class="headerlink" title="用户账户"></a>用户账户</h4><ul>
+<li>地址</li>
+<li>余额</li>
+</ul>
+<p>该余额就是用户的钱。</p>
+<h4 id="合约账户"><a href="#合约账户" class="headerlink" title="合约账户"></a>合约账户</h4><ul>
+<li>地址</li>
+<li>余额</li>
+<li>状态</li>
+<li>代码</li>
+</ul>
+<p>合约账户也拥有<strong>余额</strong>，意味着一个<strong>实例化出来的合约对象</strong>可以<strong>通过代码管理余额</strong>，如果代码有问题，则会产生错误。</p>
+<p>合约账户的<strong>状态</strong>是只能合约中生声明的所有变量和变量的当前状态，<strong>就如同实例化的一个对象中的变量</strong>。这个对象将永远存在区块链网络中，除非程序自毁。</p>
+<p>合约账户的<strong>代码</strong>是编译后可以在客户端和节点可以运行的字节码，它在<strong>合约创建时实例化</strong>。</p>
+<p>智能合约是<strong>图灵完备</strong>的，理论上可以做任何事情。</p>
+<h3 id="GAS"><a href="#GAS" class="headerlink" title="GAS"></a>GAS</h3><p>在链上的操作（转账，合约的部署，合约的执行）都是需要占用资源的，这个GAS将被付给矿工。</p>
+<p>GAS可以自己设定，出价越高被执行的就越快。</p>
+<h1 id="理解"><a href="#理解" class="headerlink" title="理解"></a>理解</h1><p>区块存储任何东西</p>
+<p>账户可以用<strong>地址</strong>表示，交易可以用<strong>地址</strong>表示，合约账户内的代码等都可以用<strong>地址</strong>表示。</p>
+<hr>
+<p>Reference</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9sZWFybmJsb2NrY2hhaW4uY24vMjAxOC8wMS8wNC91bmRlcnN0YW5kaW5nLXNtYXJ0LWNvbnRyYWN0cw==">https://learnblockchain.cn/2018/01/04/understanding-smart-contracts<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -502,198 +726,6 @@
 <hr>
 <p>Reference</p>
 <p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Rzc19kc3Nzc2QvYXJ0aWNsZS9kZXRhaWxzLzg5NDA5MTgz">https://blog.csdn.net/dss_dssssd/article/details/89409183<i class="fa fa-external-link-alt"></i></span></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/notebook/live-bilibili/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/notebook/live-bilibili/" class="post-title-link" itemprop="url">Bilibili直播</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 02-21-2021 14:53:46 / Modified: 15:02:36" itemprop="dateCreated datePublished" datetime="2021-02-21T14:53:46+08:00">02-21-2021</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="OBS推流的设置"><a href="#OBS推流的设置" class="headerlink" title="OBS推流的设置"></a>OBS推流的设置</h1><h2 id="推流"><a href="#推流" class="headerlink" title="推流"></a>推流</h2><p>开始直播后把B站给的Server和StreamKey配置到OBS中。</p>
-<h2 id="音频设置"><a href="#音频设置" class="headerlink" title="音频设置"></a>音频设置</h2><p>播放电脑内部声音。</p>
-<ol>
-<li>下载Sound Flower捕捉电脑桌面的声音。</li>
-<li>设置MIDI，创建多输出。</li>
-<li>在OBS里设置音频输出就可以了。</li>
-</ol>
-<h1 id="自习室的一些东西"><a href="#自习室的一些东西" class="headerlink" title="自习室的一些东西"></a>自习室的一些东西</h1><h2 id="Video"><a href="#Video" class="headerlink" title="Video"></a>Video</h2><p>录制好的视频可以通过AE的Mocha特效变成卡通风格～</p>
-<h2 id="Audio"><a href="#Audio" class="headerlink" title="Audio"></a>Audio</h2><p>Chill &amp; Lofi Beats</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/notebook/ce-start/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/notebook/ce-start/" class="post-title-link" itemprop="url">Cheat Engine 入门</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 02-17-2021 13:44:06 / Modified: 15:23:13" itemprop="dateCreated datePublished" datetime="2021-02-17T13:44:06+08:00">02-17-2021</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>Cheat Engine通过修改内存的方式对应用程序进行修改。</p>
-<p>能够实现简单的逆向工程。</p>
-<h2 id="查找内存地址并修改值"><a href="#查找内存地址并修改值" class="headerlink" title="查找内存地址并修改值"></a>查找内存地址并修改值</h2><ol>
-<li>初始查找</li>
-</ol>
-<p>可以使用精确查找(exact)，比大小(bigger smaller)，间值(between)，未知(unknown)这几种方法。</p>
-<ol start="2">
-<li>进一步筛选</li>
-</ol>
-<p>可以使用精确，大于，小于，增减的具体值等等。</p>
-<p>通过不断筛选，可以得到我们需要的内存地址。</p>
-<ol start="3">
-<li>修改值</li>
-</ol>
-<p>对内存地址位置的值进行修改就可以了</p>
-<p><strong>注意</strong></p>
-<ul>
-<li>绿色的是基址，黑色的是动态地址。</li>
-<li>win程序中的变量一般都是4个字节。</li>
-</ul>
-<h2 id="代码替换"><a href="#代码替换" class="headerlink" title="代码替换"></a>代码替换</h2><p>首先找到内存地址。</p>
-<p><code>find out what writes to this address</code>找到改写这个地址的代码。直接点击<code>replace</code>就会将该条汇编代码用<code>nop</code>覆盖掉。</p>
-<h2 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h2><h3 id="多级指针"><a href="#多级指针" class="headerlink" title="多级指针"></a>多级指针</h3><p>先查找是什么访问了这个地址(代码)，再查找是什么访问了这个地址(寄存器)。</p>
-<p>一步一步找到最开始的<strong>基址</strong>。手动添加一个地址，在基址的基础上按照指针的顺序，依次可以找到需要改变的地址。</p>
-<h2 id="反汇编"><a href="#反汇编" class="headerlink" title="反汇编"></a>反汇编</h2><p>找到改写地址值的代码，显示反汇编程序。</p>
-<ul>
-<li>从模版导入CT表框架代码</li>
-<li>代码注入</li>
-<li>更改源码</li>
-<li>保存当前脚本</li>
-</ul>
-<h2 id="共享代码"><a href="#共享代码" class="headerlink" title="共享代码"></a>共享代码</h2><p>一个对象的所有实例的表结构都是一样的。因此获取实例的内存位置，可以看到该实例的其他属性。比如敌人，队友等。通过这个判断，加入到注入代码中，就可以实现对队友和敌人分开操作。</p>
-<hr>
-<p>Reference</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9jbmJsb2dzLmNvbS9MeVNoYXJr">https://cnblogs.com/LyShark<i class="fa fa-external-link-alt"></i></span></p>
 
       
     </div>

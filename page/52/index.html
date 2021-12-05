@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">268</span>
+          <span class="site-state-item-count">270</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -216,7 +216,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">130</span>
+        <span class="site-state-item-count">131</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -256,6 +256,155 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/leetcode/addtwolist/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/leetcode/addtwolist/" class="post-title-link" itemprop="url">dev/leetcode/addtwolist</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 03-10-2020 22:29:31 / Modified: 22:34:50" itemprop="dateCreated datePublished" datetime="2020-03-10T22:29:31+08:00">03-10-2020</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="两数相加"><a href="#两数相加" class="headerlink" title="两数相加"></a>两数相加</h1><p>给出两个 非空 的链表用来表示两个非负的整数。其中，它们各自的位数是按照 逆序 的方式存储的，并且它们的每个节点只能存储 一位 数字。</p>
+<p>如果，我们将这两个数相加起来，则会返回一个新的链表来表示它们的和。</p>
+<p>您可以假设除了数字 0 之外，这两个数都不会以 0 开头。</p>
+<p><strong>示例：</strong></p>
+<p>输入：(2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)<br>输出：7 -&gt; 0 -&gt; 8<br>原因：342 + 465 = 807</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">addTwoNumbers</span><span class="params">(ListNode l1, ListNode l2)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">        ListNode head = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">        ListNode p = head;</span><br><span class="line">        ListNode pre = p;</span><br><span class="line">        <span class="keyword">int</span> temp;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (l1.next != <span class="keyword">null</span> &amp;&amp; l2.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">            temp = l1.val + l2.val;</span><br><span class="line">            <span class="keyword">if</span> (p.val + temp &lt; <span class="number">10</span>) &#123;</span><br><span class="line">                p.val += temp;</span><br><span class="line">                p.next = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">                p = p.next; l1 = l1.next; l2 = l2.next;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                p.val = (p.val + temp) % <span class="number">10</span>;</span><br><span class="line">                p.next = <span class="keyword">new</span> ListNode(<span class="number">1</span>);</span><br><span class="line">                p = p.next; l1 = l1.next; l2 = l2.next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        temp = l1.val + l2.val;</span><br><span class="line">        <span class="keyword">if</span> (p.val + temp &lt; <span class="number">10</span>) &#123;</span><br><span class="line">            p.val += temp;</span><br><span class="line">            p.next = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">            pre = p;</span><br><span class="line">            p = p.next;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            p.val = (p.val + temp) % <span class="number">10</span>;</span><br><span class="line">            p.next = <span class="keyword">new</span> ListNode(<span class="number">1</span>);</span><br><span class="line">            p = p.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (l1.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">            l1 = l1.next;</span><br><span class="line">            <span class="keyword">if</span> (p.val + l1.val &lt; <span class="number">10</span>) &#123;</span><br><span class="line">                p.val += l1.val;</span><br><span class="line">                p.next = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">                pre = p;</span><br><span class="line">                p = p.next;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                p.val = (p.val + l1.val) % <span class="number">10</span>;</span><br><span class="line">                p.next = <span class="keyword">new</span> ListNode(<span class="number">1</span>);</span><br><span class="line">                p = p.next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (l2.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">            l2 = l2.next;</span><br><span class="line">            <span class="keyword">if</span> (p.val + l2.val &lt; <span class="number">10</span>) &#123;</span><br><span class="line">                p.val += l2.val;</span><br><span class="line">                p.next = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">                pre = p;</span><br><span class="line">                p = p.next;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                p.val = (p.val + l2.val) % <span class="number">10</span>;</span><br><span class="line">                p.next = <span class="keyword">new</span> ListNode(<span class="number">1</span>);</span><br><span class="line">                p = p.next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (p.val == <span class="number">0</span>) &#123;</span><br><span class="line">            pre.next = <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">执行用时 :3 ms, 在所有 Java 提交中击败了39.78%的用户</span></span><br><span class="line"><span class="comment">内存消耗 :41.1 MB, 在所有 Java 提交中击败了92.22%的用户</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Reference<br><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvYWRkLXR3by1udW1iZXJz">https://leetcode-cn.com/problems/add-two-numbers<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/leetcode/hascycle/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/leetcode/hascycle/" class="post-title-link" itemprop="url">dev/leetcode/hascycle</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 03-09-2020 17:56:40 / Modified: 18:03:33" itemprop="dateCreated datePublished" datetime="2020-03-09T17:56:40+08:00">03-09-2020</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="环形链表"><a href="#环形链表" class="headerlink" title="环形链表"></a>环形链表</h1><p>给定一个链表，判断链表中是否有环。</p>
+<p>为了表示给定链表中的环，我们使用整数 pos 来表示链表尾连接到链表中的位置（索引从 0 开始）。 如果 pos 是 -1，则在该链表中没有环。</p>
+<p><strong>示例 1：</strong></p>
+<p>输入：head = [3,2,0,-4], pos = 1<br>输出：true<br>解释：链表中有一个环，其尾部连接到第二个节点。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasCycle</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        Set&lt;ListNode&gt; container = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (head != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (container.contains(head)) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            container.add(head);</span><br><span class="line">            head = head.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="../static/img/container.jpeg" alt="img"><br>Put each <code>ListNode</code> pointer into the <code>Set</code> container.<br>Because every pointer is unique, we just to judge if there’s a pointer’s address we scan has already contained in <code>Set</code>.  </p>
+<blockquote>
+<p>Reference<br><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvbGlua2VkLWxpc3QtY3ljbGU=">https://leetcode-cn.com/problems/linked-list-cycle<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -485,187 +634,6 @@
 <p><strong>This is a nice solution to have a head pointer, which means we haven’t to modified current <code>temp.val</code> and register a new object on the <code>temp.next</code>. Also we needn’t to care whether <code>l1</code> or <code>l2</code> is <code>null</code></strong></p>
 <blockquote>
 <p>Reference<br><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvbWVyZ2UtdHdvLXNvcnRlZC1saXN0cw==">https://leetcode-cn.com/problems/merge-two-sorted-lists<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/leetcode/buystock/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/leetcode/buystock/" class="post-title-link" itemprop="url">dev/leetcode/buystock</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 03-06-2020 21:56:34 / Modified: 22:25:58" itemprop="dateCreated datePublished" datetime="2020-03-06T21:56:34+08:00">03-06-2020</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="买卖股票的最佳时机"><a href="#买卖股票的最佳时机" class="headerlink" title="买卖股票的最佳时机"></a>买卖股票的最佳时机</h1><p>给定一个数组，它的第 i 个元素是一支给定的股票在第 i 天的价格。</p>
-<p>设计一个算法来计算你所能获取的最大利润。你最多可以完成 两笔 交易。</p>
-<p>注意: 你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。</p>
-<p><strong>示例 1:</strong></p>
-<p>输入: [3,3,5,0,0,3,1,4]<br>输出: 6<br>解释: 在第 4 天（股票价格 = 0）的时候买入，在第 6 天（股票价格 = 3）的时候卖出，这笔交易所能获得利润 = 3-0 = 3 。<br>     随后，在第 7 天（股票价格 = 1）的时候买入，在第 8 天 （股票价格 = 4）的时候卖出，这笔交易所能获得利润 = 4-1 = 3 。</p>
-<p><strong>示例 2:</strong></p>
-<p>输入: [1,2,3,4,5]<br>输出: 4<br>解释: 在第 1 天（股票价格 = 1）的时候买入，在第 5 天 （股票价格 = 5）的时候卖出, 这笔交易所能获得利润 = 5-1 = 4 。<br>     注意你不能在第 1 天和第 2 天接连购买股票，之后再将它们卖出。<br>     因为这样属于同时参与了多笔交易，你必须在再次购买前出售掉之前的股票。</p>
-<p><strong>示例 3:</strong></p>
-<p>输入: [7,6,4,3,1]<br>输出: 0<br>解释: 在这个情况下, 没有交易完成, 所以最大利润为 0。 </p>
-<p>动态规划<br>涉及到多个状态 首先画出状态图</p>
-<p><img src="~/../../static/img/1.png" alt="Image"><br>我们控制其中三个状态</p>
-<ul>
-<li>天数</li>
-<li>购买次数</li>
-<li>当前股票状态（0为未持有；1为持有）</li>
-</ul>
-<p>以无限次购买股票为例</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">int</span> n = prices.length;</span><br><span class="line">    <span class="keyword">int</span> dp_0 = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> dp_1 = Integer.MIN_VALUE;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        dp_0 = Math.max(dp_0, dp_1 + prices[i]);</span><br><span class="line">        dp_1 = Math.max(dp_1, dp_0 - prices[i]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> dp_0;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">执行用时 :3 ms, 在所有 Java 提交中击败了10.65%的用户</span></span><br><span class="line"><span class="comment">内存消耗 :42.3 MB, 在所有 Java 提交中击败了5.01%的用户</span></span><br><span class="line"><span class="comment">本题可以不必使用DP以达到更快的速度</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-<p>该例中由于无限次购买可以省略购买次数<br>dp_0的含义为：当前未持有股票<br>其只能由dp_0保持不变或dp_1出售得来选取最大值  </p>
-<p>其中base case（最简单的情况）的赋值：</p>
-<ul>
-<li>一开始未持有的状态为0；</li>
-<li>一开始持有的状态不可能存在故赋值最小值  </li>
-</ul>
-<p>在该题中</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">int</span> n = prices.length;</span><br><span class="line">    <span class="keyword">int</span> dp_2_0 = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> dp_2_1 = Integer.MIN_VALUE;</span><br><span class="line">    <span class="keyword">int</span> dp_1_0 = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> dp_1_1 = Integer.MIN_VALUE;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        dp_1_1 = Math.max(dp_1_1, - prices[i]);     <span class="comment">// !!! - prices[i]</span></span><br><span class="line">        dp_1_0 = Math.max(dp_1_0, dp_1_1 + prices[i]);</span><br><span class="line">        dp_2_1 = Math.max(dp_2_1, dp_1_0 - prices[i]);</span><br><span class="line">        dp_2_0 = Math.max(dp_2_0, dp_2_1 + prices[i]);</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> dp_2_0;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">执行用时 :3 ms, 在所有 Java 提交中击败了82.59%的用户</span></span><br><span class="line"><span class="comment">内存消耗 :41.9 MB, 在所有 Java 提交中击败了23.33%的用户</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">`</span><br></pre></td></tr></table></figure>
-<p>由于是第二次售出</p>
-<p><strong>注意</strong></p>
-<ul>
-<li><strong>第一次直接持有的状态只能是购入股票故其只能从<code>(dp_1_1, - prices[i])</code>中选取最大值</strong></li>
-<li><strong>第二次持有因为状态转移只能从第一次未持有转移来故其从<code>(dp_2_1, dp_1_0)</code>中选取最大值</strong></li>
-</ul>
-<p>base case（最简单的情况）的赋值：  </p>
-<ul>
-<li>第一次未持有的状态金额肯定为0；  </li>
-<li>第一次持有的状态不存在故赋值<code>MIN_VALUE</code>；  </li>
-<li>第二次未持有的状态赋值0；  </li>
-<li>第二次持有的状态因为不可能直接持有故赋值<code>MIN_VALUE</code>  </li>
-</ul>
-<blockquote>
-<p>Reference<br><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvYmVzdC10aW1lLXRvLWJ1eS1hbmQtc2VsbC1zdG9jay1paQ==">https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvYmVzdC10aW1lLXRvLWJ1eS1hbmQtc2VsbC1zdG9jay1paWk=">https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iii<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/leetcode/mostclose/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/leetcode/mostclose/" class="post-title-link" itemprop="url">dev/leetcode/mostclose</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 03-05-2020 22:04:46 / Modified: 22:14:44" itemprop="dateCreated datePublished" datetime="2020-03-05T22:04:46+08:00">03-05-2020</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="最接近的三数之和"><a href="#最接近的三数之和" class="headerlink" title="最接近的三数之和"></a>最接近的三数之和</h1><p>给定一个包括 n 个整数的数组 nums 和 一个目标值 target。找出 nums 中的三个整数，使得它们的和与 target 最接近。返回这三个数的和。假定每组输入只存在唯一答案。</p>
-<p><strong>例如</strong></p>
-<p>给定数组 nums = [-1，2，1，-4], 和 target = 1.<br>与 target 最接近的三个数的和为 2. (-1 + 2 + 1 = 2).</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">threeSumClosest</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> temp = nums[<span class="number">0</span>] + nums[<span class="number">1</span>] + nums[<span class="number">2</span>];</span><br><span class="line">        <span class="keyword">int</span> res = temp;</span><br><span class="line">        <span class="keyword">int</span> min = Math.abs(temp - target);</span><br><span class="line">        <span class="keyword">int</span> tempMin;</span><br><span class="line">        Arrays.sort(nums);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length - <span class="number">2</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> left = i + <span class="number">1</span>, right = nums.length - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">while</span> (left &lt; right) &#123;</span><br><span class="line">                temp = nums[i] + nums[left] + nums[right];</span><br><span class="line">                tempMin = Math.abs(temp - target);</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (tempMin &lt; min) &#123;</span><br><span class="line">                    min = tempMin;</span><br><span class="line">                    res = temp;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (temp &lt; target) &#123;</span><br><span class="line">                    left++;</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (temp &gt; target) &#123;</span><br><span class="line">                    right--;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">return</span> target;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">执行用时 :5 ms, 在所有 Java 提交中击败了95.39%的用户</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-
-<p>数组首先排序，循环n次，左右指针在<code>i ~ nums.length - 1</code>范围内移动，判定<code>left</code>&lt;<code>right</code>.<br><code>min</code>用来存储最小差值，当有三数之和与<code>target</code>小于该值便将其赋值给<code>res</code>.</p>
-<blockquote>
-<p>Reference<br><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvM3N1bS1jbG9zZXN0">https://leetcode-cn.com/problems/3sum-closest<i class="fa fa-external-link-alt"></i></span></p>
 </blockquote>
 
       
