@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">270</span>
+          <span class="site-state-item-count">273</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -216,7 +216,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">131</span>
+        <span class="site-state-item-count">132</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -256,6 +256,244 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/paper_experiment/thoughts/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/academia/paper_experiment/thoughts/" class="post-title-link" itemprop="url">ClusterGAN训练的一些思考</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 05-12-2021 16:11:27" itemprop="dateCreated datePublished" datetime="2021-05-12T16:11:27+08:00">05-12-2021</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 06-08-2021 15:04:54" itemprop="dateModified" datetime="2021-06-08T15:04:54+08:00">06-08-2021</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>GAN太难训练，经常遇到先收敛后发散的情况。</p>
+<h1 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h1><p>数据类别不平衡的问题可能会导致encoder效果不佳的状况</p>
+<h1 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h1><p>注意分<strong>连续数据</strong>与<strong>离散数据</strong>。</p>
+<p>连续数据注意<strong>归一化</strong></p>
+<p>离散数据处理成<strong>one_hot</strong></p>
+<p>图像一定要归一化！！！</p>
+<h1 id="网络设计"><a href="#网络设计" class="headerlink" title="网络设计"></a>网络设计</h1><p>归一化后的数据要与选择的<strong>激活函数相对应</strong></p>
+<p>离散数据最后一层改成<strong>softmax</strong></p>
+<h1 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h1><p>Discriminator可以设定clamp防止训练发散</p>
+<h1 id="超参数"><a href="#超参数" class="headerlink" title="超参数"></a>超参数</h1><p>batch_size 大概能将整个数据集分成20个iter左右</p>
+<p>beta 对于联合loss训练的注意设置倍数 来<strong>弱化或增强</strong>某个loss组成</p>
+<h1 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h1><p>查看效果的时候注意记录各个参数下的结果</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/paper_experiment/logits/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/academia/paper_experiment/logits/" class="post-title-link" itemprop="url">logits的含义</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 05-11-2021 20:03:48 / Modified: 20:07:18" itemprop="dateCreated datePublished" datetime="2021-05-11T20:03:48+08:00">05-11-2021</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>logits一般是全连接层的输出，不必关心其值在[0, 1]之间，或者相加为1。</p>
+<p>但是logits经过Softmax层后又很容易变为表示概率的值。</p>
+<hr>
+<p>Reference</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3F1ZXN0aW9uLzYwNzUxNTUz">https://www.zhihu.com/question/60751553<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/life/toefl/toefl-conn/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/life/toefl/toefl-conn/" class="post-title-link" itemprop="url">TOEFL - 句子和连词的关系</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 04-15-2021 21:51:47 / Modified: 21:53:31" itemprop="dateCreated datePublished" datetime="2021-04-15T21:51:47+08:00">04-15-2021</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="英语中句子与连词的关系"><a href="#英语中句子与连词的关系" class="headerlink" title="英语中句子与连词的关系"></a>英语中句子与连词的关系</h1><p>不能有because… so… 的情况出现</p>
+<p><strong>本质是</strong> 句子个数 &gt;= 连词个数 + 1</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -419,247 +657,10 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/linux/linux-port/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/linux/linux-port/" class="post-title-link" itemprop="url">Linux 端口</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 04-07-2021 09:31:23 / Modified: 09:31:52" itemprop="dateCreated datePublished" datetime="2021-04-07T09:31:23+08:00">04-07-2021</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/linux/linux-firewall/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/linux/linux-firewall/" class="post-title-link" itemprop="url">RedHat 防火墙</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 04-07-2021 08:58:58 / Modified: 09:13:44" itemprop="dateCreated datePublished" datetime="2021-04-07T08:58:58+08:00">04-07-2021</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="查看状态"><a href="#查看状态" class="headerlink" title="查看状态"></a>查看状态</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl status firewalld</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>开启防火墙</li>
-<li>开机启动</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl start firewalld</span><br><span class="line">systemctl enable firewalld</span><br></pre></td></tr></table></figure>
-
-<h1 id="端口设置"><a href="#端口设置" class="headerlink" title="端口设置"></a>端口设置</h1><p>查看端口状态</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --zone=public --list-ports</span><br></pre></td></tr></table></figure>
-
-<h2 id="开放端口"><a href="#开放端口" class="headerlink" title="开放端口"></a>开放端口</h2><p>开启22端口</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --zone=public --add-port=22/tcp --permanent</span><br></pre></td></tr></table></figure>
-
-<p>批量开放</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --zone=public --add-port=100-500/tcp --permanent</span><br></pre></td></tr></table></figure>
-
-<p>载入防火墙设置</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure>
-
-<h2 id="关闭端口"><a href="#关闭端口" class="headerlink" title="关闭端口"></a>关闭端口</h2><p>关闭22端口</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --zone=public --remove-port=22/tcp --permanent</span><br></pre></td></tr></table></figure>
-
-<p>载入防火墙设置</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/notebook/mysql-pwd/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/notebook/mysql-pwd/" class="post-title-link" itemprop="url">Mysql改密码</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 04-07-2021 08:50:24 / Modified: 08:58:48" itemprop="dateCreated datePublished" datetime="2021-04-07T08:50:24+08:00">04-07-2021</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="进入Mysql后Set修改"><a href="#进入Mysql后Set修改" class="headerlink" title="进入Mysql后Set修改"></a>进入Mysql后Set修改</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set password for root@localhost &#x3D; password(&#39;abc&#39;);</span><br></pre></td></tr></table></figure>
-
-<h1 id="用mysqladmin指令"><a href="#用mysqladmin指令" class="headerlink" title="用mysqladmin指令"></a>用mysqladmin指令</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqladmin -uroot -p123 password abc</span><br></pre></td></tr></table></figure>
-
-<p>把root的密码从123 改为 abc</p>
-<h1 id="用update直接更新"><a href="#用update直接更新" class="headerlink" title="用update直接更新"></a>用update直接更新</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">use mysql;</span><br><span class="line">update user set password&#x3D;password(&#39;abc&#39;) where user&#x3D;&#39;root&#39; and host&#x3D;&#39;localhost&#39;;</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-<hr>
-<p>Reference</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cudzNjc2Nob29sLmNuL215c3FsL215c3FsLXdhdXoyb3dsLmh0bWw=">https://www.w3cschool.cn/mysql/mysql-wauz2owl.html<i class="fa fa-external-link-alt"></i></span></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/18/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><span class="page-number current">19</span><a class="page-number" href="/page/20/">20</a><span class="space">&hellip;</span><a class="page-number" href="/page/54/">54</a><a class="extend next" rel="next" href="/page/20/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/18/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><span class="page-number current">19</span><a class="page-number" href="/page/20/">20</a><span class="space">&hellip;</span><a class="page-number" href="/page/55/">55</a><a class="extend next" rel="next" href="/page/20/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
