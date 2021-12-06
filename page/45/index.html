@@ -203,20 +203,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">280</span>
+          <span class="site-state-item-count">283</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">139</span>
+        <span class="site-state-item-count">141</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -256,6 +256,244 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/notebook/nginx/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/notebook/nginx/" class="post-title-link" itemprop="url">dev/notebook/nginx</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 07-14-2020 23:31:04" itemprop="dateCreated datePublished" datetime="2020-07-14T23:31:04+08:00">07-14-2020</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 10-10-2021 22:21:48" itemprop="dateModified" datetime="2021-10-10T22:21:48+08:00">10-10-2021</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h1><p>检测配置文件<br><code>nginx -t</code></p>
+<p>重启服务<br><code>nginx -s reload</code></p>
+<p>若重启报错 先运行<br><code>nginx -c /etc/nginx/nginx.conf</code></p>
+<p>配置目录文件</p>
+<ul>
+<li>/etc/nginx: nginx配置文件目录。所有的nginx配置文件都在这里。</li>
+<li>/etc/nginx/nginx.conf: Nginx的主配置文件. 可以修改他来改变nginx的全局配置。</li>
+<li>/etc/nginx/sites-available/: 这个目录存储每一个网站的”server blocks”。nginx通常不会使用这些配置，除非它们陪连接到 sites-enabled 目录 (see below)。一般所有的server block 配置都在这个目录中设置，然后软连接到别的目录 。</li>
+<li>/etc/nginx/sites-enabled/: 这个目录存储生效的 “server blocks” 配置. 通常,这个配置都是链接到 sites-available目录中的配置文件</li>
+<li>/etc/nginx/snippets: 这个目录主要可以包含在其它nginx配置文件中的配置片段。重复的配置都可以重构为配置片段。</li>
+</ul>
+<p>SSL config</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">  server &#123;</span><br><span class="line">      listen       80 default_server;</span><br><span class="line">      listen       [::]:80 default_server;</span><br><span class="line">      server_name  api.gfgf.tech;</span><br><span class="line">      root         &#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html;</span><br><span class="line"></span><br><span class="line">   return 301 https:&#x2F;&#x2F;$server_name$request_uri;</span><br><span class="line"></span><br><span class="line">      # Load configuration files for the default server block.</span><br><span class="line">      include &#x2F;etc&#x2F;nginx&#x2F;default.d&#x2F;*.conf;</span><br><span class="line"></span><br><span class="line">      location &#x2F; &#123;</span><br><span class="line">              proxy_pass http:&#x2F;&#x2F;127.0.0.1:21000;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      error_page 404 &#x2F;404.html;</span><br><span class="line">          location &#x3D; &#x2F;40x.html &#123;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      error_page 500 502 503 504 &#x2F;50x.html;</span><br><span class="line">          location &#x3D; &#x2F;50x.html &#123;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  server &#123;</span><br><span class="line">      listen       443 ssl http2 default_server;</span><br><span class="line">      listen       [::]:443 ssl http2 default_server;</span><br><span class="line">      server_name  api.gfgf.tech;</span><br><span class="line">      root         &#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html;</span><br><span class="line"></span><br><span class="line">      ssl_certificate &quot;&#x2F;root&#x2F;.acme.sh&#x2F;api.gfgf.tech&#x2F;api.gfgf.tech.cer&quot;;</span><br><span class="line">      ssl_certificate_key &quot;&#x2F;root&#x2F;.acme.sh&#x2F;api.gfgf.tech&#x2F;api.gfgf.tech.key&quot;;</span><br><span class="line">      ssl_session_cache shared:SSL:1m;</span><br><span class="line">      ssl_session_timeout  10m;</span><br><span class="line">      ssl_ciphers HIGH:!aNULL:!MD5;</span><br><span class="line">      ssl_prefer_server_ciphers on;</span><br><span class="line"></span><br><span class="line">      # Load configuration files for the default server block.</span><br><span class="line">      include &#x2F;etc&#x2F;nginx&#x2F;default.d&#x2F;*.conf;</span><br><span class="line"></span><br><span class="line">      location &#x2F; &#123;</span><br><span class="line">proxy_pass http:&#x2F;&#x2F;localhost:21000;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      error_page 404 &#x2F;404.html;</span><br><span class="line">          location &#x3D; &#x2F;40x.html &#123;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      error_page 500 502 503 504 &#x2F;50x.html;</span><br><span class="line">          location &#x3D; &#x2F;50x.html &#123;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/docker/docker-compose/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/docker/docker-compose/" class="post-title-link" itemprop="url">Docker compose</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 07-14-2020 23:31:04" itemprop="dateCreated datePublished" datetime="2020-07-14T23:31:04+08:00">07-14-2020</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 10-09-2021 13:41:18" itemprop="dateModified" datetime="2021-10-09T13:41:18+08:00">10-09-2021</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Docker-Compose"><a href="#Docker-Compose" class="headerlink" title="Docker-Compose"></a>Docker-Compose</h1><p>update: 2021/10/9</p>
+<p>url: +v2.0.1</p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo curl -L <span class="string">"https://github.com/docker/compose/releases/download/v2.0.1/docker-compose-<span class="variable">$(uname -s)</span>-<span class="variable">$(uname -m)</span>"</span> -o /usr/<span class="built_in">local</span>/bin/docker-compose</span><br></pre></td></tr></table></figure>
+
+<p>有可能会遇到权限不足的问题</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x /usr/<span class="built_in">local</span>/bin/docker-compose</span><br></pre></td></tr></table></figure>
+
+<p>如果不在环境路径下 创建软连接</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s /usr/bin /usr/<span class="built_in">local</span>/bin/docker-compose</span><br></pre></td></tr></table></figure>
+
+<h1 id="运行指令"><a href="#运行指令" class="headerlink" title="运行指令"></a>运行指令</h1><p><code>docker-compose</code>指令<strong>默认执行</strong>当前文件夹下docker-compose.yml文件</p>
+<h2 id="项目运行"><a href="#项目运行" class="headerlink" title="项目运行"></a>项目运行</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker-compose -f app.yml up -d</span><br></pre></td></tr></table></figure>
+
+<h2 id="项目停止"><a href="#项目停止" class="headerlink" title="项目停止"></a>项目停止</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker-compose -f app.yml down</span><br></pre></td></tr></table></figure>
+
+<h2 id="挂载"><a href="#挂载" class="headerlink" title="挂载"></a>挂载</h2><p><code>host:container</code></p>
+<p>volumes声明过的名称才能用在镜像的volumes挂载<br>镜像中volumes挂载地址也可以使用相对路径</p>
+<h2 id="更多指令"><a href="#更多指令" class="headerlink" title="更多指令"></a>更多指令</h2><p><span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC82NTg5MTFhOGNmZjM=">https://www.jianshu.com/p/658911a8cff3<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/docker/docker-gitlab/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/docker/docker-gitlab/" class="post-title-link" itemprop="url">dev/docker/docker-gitlab</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 07-14-2020 23:31:04" itemprop="dateCreated datePublished" datetime="2020-07-14T23:31:04+08:00">07-14-2020</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Docker-GitLab"><a href="#Docker-GitLab" class="headerlink" title="Docker-GitLab"></a>Docker-GitLab</h1><h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>若容器端口号设置为80，如果你这时修改external_url地址为<span class="exturl" data-url="aHR0cDovL2lwOjgwODA=">http://ip:8080<i class="fa fa-external-link-alt"></i></span>.<br>那GitLab肯定访问不了，因为已经将内部的端口号修改为8080端口了，而映射的是容器的80端口。</p>
+<h2 id="故一定要将容器内部端口号与宿主机端口号映射一致！！！"><a href="#故一定要将容器内部端口号与宿主机端口号映射一致！！！" class="headerlink" title="故一定要将容器内部端口号与宿主机端口号映射一致！！！"></a>故一定要将容器内部端口号与宿主机端口号映射一致！！！</h2><p>external_utl ‘<span class="exturl" data-url="aHR0cDovLzExOS4yMy4xMDcuNjE6MTMwMDAmIzM5Ow==">http://119.23.107.61:13000&#39;<i class="fa fa-external-link-alt"></i></span><br>ports:<br>      - “13000:13000”</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3'</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">gitlab:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">gitlab/gitlab-ce</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">TZ:</span> <span class="string">"Asia/Shanghai"</span></span><br><span class="line">      <span class="attr">GITLAB_OMNIBUS_CONFIG:</span> <span class="string">|</span></span><br><span class="line">        <span class="string">external_url</span> <span class="string">'http://119.23.107.61:13000'</span> <span class="string">//</span> <span class="string">好像需要手动改</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">~/docker_gitlab/config:/etc/gitlab</span> </span><br><span class="line">      <span class="bullet">-</span> <span class="string">~/docker_gitlab/logs:/var/log/gitlab</span> </span><br><span class="line">      <span class="bullet">-</span> <span class="string">~/docker_gitlab/data:/var/opt/gitlab</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">"13000:13000"</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">"13443:443"</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">"13022:22"</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -428,461 +666,10 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/docker/docker-chevereto/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/docker/docker-chevereto/" class="post-title-link" itemprop="url">dev/docker/docker-chevereto</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 07-14-2020 23:31:04" itemprop="dateCreated datePublished" datetime="2020-07-14T23:31:04+08:00">07-14-2020</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="使用Docker搭建图床"><a href="#使用Docker搭建图床" class="headerlink" title="使用Docker搭建图床"></a>使用Docker搭建图床</h1><p>安装容器编排工具Compose<br><code>pip3 install docker-compose</code></p>
-<p>pull镜像<br><code>docker pull mariadb:latest</code><br><code>docker pull nmtan/chevereto:latest</code>  </p>
-<p>使用Docker-Compose启动<br><code>mkdir cheverto/</code><br><code>cd cheverto</code><br><code>touch docker-compose.yaml</code></p>
-<p>docker-compose.yaml配置文件</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3'</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">db:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">mariadb</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">database:/var/lib/mysql:rw</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">networks:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">private</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">MYSQL_ROOT_PASSWORD:</span> <span class="string">chevereto_root</span></span><br><span class="line">      <span class="attr">MYSQL_DATABASE:</span> <span class="string">chevereto</span></span><br><span class="line">      <span class="attr">MYSQL_USER:</span> <span class="string">chevereto</span></span><br><span class="line">      <span class="attr">MYSQL_PASSWORD:</span> <span class="string">chevereto</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">chevereto:</span></span><br><span class="line">    <span class="attr">depends_on:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">db</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">nmtan/chevereto</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">networks:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">private</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">CHEVERETO_DB_HOST:</span> <span class="string">db</span></span><br><span class="line">      <span class="attr">CHEVERETO_DB_USERNAME:</span> <span class="string">chevereto</span></span><br><span class="line">      <span class="attr">CHEVERETO_DB_PASSWORD:</span> <span class="string">chevereto</span></span><br><span class="line">      <span class="attr">CHEVERETO_DB_NAME:</span> <span class="string">chevereto</span></span><br><span class="line">      <span class="attr">CHEVERETO_DB_PREFIX:</span> <span class="string">chv_</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">chevereto_images:/var/www/html/images:rw</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">chevereto_php_config:/usr/local/etc/php:rw</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">12000</span><span class="string">:80</span></span><br><span class="line"></span><br><span class="line"><span class="attr">networks:</span></span><br><span class="line">  <span class="attr">private:</span></span><br><span class="line"><span class="attr">volumes:</span></span><br><span class="line">  <span class="attr">database:</span></span><br><span class="line">  <span class="attr">chevereto_images:</span></span><br><span class="line">  <span class="attr">chevereto_php_config:</span></span><br></pre></td></tr></table></figure>
-
-<p>对应挂载到当前文件夹中的php.ini文件(<strong>注意</strong> php.ini文件需要先创建 否则docker会自动创建同名文件夹)<br><code>- ./php.ini:/usr/local/etc/php/php.ini:rw</code></p>
-<p>php.ini</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">memory_limit</span> = <span class="number">256</span>M<span class="comment">;</span></span><br><span class="line"><span class="attr">upload_max_filesize</span> = <span class="number">100</span>M<span class="comment">;</span></span><br><span class="line"><span class="attr">post_max_size</span> = <span class="number">100</span>M<span class="comment">;</span></span><br></pre></td></tr></table></figure>
-
-<p>运行Docker-Compose<br><code>docker-compose up -d</code></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/ml/deep_learning/week-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/ml/deep_learning/week-1/" class="post-title-link" itemprop="url">NLP文本分类引导</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 07-14-2020 23:31:04" itemprop="dateCreated datePublished" datetime="2020-07-14T23:31:04+08:00">07-14-2020</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 01-26-2021 17:25:12" itemprop="dateModified" datetime="2021-01-26T17:25:12+08:00">01-26-2021</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="NLP文本分类引导"><a href="#NLP文本分类引导" class="headerlink" title="NLP文本分类引导"></a>NLP文本分类引导</h1><h2 id="en"><a href="#en" class="headerlink" title="en"></a>en</h2><h2 id="1-数据读取"><a href="#1-数据读取" class="headerlink" title="1. 数据读取"></a>1. 数据读取</h2><h3 id="python原生读取txt文件"><a href="#python原生读取txt文件" class="headerlink" title="python原生读取txt文件"></a>python原生读取txt文件</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f = open(filedir, mode=<span class="string">'r'</span>)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>f.read()</code>一次读取全部数据。</li>
-<li><code>f.readline()</code>分行读取，一次读取一行。</li>
-<li><code>f.readlines()</code>读取全部数据，保留<code>\n</code>换行符。</li>
-</ul>
-<h3 id="pandas读取txt文件"><a href="#pandas读取txt文件" class="headerlink" title="pandas读取txt文件"></a>pandas读取txt文件</h3><p>pd.read_table(filedir, splitsign, header=指定第几行为列名, names=如果没有列名手动指定[‘x’, ‘y’])</p>
-<h2 id="2-数据预处理"><a href="#2-数据预处理" class="headerlink" title="2. 数据预处理"></a>2. 数据预处理</h2><h3 id="分词"><a href="#分词" class="headerlink" title="分词"></a>分词</h3><h3 id="去除停词-去除低频词"><a href="#去除停词-去除低频词" class="headerlink" title="去除停词 去除低频词"></a>去除停词 去除低频词</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">optimize_words_dict</span><span class="params">(self, data, stop_words, threshold)</span>:</span></span><br><span class="line">    freq_dict = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> data:  <span class="comment"># 去除停词 + 计算词频</span></span><br><span class="line">        <span class="keyword">for</span> word <span class="keyword">in</span> line:</span><br><span class="line">            <span class="keyword">if</span> word <span class="keyword">in</span> stop_words:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            <span class="keyword">if</span> word <span class="keyword">not</span> <span class="keyword">in</span> freq_dict:</span><br><span class="line">                freq_dict[word] = <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                freq_dict[word] += <span class="number">1</span></span><br><span class="line">    words_list = []</span><br><span class="line">    values = sorted(list(set(freq_dict.values())), reverse=<span class="literal">True</span>)</span><br><span class="line">    <span class="keyword">for</span> w <span class="keyword">in</span> values:  <span class="comment"># 通过阈值筛选词表 算法可以优化？？？</span></span><br><span class="line">        <span class="keyword">if</span> w &lt; threshold:</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        <span class="keyword">for</span> k, v <span class="keyword">in</span> freq_dict.items():</span><br><span class="line">            <span class="keyword">if</span> v == w:</span><br><span class="line">                words_list.append((k, v))</span><br><span class="line">    <span class="keyword">return</span> words_list</span><br></pre></td></tr></table></figure>
-
-<h3 id="通过TF-IDF算法筛选单词"><a href="#通过TF-IDF算法筛选单词" class="headerlink" title="通过TF-IDF算法筛选单词"></a>通过TF-IDF算法筛选单词</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">tf_idf</span><span class="params">(self, data)</span>:</span></span><br><span class="line">    doc_num = len(data)</span><br><span class="line">    df = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> sample <span class="keyword">in</span> data:</span><br><span class="line">        <span class="keyword">for</span> word <span class="keyword">in</span> set(sample):  <span class="comment"># 避免一个单词在一个Sample里出现多次</span></span><br><span class="line">            <span class="keyword">if</span> word <span class="keyword">not</span> <span class="keyword">in</span> df:</span><br><span class="line">                df[word] = <span class="number">1.0</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                df[word] += <span class="number">1.0</span></span><br><span class="line">    <span class="keyword">for</span> word <span class="keyword">in</span> df:  <span class="comment"># 计算document frequency 文档总数/单词出现过的文档数</span></span><br><span class="line">        df[word] = log10(doc_num / df[word])</span><br><span class="line">    res = &#123;&#125;</span><br><span class="line">    index = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> sample <span class="keyword">in</span> data:</span><br><span class="line">        res[index] = &#123;&#125;</span><br><span class="line">        tf = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> word <span class="keyword">in</span> sample:  <span class="comment"># 计算term frequency 一个样本里单词的频率</span></span><br><span class="line">            <span class="keyword">if</span> word <span class="keyword">not</span> <span class="keyword">in</span> tf:</span><br><span class="line">                tf[word] = <span class="number">1.0</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                tf[word] += <span class="number">1.0</span></span><br><span class="line">        sample_len = len(sample)</span><br><span class="line">        <span class="keyword">for</span> word <span class="keyword">in</span> sample:  <span class="comment"># 计算tf * idf 一个样本中各单词的tf_idf</span></span><br><span class="line">            tf_idf = tf[word] / sample_len * df[word]</span><br><span class="line">            res[index][word] = tf_idf</span><br><span class="line">        index += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> res  <span class="comment"># res格式为每一个样本中每一个单词对应的tf_idf值</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>在预处理时，因为是要为生成词典做准备，所以TF-IDF应该是以整个corpus计算TF，而提取特征时建立词袋模型中的TF-IDF方法则是对每个Sample的单词计算TF-IDF值。</strong></p>
-<h2 id="3-建立词典"><a href="#3-建立词典" class="headerlink" title="3. 建立词典"></a>3. 建立词典</h2><p>词典 = {‘单词’:索引}</p>
-<h2 id="4-提取特征"><a href="#4-提取特征" class="headerlink" title="4. 提取特征"></a>4. 提取特征</h2><h3 id="词袋模型（BOW）"><a href="#词袋模型（BOW）" class="headerlink" title="词袋模型（BOW）"></a>词袋模型（BOW）</h3><p>假设建立的词典有1000维，那么我们将为数据集中的每一个Sample建立一个1000维的向量。</p>
-<p>词袋模型有三种形式：</p>
-<ul>
-<li>对于每个Smaple单词是否出现</li>
-<li>对于每个Sample单词出现次数</li>
-<li>对于每个Smaple单词的TF-IDF值</li>
-</ul>
-<p><strong>在预处理时，因为是要为生成词典做准备，所以TF-IDF应该是以整个corpus计算TF，而提取特征时建立词袋模型中的TF-IDF方法则是对每个Sample的单词计算TF-IDF值。</strong></p>
-<p>例：<br>词典：1000. [北京，天气，真，好，北京] = [0, 1, 0, …,0], 或 [0, 2, 0, …,0]，或 [0, 0.4, 0, …, 0]</p>
-<h4 id="独热编码（One-Hot）"><a href="#独热编码（One-Hot）" class="headerlink" title="独热编码（One-Hot）"></a>独热编码（One-Hot）</h4><p>对于一个特征有N个状态则可以用N位来表示</p>
-<p>例：Feature_2有2个状态</p>
-<p>Sample_1 = [0, 1], Sample_2 = [1, 0] …</p>
-<p>例：Feature_1有4个状态</p>
-<p>Sample_1 = [0, 0, 1, 0], Sample_2 = [0, 1, 0, 0] …</p>
-<p>当一个样本有多个状态时</p>
-<p>Sample_1 = [0, 1, 0, 0, 1, 0], Sample_2 = [1, 0, 0, 1, 0, 0] …</p>
-<hr>
-<p>一点想法<br>不确定应该建立多大的词典时，可以考虑Corpus的大小或是每个Sample中Word的个数<br>词典的大小就与Corpus或Sample中Word的个数成某个比例</p>
-<h2 id="zh"><a href="#zh" class="headerlink" title="zh"></a>zh</h2><h2 id="1-数据处理"><a href="#1-数据处理" class="headerlink" title="1. 数据处理"></a>1. 数据处理</h2><ul>
-<li>去除空格</li>
-<li>符号转换（省略号-&gt;句号）？</li>
-<li>去除无意义符号</li>
-<li>繁体转换简体</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/ml/KNN-%E6%89%8B%E5%86%99%E4%BD%93%E6%95%B0%E5%AD%97%E6%95%B0%E6%8D%AE%E9%9B%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/ml/KNN-%E6%89%8B%E5%86%99%E4%BD%93%E6%95%B0%E5%AD%97%E6%95%B0%E6%8D%AE%E9%9B%86/" class="post-title-link" itemprop="url">dev/ml/KNN-手写体数字数据集</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 05-17-2020 16:37:20 / Modified: 16:38:09" itemprop="dateCreated datePublished" datetime="2020-05-17T16:37:20+08:00">05-17-2020</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="KNN-手写体数字数据集"><a href="#KNN-手写体数字数据集" class="headerlink" title="KNN-手写体数字数据集"></a>KNN-手写体数字数据集</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> datasets</span><br><span class="line"><span class="keyword">from</span> sklearn.neighbors <span class="keyword">import</span> KNeighborsClassifier</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">digits = datasets.load_digits()</span><br><span class="line">X = digits.data</span><br><span class="line">X.shape</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>(1797, 64)</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">y = digits.target</span><br><span class="line">y.shape</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>(1797,)</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">one = X[<span class="number">100</span>]</span><br><span class="line">one = one.reshape(<span class="number">8</span>, <span class="number">8</span>)</span><br><span class="line">one</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>array([[ 0.,  0.,  0.,  2., 13.,  0.,  0.,  0.],
-       [ 0.,  0.,  0.,  8., 15.,  0.,  0.,  0.],
-       [ 0.,  0.,  5., 16.,  5.,  2.,  0.,  0.],
-       [ 0.,  0., 15., 12.,  1., 16.,  4.,  0.],
-       [ 0.,  4., 16.,  2.,  9., 16.,  8.,  0.],
-       [ 0.,  0., 10., 14., 16., 16.,  4.,  0.],
-       [ 0.,  0.,  0.,  0., 13.,  8.,  0.,  0.],
-       [ 0.,  0.,  0.,  0., 13.,  6.,  0.,  0.]])</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plt.imshow(one)</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&lt;matplotlib.image.AxesImage at 0x1a203a9ad0&gt;</code></pre><p><img src="data/output_5_1.png" alt="png"></p>
-<h1 id="分离训练测试集"><a href="#分离训练测试集" class="headerlink" title="分离训练测试集"></a>分离训练测试集</h1><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line">train_test_split?</span><br></pre></td></tr></table></figure>
-
-
-<pre><code>[0;31mSignature:[0m [0mtrain_test_split[0m[0;34m([0m[0;34m*[0m[0marrays[0m[0;34m,[0m [0;34m**[0m[0moptions[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0;31mDocstring:[0m
-Split arrays or matrices into random train and test subsets
-
-Quick utility that wraps input validation and
-``next(ShuffleSplit().split(X, y))`` and application to input data
-into a single call for splitting (and optionally subsampling) data in a
-oneliner.
-
-Read more in the :ref:`User Guide &lt;cross_validation&gt;`.
-
-Parameters
-----------
-*arrays : sequence of indexables with same length / shape[0]
-    Allowed inputs are lists, numpy arrays, scipy-sparse
-    matrices or pandas dataframes.
-
-test_size : float, int or None, optional (default=None)
-    If float, should be between 0.0 and 1.0 and represent the proportion
-    of the dataset to include in the test split. If int, represents the
-    absolute number of test samples. If None, the value is set to the
-    complement of the train size. If ``train_size`` is also None, it will
-    be set to 0.25.
-
-train_size : float, int, or None, (default=None)
-    If float, should be between 0.0 and 1.0 and represent the
-    proportion of the dataset to include in the train split. If
-    int, represents the absolute number of train samples. If None,
-    the value is automatically set to the complement of the test size.
-
-random_state : int, RandomState instance or None, optional (default=None)
-    If int, random_state is the seed used by the random number generator;
-    If RandomState instance, random_state is the random number generator;
-    If None, the random number generator is the RandomState instance used
-    by `np.random`.
-
-shuffle : boolean, optional (default=True)
-    Whether or not to shuffle the data before splitting. If shuffle=False
-    then stratify must be None.
-
-stratify : array-like or None (default=None)
-    If not None, data is split in a stratified fashion, using this as
-    the class labels.
-
-Returns
--------
-splitting : list, length=2 * len(arrays)
-    List containing train-test split of inputs.
-
-    .. versionadded:: 0.16
-        If the input is sparse, the output will be a
-        ``scipy.sparse.csr_matrix``. Else, output type is the same as the
-        input type.
-
-Examples
---------
-&gt;&gt;&gt; import numpy as np
-&gt;&gt;&gt; from sklearn.model_selection import train_test_split
-&gt;&gt;&gt; X, y = np.arange(10).reshape((5, 2)), range(5)
-&gt;&gt;&gt; X
-array([[0, 1],
-       [2, 3],
-       [4, 5],
-       [6, 7],
-       [8, 9]])
-&gt;&gt;&gt; list(y)
-[0, 1, 2, 3, 4]
-
-&gt;&gt;&gt; X_train, X_test, y_train, y_test = train_test_split(
-...     X, y, test_size=0.33, random_state=42)
-...
-&gt;&gt;&gt; X_train
-array([[4, 5],
-       [0, 1],
-       [6, 7]])
-&gt;&gt;&gt; y_train
-[2, 0, 3]
-&gt;&gt;&gt; X_test
-array([[2, 3],
-       [8, 9]])
-&gt;&gt;&gt; y_test
-[1, 4]
-
-&gt;&gt;&gt; train_test_split(y, shuffle=False)
-[[0, 1, 2], [3, 4]]
-[0;31mFile:[0m      /Applications/anaconda3/lib/python3.7/site-packages/sklearn/model_selection/_split.py
-[0;31mType:[0m      function</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=<span class="number">0.2</span>)</span><br><span class="line">print(X_train.shape)</span><br><span class="line">print(y_train.shape)</span><br><span class="line">print(X_test.shape)</span><br><span class="line">print(y_test.shape)</span><br></pre></td></tr></table></figure>
-
-<pre><code>(1437, 64)
-(1437,)
-(360, 64)
-(360,)</code></pre><h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">KNNClf = KNeighborsClassifier(n_neighbors=<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">KNNClf.fit(X_train, y_train)</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>KNeighborsClassifier(algorithm=&apos;auto&apos;, leaf_size=30, metric=&apos;minkowski&apos;,
-                     metric_params=None, n_jobs=None, n_neighbors=3, p=2,
-                     weights=&apos;uniform&apos;)</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">res = KNNClf.predict(X_test)</span><br><span class="line">res</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>array([3, 4, 8, 5, 5, 7, 0, 3, 1, 4, 7, 5, 5, 8, 0, 7, 4, 7, 1, 7, 9, 4,
-       4, 7, 6, 1, 2, 9, 1, 3, 3, 3, 7, 0, 7, 0, 2, 8, 9, 1, 1, 5, 4, 8,
-       9, 0, 4, 9, 4, 9, 7, 2, 7, 3, 3, 4, 1, 9, 9, 9, 0, 4, 0, 6, 1, 0,
-       0, 3, 6, 2, 3, 2, 8, 5, 9, 3, 1, 1, 6, 9, 8, 1, 2, 3, 2, 6, 8, 8,
-       4, 6, 8, 6, 3, 9, 2, 8, 3, 6, 5, 7, 1, 7, 3, 8, 8, 8, 0, 0, 9, 1,
-       9, 8, 5, 1, 1, 0, 1, 6, 5, 1, 7, 6, 5, 7, 7, 2, 2, 7, 3, 1, 9, 5,
-       9, 5, 5, 3, 8, 4, 9, 5, 4, 6, 0, 5, 4, 8, 6, 1, 2, 8, 0, 9, 0, 9,
-       7, 9, 7, 0, 2, 8, 2, 4, 0, 6, 2, 6, 7, 5, 6, 3, 8, 8, 0, 3, 2, 0,
-       6, 1, 0, 6, 0, 5, 9, 3, 3, 0, 4, 0, 4, 2, 4, 9, 0, 6, 7, 4, 6, 5,
-       9, 7, 2, 2, 3, 3, 0, 3, 9, 4, 9, 8, 5, 6, 9, 0, 1, 3, 5, 0, 5, 1,
-       6, 4, 6, 6, 6, 7, 9, 1, 0, 7, 6, 6, 7, 8, 0, 3, 8, 5, 6, 8, 1, 3,
-       0, 3, 6, 0, 3, 5, 6, 7, 0, 6, 9, 7, 0, 0, 2, 1, 6, 6, 9, 1, 6, 9,
-       8, 7, 0, 2, 5, 1, 8, 6, 4, 3, 8, 2, 9, 2, 8, 4, 6, 4, 8, 9, 3, 1,
-       1, 5, 0, 7, 8, 2, 3, 8, 4, 7, 7, 7, 7, 9, 4, 1, 7, 0, 2, 9, 1, 8,
-       2, 4, 1, 0, 7, 5, 6, 0, 7, 1, 1, 5, 7, 1, 1, 6, 5, 6, 2, 2, 3, 9,
-       7, 5, 3, 1, 5, 9, 9, 2, 5, 1, 6, 8, 2, 2, 4, 2, 1, 0, 6, 1, 2, 9,
-       7, 5, 3, 5, 6, 1, 8, 1])</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">y_test</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>array([3, 4, 8, 5, 5, 7, 0, 3, 1, 4, 7, 5, 5, 8, 0, 7, 4, 7, 1, 7, 9, 4,
-       4, 7, 6, 1, 2, 9, 1, 3, 3, 3, 7, 0, 7, 0, 2, 8, 9, 1, 1, 5, 4, 8,
-       9, 0, 4, 9, 4, 9, 7, 2, 7, 8, 3, 4, 1, 9, 9, 9, 0, 4, 0, 6, 1, 0,
-       0, 3, 6, 2, 3, 2, 8, 5, 9, 3, 1, 1, 6, 9, 8, 1, 2, 3, 2, 6, 8, 8,
-       4, 6, 8, 6, 3, 9, 2, 8, 3, 6, 5, 7, 1, 7, 9, 8, 8, 8, 0, 0, 9, 1,
-       4, 8, 5, 1, 1, 0, 1, 6, 5, 1, 7, 6, 5, 7, 7, 2, 2, 7, 3, 1, 9, 5,
-       9, 5, 5, 3, 8, 4, 9, 5, 4, 6, 0, 5, 4, 8, 6, 1, 2, 8, 0, 9, 0, 9,
-       7, 9, 7, 0, 2, 8, 2, 4, 0, 6, 2, 6, 7, 5, 6, 3, 8, 8, 0, 3, 2, 0,
-       6, 1, 0, 6, 0, 5, 9, 3, 3, 0, 4, 0, 4, 2, 4, 9, 0, 6, 7, 4, 6, 5,
-       9, 7, 2, 2, 3, 3, 0, 3, 9, 4, 9, 8, 5, 6, 9, 0, 1, 3, 5, 0, 5, 1,
-       6, 4, 6, 6, 6, 7, 9, 1, 0, 7, 6, 6, 7, 8, 0, 3, 8, 5, 6, 8, 1, 3,
-       0, 3, 6, 0, 3, 5, 6, 7, 0, 6, 9, 7, 0, 0, 2, 1, 6, 6, 9, 1, 6, 9,
-       8, 7, 0, 2, 5, 1, 8, 6, 4, 3, 8, 2, 9, 2, 8, 4, 6, 4, 8, 9, 3, 1,
-       1, 5, 0, 7, 8, 2, 3, 8, 4, 7, 7, 7, 7, 7, 4, 1, 3, 0, 2, 9, 1, 8,
-       2, 4, 1, 0, 7, 5, 6, 0, 7, 1, 1, 5, 7, 1, 1, 6, 5, 6, 2, 2, 3, 9,
-       7, 5, 3, 1, 5, 9, 9, 2, 5, 1, 6, 8, 2, 2, 4, 2, 1, 0, 6, 1, 2, 9,
-       7, 5, 3, 5, 6, 1, 8, 8])</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">num = sum(res == y_test)</span><br><span class="line">num</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>354</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">'accuracy '</span>, num / len(y_test))</span><br></pre></td></tr></table></figure>
-
-<pre><code>accuracy  0.9833333333333333</code></pre><h4 id="使用sklearn中封装的计算精确度的方法"><a href="#使用sklearn中封装的计算精确度的方法" class="headerlink" title="使用sklearn中封装的计算精确度的方法"></a>使用sklearn中封装的计算精确度的方法</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> accuracy_score <span class="keyword">as</span> accuracy</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">accuracy(res, y_test)</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>0.9833333333333333</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/44/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/44/">44</a><span class="page-number current">45</span><a class="page-number" href="/page/46/">46</a><span class="space">&hellip;</span><a class="page-number" href="/page/56/">56</a><a class="extend next" rel="next" href="/page/46/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/44/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/44/">44</a><span class="page-number current">45</span><a class="page-number" href="/page/46/">46</a><span class="space">&hellip;</span><a class="page-number" href="/page/57/">57</a><a class="extend next" rel="next" href="/page/46/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
