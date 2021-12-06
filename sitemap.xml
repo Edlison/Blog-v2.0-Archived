@@ -2,6 +2,62 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.edlison.com/dev/nginx/nginx-buffer/</loc>
+    
+    <lastmod>2021-12-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.edlison.com/dev/nginx/nginx-auth/</loc>
+    
+    <lastmod>2021-12-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.edlison.com/dev/nginx/nginx-confserver/</loc>
+    
+    <lastmod>2021-12-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.edlison.com/dev/nginx/nginx-loadbalance/</loc>
+    
+    <lastmod>2021-12-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.edlison.com/dev/nginx/nginx-servername/</loc>
+    
+    <lastmod>2021-12-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.edlison.com/dev/nginx/nginx-request/</loc>
+    
+    <lastmod>2021-12-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.edlison.com/dev/nginx/nginx-start/</loc>
+    
+    <lastmod>2021-12-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.edlison.com/dev/vps/deploy/nginx-ui/</loc>
+    
+    <lastmod>2021-12-06</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.edlison.com/dev/vps/performance2/</loc>
     
     <lastmod>2021-12-06</lastmod>
@@ -61,13 +117,6 @@
     <loc>https://blog.edlison.com/dev/vps/deploy/qbittorrent/</loc>
     
     <lastmod>2021-12-05</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.edlison.com/dev/vps/deploy/nginx-ui/</loc>
-    
-    <lastmod>2021-12-01</lastmod>
     
   </url>
   
@@ -2859,6 +2908,55 @@
     <priority>0.6</priority>
   </url>
   
+  <url>
+    <loc>https://blog.edlison.com/tags/buffer/</loc>
+    <lastmod>2021-12-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.edlison.com/tags/request/</loc>
+    <lastmod>2021-12-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.edlison.com/tags/auth/</loc>
+    <lastmod>2021-12-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.edlison.com/tags/https/</loc>
+    <lastmod>2021-12-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.edlison.com/tags/load-balance/</loc>
+    <lastmod>2021-12-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.edlison.com/tags/cli/</loc>
+    <lastmod>2021-12-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.edlison.com/tags/server-name/</loc>
+    <lastmod>2021-12-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
 
   
   <url>
@@ -3010,6 +3108,13 @@
   
   <url>
     <loc>https://blog.edlison.com/categories/JaveScript/</loc>
+    <lastmod>2021-12-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.edlison.com/categories/Nginx/</loc>
     <lastmod>2021-12-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
