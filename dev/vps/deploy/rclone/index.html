@@ -23,15 +23,15 @@
     var CONFIG = {"hostname":"blog.edlison.com","root":"/","images":"/images","scheme":"Muse","version":"8.0.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
   </script>
 
-  <meta name="description" content="rclonedownload 1curl https:&#x2F;&#x2F;rclone.org&#x2F;install.sh | sudo bash  configure 1rclone config  follow the promt mount1nohup rclone mount &#39;remote&#39;:&#x2F;remoteLoc &#x2F;mnt&#x2F;GoogleDrive --allow-other &amp;&gt; mnt_gd.">
+  <meta name="description" content="rclonedownload 1curl https:&#x2F;&#x2F;rclone.org&#x2F;install.sh | sudo bash  configure 1rclone config  follow the prompt manualchoose the binary file that match your OS 1https:&#x2F;&#x2F;rclone.org&#x2F;downloads">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mount GDrive">
 <meta property="og:url" content="https://blog.edlison.com/dev/vps/deploy/rclone/index.html">
 <meta property="og:site_name" content="Edlison is talking here.">
-<meta property="og:description" content="rclonedownload 1curl https:&#x2F;&#x2F;rclone.org&#x2F;install.sh | sudo bash  configure 1rclone config  follow the promt mount1nohup rclone mount &#39;remote&#39;:&#x2F;remoteLoc &#x2F;mnt&#x2F;GoogleDrive --allow-other &amp;&gt; mnt_gd.">
+<meta property="og:description" content="rclonedownload 1curl https:&#x2F;&#x2F;rclone.org&#x2F;install.sh | sudo bash  configure 1rclone config  follow the prompt manualchoose the binary file that match your OS 1https:&#x2F;&#x2F;rclone.org&#x2F;downloads">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-10-09T11:27:48.747Z">
-<meta property="article:modified_time" content="2021-11-24T13:28:00.570Z">
+<meta property="article:modified_time" content="2021-12-07T06:14:04.232Z">
 <meta property="article:author" content="Bolin Shen">
 <meta property="article:tag" content="linux">
 <meta property="article:tag" content="ubuntu">
@@ -190,7 +190,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <section class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#rclone"><span class="nav-number">1.</span> <span class="nav-text">rclone</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mount"><span class="nav-number">2.</span> <span class="nav-text">mount</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#deamon-file"><span class="nav-number">3.</span> <span class="nav-text">deamon file</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bug"><span class="nav-number">4.</span> <span class="nav-text">bug</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#rclone"><span class="nav-number">1.</span> <span class="nav-text">rclone</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#manual"><span class="nav-number">2.</span> <span class="nav-text">manual</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mount"><span class="nav-number">3.</span> <span class="nav-text">mount</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#deamon-file"><span class="nav-number">4.</span> <span class="nav-text">deamon file</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bug"><span class="nav-number">5.</span> <span class="nav-text">bug</span></a></li></ol></div>
         </section>
         <!--/noindex-->
 
@@ -204,7 +204,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">283</span>
+          <span class="site-state-item-count">286</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -217,7 +217,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">141</span>
+        <span class="site-state-item-count">142</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -297,7 +297,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 11-24-2021 21:28:00" itemprop="dateModified" datetime="2021-11-24T21:28:00+08:00">11-24-2021</time>
+        <time title="Modified: 12-07-2021 14:14:04" itemprop="dateModified" datetime="2021-12-07T14:14:04+08:00">12-07-2021</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -332,7 +332,13 @@
 <p>configure</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rclone config</span><br></pre></td></tr></table></figure>
 
-<p>follow the promt</p>
+<p>follow the prompt</p>
+<h1 id="manual"><a href="#manual" class="headerlink" title="manual"></a>manual</h1><p>choose the binary file that match your OS</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;rclone.org&#x2F;downloads&#x2F;</span><br></pre></td></tr></table></figure>
+
+<p>unzip and mount to env</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cp rclone /usr/bin/rclone.new</span><br><span class="line">chmod 755 /usr/bin/rclone.new</span><br><span class="line">chown root:root /usr/bin/rclone.new</span><br><span class="line">mv /usr/bin/rclone.new /usr/bin/rclone</span><br></pre></td></tr></table></figure>
+
 <h1 id="mount"><a href="#mount" class="headerlink" title="mount"></a>mount</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup rclone mount <span class="string">'remote'</span>:/remoteLoc /mnt/GoogleDrive --allow-other &amp;&gt; mnt_gd.out&amp;</span><br></pre></td></tr></table></figure>
 
 <p>if there’s an exception about <code>fuse</code></p>
