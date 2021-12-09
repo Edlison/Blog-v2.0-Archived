@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/man-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/man-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.edlison.com","root":"/","images":"/images","scheme":"Muse","version":"8.0.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+
+  <meta name="description" content="Intro部署frp实现内网穿透, http_proxy, socks5">
+<meta property="og:type" content="article">
+<meta property="og:title" content="通过frp实现代理">
+<meta property="og:url" content="https://blog.edlison.com/dev/vps/deploy/frp/index.html">
+<meta property="og:site_name" content="Edlison is talking here.">
+<meta property="og:description" content="Intro部署frp实现内网穿透, http_proxy, socks5">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-12-09T17:06:31.703Z">
+<meta property="article:modified_time" content="2021-12-09T19:32:20.653Z">
+<meta property="article:author" content="Bolin Shen">
+<meta property="article:tag" content="frp">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://blog.edlison.com/dev/vps/deploy/frp/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>通过frp实现代理 | Edlison is talking here.</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NC6FWQJNCW"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-NC6FWQJNCW');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Edlison is talking here.</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">“Edlison's blog”</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Intro"><span class="nav-number">1.</span> <span class="nav-text">Intro</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Deploy"><span class="nav-number">2.</span> <span class="nav-text">Deploy</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Explain"><span class="nav-number">3.</span> <span class="nav-text">Explain</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#建立未加密的链接"><span class="nav-number">3.1.</span> <span class="nav-text">建立未加密的链接</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Server"><span class="nav-number">3.1.1.</span> <span class="nav-text">Server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Client"><span class="nav-number">3.1.2.</span> <span class="nav-text">Client</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建立加密的链接"><span class="nav-number">3.2.</span> <span class="nav-text">建立加密的链接</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#被代理的客户端"><span class="nav-number">3.2.1.</span> <span class="nav-text">被代理的客户端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#需要访问的客户端"><span class="nav-number">3.2.2.</span> <span class="nav-text">需要访问的客户端</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Config"><span class="nav-number">4.</span> <span class="nav-text">Config</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Server-1"><span class="nav-number">4.1.</span> <span class="nav-text">Server</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Client-1"><span class="nav-number">4.2.</span> <span class="nav-text">Client</span></a></li></ol></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Bolin Shen</p>
+  <div class="site-description" itemprop="description">Edlison blog</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">287</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">143</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2VkbGlzb24=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;edlison"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmJvbGluLmVkbGlzb24uc2hlbkBnbWFpbC5jb20=" title="E-Mail → mailto:bolin.edlison.shen@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/vps/deploy/frp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          通过frp实现代理
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 12-10-2021 01:06:31 / Modified: 03:32:20" itemprop="dateCreated datePublished" datetime="2021-12-10T01:06:31+08:00">12-10-2021</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/VPS/" itemprop="url" rel="index"><span itemprop="name">VPS</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p>部署frp实现内网穿透, http_proxy, socks5</p>
+<a id="more"></a>
+
+<h1 id="Deploy"><a href="#Deploy" class="headerlink" title="Deploy"></a>Deploy</h1><p>选择对应版本下载 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2ZhdGVkaWVyL2ZycA==">项目地址<i class="fa fa-external-link-alt"></i></span> </p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 服务端启动</span></span><br><span class="line">./frps -c frps.ini</span><br><span class="line"><span class="comment"># 客户端启动</span></span><br><span class="line">./frpc -c frpc.ini</span><br></pre></td></tr></table></figure>
+
+<h1 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h1><p>frp实现的本质就是客户端与服务端建立长连接, 从而实现内网穿透的效果.</p>
+<h2 id="建立未加密的链接"><a href="#建立未加密的链接" class="headerlink" title="建立未加密的链接"></a>建立未加密的链接</h2><h3 id="Server"><a href="#Server" class="headerlink" title="Server"></a>Server</h3><p>服务端开启一个端口用于与反向代理的服务器进行连接.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">[common]</span><br><span class="line">bind_addr &#x3D; 0.0.0.0</span><br><span class="line">bind_port &#x3D; 7000</span><br><span class="line">authentication_timeout &#x3D; 0</span><br><span class="line"></span><br><span class="line">dashboard_port &#x3D; 10007</span><br><span class="line">dashboard_user &#x3D; admin</span><br><span class="line">dashboard_pwd &#x3D; admin</span><br><span class="line"></span><br><span class="line"># console or real logFile path like .&#x2F;frps.log</span><br><span class="line">log_file &#x3D; .&#x2F;frps.log</span><br><span class="line"></span><br><span class="line"># trace, debug, info, warn, error</span><br><span class="line">log_level &#x3D; info</span><br><span class="line"></span><br><span class="line">log_max_days &#x3D; 3</span><br><span class="line"></span><br><span class="line"># DetailedErrorsToClient defines whether to send the specific error (with debug info) to frpc. By default, this value is true.</span><br><span class="line">detailed_errors_to_client &#x3D; true</span><br><span class="line"></span><br><span class="line"># authentication_method specifies what authentication method to use authenticate frpc with frps.</span><br><span class="line"># If &quot;token&quot; is specified - token will be read into login message.</span><br><span class="line"># If &quot;oidc&quot; is specified - OIDC (Open ID Connect) token will be issued using OIDC settings. By default, this value is &quot;token&quot;.</span><br><span class="line">authentication_method &#x3D; token</span><br><span class="line"></span><br><span class="line"># auth token</span><br><span class="line">token &#x3D; 12345678</span><br></pre></td></tr></table></figure>
+
+<p><code>dashboard</code> 是服务端的可视化面板.</p>
+<p>可以打开一个<code>dashboard</code>查看端口连接情况.</p>
+<h3 id="Client"><a href="#Client" class="headerlink" title="Client"></a>Client</h3><p>客户端只要与服务端成功连接, 就可以在服务端上暴露本地的端口.</p>
+<p>相当于所有知道端口的终端都可以进行匿名访问.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">[common]</span><br><span class="line">server_addr &#x3D; 154.x.x.x</span><br><span class="line">server_port &#x3D; 7000</span><br><span class="line"></span><br><span class="line">admin_addr &#x3D; 0.0.0.0</span><br><span class="line">admin_port &#x3D; 8001</span><br><span class="line">admin_user &#x3D; admin</span><br><span class="line">admin_pwd &#x3D; admin</span><br><span class="line"></span><br><span class="line"># console or real logFile path like .&#x2F;frpc.log</span><br><span class="line">log_file &#x3D; .&#x2F;frpc.log</span><br><span class="line"></span><br><span class="line"># trace, debug, info, warn, error</span><br><span class="line">log_level &#x3D; info</span><br><span class="line"></span><br><span class="line">log_max_days &#x3D; 3</span><br><span class="line"></span><br><span class="line"># auth token</span><br><span class="line">token &#x3D; 12345678</span><br><span class="line"></span><br><span class="line">[ssh]</span><br><span class="line"># tcp | udp | http | https | stcp | xtcp, default is tcp</span><br><span class="line">type &#x3D; tcp</span><br><span class="line">local_ip &#x3D; 127.0.0.1</span><br><span class="line">local_port &#x3D; 22</span><br><span class="line">remote_port &#x3D; 8000</span><br></pre></td></tr></table></figure>
+
+<p><code>admin</code> 是客户端的可视化面板, 可以修改配置文件.</p>
+<p>这里的<code>[ssh]</code>中括号内的名称可以随意定义, 没有影响, 下文会有影响.</p>
+<p><strong>注意</strong>: 可视化面板绑定的IP, <code>0.0.0.0</code>允许通过内网IP访问, 而<code>127.0.0.1</code>只能本机访问.</p>
+<h2 id="建立加密的链接"><a href="#建立加密的链接" class="headerlink" title="建立加密的链接"></a>建立加密的链接</h2><p>对于不想让任何人都可以访问的服务, 可以建立stcp连接.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[common]</span><br><span class="line">server_addr &#x3D; 154.x.x.x</span><br><span class="line">server_port &#x3D; 7000</span><br><span class="line"></span><br><span class="line"># console or real logFile path like .&#x2F;frpc.log</span><br><span class="line">log_file &#x3D; .&#x2F;frpc.log</span><br><span class="line"></span><br><span class="line"># trace, debug, info, warn, error</span><br><span class="line">log_level &#x3D; info</span><br><span class="line"></span><br><span class="line">log_max_days &#x3D; 3</span><br><span class="line"></span><br><span class="line"># auth token</span><br><span class="line">token &#x3D; 12345678</span><br></pre></td></tr></table></figure>
+
+<h3 id="被代理的客户端"><a href="#被代理的客户端" class="headerlink" title="被代理的客户端"></a>被代理的客户端</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[secret_tcp]</span><br><span class="line"># If the type is secret tcp, remote_port is useless</span><br><span class="line"># Who want to connect local port should deploy another frpc with stcp proxy and role is visitor</span><br><span class="line">type &#x3D; stcp</span><br><span class="line"># sk used for authentication for visitors</span><br><span class="line">sk &#x3D; abcdefg</span><br><span class="line">local_ip &#x3D; 127.0.0.1</span><br><span class="line">local_port &#x3D; 22</span><br><span class="line">use_encryption &#x3D; false</span><br><span class="line">use_compression &#x3D; false</span><br></pre></td></tr></table></figure>
+
+<h3 id="需要访问的客户端"><a href="#需要访问的客户端" class="headerlink" title="需要访问的客户端"></a>需要访问的客户端</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># user of frpc should be same in both stcp server and stcp visitor</span><br><span class="line">[secret_tcp_visitor]</span><br><span class="line"># frpc role visitor -&gt; frps -&gt; frpc role server</span><br><span class="line">role &#x3D; visitor</span><br><span class="line">type &#x3D; stcp</span><br><span class="line"># the server name you want to visitor</span><br><span class="line">server_name &#x3D; secret_tcp</span><br><span class="line">sk &#x3D; abcdefg</span><br><span class="line"># connect this address to visitor stcp server</span><br><span class="line">bind_addr &#x3D; 127.0.0.1</span><br><span class="line">bind_port &#x3D; 9000</span><br><span class="line">use_encryption &#x3D; false</span><br><span class="line">use_compression &#x3D; false</span><br></pre></td></tr></table></figure>
+
+<p>对于安全连接<code>[]</code>内的名字用于建立对应的proxy.</p>
+<h1 id="Config"><a href="#Config" class="headerlink" title="Config"></a>Config</h1><p>官方完整配置</p>
+<h2 id="Server-1"><a href="#Server-1" class="headerlink" title="Server"></a>Server</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br></pre></td><td class="code"><pre><span class="line"># [common] is integral section</span><br><span class="line">[common]</span><br><span class="line"># A literal address or host name for IPv6 must be enclosed</span><br><span class="line"># in square brackets, as in &quot;[::1]:80&quot;, &quot;[ipv6-host]:http&quot; or &quot;[ipv6-host%zone]:80&quot;</span><br><span class="line"># For single &quot;bind_addr&quot; field, no need square brackets, like &quot;bind_addr &#x3D; ::&quot;.</span><br><span class="line">bind_addr &#x3D; 0.0.0.0</span><br><span class="line">bind_port &#x3D; 7000</span><br><span class="line"></span><br><span class="line"># udp port to help make udp hole to penetrate nat</span><br><span class="line">bind_udp_port &#x3D; 7001</span><br><span class="line"></span><br><span class="line"># udp port used for kcp protocol, it can be same with &#39;bind_port&#39;</span><br><span class="line"># if not set, kcp is disabled in frps</span><br><span class="line">kcp_bind_port &#x3D; 7000</span><br><span class="line"></span><br><span class="line"># specify which address proxy will listen for, default value is same with bind_addr</span><br><span class="line"># proxy_bind_addr &#x3D; 127.0.0.1</span><br><span class="line"></span><br><span class="line"># if you want to support virtual host, you must set the http port for listening (optional)</span><br><span class="line"># Note: http port and https port can be same with bind_port</span><br><span class="line">vhost_http_port &#x3D; 80</span><br><span class="line">vhost_https_port &#x3D; 443</span><br><span class="line"></span><br><span class="line"># response header timeout(seconds) for vhost http server, default is 60s</span><br><span class="line"># vhost_http_timeout &#x3D; 60</span><br><span class="line"></span><br><span class="line"># tcpmux_httpconnect_port specifies the port that the server listens for TCP</span><br><span class="line"># HTTP CONNECT requests. If the value is 0, the server will not multiplex TCP</span><br><span class="line"># requests on one single port. If it&#39;s not - it will listen on this value for</span><br><span class="line"># HTTP CONNECT requests. By default, this value is 0.</span><br><span class="line"># tcpmux_httpconnect_port &#x3D; 1337</span><br><span class="line"></span><br><span class="line"># set dashboard_addr and dashboard_port to view dashboard of frps</span><br><span class="line"># dashboard_addr&#39;s default value is same with bind_addr</span><br><span class="line"># dashboard is available only if dashboard_port is set</span><br><span class="line">dashboard_addr &#x3D; 0.0.0.0</span><br><span class="line">dashboard_port &#x3D; 7500</span><br><span class="line"></span><br><span class="line"># dashboard user and passwd for basic auth protect</span><br><span class="line">dashboard_user &#x3D; admin</span><br><span class="line">dashboard_pwd &#x3D; admin</span><br><span class="line"></span><br><span class="line"># enable_prometheus will export prometheus metrics on &#123;dashboard_addr&#125;:&#123;dashboard_port&#125; in &#x2F;metrics api.</span><br><span class="line">enable_prometheus &#x3D; true</span><br><span class="line"></span><br><span class="line"># dashboard assets directory(only for debug mode)</span><br><span class="line"># assets_dir &#x3D; .&#x2F;static</span><br><span class="line"></span><br><span class="line"># console or real logFile path like .&#x2F;frps.log</span><br><span class="line">log_file &#x3D; .&#x2F;frps.log</span><br><span class="line"></span><br><span class="line"># trace, debug, info, warn, error</span><br><span class="line">log_level &#x3D; info</span><br><span class="line"></span><br><span class="line">log_max_days &#x3D; 3</span><br><span class="line"></span><br><span class="line"># disable log colors when log_file is console, default is false</span><br><span class="line">disable_log_color &#x3D; false</span><br><span class="line"></span><br><span class="line"># DetailedErrorsToClient defines whether to send the specific error (with debug info) to frpc. By default, this value is true.</span><br><span class="line">detailed_errors_to_client &#x3D; true</span><br><span class="line"></span><br><span class="line"># authentication_method specifies what authentication method to use authenticate frpc with frps.</span><br><span class="line"># If &quot;token&quot; is specified - token will be read into login message.</span><br><span class="line"># If &quot;oidc&quot; is specified - OIDC (Open ID Connect) token will be issued using OIDC settings. By default, this value is &quot;token&quot;.</span><br><span class="line">authentication_method &#x3D; token</span><br><span class="line"></span><br><span class="line"># authenticate_heartbeats specifies whether to include authentication token in heartbeats sent to frps. By default, this value is false.</span><br><span class="line">authenticate_heartbeats &#x3D; false</span><br><span class="line"></span><br><span class="line"># AuthenticateNewWorkConns specifies whether to include authentication token in new work connections sent to frps. By default, this value is false.</span><br><span class="line">authenticate_new_work_conns &#x3D; false</span><br><span class="line"></span><br><span class="line"># auth token</span><br><span class="line">token &#x3D; 12345678</span><br><span class="line"></span><br><span class="line"># oidc_issuer specifies the issuer to verify OIDC tokens with.</span><br><span class="line"># By default, this value is &quot;&quot;.</span><br><span class="line">oidc_issuer &#x3D;</span><br><span class="line"></span><br><span class="line"># oidc_audience specifies the audience OIDC tokens should contain when validated.</span><br><span class="line"># By default, this value is &quot;&quot;.</span><br><span class="line">oidc_audience &#x3D;</span><br><span class="line"></span><br><span class="line"># oidc_skip_expiry_check specifies whether to skip checking if the OIDC token is expired.</span><br><span class="line"># By default, this value is false.</span><br><span class="line">oidc_skip_expiry_check &#x3D; false</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># oidc_skip_issuer_check specifies whether to skip checking if the OIDC token&#39;s issuer claim matches the issuer specified in OidcIssuer.</span><br><span class="line"># By default, this value is false.</span><br><span class="line">oidc_skip_issuer_check &#x3D; false</span><br><span class="line"></span><br><span class="line"># heartbeat configure, it&#39;s not recommended to modify the default value</span><br><span class="line"># the default value of heartbeat_timeout is 90</span><br><span class="line"># heartbeat_timeout &#x3D; 90</span><br><span class="line"></span><br><span class="line"># user_conn_timeout configure, it&#39;s not recommended to modify the default value</span><br><span class="line"># the default value of user_conn_timeout is 10</span><br><span class="line"># user_conn_timeout &#x3D; 10</span><br><span class="line"></span><br><span class="line"># only allow frpc to bind ports you list, if you set nothing, there won&#39;t be any limit</span><br><span class="line">allow_ports &#x3D; 2000-3000,3001,3003,4000-50000</span><br><span class="line"></span><br><span class="line"># pool_count in each proxy will change to max_pool_count if they exceed the maximum value</span><br><span class="line">max_pool_count &#x3D; 5</span><br><span class="line"></span><br><span class="line"># max ports can be used for each client, default value is 0 means no limit</span><br><span class="line">max_ports_per_client &#x3D; 0</span><br><span class="line"></span><br><span class="line"># tls_only specifies whether to only accept TLS-encrypted connections. By default, the value is false.</span><br><span class="line">tls_only &#x3D; false</span><br><span class="line"></span><br><span class="line"># tls_cert_file &#x3D; server.crt</span><br><span class="line"># tls_key_file &#x3D; server.key</span><br><span class="line"># tls_trusted_ca_file &#x3D; ca.crt</span><br><span class="line"></span><br><span class="line"># if subdomain_host is not empty, you can set subdomain when type is http or https in frpc&#39;s configure file</span><br><span class="line"># when subdomain is test, the host used by routing is test.frps.com</span><br><span class="line">subdomain_host &#x3D; frps.com</span><br><span class="line"></span><br><span class="line"># if tcp stream multiplexing is used, default is true</span><br><span class="line">tcp_mux &#x3D; true</span><br><span class="line"></span><br><span class="line"># custom 404 page for HTTP requests</span><br><span class="line"># custom_404_page &#x3D; &#x2F;path&#x2F;to&#x2F;404.html</span><br><span class="line"></span><br><span class="line"># specify udp packet size, unit is byte. If not set, the default value is 1500.</span><br><span class="line"># This parameter should be same between client and server.</span><br><span class="line"># It affects the udp and sudp proxy.</span><br><span class="line">udp_packet_size &#x3D; 1500</span><br><span class="line"></span><br><span class="line">[plugin.user-manager]</span><br><span class="line">addr &#x3D; 127.0.0.1:9000</span><br><span class="line">path &#x3D; &#x2F;handler</span><br><span class="line">ops &#x3D; Login</span><br><span class="line"></span><br><span class="line">[plugin.port-manager]</span><br><span class="line">addr &#x3D; 127.0.0.1:9001</span><br><span class="line">path &#x3D; &#x2F;handler</span><br><span class="line">ops &#x3D; NewProxy</span><br></pre></td></tr></table></figure>
+
+<h2 id="Client-1"><a href="#Client-1" class="headerlink" title="Client"></a>Client</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br></pre></td><td class="code"><pre><span class="line"># [common] is integral section</span><br><span class="line">[common]</span><br><span class="line"># A literal address or host name for IPv6 must be enclosed</span><br><span class="line"># in square brackets, as in &quot;[::1]:80&quot;, &quot;[ipv6-host]:http&quot; or &quot;[ipv6-host%zone]:80&quot;</span><br><span class="line"># For single &quot;server_addr&quot; field, no need square brackets, like &quot;server_addr &#x3D; ::&quot;.</span><br><span class="line">server_addr &#x3D; 0.0.0.0</span><br><span class="line">server_port &#x3D; 7000</span><br><span class="line"></span><br><span class="line"># if you want to connect frps by http proxy or socks5 proxy or ntlm proxy, you can set http_proxy here or in global environment variables</span><br><span class="line"># it only works when protocol is tcp</span><br><span class="line"># http_proxy &#x3D; http:&#x2F;&#x2F;user:passwd@192.168.1.128:8080</span><br><span class="line"># http_proxy &#x3D; socks5:&#x2F;&#x2F;user:passwd@192.168.1.128:1080</span><br><span class="line"># http_proxy &#x3D; ntlm:&#x2F;&#x2F;user:passwd@192.168.1.128:2080</span><br><span class="line"></span><br><span class="line"># console or real logFile path like .&#x2F;frpc.log</span><br><span class="line">log_file &#x3D; .&#x2F;frpc.log</span><br><span class="line"></span><br><span class="line"># trace, debug, info, warn, error</span><br><span class="line">log_level &#x3D; info</span><br><span class="line"></span><br><span class="line">log_max_days &#x3D; 3</span><br><span class="line"></span><br><span class="line"># disable log colors when log_file is console, default is false</span><br><span class="line">disable_log_color &#x3D; false</span><br><span class="line"></span><br><span class="line"># for authentication, should be same as your frps.ini</span><br><span class="line"># authenticate_heartbeats specifies whether to include authentication token in heartbeats sent to frps. By default, this value is false.</span><br><span class="line">authenticate_heartbeats &#x3D; false</span><br><span class="line"></span><br><span class="line"># authenticate_new_work_conns specifies whether to include authentication token in new work connections sent to frps. By default, this value is false.</span><br><span class="line">authenticate_new_work_conns &#x3D; false</span><br><span class="line"></span><br><span class="line"># auth token</span><br><span class="line">token &#x3D; 12345678</span><br><span class="line"></span><br><span class="line"># oidc_client_id specifies the client ID to use to get a token in OIDC authentication if AuthenticationMethod &#x3D;&#x3D; &quot;oidc&quot;.</span><br><span class="line"># By default, this value is &quot;&quot;.</span><br><span class="line">oidc_client_id &#x3D;</span><br><span class="line"></span><br><span class="line"># oidc_client_secret specifies the client secret to use to get a token in OIDC authentication if AuthenticationMethod &#x3D;&#x3D; &quot;oidc&quot;.</span><br><span class="line"># By default, this value is &quot;&quot;.</span><br><span class="line">oidc_client_secret &#x3D;</span><br><span class="line"></span><br><span class="line"># oidc_audience specifies the audience of the token in OIDC authentication if AuthenticationMethod &#x3D;&#x3D; &quot;oidc&quot;. By default, this value is &quot;&quot;.</span><br><span class="line">oidc_audience &#x3D;</span><br><span class="line"></span><br><span class="line"># oidc_token_endpoint_url specifies the URL which implements OIDC Token Endpoint.</span><br><span class="line"># It will be used to get an OIDC token if AuthenticationMethod &#x3D;&#x3D; &quot;oidc&quot;. By default, this value is &quot;&quot;.</span><br><span class="line">oidc_token_endpoint_url &#x3D;</span><br><span class="line"></span><br><span class="line"># set admin address for control frpc&#39;s action by http api such as reload</span><br><span class="line">admin_addr &#x3D; 127.0.0.1</span><br><span class="line">admin_port &#x3D; 7400</span><br><span class="line">admin_user &#x3D; admin</span><br><span class="line">admin_pwd &#x3D; admin</span><br><span class="line"># Admin assets directory. By default, these assets are bundled with frpc.</span><br><span class="line"># assets_dir &#x3D; .&#x2F;static</span><br><span class="line"></span><br><span class="line"># connections will be established in advance, default value is zero</span><br><span class="line">pool_count &#x3D; 5</span><br><span class="line"></span><br><span class="line"># if tcp stream multiplexing is used, default is true, it must be same with frps</span><br><span class="line">tcp_mux &#x3D; true</span><br><span class="line"></span><br><span class="line"># your proxy name will be changed to &#123;user&#125;.&#123;proxy&#125;</span><br><span class="line">user &#x3D; your_name</span><br><span class="line"></span><br><span class="line"># decide if exit program when first login failed, otherwise continuous relogin to frps</span><br><span class="line"># default is true</span><br><span class="line">login_fail_exit &#x3D; true</span><br><span class="line"></span><br><span class="line"># communication protocol used to connect to server</span><br><span class="line"># now it supports tcp, kcp and websocket, default is tcp</span><br><span class="line">protocol &#x3D; tcp</span><br><span class="line"></span><br><span class="line"># if tls_enable is true, frpc will connect frps by tls</span><br><span class="line">tls_enable &#x3D; true</span><br><span class="line"></span><br><span class="line"># tls_cert_file &#x3D; client.crt</span><br><span class="line"># tls_key_file &#x3D; client.key</span><br><span class="line"># tls_trusted_ca_file &#x3D; ca.crt</span><br><span class="line"># tls_server_name &#x3D; example.com</span><br><span class="line"></span><br><span class="line"># specify a dns server, so frpc will use this instead of default one</span><br><span class="line"># dns_server &#x3D; 8.8.8.8</span><br><span class="line"></span><br><span class="line"># proxy names you want to start seperated by &#39;,&#39;</span><br><span class="line"># default is empty, means all proxies</span><br><span class="line"># start &#x3D; ssh,dns</span><br><span class="line"></span><br><span class="line"># heartbeat configure, it&#39;s not recommended to modify the default value</span><br><span class="line"># the default value of heartbeat_interval is 10 and heartbeat_timeout is 90</span><br><span class="line"># heartbeat_interval &#x3D; 30</span><br><span class="line"># heartbeat_timeout &#x3D; 90</span><br><span class="line"></span><br><span class="line"># additional meta info for client</span><br><span class="line">meta_var1 &#x3D; 123</span><br><span class="line">meta_var2 &#x3D; 234</span><br><span class="line"></span><br><span class="line"># specify udp packet size, unit is byte. If not set, the default value is 1500.</span><br><span class="line"># This parameter should be same between client and server.</span><br><span class="line"># It affects the udp and sudp proxy.</span><br><span class="line">udp_packet_size &#x3D; 1500</span><br><span class="line"></span><br><span class="line"># include other config files for proxies.</span><br><span class="line"># includes &#x3D; .&#x2F;confd&#x2F;*.ini</span><br><span class="line"></span><br><span class="line"># By default, frpc will connect frps with first custom byte if tls is enabled.</span><br><span class="line"># If DisableCustomTLSFirstByte is true, frpc will not send that custom byte.</span><br><span class="line">disable_custom_tls_first_byte &#x3D; false</span><br><span class="line"></span><br><span class="line"># &#39;ssh&#39; is the unique proxy name</span><br><span class="line"># if user in [common] section is not empty, it will be changed to &#123;user&#125;.&#123;proxy&#125; such as &#39;your_name.ssh&#39;</span><br><span class="line">[ssh]</span><br><span class="line"># tcp | udp | http | https | stcp | xtcp, default is tcp</span><br><span class="line">type &#x3D; tcp</span><br><span class="line">local_ip &#x3D; 127.0.0.1</span><br><span class="line">local_port &#x3D; 22</span><br><span class="line"># limit bandwidth for this proxy, unit is KB and MB</span><br><span class="line">bandwidth_limit &#x3D; 1MB</span><br><span class="line"># true or false, if true, messages between frps and frpc will be encrypted, default is false</span><br><span class="line">use_encryption &#x3D; false</span><br><span class="line"># if true, message will be compressed</span><br><span class="line">use_compression &#x3D; false</span><br><span class="line"># remote port listen by frps</span><br><span class="line">remote_port &#x3D; 6001</span><br><span class="line"># frps will load balancing connections for proxies in same group</span><br><span class="line">group &#x3D; test_group</span><br><span class="line"># group should have same group key</span><br><span class="line">group_key &#x3D; 123456</span><br><span class="line"># enable health check for the backend service, it support &#39;tcp&#39; and &#39;http&#39; now</span><br><span class="line"># frpc will connect local service&#39;s port to detect it&#39;s healthy status</span><br><span class="line">health_check_type &#x3D; tcp</span><br><span class="line"># health check connection timeout</span><br><span class="line">health_check_timeout_s &#x3D; 3</span><br><span class="line"># if continuous failed in 3 times, the proxy will be removed from frps</span><br><span class="line">health_check_max_failed &#x3D; 3</span><br><span class="line"># every 10 seconds will do a health check</span><br><span class="line">health_check_interval_s &#x3D; 10</span><br><span class="line"># additional meta info for each proxy</span><br><span class="line">meta_var1 &#x3D; 123</span><br><span class="line">meta_var2 &#x3D; 234</span><br><span class="line"></span><br><span class="line">[ssh_random]</span><br><span class="line">type &#x3D; tcp</span><br><span class="line">local_ip &#x3D; 127.0.0.1</span><br><span class="line">local_port &#x3D; 22</span><br><span class="line"># if remote_port is 0, frps will assign a random port for you</span><br><span class="line">remote_port &#x3D; 0</span><br><span class="line"></span><br><span class="line"># if you want to expose multiple ports, add &#39;range:&#39; prefix to the section name</span><br><span class="line"># frpc will generate multiple proxies such as &#39;tcp_port_6010&#39;, &#39;tcp_port_6011&#39; and so on.</span><br><span class="line">[range:tcp_port]</span><br><span class="line">type &#x3D; tcp</span><br><span class="line">local_ip &#x3D; 127.0.0.1</span><br><span class="line">local_port &#x3D; 6010-6020,6022,6024-6028</span><br><span class="line">remote_port &#x3D; 6010-6020,6022,6024-6028</span><br><span class="line">use_encryption &#x3D; false</span><br><span class="line">use_compression &#x3D; false</span><br><span class="line"></span><br><span class="line">[dns]</span><br><span class="line">type &#x3D; udp</span><br><span class="line">local_ip &#x3D; 114.114.114.114</span><br><span class="line">local_port &#x3D; 53</span><br><span class="line">remote_port &#x3D; 6002</span><br><span class="line">use_encryption &#x3D; false</span><br><span class="line">use_compression &#x3D; false</span><br><span class="line"></span><br><span class="line">[range:udp_port]</span><br><span class="line">type &#x3D; udp</span><br><span class="line">local_ip &#x3D; 127.0.0.1</span><br><span class="line">local_port &#x3D; 6010-6020</span><br><span class="line">remote_port &#x3D; 6010-6020</span><br><span class="line">use_encryption &#x3D; false</span><br><span class="line">use_compression &#x3D; false</span><br><span class="line"></span><br><span class="line"># Resolve your domain names to [server_addr] so you can use http:&#x2F;&#x2F;web01.yourdomain.com to browse web01 and http:&#x2F;&#x2F;web02.yourdomain.com to browse web02</span><br><span class="line">[web01]</span><br><span class="line">type &#x3D; http</span><br><span class="line">local_ip &#x3D; 127.0.0.1</span><br><span class="line">local_port &#x3D; 80</span><br><span class="line">use_encryption &#x3D; false</span><br><span class="line">use_compression &#x3D; true</span><br><span class="line"># http username and password are safety certification for http protocol</span><br><span class="line"># if not set, you can access this custom_domains without certification</span><br><span class="line">http_user &#x3D; admin</span><br><span class="line">http_pwd &#x3D; admin</span><br><span class="line"># if domain for frps is frps.com, then you can access [web01] proxy by URL http:&#x2F;&#x2F;web01.frps.com</span><br><span class="line">subdomain &#x3D; web01</span><br><span class="line">custom_domains &#x3D; web01.yourdomain.com</span><br><span class="line"># locations is only available for http type</span><br><span class="line">locations &#x3D; &#x2F;,&#x2F;pic</span><br><span class="line">host_header_rewrite &#x3D; example.com</span><br><span class="line"># params with prefix &quot;header_&quot; will be used to update http request headers</span><br><span class="line">header_X-From-Where &#x3D; frp</span><br><span class="line">health_check_type &#x3D; http</span><br><span class="line"># frpc will send a GET http request &#39;&#x2F;status&#39; to local http service</span><br><span class="line"># http service is alive when it return 2xx http response code</span><br><span class="line">health_check_url &#x3D; &#x2F;status</span><br><span class="line">health_check_interval_s &#x3D; 10</span><br><span class="line">health_check_max_failed &#x3D; 3</span><br><span class="line">health_check_timeout_s &#x3D; 3</span><br><span class="line"></span><br><span class="line">[web02]</span><br><span class="line">type &#x3D; https</span><br><span class="line">local_ip &#x3D; 127.0.0.1</span><br><span class="line">local_port &#x3D; 8000</span><br><span class="line">use_encryption &#x3D; false</span><br><span class="line">use_compression &#x3D; false</span><br><span class="line">subdomain &#x3D; web01</span><br><span class="line">custom_domains &#x3D; web02.yourdomain.com</span><br><span class="line"># if not empty, frpc will use proxy protocol to transfer connection info to your local service</span><br><span class="line"># v1 or v2 or empty</span><br><span class="line">proxy_protocol_version &#x3D; v2</span><br><span class="line"></span><br><span class="line">[plugin_unix_domain_socket]</span><br><span class="line">type &#x3D; tcp</span><br><span class="line">remote_port &#x3D; 6003</span><br><span class="line"># if plugin is defined, local_ip and local_port is useless</span><br><span class="line"># plugin will handle connections got from frps</span><br><span class="line">plugin &#x3D; unix_domain_socket</span><br><span class="line"># params with prefix &quot;plugin_&quot; that plugin needed</span><br><span class="line">plugin_unix_path &#x3D; &#x2F;var&#x2F;run&#x2F;docker.sock</span><br><span class="line"></span><br><span class="line">[plugin_http_proxy]</span><br><span class="line">type &#x3D; tcp</span><br><span class="line">remote_port &#x3D; 6004</span><br><span class="line">plugin &#x3D; http_proxy</span><br><span class="line">plugin_http_user &#x3D; abc</span><br><span class="line">plugin_http_passwd &#x3D; abc</span><br><span class="line"></span><br><span class="line">[plugin_socks5]</span><br><span class="line">type &#x3D; tcp</span><br><span class="line">remote_port &#x3D; 6005</span><br><span class="line">plugin &#x3D; socks5</span><br><span class="line">plugin_user &#x3D; abc</span><br><span class="line">plugin_passwd &#x3D; abc</span><br><span class="line"></span><br><span class="line">[plugin_static_file]</span><br><span class="line">type &#x3D; tcp</span><br><span class="line">remote_port &#x3D; 6006</span><br><span class="line">plugin &#x3D; static_file</span><br><span class="line">plugin_local_path &#x3D; &#x2F;var&#x2F;www&#x2F;blog</span><br><span class="line">plugin_strip_prefix &#x3D; static</span><br><span class="line">plugin_http_user &#x3D; abc</span><br><span class="line">plugin_http_passwd &#x3D; abc</span><br><span class="line"></span><br><span class="line">[plugin_https2http]</span><br><span class="line">type &#x3D; https</span><br><span class="line">custom_domains &#x3D; test.yourdomain.com</span><br><span class="line">plugin &#x3D; https2http</span><br><span class="line">plugin_local_addr &#x3D; 127.0.0.1:80</span><br><span class="line">plugin_crt_path &#x3D; .&#x2F;server.crt</span><br><span class="line">plugin_key_path &#x3D; .&#x2F;server.key</span><br><span class="line">plugin_host_header_rewrite &#x3D; 127.0.0.1</span><br><span class="line">plugin_header_X-From-Where &#x3D; frp</span><br><span class="line"></span><br><span class="line">[plugin_https2https]</span><br><span class="line">type &#x3D; https</span><br><span class="line">custom_domains &#x3D; test.yourdomain.com</span><br><span class="line">plugin &#x3D; https2https</span><br><span class="line">plugin_local_addr &#x3D; 127.0.0.1:443</span><br><span class="line">plugin_crt_path &#x3D; .&#x2F;server.crt</span><br><span class="line">plugin_key_path &#x3D; .&#x2F;server.key</span><br><span class="line">plugin_host_header_rewrite &#x3D; 127.0.0.1</span><br><span class="line">plugin_header_X-From-Where &#x3D; frp</span><br><span class="line"></span><br><span class="line">[plugin_http2https]</span><br><span class="line">type &#x3D; http</span><br><span class="line">custom_domains &#x3D; test.yourdomain.com</span><br><span class="line">plugin &#x3D; http2https</span><br><span class="line">plugin_local_addr &#x3D; 127.0.0.1:443</span><br><span class="line">plugin_host_header_rewrite &#x3D; 127.0.0.1</span><br><span class="line">plugin_header_X-From-Where &#x3D; frp</span><br><span class="line"></span><br><span class="line">[secret_tcp]</span><br><span class="line"># If the type is secret tcp, remote_port is useless</span><br><span class="line"># Who want to connect local port should deploy another frpc with stcp proxy and role is visitor</span><br><span class="line">type &#x3D; stcp</span><br><span class="line"># sk used for authentication for visitors</span><br><span class="line">sk &#x3D; abcdefg</span><br><span class="line">local_ip &#x3D; 127.0.0.1</span><br><span class="line">local_port &#x3D; 22</span><br><span class="line">use_encryption &#x3D; false</span><br><span class="line">use_compression &#x3D; false</span><br><span class="line"></span><br><span class="line"># user of frpc should be same in both stcp server and stcp visitor</span><br><span class="line">[secret_tcp_visitor]</span><br><span class="line"># frpc role visitor -&gt; frps -&gt; frpc role server</span><br><span class="line">role &#x3D; visitor</span><br><span class="line">type &#x3D; stcp</span><br><span class="line"># the server name you want to visitor</span><br><span class="line">server_name &#x3D; secret_tcp</span><br><span class="line">sk &#x3D; abcdefg</span><br><span class="line"># connect this address to visitor stcp server</span><br><span class="line">bind_addr &#x3D; 127.0.0.1</span><br><span class="line">bind_port &#x3D; 9000</span><br><span class="line">use_encryption &#x3D; false</span><br><span class="line">use_compression &#x3D; false</span><br><span class="line"></span><br><span class="line">[p2p_tcp]</span><br><span class="line">type &#x3D; xtcp</span><br><span class="line">sk &#x3D; abcdefg</span><br><span class="line">local_ip &#x3D; 127.0.0.1</span><br><span class="line">local_port &#x3D; 22</span><br><span class="line">use_encryption &#x3D; false</span><br><span class="line">use_compression &#x3D; false</span><br><span class="line"></span><br><span class="line">[p2p_tcp_visitor]</span><br><span class="line">role &#x3D; visitor</span><br><span class="line">type &#x3D; xtcp</span><br><span class="line">server_name &#x3D; p2p_tcp</span><br><span class="line">sk &#x3D; abcdefg</span><br><span class="line">bind_addr &#x3D; 127.0.0.1</span><br><span class="line">bind_port &#x3D; 9001</span><br><span class="line">use_encryption &#x3D; false</span><br><span class="line">use_compression &#x3D; false</span><br><span class="line"></span><br><span class="line">[tcpmuxhttpconnect]</span><br><span class="line">type &#x3D; tcpmux</span><br><span class="line">multiplexer &#x3D; httpconnect</span><br><span class="line">local_ip &#x3D; 127.0.0.1</span><br><span class="line">local_port &#x3D; 10701</span><br><span class="line">custom_domains &#x3D; tunnel1</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<hr>
+<p>References</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuYm9va3N0YWNrLmNuL3JlYWQvZnJwL1JFQURNRV96aC5tZA==">https://www.bookstack.cn/read/frp/README_zh.md<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2RlbmdfeGovYXJ0aWNsZS9kZXRhaWxzLzg4OTUyNDIw">https://blog.csdn.net/deng_xj/article/details/88952420<i class="fa fa-external-link-alt"></i></span></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/frp/" rel="tag"># frp</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/dev/vps/reversecf/" rel="prev" title="反向代理cf">
+                  <i class="fa fa-chevron-left"></i> 反向代理cf
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Edlison</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

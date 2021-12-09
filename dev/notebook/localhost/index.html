@@ -31,7 +31,7 @@
 <meta property="og:description" content="Intro0.0.0.0与127.0.0.1与localhost的区别">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-12-06T14:22:29.713Z">
-<meta property="article:modified_time" content="2021-12-06T14:31:32.648Z">
+<meta property="article:modified_time" content="2021-12-09T19:00:56.833Z">
 <meta property="article:author" content="Bolin Shen">
 <meta property="article:tag" content="linux">
 <meta name="twitter:card" content="summary">
@@ -188,7 +188,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <section class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Intro"><span class="nav-number">1.</span> <span class="nav-text">Intro</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#127-0-0-1"><span class="nav-number">2.</span> <span class="nav-text">127.0.0.1</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0-0-0-0"><span class="nav-number">3.</span> <span class="nav-text">0.0.0.0</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#localhost"><span class="nav-number">4.</span> <span class="nav-text">localhost</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Intro"><span class="nav-number">1.</span> <span class="nav-text">Intro</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#127-0-0-1"><span class="nav-number">2.</span> <span class="nav-text">127.0.0.1</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0-0-0-0"><span class="nav-number">3.</span> <span class="nav-text">0.0.0.0</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#localhost"><span class="nav-number">4.</span> <span class="nav-text">localhost</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#注意"><span class="nav-number">5.</span> <span class="nav-text">注意</span></a></li></ol></div>
         </section>
         <!--/noindex-->
 
@@ -202,7 +202,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">286</span>
+          <span class="site-state-item-count">287</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -215,7 +215,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">142</span>
+        <span class="site-state-item-count">143</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -287,10 +287,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 12-06-2021 22:22:29 / Modified: 22:31:32" itemprop="dateCreated datePublished" datetime="2021-12-06T22:22:29+08:00">12-06-2021</time>
+      <time title="Created: 12-06-2021 22:22:29" itemprop="dateCreated datePublished" datetime="2021-12-06T22:22:29+08:00">12-06-2021</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 12-10-2021 03:00:56" itemprop="dateModified" datetime="2021-12-10T03:00:56+08:00">12-10-2021</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -318,14 +324,17 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p>0.0.0.0与127.0.0.1与localhost的区别</p>
+        <h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p><code>0.0.0.0</code>与<code>127.0.0.1</code>与<code>localhost</code>的区别</p>
 <a id="more"></a>
 
-<h1 id="127-0-0-1"><a href="#127-0-0-1" class="headerlink" title="127.0.0.1"></a>127.0.0.1</h1><p>网络号为127的都是回环地址127.0.0.1 - 127.255.255.255</p>
+<h1 id="127-0-0-1"><a href="#127-0-0-1" class="headerlink" title="127.0.0.1"></a>127.0.0.1</h1><p>网络号为127的都是回环地址<code>127.0.0.1 - 127.255.255.255</code></p>
 <p>发向<code>loopback</code>的数据包被自己接收, 通过此测试网络设备</p>
 <h1 id="0-0-0-0"><a href="#0-0-0-0" class="headerlink" title="0.0.0.0"></a>0.0.0.0</h1><p>表示监听机器上所有的网口, 包括回环地址.</p>
 <p>比如内网地址<code>10.0.0.1</code>, 外网地址<code>120.10.0.1</code>, 则都会监听</p>
 <h1 id="localhost"><a href="#localhost" class="headerlink" title="localhost"></a>localhost</h1><p>是<code>/etc/hosts</code>中定义的一个指向<code>127.0.0.1</code>的域名.</p>
+<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><p>我的理解</p>
+<p>如果是部署在本机, 通过本机访问, 则可以绑定<code>127.0.0.1</code>地址</p>
+<p>如果是要部署服务, 通过别的终端进行访问, 则不能绑定<code>127.0.0.1</code>地址, 需要绑定<code>0.0.0.0</code>或者公网IP或内网IP.</p>
 <hr>
 <p>References</p>
 <p><span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC9iYThhYmFkNTZiYTk=">https://www.jianshu.com/p/ba8abad56ba9<i class="fa fa-external-link-alt"></i></span></p>
