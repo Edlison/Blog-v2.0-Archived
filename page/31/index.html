@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">290</span>
+          <span class="site-state-item-count">291</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -256,6 +256,107 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/paper_experiment/pt_save_load/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/academia/paper_experiment/pt_save_load/" class="post-title-link" itemprop="url">pytorch模型的保存与加载</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 02-21-2021 18:55:12" itemprop="dateCreated datePublished" datetime="2021-02-21T18:55:12+08:00">02-21-2021</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 03-04-2021 14:51:42" itemprop="dateModified" datetime="2021-03-04T14:51:42+08:00">03-04-2021</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="只保存网络的参数"><a href="#只保存网络的参数" class="headerlink" title="只保存网络的参数"></a>只保存网络的参数</h1><h2 id="Save"><a href="#Save" class="headerlink" title="Save"></a>Save</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.save(model.state_dict(), PATH)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Load"><a href="#Load" class="headerlink" title="Load"></a>Load</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model.load_state_dict(torch.load(PATH))</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong></p>
+<ul>
+<li>模型的加载需要使用<code>torch.load</code>加载路径下的文件，逆序列化dict</li>
+</ul>
+<h1 id="保存全部的信息"><a href="#保存全部的信息" class="headerlink" title="保存全部的信息"></a>保存全部的信息</h1><h2 id="Save-1"><a href="#Save-1" class="headerlink" title="Save"></a>Save</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">torch.save(&#123;</span><br><span class="line">  <span class="string">'epoch'</span>: epoch,</span><br><span class="line">  <span class="string">'model_state_dict'</span>: model.state_dict(),</span><br><span class="line">  ...</span><br><span class="line">&#125;, PATH)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Load-1"><a href="#Load-1" class="headerlink" title="Load"></a>Load</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">checkpoint = torch.load(PATH)</span><br><span class="line">epoch = checkpoint[<span class="string">'epoch'</span>]</span><br><span class="line">model.load_state_dict(checkpoint[<span class="string">'model_state_dict'</span>])</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<hr>
+<p>Reference</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Rzc19kc3Nzc2QvYXJ0aWNsZS9kZXRhaWxzLzg5NDA5MTgz">https://blog.csdn.net/dss_dssssd/article/details/89409183<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -597,88 +698,10 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/docker/docker-v2ray/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/docker/docker-v2ray/" class="post-title-link" itemprop="url">制作V2ray的Dockerfile</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 02-13-2021 02:42:39 / Modified: 02:51:49" itemprop="dateCreated datePublished" datetime="2021-02-13T02:42:39+08:00">02-13-2021</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h1><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> ubuntu:latest</span><br><span class="line"></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> /root</span></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> v2ray.sh /root</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> mkdir -p /etc/v2ray /usr/<span class="built_in">local</span>/share/v2ray /var/<span class="built_in">log</span>/v2ray \</span></span><br><span class="line"><span class="bash">					&amp;&amp; chmod +x /root/v2ray.sh \</span></span><br><span class="line"><span class="bash">					&amp;&amp; /root/v2ray.sh</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">VOLUME</span><span class="bash"> /etc/v2ray</span></span><br><span class="line"><span class="keyword">CMD</span><span class="bash"> [ <span class="string">"v2ray"</span>, <span class="string">"-config"</span>, <span class="string">"/etc/v2ray/config.json"</span> ]</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="sh"><a href="#sh" class="headerlink" title="sh"></a>sh</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">apt update \</span><br><span class="line">&amp;&amp; apt install wget zip \</span><br><span class="line">&amp;&amp; wget https://github.com/v2fly/v2ray-core/releases/download/<span class="variable">$&#123;TAG&#125;</span>/<span class="variable">$&#123;V2RAY_FILE&#125;</span> \</span><br><span class="line">&amp;&amp; unzip v2ray.zip \</span><br><span class="line">&amp;&amp; chmod +x v2ray v2ctl \</span><br><span class="line">&amp;&amp; mv v2ray v2ctl /usr/bin \</span><br><span class="line">&amp;&amp; mv geosite.dat geoip.dat /usr/<span class="built_in">local</span>/share/v2ray \</span><br><span class="line">&amp;&amp; mv config.json /etc/v2ray/config.json</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">'Done'</span></span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/30/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/30/">30</a><span class="page-number current">31</span><a class="page-number" href="/page/32/">32</a><span class="space">&hellip;</span><a class="page-number" href="/page/58/">58</a><a class="extend next" rel="next" href="/page/32/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/30/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/30/">30</a><span class="page-number current">31</span><a class="page-number" href="/page/32/">32</a><span class="space">&hellip;</span><a class="page-number" href="/page/59/">59</a><a class="extend next" rel="next" href="/page/32/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
