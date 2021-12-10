@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">291</span>
+          <span class="site-state-item-count">292</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -256,6 +256,119 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/vps/deploy/rclone/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/vps/deploy/rclone/" class="post-title-link" itemprop="url">mount GDrive</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 10-09-2021 19:27:48" itemprop="dateCreated datePublished" datetime="2021-10-09T19:27:48+08:00">10-09-2021</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 12-07-2021 14:14:04" itemprop="dateModified" datetime="2021-12-07T14:14:04+08:00">12-07-2021</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/VPS/" itemprop="url" rel="index"><span itemprop="name">VPS</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="rclone"><a href="#rclone" class="headerlink" title="rclone"></a>rclone</h1><p>download</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl https://rclone.org/install.sh | sudo bash</span><br></pre></td></tr></table></figure>
+
+<p>configure</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rclone config</span><br></pre></td></tr></table></figure>
+
+<p>follow the prompt</p>
+<h1 id="manual"><a href="#manual" class="headerlink" title="manual"></a>manual</h1><p>choose the binary file that match your OS</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;rclone.org&#x2F;downloads&#x2F;</span><br></pre></td></tr></table></figure>
+
+<p>unzip and mount to env</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cp rclone /usr/bin/rclone.new</span><br><span class="line">chmod 755 /usr/bin/rclone.new</span><br><span class="line">chown root:root /usr/bin/rclone.new</span><br><span class="line">mv /usr/bin/rclone.new /usr/bin/rclone</span><br></pre></td></tr></table></figure>
+
+<h1 id="mount"><a href="#mount" class="headerlink" title="mount"></a>mount</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup rclone mount <span class="string">'remote'</span>:/remoteLoc /mnt/GoogleDrive --allow-other &amp;&gt; mnt_gd.out&amp;</span><br></pre></td></tr></table></figure>
+
+<p>if there’s an exception about <code>fuse</code></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install fuse</span><br></pre></td></tr></table></figure>
+
+<p><strong>the mount process need to be hang on at backgrount!</strong></p>
+<h1 id="deamon-file"><a href="#deamon-file" class="headerlink" title="deamon file"></a>deamon file</h1><p><span class="exturl" data-url="aHR0cHM6Ly96aHVqaXRpcHMuY29tL3NoL3JjbG9uZWQ=">refer<i class="fa fa-external-link-alt"></i></span></p>
+<h1 id="bug"><a href="#bug" class="headerlink" title="bug"></a>bug</h1><p>好像是个bug</p>
+<p>在copy文件到OneDrive时会报错</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">2021&#x2F;11&#x2F;24 13:23:29 ERROR : : error listing: directory not found</span><br><span class="line">2021&#x2F;11&#x2F;24 13:23:29 Failed to ls with 2 errors: last error was: directory not found</span><br></pre></td></tr></table></figure>
+
+<p>需要执行一遍</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rclone ls OneDrive:</span><br></pre></td></tr></table></figure>
+
+<p>然后再执行<code>copy</code>指令才可以</p>
+<hr>
+<p>References</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cubWlzdGVybWEuY29tL2FyY2hpdmVzLzkwMC8=">https://www.misterma.com/archives/900/<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC8xOTAyMjQzNjk=">https://zhuanlan.zhihu.com/p/190224369<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9yY2xvbmUub3Jn">https://rclone.org<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -582,92 +695,6 @@
 <li>W: write into ~/.toprc</li>
 </ul>
 <h1 id="disk-usage"><a href="#disk-usage" class="headerlink" title="disk usage"></a>disk usage</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">du -h  <span class="comment"># show current dir</span></span><br><span class="line">du -h /usr/bin</span><br><span class="line">df -h  <span class="comment"># show disk usage</span></span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/vps/deploy/v2ray-lite/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/vps/deploy/v2ray-lite/" class="post-title-link" itemprop="url">lite v2ray via docker</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 10-09-2021 12:21:01" itemprop="dateCreated datePublished" datetime="2021-10-09T12:21:01+08:00">10-09-2021</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 10-10-2021 00:12:37" itemprop="dateModified" datetime="2021-10-10T00:12:37+08:00">10-10-2021</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/VPS/" itemprop="url" rel="index"><span itemprop="name">VPS</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="docker-image"><a href="#docker-image" class="headerlink" title="docker image"></a>docker image</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull teddysun/v2ray</span><br></pre></td></tr></table></figure>
-
-<h1 id="docker-compose"><a href="#docker-compose" class="headerlink" title="docker compose"></a>docker compose</h1><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3.9'</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">v2ray:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">teddysun/v2ray</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">     <span class="bullet">-</span> <span class="string">./config:/etc/v2ray</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">     <span class="bullet">-</span> <span class="number">9000</span><span class="string">:9000</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="config-json"><a href="#config-json" class="headerlink" title="config.json"></a>config.json</h1><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"inbounds"</span>: [&#123;</span><br><span class="line">    <span class="attr">"port"</span>: <span class="number">9000</span>,</span><br><span class="line">    <span class="attr">"protocol"</span>: <span class="string">"vmess"</span>,</span><br><span class="line">    <span class="attr">"settings"</span>: &#123;</span><br><span class="line">      <span class="attr">"clients"</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">"id"</span>: <span class="string">"100xxxxx-xxxx-xxxx-xxxx-00xxxxxxxxxx"</span>,</span><br><span class="line">          <span class="attr">"level"</span>: <span class="number">1</span>,</span><br><span class="line">          <span class="attr">"alterId"</span>: <span class="number">64</span></span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;],</span><br><span class="line">  <span class="attr">"outbounds"</span>: [&#123;</span><br><span class="line">    <span class="attr">"protocol"</span>: <span class="string">"freedom"</span>,</span><br><span class="line">    <span class="attr">"settings"</span>: &#123;&#125;</span><br><span class="line">  &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
       

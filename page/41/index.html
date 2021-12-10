@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">291</span>
+          <span class="site-state-item-count">292</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -256,6 +256,112 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/linux/linux-redis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/linux/linux-redis/" class="post-title-link" itemprop="url">Linux安装Redis</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 01-21-2021 17:29:40 / Modified: 17:41:34" itemprop="dateCreated datePublished" datetime="2021-01-21T17:29:40+08:00">01-21-2021</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Linux版安装流程"><a href="#Linux版安装流程" class="headerlink" title="Linux版安装流程"></a>Linux版安装流程</h1><ol>
+<li>获取最新的版本</li>
+</ol>
+<p><span class="exturl" data-url="aHR0cHM6Ly9yZWRpcy5pby9kb3dubG9hZA==">https://redis.io/download<i class="fa fa-external-link-alt"></i></span></p>
+<ol start="2">
+<li>下载，解压，编译</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ wget https://download.redis.io/releases/redis-6.0.10.tar.gz</span><br><span class="line">$ tar xzf redis-6.0.10.tar.gz</span><br><span class="line">$ <span class="built_in">cd</span> redis-6.0.10</span><br><span class="line">$ make</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>测试</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ src/redis-cli</span><br><span class="line">redis&gt; <span class="built_in">set</span> foo bar</span><br><span class="line">OK</span><br><span class="line">redis&gt; get foo</span><br><span class="line"><span class="string">"bar"</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><ol>
+<li>Redis 6需要gcc的版本为5.3以上</li>
+</ol>
+<ul>
+<li>查看gcc版本</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -v</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>升级</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#升级到 5.3及以上版本</span></span><br><span class="line">yum -y install centos-release-scl</span><br><span class="line">yum -y install devtoolset-9-gcc devtoolset-9-gcc-c++ devtoolset-9-binutils</span><br><span class="line"></span><br><span class="line">scl <span class="built_in">enable</span> devtoolset-9 bash</span><br></pre></td></tr></table></figure>
+
+<p>scl命令启用只是临时的，推出xshell或者重启就会恢复到原来的gcc版本。<br>如果要长期生效的话，执行如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"source /opt/rh/devtoolset-9/enable"</span> &gt;&gt;/etc/profile</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>遇到fatal error</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make MALLOC=libc</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>Reference</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hlbGxvX2NteS9hcnRpY2xlL2RldGFpbHMvMTA2MDYyMzI3">https://blog.csdn.net/hello_cmy/article/details/106062327<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpYnJhX3RzL2FydGljbGUvZGV0YWlscy83MTE5NTEyOA==">https://blog.csdn.net/libra_ts/article/details/71195128<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -613,108 +719,6 @@
 <p><code>ctrl+r</code>reundo</p>
 <h1 id="Command-Mode"><a href="#Command-Mode" class="headerlink" title="Command Mode"></a>Command Mode</h1><p><code>:set nu</code>显示行号</p>
 <p><code>:set nonu</code>取消行号</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/notebook/Fluent-Python-1.18-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/notebook/Fluent-Python-1.18-1/" class="post-title-link" itemprop="url">Fluent-Python-PartIII-Functions as Objects</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 01-18-2021 15:00:10 / Modified: 16:49:14" itemprop="dateCreated datePublished" datetime="2021-01-18T15:00:10+08:00">01-18-2021</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="5-First-Class-Functions"><a href="#5-First-Class-Functions" class="headerlink" title="5-First-Class Functions"></a>5-First-Class Functions</h1><p>Python中所有的函数都是first-class对象（一级对象？）</p>
-<ul>
-<li>在运行时创建</li>
-<li>赋值给数据结构中的变量或元素</li>
-<li>作为参数传递给函数</li>
-<li>作为函数的结果返回</li>
-</ul>
-<h2 id="可调用对象的7中风格"><a href="#可调用对象的7中风格" class="headerlink" title="可调用对象的7中风格"></a>可调用对象的7中风格</h2><ol>
-<li>用户定义方程</li>
-</ol>
-<p>使用<code>def</code>语句或<code>lambda</code>表达式创建。</p>
-<ol start="2">
-<li>内建函数</li>
-</ol>
-<p><code>len</code></p>
-<ol start="3">
-<li>内建方法</li>
-</ol>
-<p>Dice.get</p>
-<ol start="4">
-<li>方法</li>
-</ol>
-<p>定义在类内部的函数</p>
-<ol start="5">
-<li>类</li>
-</ol>
-<p>可以调用<code>__new__</code>方法去生成实例的类，然后通过<code>__init__</code>方法来初始化它。</p>
-<ol start="6">
-<li>类实例</li>
-</ol>
-<p>如果一个类定义了一个<code>__call__</code>方法，那这个实例就会当作函数被调用。</p>
-<ol start="7">
-<li>生成器函数</li>
-</ol>
-<p>函数或方法使用<code>yield</code>关键字，当调用的时候，生成器函数返回一个生成器对象。</p>
-<h2 id="User-Defined-Callable-Types用户定义的可调用类型"><a href="#User-Defined-Callable-Types用户定义的可调用类型" class="headerlink" title="User-Defined Callable Types用户定义的可调用类型"></a>User-Defined Callable Types用户定义的可调用类型</h2><p>Python函数不仅是真正的对象，而且任意的Python对象也可以表现的像函数一样。只要实现<code>__call__</code>实例方法。</p>
-<h1 id="6-Design-Patterns-with-First-Class-Functions"><a href="#6-Design-Patterns-with-First-Class-Functions" class="headerlink" title="6-Design Patterns with First-Class Functions"></a>6-Design Patterns with First-Class Functions</h1><p>项目实例</p>
 
       
     </div>

@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">291</span>
+          <span class="site-state-item-count">292</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -256,6 +256,90 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/linux/linux-mariadb/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/linux/linux-mariadb/" class="post-title-link" itemprop="url">Linux上的Mariadb</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 04-17-2020 22:03:46" itemprop="dateCreated datePublished" datetime="2020-04-17T22:03:46+08:00">04-17-2020</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 03-10-2021 03:02:06" itemprop="dateModified" datetime="2021-03-10T03:02:06+08:00">03-10-2021</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Mariadb的使用"><a href="#Mariadb的使用" class="headerlink" title="Mariadb的使用"></a>Mariadb的使用</h1><p>Linux上已经摒弃了Mysql，以下是一些Mariadb的基本用法。</p>
+<h2 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h2><p><code>CREATE USER &#39;username&#39;@&#39;host&#39; IDENTIFIED BY &#39;password&#39;;</code></p>
+<h2 id="用户权限"><a href="#用户权限" class="headerlink" title="用户权限"></a>用户权限</h2><p><code>GRANT ALL privileges ON databasename.tablename TO &#39;username&#39;@&#39;host&#39;</code></p>
+<h2 id="查看权限"><a href="#查看权限" class="headerlink" title="查看权限"></a>查看权限</h2><p><code>show grants for &#39;root&#39;@&#39;%&#39;;</code></p>
+<p>例:<br><code>MariaDB [(none)]&gt; grant all on *.* to &#39;root&#39;@&#39;%&#39;;</code><br><code>MariaDB [mysql]&gt; flush privileges;</code><br><code>MariaDB [(none)]&gt; grant all privileges on *.* to &#39;root&#39;@&#39;%&#39; identified by &#39;password&#39;;</code></p>
+<h2 id="查看用户"><a href="#查看用户" class="headerlink" title="查看用户"></a>查看用户</h2><p><code>select user from mysql.user;</code></p>
+<h2 id="查看当前用户"><a href="#查看当前用户" class="headerlink" title="查看当前用户"></a>查看当前用户</h2><p><code>select current_user;</code></p>
+<h2 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h2><p><code>delete from mysql.user where user=&#39;root&#39;;</code></p>
+<h2 id="撤销权限"><a href="#撤销权限" class="headerlink" title="撤销权限"></a>撤销权限</h2><p><code>REVOKE privileges ON databasename.tablename FROM &#39;username&#39;@&#39;host&#39;;</code></p>
+<h1 id="坑"><a href="#坑" class="headerlink" title="坑"></a>坑</h1><p>如果创建外网可以登陆的用户</p>
+<p><code>create user &#39;xxx&#39;@&#39;%&#39; identified by &#39;xxx&#39;</code></p>
+<p>想用这个用户在本地<code>localhost</code>登陆的话会被拒绝访问</p>
+<p>再新建一个可以<code>localhost</code>登陆的用户即可</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -613,78 +697,6 @@
 <li>检测安装情况</li>
 </ul>
 <p><code>$ sysctl net.ipv4.tcp_available_congestion_control</code></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/test/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/test/" class="post-title-link" itemprop="url">test</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 04-03-2020 17:50:37" itemprop="dateCreated datePublished" datetime="2020-04-03T17:50:37+08:00">04-03-2020</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 07-06-2021 16:31:17" itemprop="dateModified" datetime="2021-07-06T16:31:17+08:00">07-06-2021</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h1><p>Just for test</p>
 
       
     </div>

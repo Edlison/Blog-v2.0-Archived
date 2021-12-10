@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">291</span>
+          <span class="site-state-item-count">292</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -256,6 +256,101 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/homelab/openwrt/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/homelab/openwrt/" class="post-title-link" itemprop="url">Home Lab | OpenWRT</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 11-01-2021 02:04:11 / Modified: 02:27:10" itemprop="dateCreated datePublished" datetime="2021-11-01T02:04:11+08:00">11-01-2021</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Home-Lab/" itemprop="url" rel="index"><span itemprop="name">Home Lab</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p>OpenWRT作为旁路由</p>
+<h1 id="Process"><a href="#Process" class="headerlink" title="Process"></a>Process</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>恩山论坛上有很多编译版本</p>
+<p>通过scp上传到PVE的root目录下</p>
+<p>使用<code>img2kvm</code>将镜像挂载到指定的虚拟机下</p>
+<p>设置通过该镜像引导虚拟机</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>配置IP到同一个子网下</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/config/network</span><br></pre></td></tr></table></figure>
+
+<p>重启后进入Web进行配置</p>
+<p>设置接口</p>
+<ol>
+<li>网关指向iKuai</li>
+<li>关闭DHCP服务器</li>
+</ol>
+<h1 id="玩法"><a href="#玩法" class="headerlink" title="玩法"></a>玩法</h1><p>iKuai和OpenWRT的网关互指, 实现所有设备接入都可以hello world</p>
+<p>iKuai网关指向自己, OpenWRT网关指向iKuai, 手动设置终端设备的router为OpenWRT, 可以实现分流</p>
+<p>todo…</p>
+<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><p>ISO文件可以直接通过PVE面板上传至local, 然后虚拟机可以选择引导</p>
+<p>img文件需要通过指令挂载, 文件格式的问题</p>
+<p>PVE的noVNC管理工具是vim输入!</p>
+<p>此时OpenWRT的接口相当于是在管理口上和iKuai的LAN口上</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -600,128 +695,6 @@
 <p>Reference</p>
 <p><span class="exturl" data-url="aHR0cHM6Ly9wb3N0LnNtemRtLmNvbS9wL2FscHdsenZwLw==">https://post.smzdm.com/p/alpwlzvp/<i class="fa fa-external-link-alt"></i></span></p>
 <p><span class="exturl" data-url="aHR0cDovL3d3dy5uYXN5dW4uY29tL3RocmVhZC03NzgxOC0xLTEuaHRtbA==">http://www.nasyun.com/thread-77818-1-1.html<i class="fa fa-external-link-alt"></i></span></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/homelab/virtualization/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/homelab/virtualization/" class="post-title-link" itemprop="url">Home Lab | Virtualization</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 10-29-2021 21:24:02" itemprop="dateCreated datePublished" datetime="2021-10-29T21:24:02+08:00">10-29-2021</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 11-01-2021 02:21:31" itemprop="dateModified" datetime="2021-11-01T02:21:31+08:00">11-01-2021</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Home-Lab/" itemprop="url" rel="index"><span itemprop="name">Home Lab</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p>使用虚拟化技术搭建Home Lab</p>
-<h1 id="Process"><a href="#Process" class="headerlink" title="Process"></a>Process</h1><h2 id="PE-preinstallation-environment"><a href="#PE-preinstallation-environment" class="headerlink" title="PE(preinstallation environment)"></a>PE(preinstallation environment)</h2><p>使用U盘制作一个PE盘, 方便将主机格式化, 新建分区.</p>
-<p>系统崩了可以通过PE恢复.</p>
-<ol>
-<li>下载<span class="exturl" data-url="aHR0cDovL3dlcGUuY29tLmNu">wepe<i class="fa fa-external-link-alt"></i></span></li>
-<li>选择U盘进行安装</li>
-<li>三个分区: PE系统分区(看不见), UEFI引导分区, 剩余分区(放iso)</li>
-</ol>
-<h2 id="PVE-bootloader"><a href="#PVE-bootloader" class="headerlink" title="PVE bootloader"></a>PVE bootloader</h2><ol>
-<li>下载<span class="exturl" data-url="aHR0cHM6Ly9wcm94bW94LmNvbS9lbi8=">PVE<i class="fa fa-external-link-alt"></i></span></li>
-<li>下载<span class="exturl" data-url="aHR0cDovL3J1ZnVzLmllLw==">refus<i class="fa fa-external-link-alt"></i></span></li>
-<li>使用refus 将PVE镜像写入U盘</li>
-</ol>
-<h2 id="install-PVE"><a href="#install-PVE" class="headerlink" title="install PVE"></a>install PVE</h2><p>按照指引安装</p>
-<p>CIDR自己设置, 需要和router在一个网络号下</p>
-<p>通过设置的地址访问</p>
-<h2 id="iommu"><a href="#iommu" class="headerlink" title="iommu"></a>iommu</h2><p>设置iommu分组与硬件直通</p>
-<p><strong>BIOS开启VT-d(不在cpu控制里)</strong></p>
-<h3 id="对于grub引导"><a href="#对于grub引导" class="headerlink" title="对于grub引导"></a>对于grub引导</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># vi /etc/default/grub</span></span><br><span class="line"></span><br><span class="line">GRUB_CMDLINE_LINUX_DEFAULT=<span class="string">"quiet intel_iommu=on pcie_acs_override=downstream,multifunction"</span></span><br></pre></td></tr></table></figure>
-
-<p>需要添加<code>pcie_acs_override=downstream,multifunction</code>将同一个网卡设备上的多个接口进行分组</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update-grub</span><br></pre></td></tr></table></figure>
-
-<h3 id="对于systemd-boot引导"><a href="#对于systemd-boot引导" class="headerlink" title="对于systemd-boot引导"></a>对于systemd-boot引导</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># vi /etc/kernel/cmdline</span></span><br><span class="line"></span><br><span class="line">quiet intel_iommu=on pcie_acs_override=downstream,multifunction</span><br></pre></td></tr></table></figure>
-
-<p>直接创建文件, 添加指令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">proxmox-boot-tool refresh</span><br></pre></td></tr></table></figure>
-
-<h3 id="修改modules文件"><a href="#修改modules文件" class="headerlink" title="修改modules文件"></a>修改modules文件</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># vi /etc/modules</span></span><br><span class="line"></span><br><span class="line">vfio</span><br><span class="line">vfio_iommu_type1</span><br><span class="line">vfio_pci</span><br><span class="line">vfio_virqfd</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update-initramfs -u -k all</span><br></pre></td></tr></table></figure>
-
-<h3 id="检查效果"><a href="#检查效果" class="headerlink" title="检查效果"></a>检查效果</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dmesg | grep -e DMAR -e IOMMU</span><br><span class="line">find /sys/kernel/iommu_groups/ -<span class="built_in">type</span> l</span><br></pre></td></tr></table></figure>
-
-<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><p>PVE中有两个默认的storage</p>
-<p>local: 放镜像文件, 可用于虚拟机的系统镜像, 共58G</p>
-<p>local-vm: 虚拟机的磁盘大小, <strong>也可以通过指令挂载, 然后设置为引导程序</strong>, 共151G</p>
-<p>*PVE装在240G硬盘中</p>
-<hr>
-<p>Reference</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9wb3N0LnNtemRtLmNvbS9wL2FscHdsenZwLw==">https://post.smzdm.com/p/alpwlzvp/<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9wdmUucHJveG1veC5jb20vd2lraS9QY2lfcGFzc3Rocm91Z2gjc3lzdGVtZC1ib290">https://pve.proxmox.com/wiki/Pci_passthrough#systemd-boot<i class="fa fa-external-link-alt"></i></span></p>
 
       
     </div>

@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">291</span>
+          <span class="site-state-item-count">292</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -256,6 +256,98 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/paper_experiment/mv_gan/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/academia/paper_experiment/mv_gan/" class="post-title-link" itemprop="url">在GAN上实现Multi-View</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 02-09-2021 18:52:45" itemprop="dateCreated datePublished" datetime="2021-02-09T18:52:45+08:00">02-09-2021</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 03-04-2021 14:51:25" itemprop="dateModified" datetime="2021-03-04T14:51:25+08:00">03-04-2021</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="遇到的坑"><a href="#遇到的坑" class="headerlink" title="遇到的坑"></a>遇到的坑</h1><h2 id="网络的组合"><a href="#网络的组合" class="headerlink" title="网络的组合"></a>网络的组合</h2><p>用列表的数据结构，存储Module。</p>
+<p>使用 Python 的 list 添加的全连接层和它们的 parameters <strong>并没有自动注册</strong>到我们的网络中。</p>
+<p><strong>解决方案：</strong>如果想要继承了nn.Module的网络组合多个子网络，需要通过<code>nn.Sequential</code>, <code>nn.ModuleList</code>等<strong>对网络参数进行注册</strong>。</p>
+<h2 id="计算Loss的两个Tensor形状不一致"><a href="#计算Loss的两个Tensor形状不一致" class="headerlink" title="计算Loss的两个Tensor形状不一致"></a>计算Loss的两个Tensor形状不一致</h2><p>由于通过网络经过各种<strong>矩阵相乘</strong>，最后得到的结果是一个二维的Tensor。自己定义的real_label是一个一维的Tensor。<code>torch.Size([256])</code> 不等于 <code>torch.Size([256, 1])</code>.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g_loss = self.losser.get_loss(d_fake, real_label)</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方案：</strong>在网络D最后的输出使用<code>.squeeze()</code>对维度值为1的维度进行挤压。</p>
+<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><p>对在每个View上的数据，使用list或tuple的数据结构进行存储，不必再转到Tensor上。</p>
+<p>使用Processor再训练(train)过程中对数据进行处理，虽然可能会影响效率，但是是最方便的实现方法，在Pytorch的DataLoader只能返回Batch_size的数据，无法再加一个维度，保存View。</p>
+<hr>
+<p>Reference</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kaXNjdXNzLnB5dG9yY2gub3JnL3Qvd2hlbi1zaG91bGQtaS11c2Utbm4tbW9kdWxlbGlzdC1hbmQtd2hlbi1zaG91bGQtaS11c2Utbm4tc2VxdWVudGlhbC81NDYz">https://discuss.pytorch.org/t/when-should-i-use-nn-modulelist-and-when-should-i-use-nn-sequential/5463<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -685,98 +777,6 @@
 <hr>
 <p>Reference</p>
 <p><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vZGlsdGhleS9wLzEyMzc2MTc5Lmh0bWw=">https://www.cnblogs.com/dilthey/p/12376179.html<i class="fa fa-external-link-alt"></i></span></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/notebook/idea-jdk-version/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/notebook/idea-jdk-version/" class="post-title-link" itemprop="url">Idea编译Java版本出错</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 02-02-2021 23:16:00 / Modified: 23:22:05" itemprop="dateCreated datePublished" datetime="2021-02-02T23:16:00+08:00">02-02-2021</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notebook/Error/" itemprop="url" rel="index"><span itemprop="name">Error</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Idea控制Java版本"><a href="#Idea控制Java版本" class="headerlink" title="Idea控制Java版本"></a>Idea控制Java版本</h1><h2 id="1-包管理中"><a href="#1-包管理中" class="headerlink" title="1. 包管理中"></a>1. 包管理中</h2><ul>
-<li><p>Project</p>
-</li>
-<li><p>Modules</p>
-</li>
-</ul>
-<p>两个地方都有设置Java版本的位置。</p>
-<h2 id="2-偏好设置中"><a href="#2-偏好设置中" class="headerlink" title="2. 偏好设置中"></a>2. 偏好设置中</h2><p><code>Cmd</code> + <code>,</code></p>
-<p>在<code>Java Compiler</code>中也可以指定Java版本</p>
-<h1 id="Maven控制Java版本"><a href="#Maven控制Java版本" class="headerlink" title="Maven控制Java版本"></a>Maven控制Java版本</h1><p>如果是Maven项目，很有可能是因为Maven默认的Java的版本而出错。</p>
-<p>在<code>pom.xml</code>中进行配置</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-compiler-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">source</span>&gt;</span>11<span class="tag">&lt;/<span class="name">source</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">target</span>&gt;</span>11<span class="tag">&lt;/<span class="name">target</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>只要刷新Maven项目，就可以解决Java版本问题。</p>
 
       
     </div>
