@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">288</span>
+          <span class="site-state-item-count">290</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -216,7 +216,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">145</span>
+        <span class="site-state-item-count">147</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -256,6 +256,189 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/vim/vim-config/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/vim/vim-config/" class="post-title-link" itemprop="url">Vim配置</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 05-27-2021 11:57:03" itemprop="dateCreated datePublished" datetime="2021-05-27T11:57:03+08:00">05-27-2021</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 07-24-2021 19:08:32" itemprop="dateModified" datetime="2021-07-24T19:08:32+08:00">07-24-2021</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Vim/" itemprop="url" rel="index"><span itemprop="name">Vim</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Vim配置文件"><a href="#Vim配置文件" class="headerlink" title="Vim配置文件"></a>Vim配置文件</h1><p>Vim有两个配置文件</p>
+<ul>
+<li>/etc/vim/vimrc</li>
+<li>~/.vimrc</li>
+</ul>
+<p>第一个全局有效，第二个针对当前用户有效。</p>
+<h1 id="Vim插件"><a href="#Vim插件" class="headerlink" title="Vim插件"></a>Vim插件</h1><h2 id="Vundle插件管理插件"><a href="#Vundle插件管理插件" class="headerlink" title="Vundle插件管理插件"></a>Vundle插件管理插件</h2><p>下载到~/.vim/bundle/Vundle.vim</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim</span><br></pre></td></tr></table></figure>
+
+<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">set nocompatible              &quot; be iMproved, required</span><br><span class="line">filetype off                  &quot; required</span><br><span class="line">set rtp+&#x3D;~&#x2F;.vim&#x2F;bundle&#x2F;Vundle.vim</span><br><span class="line">call vundle#begin()</span><br><span class="line">Plugin &#39;VundleVim&#x2F;Vundle.vim&#39;, &#123;&#39;rtp&#39;: &#39;vim&#x2F;&#39;&#125; &quot; 指定用户&#x2F;仓库. 还可以指定run_time_path到仓库的子目录</span><br><span class="line">Plugin &#39;http:&#x2F;&#x2F;github.com&#x2F;xxx&#x2F;xxx.git&#39;, &#123;&#39;name&#39;: &#39;nerdtree&#39;&#125; &quot; 指定仓库url, 还可以指定名字</span><br><span class="line">Plugin &#39;file:&#x2F;&#x2F;&#x2F;home&#x2F;xxx&#x2F;xxx&#39; &quot; 指定本地插件</span><br><span class="line">&quot; ...</span><br><span class="line">call vundle#end()            &quot; required</span><br><span class="line">filetype plugin indent on    &quot; required</span><br></pre></td></tr></table></figure>
+
+<h3 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h3><p><code>:PluginInstall</code></p>
+<h3 id="删除插件"><a href="#删除插件" class="headerlink" title="删除插件"></a>删除插件</h3><p><code>:PluginClean</code></p>
+<p>或在配置文件下注释掉</p>
+<hr>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vemhhb2RlaHVhL2FydGljbGVzLzE0MTc0MzM2Lmh0bWw=">https://www.cnblogs.com/zhaodehua/articles/14174336.html<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zODgxNTk5OC9hcnRpY2xlL2RldGFpbHMvMTAzNTg5MDkw">https://blog.csdn.net/weixin_38815998/article/details/103589090<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/notebook/zotero/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/notebook/zotero/" class="post-title-link" itemprop="url">Zotero 文献管理</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 05-22-2021 17:22:56 / Modified: 17:36:10" itemprop="dateCreated datePublished" datetime="2021-05-22T17:22:56+08:00">05-22-2021</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p>使用Zotero做个人文献管理，多平台实时同步。</p>
+<p>Mac(Zotero) + iPad(PaperShip)</p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="新建"><a href="#新建" class="headerlink" title="新建"></a>新建</h2><p>Zotero可以创建Group与Collection</p>
+<p>Group相当于创建一个空间，个人空间或团队协作空间等。</p>
+<p>Collection相当于在空间下创建文件夹，及subcollection分级管理文献。</p>
+<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>下载Chrome插件可以实现直接在网页下载PDF+snapshot</p>
+<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><p>remove item from collection</p>
+<p>仅将项目从当前文件夹删除，其他文件夹的文件<strong>不受影响</strong>。</p>
+<p>move item to trash</p>
+<p>将项目移动到回收站，所有subcollection中含有该项目的<strong>一同删除</strong>。</p>
+<hr>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3F1ZXN0aW9uLzI4ODE4NjEwNy9hbnN3ZXIvMTMyNzk2NjA2MQ==">https://www.zhihu.com/question/288186107/answer/1327966061<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -476,169 +659,6 @@
     <div class="post-body" itemprop="articleBody">
           <h1 id="英语中句子与连词的关系"><a href="#英语中句子与连词的关系" class="headerlink" title="英语中句子与连词的关系"></a>英语中句子与连词的关系</h1><p>不能有because… so… 的情况出现</p>
 <p><strong>本质是</strong> 句子个数 &gt;= 连词个数 + 1</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/life/toefl/toefl-socialmetavalue/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/life/toefl/toefl-socialmetavalue/" class="post-title-link" itemprop="url">TOEFL - 社会主义核心价值观</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 04-15-2021 08:49:46" itemprop="dateCreated datePublished" datetime="2021-04-15T08:49:46+08:00">04-15-2021</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 10-16-2021 03:22:48" itemprop="dateModified" datetime="2021-10-16T03:22:48+08:00">10-16-2021</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="社会主义核心价值观英文"><a href="#社会主义核心价值观英文" class="headerlink" title="社会主义核心价值观英文"></a>社会主义核心价值观英文</h1><p>Prosperity Democracy Civility Harmony</p>
-<p>Freedom Equality Justice Rule-of-Law</p>
-<p>Patriotism Dedication Integrity Friendship</p>
-<hr>
-<p>Reference</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly96aGlkYW8uYmFpZHUuY29tL3F1ZXN0aW9uLzE4MTkyMTI1NjUzNTA1OTY4MjguaHRtbA==">https://zhidao.baidu.com/question/1819212565350596828.html<i class="fa fa-external-link-alt"></i></span></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/life/toefl/toefl-school/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/life/toefl/toefl-school/" class="post-title-link" itemprop="url">TOEFL - 学校 学生 的英文</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 04-14-2021 10:17:37 / Modified: 10:23:30" itemprop="dateCreated datePublished" datetime="2021-04-14T10:17:37+08:00">04-14-2021</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="学校"><a href="#学校" class="headerlink" title="学校"></a>学校</h1><p>nursery - 托儿所</p>
-<p>kindergarten - 幼儿园</p>
-<p>elementary / primary school - 小学</p>
-<p>secondary / middle school - 中学（初中 + 高中）</p>
-<p>junior / junior middle schoole - 初中</p>
-<p>senior / senior middle / high school - 高中</p>
-<p>college - 学院</p>
-<p>university - 大学</p>
-<h1 id="学生"><a href="#学生" class="headerlink" title="学生"></a>学生</h1><p>freshman - 大一</p>
-<p>sophomore - 大二</p>
-<p>junior - 大三</p>
-<p>senior - 大四</p>
-<p>undergraduate - 本科生</p>
-<p>graduate / bachelor - 学士（本科毕业）</p>
-<p>postgraduate - 硕士生</p>
-<p>master - 硕士（硕士毕业）</p>
-<p>doctoral student / doctoral candidate - 博士生</p>
-<p>doctor - 博士（博士毕业）</p>
-<hr>
-<p>Reference</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3NlYXJjaD90eXBlPWNvbnRlbnQmYW1wO3E9JUU1JUE0JUE3JUU1JUFEJUE2JUU3JTk0JTlGJUU3JTlBJTg0JUU4JThCJUIxJUU4JUFGJUFEJUU4JUExJUE4JUU3JUE0JUJB">https://www.zhihu.com/search?type=content&amp;q=%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%9A%84%E8%8B%B1%E8%AF%AD%E8%A1%A8%E7%A4%BA<i class="fa fa-external-link-alt"></i></span></p>
 
       
     </div>
