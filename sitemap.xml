@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://blog.edlison.com/dev/linux/linux-pid/</loc>
+    <loc>https://blog.edlison.com/dev/vps/deploy/vaultwarden/</loc>
     
     <lastmod>2021-12-10</lastmod>
     
@@ -10,6 +10,13 @@
   
   <url>
     <loc>https://blog.edlison.com/dev/vps/deploy/git/</loc>
+    
+    <lastmod>2021-12-10</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.edlison.com/dev/linux/linux-pid/</loc>
     
     <lastmod>2021-12-10</lastmod>
     
@@ -110,13 +117,6 @@
     <loc>https://blog.edlison.com/dev/vps/deploy/rclone/</loc>
     
     <lastmod>2021-12-07</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.edlison.com/dev/vps/deploy/vaultwarden/</loc>
-    
-    <lastmod>2021-12-06</lastmod>
     
   </url>
   
