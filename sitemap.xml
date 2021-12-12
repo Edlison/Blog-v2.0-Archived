@@ -2,7 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://blog.edlison.com/dev/latex/start/</loc>
+    <loc>https://blog.edlison.com/dev/tex/start/</loc>
+    
+    <lastmod>2021-12-12</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.edlison.com/dev/tex/texlive/</loc>
+    
+    <lastmod>2021-12-12</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.edlison.com/dev/vps/deploy/filezilla/</loc>
     
     <lastmod>2021-12-12</lastmod>
     
@@ -3104,6 +3118,27 @@
     <priority>0.6</priority>
   </url>
   
+  <url>
+    <loc>https://blog.edlison.com/tags/latex/</loc>
+    <lastmod>2021-12-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.edlison.com/tags/pdftex/</loc>
+    <lastmod>2021-12-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.edlison.com/tags/bibtex/</loc>
+    <lastmod>2021-12-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
 
   
   <url>
@@ -3282,7 +3317,7 @@
   </url>
   
   <url>
-    <loc>https://blog.edlison.com/categories/LaTex/</loc>
+    <loc>https://blog.edlison.com/categories/TeX/</loc>
     <lastmod>2021-12-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
