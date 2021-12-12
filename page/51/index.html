@@ -203,14 +203,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">292</span>
+          <span class="site-state-item-count">293</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-count">26</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -256,6 +256,174 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/notebook/v2ray/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/notebook/v2ray/" class="post-title-link" itemprop="url">dev/notebook/v2ray</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 04-03-2020 22:44:04" itemprop="dateCreated datePublished" datetime="2020-04-03T22:44:04+08:00">04-03-2020</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 04-04-2020 14:41:37" itemprop="dateModified" datetime="2020-04-04T14:41:37+08:00">04-04-2020</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="V2ray"><a href="#V2ray" class="headerlink" title="V2ray"></a>V2ray</h1><h2 id="安装V2ray"><a href="#安装V2ray" class="headerlink" title="安装V2ray"></a>安装V2ray</h2><ul>
+<li>安装脚本</li>
+</ul>
+<p>执行安装脚本</p>
+<p><code>$ wget https://install.direct/go.sh</code></p>
+<p>运行脚本</p>
+<p><code>$ sudo bash go.sh</code></p>
+<ul>
+<li>运行V2ray</li>
+</ul>
+<p><code>$ sudo systemctl start v2ray</code></p>
+<ul>
+<li>V2ray配置文件</li>
+</ul>
+<p><code>/etc/v2ray/config.json</code></p>
+<h2 id="TLS"><a href="#TLS" class="headerlink" title="TLS"></a>TLS</h2><ul>
+<li>安装脚本</li>
+</ul>
+<p>执行以下命令，acme.sh 会安装到 <code>~/.acme.sh</code> 目录下。<br><code>$ curl https://get.acme.sh | sh</code></p>
+<p>安装成功后执行 <code>source ~/.bashrc</code> 以确保脚本所设置的命令别名生效。</p>
+<p>如果安装报错，那么可能是因为系统缺少 acme.sh 所需要的依赖项，acme.sh 的依赖项主要是 socat，我们通过以下命令来安装这些依赖项，然后重新安装一遍 acme.sh:</p>
+<p><code>$ sudo apt-get install openssl cron socat curl</code></p>
+<ul>
+<li>分发证书</li>
+</ul>
+<p>使用Nginx监听80端口进行证书分发</p>
+<p><code>$ acme.sh --issue  -d tunnel.edlison.xyz  --nginx</code></p>
+<p>使用acme自带的standalone进行端口监听</p>
+<p><code>$ acme.sh --issue -d tunnel.edlieon.xyz --standalone</code></p>
+<p>Example</p>
+<p><code>$ acme.sh --issue -d tunnel.edlison.xyz --nginx --keylength ec-256</code></p>
+<p><code>--keylength</code> 表示密钥长度，后面的值可以是 ec-256 、ec-384、2048、3072、4096、8192，带有 ec 表示生成的是 ECC 证书，没有则是 RSA 证书。在安全性上 256 位的 ECC 证书等同于 3072 位的 RSA 证书</p>
+<ul>
+<li>更新证书</li>
+</ul>
+<p><code>$ acme.sh --renew -d tunnel.edlison.xyz --force --ecc</code></p>
+<p>由于 Let’s Encrypt 的证书有效期只有 3 个月，因此需要 90 天至少要更新一次证书，acme.sh 脚本会每 60 天自动更新证书。也可以手动更新。<code>--ecc</code>生成的ECC证书</p>
+<ul>
+<li>安装证书和密钥</li>
+</ul>
+<p>将证书安装到V2ray目录下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ acme.sh --installcert -d tunnel.edlison.xyz --ecc \</span><br><span class="line">                          --fullchain-file /etc/v2ray/v2ray.crt \</span><br><span class="line">                          --key-file /etc/v2ray/v2ray.key</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>配置文件</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"inbounds"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"port"</span>: <span class="number">443</span>, <span class="comment">// 建议使用 443 端口</span></span><br><span class="line">      <span class="attr">"protocol"</span>: <span class="string">"vmess"</span>,    </span><br><span class="line">      <span class="attr">"settings"</span>: &#123;</span><br><span class="line">        <span class="attr">"clients"</span>: [</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="attr">"id"</span>: <span class="string">"23ad6b10-8d1a-40f7-8ad0-e3e35cd38297"</span>,  </span><br><span class="line">            <span class="attr">"alterId"</span>: <span class="number">64</span></span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">"streamSettings"</span>: &#123;</span><br><span class="line">        <span class="attr">"network"</span>: <span class="string">"tcp"</span>,</span><br><span class="line">        <span class="attr">"security"</span>: <span class="string">"tls"</span>, <span class="comment">// security 要设置为 tls 才会启用 TLS</span></span><br><span class="line">        <span class="attr">"tlsSettings"</span>: &#123;</span><br><span class="line">          <span class="attr">"certificates"</span>: [</span><br><span class="line">            &#123;</span><br><span class="line">              <span class="attr">"certificateFile"</span>: <span class="string">"/etc/v2ray/v2ray.crt"</span>, <span class="comment">// 证书文件</span></span><br><span class="line">              <span class="attr">"keyFile"</span>: <span class="string">"/etc/v2ray/v2ray.key"</span> <span class="comment">// 密钥文件</span></span><br><span class="line">            &#125;</span><br><span class="line">          ]</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"outbounds"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"protocol"</span>: <span class="string">"freedom"</span>,</span><br><span class="line">      <span class="attr">"settings"</span>: &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h2><ul>
+<li>Start</li>
+</ul>
+<p>配置文件</p>
+<p><code>$ nginx -c /etc/nginx/nginx.conf</code></p>
+<p>启动Nginx</p>
+<p><code>$ nginx -s reload</code></p>
+<ul>
+<li>config</li>
+</ul>
+<p>Nginx 仅需监听80端口</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">        <span class="attribute">listen</span>       <span class="number">80</span>;</span><br><span class="line">        <span class="attribute">listen</span>       [::]:<span class="number">80</span>;</span><br><span class="line">        <span class="attribute">server_name</span>  tunnel.edlison.xyz;</span><br><span class="line"></span><br><span class="line">        <span class="comment">#return  301 https://$server_name$request_uri; // 可以将流量转向https</span></span><br><span class="line"></span><br><span class="line">        <span class="attribute">root</span>         /usr/share/nginx/html;</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Load configuration files for the default server block.</span></span><br><span class="line">        <span class="attribute">include</span> /etc/nginx/default.d/<span class="regexp">*.conf</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">location</span> / &#123;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">error_page</span> <span class="number">404</span> /<span class="number">404</span>.html;</span><br><span class="line">            <span class="attribute">location</span> = /40x.html &#123;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">error_page</span> <span class="number">500</span> <span class="number">502</span> <span class="number">503</span> <span class="number">504</span> /50x.html;</span><br><span class="line">            <span class="attribute">location</span> = /50x.html &#123;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="WebSocket-TLS-Web"><a href="#WebSocket-TLS-Web" class="headerlink" title="WebSocket + TLS + Web"></a>WebSocket + TLS + Web</h2><p>这次 TLS 的配置将写入 Nginx/Caddy/Apache 配置中，由这些软件来监听 443 端口（443 比较常用，并非 443 不可），然后将流量转发到 V2Ray 的 WebSocket 所监听的内网端口（本例是 10000），V2Ray 服务器端不需要配置 TLS。</p>
+<ul>
+<li>V2ray Settings</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"inbounds"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"port"</span>: <span class="number">10000</span>,</span><br><span class="line">      <span class="attr">"listen"</span>:<span class="string">"127.0.0.1"</span>,<span class="comment">//只监听 127.0.0.1，避免除本机外的机器探测到开放了 10000 端口</span></span><br><span class="line">      <span class="attr">"protocol"</span>: <span class="string">"vmess"</span>,</span><br><span class="line">      <span class="attr">"settings"</span>: &#123;</span><br><span class="line">        <span class="attr">"clients"</span>: [</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="attr">"id"</span>: <span class="string">"b831381d-6324-4d53-ad4f-8cda48b30811"</span>,</span><br><span class="line">            <span class="attr">"alterId"</span>: <span class="number">64</span></span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">"streamSettings"</span>: &#123;</span><br><span class="line">        <span class="attr">"network"</span>: <span class="string">"ws"</span>,</span><br><span class="line">        <span class="attr">"wsSettings"</span>: &#123;</span><br><span class="line">        <span class="attr">"path"</span>: <span class="string">"/ray"</span>  <span class="comment">// 路径</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"outbounds"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"protocol"</span>: <span class="string">"freedom"</span>,</span><br><span class="line">      <span class="attr">"settings"</span>: &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>TLS</li>
+</ul>
+<p>证书生成见上文</p>
+<ul>
+<li>Nginx Setting</li>
+</ul>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">  <span class="attribute">listen</span> <span class="number">443</span> ssl;</span><br><span class="line">  <span class="attribute">listen</span> [::]:<span class="number">443</span> ssl;</span><br><span class="line">  </span><br><span class="line">  <span class="attribute">ssl_certificate</span>       /etc/v2ray/v2ray.crt;</span><br><span class="line">  <span class="attribute">ssl_certificate_key</span>   /etc/v2ray/v2ray.key;</span><br><span class="line">  <span class="attribute">ssl_session_timeout</span> <span class="number">1d</span>;</span><br><span class="line">  <span class="attribute">ssl_session_cache</span> shared:MozSSL:<span class="number">10m</span>;</span><br><span class="line">  <span class="attribute">ssl_session_tickets</span> <span class="literal">off</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="attribute">ssl_protocols</span>         TLSv1.<span class="number">2</span> TLSv1.<span class="number">3</span>;</span><br><span class="line">  <span class="attribute">ssl_ciphers</span>           ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384;</span><br><span class="line">  <span class="attribute">ssl_prefer_server_ciphers</span> <span class="literal">off</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="attribute">server_name</span>           tunnel.edlison.xyz;</span><br><span class="line">  <span class="attribute">location</span> /ray &#123; <span class="comment"># 与 V2Ray 配置中的 path 保持一致</span></span><br><span class="line">    <span class="attribute">if</span> (<span class="variable">$http_upgrade</span> != <span class="string">"websocket"</span>) &#123; <span class="comment"># WebSocket协商失败时返回404</span></span><br><span class="line">        <span class="attribute">return</span> <span class="number">404</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="attribute">proxy_redirect</span> <span class="literal">off</span>;</span><br><span class="line">    <span class="attribute">proxy_pass</span> http://127.0.0.1:10000; <span class="comment"># 假设WebSocket监听在环回地址的10000端口上</span></span><br><span class="line">    <span class="attribute">proxy_http_version</span> <span class="number">1</span>.<span class="number">1</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> Upgrade <span class="variable">$http_upgrade</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> Connection <span class="string">"upgrade"</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> Host <span class="variable">$host</span>;</span><br><span class="line">    <span class="comment"># Show real IP in v2ray access.log</span></span><br><span class="line">    <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Client Setting</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"inbounds"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"port"</span>: <span class="number">1080</span>,</span><br><span class="line">      <span class="attr">"listen"</span>: <span class="string">"127.0.0.1"</span>,</span><br><span class="line">      <span class="attr">"protocol"</span>: <span class="string">"socks"</span>,</span><br><span class="line">      <span class="attr">"sniffing"</span>: &#123;</span><br><span class="line">        <span class="attr">"enabled"</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">"destOverride"</span>: [<span class="string">"http"</span>, <span class="string">"tls"</span>]</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">"settings"</span>: &#123;</span><br><span class="line">        <span class="attr">"auth"</span>: <span class="string">"noauth"</span>,</span><br><span class="line">        <span class="attr">"udp"</span>: <span class="literal">false</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"outbounds"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"protocol"</span>: <span class="string">"vmess"</span>,</span><br><span class="line">      <span class="attr">"settings"</span>: &#123;</span><br><span class="line">        <span class="attr">"vnext"</span>: [</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="attr">"address"</span>: <span class="string">"mydomain.me"</span>,</span><br><span class="line">            <span class="attr">"port"</span>: <span class="number">443</span>,</span><br><span class="line">            <span class="attr">"users"</span>: [</span><br><span class="line">              &#123;</span><br><span class="line">                <span class="attr">"id"</span>: <span class="string">"b831381d-6324-4d53-ad4f-8cda48b30811"</span>,</span><br><span class="line">                <span class="attr">"alterId"</span>: <span class="number">64</span></span><br><span class="line">              &#125;</span><br><span class="line">            ]</span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">"streamSettings"</span>: &#123;</span><br><span class="line">        <span class="attr">"network"</span>: <span class="string">"ws"</span>,</span><br><span class="line">        <span class="attr">"security"</span>: <span class="string">"tls"</span>,</span><br><span class="line">        <span class="attr">"wsSettings"</span>: &#123;</span><br><span class="line">          <span class="attr">"path"</span>: <span class="string">"/ray"</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>注意事项</li>
+</ul>
+<p>注意事项<br>V2Ray 自 4.18.1 后支持 TLS1.3，如果开启并强制 TLS1.3 请注意 v2ray 客户端版本.<br>较低版本的 nginx 的 location 需要写为 /ray/ 才能正常工作<br>如果在设置完成之后不能成功使用，可能是由于 SElinux 机制(如果你是 CentOS 7 的用户请特别留意 SElinux 这一机制)阻止了 Nginx 转发向内网的数据。如果是这样的话，在 V2Ray 的日志里不会有访问信息，在 Nginx 的日志里会出现大量的 “Permission Denied” 字段，要解决这一问题需要在终端下键入以下命令：<br>setsebool -P httpd_can_network_connect 1<br>请保持服务器和客户端的 wsSettings 严格一致，对于 V2Ray，/ray 和 /ray/ 是不一样的<br>较低版本的系统/浏览器可能无法完成握手. 如 Chrome 49/XP SP3, Safari 8/iOS 8.4, Safari 8/OS X 10.10 及更低的版本. 如果你的设备比较旧, 则可以通过在配置中添加较旧的 TLS 协议以完成握手.</p>
+<h2 id="BBR"><a href="#BBR" class="headerlink" title="BBR"></a>BBR</h2><ul>
+<li>一键安装脚本</li>
+</ul>
+<p><code>$ wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh &amp;&amp; chmod +x bbr.sh &amp;&amp; ./bbr.sh</code></p>
+<ul>
+<li>检测内核</li>
+</ul>
+<p><code>$ uname -r</code></p>
+<ul>
+<li>检测安装情况</li>
+</ul>
+<p><code>$ sysctl net.ipv4.tcp_available_congestion_control</code></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -567,88 +735,6 @@
 <p> 这是对于你的 TLS/SSL 的一个总体评分，我这里评分为 A，看来还不错。有这样的界面算是成功了。</p>
 <p> 这是关于证书的信息。从图中可以看出，我的这个证书有效期是从 2016 年 12 月 27 号到 2017 年的 3 月 27 号，密钥是 256 位的 ECC，证书签发机构是 Let’s Encrypt，重要的是最后一行，Trusted 为 Yes，表明我这个证书可信。</p>
 <p>#温馨提醒<br>V2Ray 的 TLS 不是伪装或混淆，这是完整、真正的 TLS。因此才需要域名和证书。后文提到的 WS(WebSocket) 也不是伪装。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/leetcode/gasstation/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/leetcode/gasstation/" class="post-title-link" itemprop="url">dev/leetcode/gasstation</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 03-29-2020 22:04:48 / Modified: 22:05:57" itemprop="dateCreated datePublished" datetime="2020-03-29T22:04:48+08:00">03-29-2020</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Gas-Station"><a href="#Gas-Station" class="headerlink" title="Gas Station"></a>Gas Station</h1><p>There are N gas stations along a circular route, where the amount of gas at station i is gas[i].</p>
-<p>You have a car with an unlimited gas tank and it costs cost[i] of gas to travel from station i to its next station (i+1). You begin the journey with an empty tank at one of the gas stations.</p>
-<p>Return the starting gas station’s index if you can travel around the circuit once in the clockwise direction, otherwise return -1.</p>
-<p>Note:</p>
-<p>If there exists a solution, it is guaranteed to be unique.<br>Both input arrays are non-empty and have the same length.<br>Each element in the input arrays is a non-negative integer.<br>Example 1:</p>
-<p>Input:<br>gas  = [1,2,3,4,5]<br>cost = [3,4,5,1,2]</p>
-<p>Output: 3</p>
-<p>Explanation:<br>Start at station 3 (index 3) and fill up with 4 unit of gas. Your tank = 0 + 4 = 4<br>Travel to station 4. Your tank = 4 - 1 + 5 = 8<br>Travel to station 0. Your tank = 8 - 2 + 1 = 7<br>Travel to station 1. Your tank = 7 - 3 + 2 = 6<br>Travel to station 2. Your tank = 6 - 4 + 3 = 5<br>Travel to station 3. The cost is 5. Your gas is just enough to travel back to station 3.<br>Therefore, return 3 as the starting index.<br>Example 2:</p>
-<p>Input:<br>gas  = [2,3,4]<br>cost = [3,4,3]</p>
-<p>Output: -1</p>
-<p>Explanation:<br>You can’t start at station 0 or 1, as there is not enough gas to travel to the next station.<br>Let’s start at station 2 and fill up with 4 unit of gas. Your tank = 0 + 4 = 4<br>Travel to station 0. Your tank = 4 - 3 + 2 = 3<br>Travel to station 1. Your tank = 3 - 3 + 3 = 3<br>You cannot travel back to station 2, as it requires 4 unit of gas but you only have 3.<br>Therefore, you can’t travel around the circuit once no matter where you start.</p>
-<p><em>Unsolved</em></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">canCompleteCircuit</span><span class="params">(<span class="keyword">int</span>[] gas, <span class="keyword">int</span>[] cost)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n = gas.length;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> total_tank = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> curr_tank = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> starting_station = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">      total_tank += gas[i] - cost[i];</span><br><span class="line">      curr_tank += gas[i] - cost[i];</span><br><span class="line">      <span class="comment">// If one couldn't get here,</span></span><br><span class="line">      <span class="keyword">if</span> (curr_tank &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">// Pick up the next station as the starting one.</span></span><br><span class="line">        starting_station = i + <span class="number">1</span>;</span><br><span class="line">        <span class="comment">// Start with an empty tank.</span></span><br><span class="line">        curr_tank = <span class="number">0</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> total_tank &gt;= <span class="number">0</span> ? starting_station : -<span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>Reference<br><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvZ2FzLXN0YXRpb24=">https://leetcode-cn.com/problems/gas-station<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
 
       
     </div>
