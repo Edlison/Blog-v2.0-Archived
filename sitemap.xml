@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.edlison.com/dev/notebook/vscode/</loc>
+    
+    <lastmod>2021-12-12</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.edlison.com/dev/tex/start/</loc>
     
     <lastmod>2021-12-12</lastmod>
@@ -3134,6 +3141,13 @@
   
   <url>
     <loc>https://blog.edlison.com/tags/bibtex/</loc>
+    <lastmod>2021-12-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.edlison.com/tags/vscode/</loc>
     <lastmod>2021-12-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
