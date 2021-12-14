@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">296</span>
+          <span class="site-state-item-count">297</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -256,6 +256,104 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/coin/crypto/eth-token/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/coin/crypto/eth-token/" class="post-title-link" itemprop="url">ETH - 发行自己的Token</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 02-22-2021 15:50:50 / Modified: 20:07:54" itemprop="dateCreated datePublished" datetime="2021-02-22T15:50:50+08:00">02-22-2021</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p>通过以太坊的<strong>智能合约</strong>可以编写自己的代币(Token)，可以代表任何可以交易的东西，如：积分，财产，证书等等。</p>
+<h1 id="合约代码"><a href="#合约代码" class="headerlink" title="合约代码"></a>合约代码</h1><p>如果想要在以太坊的区块链上创建代币，就需要实现它的<strong>代币标准</strong>。</p>
+<h2 id="ZZC-Token源码"><a href="#ZZC-Token源码" class="headerlink" title="ZZC Token源码"></a>ZZC Token源码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^0.4.16;</span><br><span class="line"></span><br><span class="line">interface tokenRecipient &#123; function receiveApproval(address _from, uint256 _value, address _token, bytes _extraData) public; &#125;</span><br><span class="line"></span><br><span class="line">contract TokenERC20 &#123;</span><br><span class="line">    string public name;</span><br><span class="line">    string public symbol;</span><br><span class="line">    uint8 public decimals &#x3D; 18;  &#x2F;&#x2F; 18 是建议的默认值</span><br><span class="line">    uint256 public totalSupply;</span><br><span class="line"></span><br><span class="line">    mapping (address &#x3D;&gt; uint256) public balanceOf;  &#x2F;&#x2F;</span><br><span class="line">    mapping (address &#x3D;&gt; mapping (address &#x3D;&gt; uint256)) public allowance;</span><br><span class="line"></span><br><span class="line">    event Transfer(address indexed from, address indexed to, uint256 value);</span><br><span class="line"></span><br><span class="line">    event Burn(address indexed from, uint256 value);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    function TokenERC20(uint256 initialSupply, string tokenName, string tokenSymbol) public &#123;</span><br><span class="line">        totalSupply &#x3D; initialSupply * 10 ** uint256(decimals);</span><br><span class="line">        balanceOf[msg.sender] &#x3D; totalSupply;</span><br><span class="line">        name &#x3D; tokenName;</span><br><span class="line">        symbol &#x3D; tokenSymbol;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    function _transfer(address _from, address _to, uint _value) internal &#123;</span><br><span class="line">        require(_to !&#x3D; 0x0);</span><br><span class="line">        require(balanceOf[_from] &gt;&#x3D; _value);</span><br><span class="line">        require(balanceOf[_to] + _value &gt; balanceOf[_to]);</span><br><span class="line">        uint previousBalances &#x3D; balanceOf[_from] + balanceOf[_to];</span><br><span class="line">        balanceOf[_from] -&#x3D; _value;</span><br><span class="line">        balanceOf[_to] +&#x3D; _value;</span><br><span class="line">        Transfer(_from, _to, _value);</span><br><span class="line">        assert(balanceOf[_from] + balanceOf[_to] &#x3D;&#x3D; previousBalances);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function transfer(address _to, uint256 _value) public returns (bool) &#123;</span><br><span class="line">        _transfer(msg.sender, _to, _value);</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function transferFrom(address _from, address _to, uint256 _value) public returns (bool success) &#123;</span><br><span class="line">        require(_value &lt;&#x3D; allowance[_from][msg.sender]);     &#x2F;&#x2F; Check allowance</span><br><span class="line">        allowance[_from][msg.sender] -&#x3D; _value;</span><br><span class="line">        _transfer(_from, _to, _value);</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function approve(address _spender, uint256 _value) public</span><br><span class="line">        returns (bool success) &#123;</span><br><span class="line">        allowance[msg.sender][_spender] &#x3D; _value;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function approveAndCall(address _spender, uint256 _value, bytes _extraData) public returns (bool success) &#123;</span><br><span class="line">        tokenRecipient spender &#x3D; tokenRecipient(_spender);</span><br><span class="line">        if (approve(_spender, _value)) &#123;</span><br><span class="line">            spender.receiveApproval(msg.sender, _value, this, _extraData);</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function burn(uint256 _value) public returns (bool success) &#123;</span><br><span class="line">        require(balanceOf[msg.sender] &gt;&#x3D; _value);</span><br><span class="line">        balanceOf[msg.sender] -&#x3D; _value;</span><br><span class="line">        totalSupply -&#x3D; _value;</span><br><span class="line">        Burn(msg.sender, _value);</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function burnFrom(address _from, uint256 _value) public returns (bool success) &#123;</span><br><span class="line">        require(balanceOf[_from] &gt;&#x3D; _value);</span><br><span class="line">        require(_value &lt;&#x3D; allowance[_from][msg.sender]);</span><br><span class="line">        balanceOf[_from] -&#x3D; _value;</span><br><span class="line">        allowance[_from][msg.sender] -&#x3D; _value;</span><br><span class="line">        totalSupply -&#x3D; _value;</span><br><span class="line">        Burn(_from, _value);</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="部署合约"><a href="#部署合约" class="headerlink" title="部署合约"></a>部署合约</h1><h2 id="方式"><a href="#方式" class="headerlink" title="方式"></a>方式</h2><ol>
+<li>Geth编译代码</li>
+<li>etherrum wallet钱包部署合约</li>
+<li>MetaMask钱包 + Remix Solidity IDE部署</li>
+</ol>
+<h2 id="Meta-Mask-Remix-Solidity-IDE"><a href="#Meta-Mask-Remix-Solidity-IDE" class="headerlink" title="Meta Mask + Remix Solidity IDE"></a>Meta Mask + Remix Solidity IDE</h2><ol>
+<li>创建钱包，转到测试网络Ropsten.</li>
+<li>在Remix Solidity IDE中对合约代码进行编程。</li>
+<li>对其<strong>编译</strong></li>
+</ol>
+<p>选择对应的编译器版本。</p>
+<ol start="4">
+<li>进行<strong>发布</strong></li>
+</ol>
+<p>Environment: Injected Web3</p>
+<p>Account: xxxxx(会自动读取Meta Mask的账户)</p>
+<p>选择编译好的文件</p>
+<p>构造函数传参</p>
+<p>在Meta Mask中对合约部署进行确认。</p>
+<ol start="5">
+<li>添加自定义的Token</li>
+</ol>
+<h1 id="公布源码"><a href="#公布源码" class="headerlink" title="公布源码"></a>公布源码</h1><p>在etherscan.io上进入到合约地址。</p>
+<p>贴上源代码，它会对<strong>源码进行编译</strong>，将字节码与区块<code>DATA</code>内的<strong>字节码进行比对</strong>，需要完全一样。</p>
+<p>之后就可以ICO了。</p>
+<hr>
+<p>Reference</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9sZWFybmJsb2NrY2hhaW4uY24vMjAxOC8wMS8xMi9jcmVhdGVfdG9rZW4=">https://learnblockchain.cn/2018/01/12/create_token<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2phdmFfaGhoaC9hcnRpY2xlL2RldGFpbHMvNzk3NzE3NTI=">https://blog.csdn.net/java_hhhh/article/details/79771752<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -607,80 +705,6 @@
     <div class="post-body" itemprop="articleBody">
           <h1 id="XE"><a href="#XE" class="headerlink" title="XE"></a>XE</h1><p>可以是one_hot矩阵与一个对应的index向量？</p>
 
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/paper_experiment/conv/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/academia/paper_experiment/conv/" class="post-title-link" itemprop="url">卷积与反卷积</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 02-13-2021 12:27:38 / Modified: 12:28:35" itemprop="dateCreated datePublished" datetime="2021-02-13T12:27:38+08:00">02-13-2021</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="卷积"><a href="#卷积" class="headerlink" title="卷积"></a>卷积</h1>
       
     </div>
 
