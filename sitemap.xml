@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.edlison.com/dev/notebook/marginnote-copy/</loc>
+    
+    <lastmod>2021-12-14</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.edlison.com/dev/notebook/zotero-sync/</loc>
+    
+    <lastmod>2021-12-14</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.edlison.com/dev/vps/deploy/sftpgo/</loc>
     
     <lastmod>2021-12-14</lastmod>
@@ -3169,6 +3183,20 @@
   
   <url>
     <loc>https://blog.edlison.com/tags/vscode/</loc>
+    <lastmod>2021-12-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.edlison.com/tags/marginnote/</loc>
+    <lastmod>2021-12-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.edlison.com/tags/zotero/</loc>
     <lastmod>2021-12-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
