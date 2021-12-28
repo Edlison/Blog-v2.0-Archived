@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.edlison.com/dev/java/design/software-construction/</loc>
+    
+    <lastmod>2021-12-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.edlison.com/dev/vps/deploy/transmission/</loc>
+    
+    <lastmod>2021-12-26</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.edlison.com/dev/notebook/zotero-office/</loc>
     
     <lastmod>2021-12-24</lastmod>
@@ -2160,7 +2174,7 @@
 
   <url>
     <loc>https://blog.edlison.com/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -2168,1106 +2182,1113 @@
   
   <url>
     <loc>https://blog.edlison.com/tags/java/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/%E6%B3%A8%E8%A7%A3/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/%E5%8F%8D%E5%B0%84/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/eth/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/mine/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/consensus/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/ipfs/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/security/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/conv/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/rnn/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/design/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/abstractfactory/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/builder/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/singleton/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/mariadb/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/compose/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/linux/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/neo4j/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/nginx/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/docker/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/v2ray/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/wordpress/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/order/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/k-line/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/hadoop/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/hdfs/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/mapreduce/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/ftp/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/ssh/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/ubuntu/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/host/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/firewall/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/port/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/redis/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/cards/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/pass/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/cut/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/python/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/pytorch/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/chatbot/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/seq2seq/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/nlp/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/design-pattern/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/anaconda/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/springboot/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/conda/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/base64/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/coffee/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/reverse/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/cheatengine/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/craftbrew/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/flask/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/git/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/github/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/hexo/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/idea/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/keyboard/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/keycap/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/live/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/obs/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/mac/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/Mysql/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/notion/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/sys/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/scala/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/shell/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/zsh/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/cloud/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/vps/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/tensorflow/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/vpn/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/websocket/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/buildin/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/batch-size/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/gan/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/features/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/loss/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/math/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/metric/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/multi-view/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/anomaly/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/matplotlib/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/tensor/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/random/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/paper/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/attention/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/deadpoetssociety/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/XLNet/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/spark/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/rdd/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/spring/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/aop/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/proxy/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/ioc/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/bean/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/speaking/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/macos/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/vim/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/config/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/nerdtree/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/aria2/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/ariang/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/bbr/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/ci/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/domain/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/webhook/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/sh/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/mount/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/x-ui/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/http/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/socket/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/arm/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/cron/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/code-server/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/bot/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/synology/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/pve/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/boot/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/kvm/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/ikuai/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/openwrt/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/cloudreve/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/cloudflare/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/url/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/iKuai/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/win10/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/adguard/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/vue/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/oneindex/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/timezone/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/docker-compose/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/eval/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/buffer/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/request/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/auth/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/https/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/load-balance/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/cli/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/server-name/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/curl/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/wget/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/onedrive/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/frp/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/tcp/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/ip/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/self-hosted/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/registry/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/latex/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/pdftex/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/bibtex/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/vscode/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/marginnote/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/zotero/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/GNN/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/sstap/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/geometric/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/office/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/tags/papership/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.edlison.com/tags/transmission/</loc>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -3276,189 +3297,196 @@
   
   <url>
     <loc>https://blog.edlison.com/categories/Notebook/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/categories/Deep-Learning/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/categories/Docker/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/categories/Finance/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/categories/Matlab/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/categories/NLP/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/categories/Notebook/Error/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/categories/Paper/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/categories/Poets/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/categories/Paper/NLP/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/categories/Notebook/Spring/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/categories/V2ray/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/categories/Vim/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/categories/VPS/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/categories/Web/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/categories/Error/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/categories/Telegram/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/categories/Home-Lab/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/categories/MS/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/categories/BT/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/categories/JavaScript/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/categories/JaveScript/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/categories/Nginx/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/categories/Notebooks/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/categories/Linux/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/categories/TeX/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.edlison.com/categories/Errors/</loc>
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.edlison.com/categories/Self-hosted/</loc>
+    <lastmod>2021-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
