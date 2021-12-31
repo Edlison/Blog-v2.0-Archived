@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">308</span>
+          <span class="site-state-item-count">309</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -216,7 +216,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">159</span>
+        <span class="site-state-item-count">160</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -256,6 +256,131 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/paper_experiment/gan/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/academia/paper_experiment/gan/" class="post-title-link" itemprop="url">GAN</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 02-04-2021 10:50:20" itemprop="dateCreated datePublished" datetime="2021-02-04T10:50:20+08:00">02-04-2021</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 02-11-2021 02:31:36" itemprop="dateModified" datetime="2021-02-11T02:31:36+08:00">02-11-2021</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="图片Img数组的取值范围及含义"><a href="#图片Img数组的取值范围及含义" class="headerlink" title="图片Img数组的取值范围及含义"></a>图片Img数组的取值范围及含义</h1><p>Loader返回的值形式为[batch, channel, row, col]. (N * C * H * W)</p>
+<p>channel：通道数，<strong>通道的维度上就保存了各个通道上的值</strong>，如RGB。</p>
+<p>torchvision.transforms中的<code>.toTensor()</code>就是将图片的[0, 255]范围转换为了Tensor上的[0.0, 1.0]。因此mnist数据集中每个像素点上的值在[0, 1]区间上。</p>
+<h1 id="G-与-D-进行两次前向传播"><a href="#G-与-D-进行两次前向传播" class="headerlink" title="G 与 D 进行两次前向传播"></a>G 与 D 进行两次前向传播</h1><p><strong>两次的参数均独立生成。</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># G的前向传播</span></span><br><span class="line">noise = torch.autograd.Variable(torch.randn(imgs_batch, self.latent_dim)).cuda()</span><br><span class="line">gen_imgs = self.G(noise)</span><br><span class="line">d_fake = self.D(gen_imgs)</span><br><span class="line">g_loss = sef.bce_loss(d_fake, real_label)</span><br><span class="line"><span class="comment"># 训练G</span></span><br><span class="line">...</span><br><span class="line"><span class="comment"># D的前向传播</span></span><br><span class="line">gen_imgs = self.G(noise)</span><br><span class="line">d_fake = self.D(gen_imgs)</span><br><span class="line">d_real = self.D(real_imgs)</span><br><span class="line">d_loss_fake = self.bce_loss(d_fake, fake_label)</span><br><span class="line">d_loss_real = self.bce_loss(d_real, real_label)</span><br><span class="line">d_loss = d_loss_fake + d_loss_real</span><br><span class="line"><span class="comment"># 训练D</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong></p>
+<p>每一次进行前向计算的参数都是独立的参数，在生成计算图时都是独立的。因此，如果计算后一个网络的时候还传的是一开始的<code>gen_imgs</code>其实没有变化，指向的还是同一个参数。但是如果再次让<code>noise</code>经过G生成一个<code>gen_imgs</code>，因为G已经更新过了，此时的<code>gen_imgs</code>也发生了变化，因此再进行前向传播，生成的就是另外一个计算图了。</p>
+<p>因此这种情况根本不需要再第一次反向传播的时候设置<code>retain_graph=True</code>.</p>
+<h1 id="G-与-D-只进行一次前向传播"><a href="#G-与-D-只进行一次前向传播" class="headerlink" title="G 与 D 只进行一次前向传播"></a>G 与 D 只进行一次前向传播</h1><p><strong>共用一次前向计算的参数。</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 参数只进行一次前向传播</span></span><br><span class="line">noise = torch.autograd.Variable(torch.randn(imgs_batch, self.latent_dim)).cuda()</span><br><span class="line">gen_imgs = self.G(noise)</span><br><span class="line">d_fake = self.D(gen_imgs)</span><br><span class="line">d_real = self.D(real_imgs)</span><br><span class="line"></span><br><span class="line">g_loss = self.bce_loss(d_fake, real_label)</span><br><span class="line">d_loss_fake = self.bce_loss(d_fake, fake_label)</span><br><span class="line">d_loss_real = self.bce_loss(d_real, real_label)</span><br><span class="line">d_loss = d_loss_fake + d_loss_real</span><br><span class="line"><span class="comment"># 同时训练</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="方法一（错误的）"><a href="#方法一（错误的）" class="headerlink" title="方法一（错误的）"></a>方法一（错误的）</h2><p>两个网络<strong>同时训练</strong>的参数的优化器同时梯度清零-&gt;损失反向传播-&gt;梯度下降，此时的网络无法得到优化。而且此时因为两个loss的反向传播有重合的部分，必须要<code>retain_graph=True</code>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">self.optimizer_G.zero_grad()</span><br><span class="line">self.optimizer_D.zero_grad()</span><br><span class="line">g_loss.backward(retain_graph=<span class="literal">True</span>)</span><br><span class="line">d_loss.backward()</span><br><span class="line">self.optimizer_G.step()</span><br><span class="line">self.optimizer_D.step()</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong></p>
+<p>此时根本不会对网络有优化的作用，并没有产生‘对抗’的效果。</p>
+<h2 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h2><p>两个网络<strong>先后训练</strong>，先优化G，后优化D。但是此时loss反向传播时，仍然会有参数重复计算梯度且没有更新的部分（网络D中的参数）。必须要在先进行反向传播的loss加上<code>retain_graph=True</code>.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">self.optimizer_G.zero_grad()</span><br><span class="line">g_loss.backward(retain_graph=<span class="literal">True</span>)</span><br><span class="line">self.optimizer_G.step()</span><br><span class="line"></span><br><span class="line">self.optimizer_D.zero_grad()</span><br><span class="line">d_loss.backward()</span><br><span class="line">self.optimizer_D.step()</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong></p>
+<p>这种方法更注重的是<strong>二次</strong>求导，也就是原计算图保存的是<code>g_loss</code>对网络D中参数的梯度，然后叠加上<code>d_loss</code>对网络D中参数的梯度。一并对网络D的参数进行更新。</p>
+<h1 id="Conv2d"><a href="#Conv2d" class="headerlink" title="Conv2d"></a>Conv2d</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nn.Conv2d(in_channels, out_channels, kernel_size, stride, padding)</span><br></pre></td></tr></table></figure>
+
+<p>in_channels: 输入通道数。</p>
+<p>out_channels: 输出通道数。</p>
+<p>kernel_size: 卷积核大小。（如果长宽不一样，传一个tuple）</p>
+<p>stride: 卷积核移动步长。</p>
+<p>padding: 图片上下左右的填充。</p>
+<p>输入的shape应该是：[batch_size, channels, height, weight]</p>
+<h1 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h1><p>GAN这种结构最大的问题就是虽然<strong>可以生成很相似的东西</strong>，但是如果生成的东西有很强的类别属性，<strong>无法指定生成的类别</strong>。</p>
+<p>Optimizer<strong>优化器就是训练网络</strong>，虽然进入网络的样本也被装入了<code>Variable</code>计算图中，其实际上不会被更新，如果没有设置<code>requires_grad=False</code>本质上还是会被计算梯度的，因此对非网络中的参数指定不计算梯度，可以提升运行效率。</p>
+<p><code>retain_graph</code>实质上是<strong>对计算图进行保留</strong>，由于训练基本上是不断生成一个计算图然后反向传播，默认在反向传播后就抛弃掉了这个计算图结构。</p>
+<p>只进行一次前向计算就是<strong>同时训练两个网络</strong>（训练网络D并不是在更新了网络G的基础上）；进行两次前向计算就是<strong>分别训练两个网络</strong>（训练网络D是在网络G更新的基础上）。</p>
+<p>保留计算图或不保留计算图的本质就在于，对网络D的更新是否<strong>叠加</strong>上了网络G更新时反向传播的<code>g_loss</code>对网络D中参数的梯度。（<strong>不是计算二阶导数！</strong>）</p>
+<p>网络的最后一层要在[0, 1]上，由于没有用卷积，在数字意外部分多还是噪声的影响大，因此造成了数字以外区域黑白。</p>
+<p>batch大小的调整直接影响到了权重的迭代。（问题就出在batch=10000忘记调回来了！！！）：很大的一个作用是可以在一个epoch上迭代很多次！！！</p>
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>shape操作 reshape, view, squeeze, flatten…</p>
+<p>共享内存 如(a.view(-1, 1)/ b = a.view(-1, 1)) a内存中的tensor都会变吗，还是只有b拿到了？inplace</p>
+<hr>
+<p>Reference</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3NlYXJjaD9xPWJhdGNoJTIwc2l6ZSZhbXA7dXRtX2NvbnRlbnQ9c2VhcmNoX3N1Z2dlc3Rpb24mYW1wO3R5cGU9Y29udGVudA==">https://www.zhihu.com/search?q=batch%20size&amp;utm_content=search_suggestion&amp;type=content<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIwMjYzNS9hcnRpY2xlL2RldGFpbHMvODQyMDQxODA=">https://blog.csdn.net/weixin_43202635/article/details/84204180<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -644,102 +769,6 @@
 
 <p>这种方式更加简便，只需要定义一个切面类，类中的方法即可通过配置，来对切点进行操作，不再需要繁琐的实现接口。</p>
 <p>但是无法实现更复杂的操作，比如打印调用的切点方法，类名等。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/java/spring/aop-one/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/java/spring/aop-one/" class="post-title-link" itemprop="url">SpringAOP - 使用Spring的API接口实现AOP</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 02-02-2021 21:43:43 / Modified: 22:34:24" itemprop="dateCreated datePublished" datetime="2021-02-02T21:43:43+08:00">02-02-2021</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notebook/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="术语"><a href="#术语" class="headerlink" title="术语"></a>术语</h1><p>Spring AOP最重要的是可以让用户<strong>自定义切面</strong>。</p>
-<p>![image-20210202221824940](/Users/edlison/Library/Application Support/typora-user-images/image-20210202221824940.png)</p>
-<h1 id="使用Spring的API接口实现AOP"><a href="#使用Spring的API接口实现AOP" class="headerlink" title="使用Spring的API接口实现AOP"></a>使用Spring的API接口实现AOP</h1><h2 id="需要实现的接口"><a href="#需要实现的接口" class="headerlink" title="需要实现的接口"></a>需要实现的接口</h2><p>![image-20210202221950162](/Users/edlison/Library/Application Support/typora-user-images/image-20210202221950162.png)</p>
-<h2 id="前置通知"><a href="#前置通知" class="headerlink" title="前置通知"></a>前置通知</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LogBefore</span> <span class="keyword">implements</span> <span class="title">MethodBeforeAdvice</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="comment">// method: 要执行的目标对象的方法，objects: 参数，o: 目标对象</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">before</span><span class="params">(Method method, Object[] objects, Object o)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"[Log Before]ClassName: "</span> + o.getClass().getSimpleName() + <span class="string">" MethodName: "</span> + method.getName());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="后置通知"><a href="#后置通知" class="headerlink" title="后置通知"></a>后置通知</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LogAfter</span> <span class="keyword">implements</span> <span class="title">AfterReturningAdvice</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterReturning</span><span class="params">(Object returnValue, Method method, Object[] args, Object target)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"[Log After]ClassName: "</span> + target.getClass().getSimpleName() + <span class="string">" MethodName: "</span> + method.getName());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:aop</span>=<span class="string">"http://www.springframework.org/schema/aop"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">        http://www.springframework.org/schema/beans/spring-beans.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">        http://www.springframework.org/schema/aop</span></span></span><br><span class="line"><span class="tag"><span class="string">        http://www.springframework.org/schema/aop/spring-aop.xsd"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"userService"</span> <span class="attr">class</span>=<span class="string">"com.edlison.design.spring.aop.style_one.service.UserServiceImpl"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"logBefore"</span> <span class="attr">class</span>=<span class="string">"com.edlison.design.spring.aop.style_one.log.LogBefore"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"logAfter"</span> <span class="attr">class</span>=<span class="string">"com.edlison.design.spring.aop.style_one.log.LogAfter"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">"first"</span></span></span><br><span class="line"><span class="tag">                      <span class="attr">expression</span>=<span class="string">"execution(* com.edlison.design.spring.aop.style_one.service.UserServiceImpl.* (..))"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:advisor</span> <span class="attr">advice-ref</span>=<span class="string">"logBefore"</span> <span class="attr">pointcut-ref</span>=<span class="string">"first"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:advisor</span> <span class="attr">advice-ref</span>=<span class="string">"logAfter"</span> <span class="attr">pointcut-ref</span>=<span class="string">"first"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>配置文件中，首先注册<code>Bean</code>，引入AOP约束，对AOP进行配置。</p>
-<ul>
-<li>定义切入点(PointCut).</li>
-<li>写表达式(Expression).</li>
-<li>配置通知器(advisor)，并将其与切入点绑定。</li>
-</ul>
-<p>通知器执行前后，完全靠<strong>实现的接口</strong>决定。</p>
-<p><strong>注意</strong>：</p>
-<p>表达式见Google</p>
 
       
     </div>
