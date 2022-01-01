@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">309</span>
+          <span class="site-state-item-count">310</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -256,6 +256,99 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/linux/linux-info/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/linux/linux-info/" class="post-title-link" itemprop="url">查看服务器各种属性</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 01-21-2021 08:58:11" itemprop="dateCreated datePublished" datetime="2021-01-21T08:58:11+08:00">01-21-2021</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 01-27-2021 10:23:29" itemprop="dateModified" datetime="2021-01-27T10:23:29+08:00">01-27-2021</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="CPU属性"><a href="#CPU属性" class="headerlink" title="CPU属性"></a>CPU属性</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">user@server:~$ lscpu</span><br><span class="line"></span><br><span class="line">Architecture:        x86_64</span><br><span class="line">CPU op-mode(s):      32-bit, 64-bit</span><br><span class="line">Byte Order:          Little Endian</span><br><span class="line">CPU(s):              72</span><br><span class="line">On-line CPU(s) list: 0-71</span><br><span class="line">Thread(s) per core:  2</span><br><span class="line">Core(s) per socket:  18</span><br><span class="line">Socket(s):           2</span><br><span class="line">NUMA node(s):        2</span><br><span class="line">Vendor ID:           GenuineIntel</span><br><span class="line">CPU family:          6</span><br><span class="line">Model:               85</span><br><span class="line">Model name:          Intel(R) Xeon(R) Gold 5220 CPU @ 2.20GHz</span><br><span class="line">Stepping:            7</span><br><span class="line">CPU MHz:             999.916</span><br><span class="line">CPU max MHz:         3900.0000</span><br><span class="line">CPU min MHz:         1000.0000</span><br><span class="line">BogoMIPS:            4400.00</span><br><span class="line">Virtualization:      VT-x</span><br><span class="line">L1d cache:           32K</span><br><span class="line">L1i cache:           32K</span><br><span class="line">L2 cache:            1024K</span><br><span class="line">L3 cache:            25344K</span><br><span class="line">NUMA node0 CPU(s):   0-17,36-53</span><br><span class="line">NUMA node1 CPU(s):   18-35,54-71</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="查看内存"><a href="#查看内存" class="headerlink" title="查看内存"></a>查看内存</h1><p>-g是指以GB为单位，-m是以MB为单位。</p>
+<p><code>free -g</code></p>
+<p>详细信息</p>
+<p><code>cat /proc/meminfo</code></p>
+<h1 id="查看硬盘"><a href="#查看硬盘" class="headerlink" title="查看硬盘"></a>查看硬盘</h1><p><strong>硬盘和分区分布</strong></p>
+<p><code>lsblk</code></p>
+<p><strong>硬盘和分区详细</strong></p>
+<p><code>fdisk -l</code></p>
+<p><strong>硬盘空间剩余</strong></p>
+<p><code>df -h</code></p>
+<p><strong>硬盘空间使用情况</strong></p>
+<p>当前目录的大小<code>du -sh</code></p>
+<p>指定文件的大小<code>du filename</code></p>
+<p>目录所占空间情况<code>du -h foldername</code></p>
+<p><code>-h</code>提高可读性</p>
+<h1 id="查看显卡"><a href="#查看显卡" class="headerlink" title="查看显卡"></a>查看显卡</h1><p><code>nvidia-smi</code></p>
+<h1 id="根据PID查看进程详细信息"><a href="#根据PID查看进程详细信息" class="headerlink" title="根据PID查看进程详细信息"></a>根据PID查看进程详细信息</h1><p><code>ls -l /proc/${pid}</code></p>
+<p><code>ps -ef | grep ${pid}</code></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -615,96 +708,6 @@
 <p><code>__repr__</code>与<code>__str__</code>方法类似，但是在打印一个实例的信息时会调用<code>__repr</code>方法。如果没有重写该方法console会显示类似<code>&lt;Vector object at 0x10e100070&gt;</code>的信息。</p>
 <p><code>__str__</code>由str()函数调用，强烈建议重写<code>__repr__</code>如果没有<code>__str__</code>则会调用<code>__repr__</code>.</p>
 <p><code>bool()</code>调用<code>__bool__</code>的结果，如果没有实现<code>__bool__</code>那么会调用<code>__len__</code>如果长度为0则返回<code>False</code>.</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/paper_learning/AnomalyDetectionViaRobust/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/academia/paper_learning/AnomalyDetectionViaRobust/" class="post-title-link" itemprop="url">Multi-view Anomaly Detection via Robust Probabilistic Latent Variable Models</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 01-15-2021 13:24:35" itemprop="dateCreated datePublished" datetime="2021-01-15T13:24:35+08:00">01-15-2021</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 02-04-2021 13:49:35" itemprop="dateModified" datetime="2021-02-04T13:49:35+08:00">02-04-2021</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>对于多视图的异常检测提出了概率隐变量模型。</p>
-<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>多视图的异常检测与传统的单视图的异常检测不同。单视图的异常检测发现那些与预期行为不符的实例。图1显示了在一个2个视图的数据上，一个多视图异常与一个单视图异常的不同。M是一个多视图异常，M在不同的视图上属于不同的聚类，且M的视图不连续。S是一个单视图异常，S在任何视图上与其它实例都很远。然而，视图S与其它实例有相同的关系。</p>
-<p>S不是一个多视图的异常。单视图的异常检测方法，例如SVM或是基于张量的异常检测，就认为S是异常的。另一方面我们想开发一个多视图的异常检测方法去检测M是否为异常而不是S。尽管单视图的异常不是普遍的实例，如果他们是不连续的跨了多个视图，多视图的异常检测会是主要的成分。</p>
-<p>我们针对多视图的异常检测提出了一个概率隐空间变量模型。有一个隐空间跨了所有视图。我们假设正常实例的所有视图都是用一个单一隐向量生成。另一方面，一个异常实例被假设有多个隐向量，它的不同视图使用不同的隐向量生成。</p>
-<p>每一个非多视图的两个视图的异常(?)可以由隐向量生成。另一方面，两个视图的多视图异常M不是连续的，由两个视图使用映射向量生成。</p>
-<p>对于每个实例的隐向量的数量是未知的，我们根据数据使用Dirichlet priors自动的推测。预测模型是基于EM算法。</p>
-<p>在E-step中…</p>
-<p>在M-step中…</p>
-<p>通过迭代E,M-steps我们推测每一个实例使用的隐向量，并计算它的异常分数通过使用多余一个隐向量的可能性。</p>
-<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>先生成隐向量，只要拿到隐向量，就可以通过<strong>EM算法</strong>，对类别进行判断。</p>
 
       
     </div>
