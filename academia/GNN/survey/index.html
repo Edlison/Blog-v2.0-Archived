@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/man-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/man-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.edlison.com","root":"/","images":"/images","scheme":"Muse","version":"8.0.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+
+  <meta name="description" content="IntroA Comprehensive Survey on Graph Neural Networks 论文笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A Comprehensive Survey on GNN">
+<meta property="og:url" content="https://blog.edlison.com/academia/GNN/survey/index.html">
+<meta property="og:site_name" content="Edlison is talking here.">
+<meta property="og:description" content="IntroA Comprehensive Survey on Graph Neural Networks 论文笔记">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s2.loli.net/2022/01/03/dfoV2NOMFC7BkRU.png">
+<meta property="og:image" content="https://s2.loli.net/2022/01/03/a6s9nT32cq51C8D.png">
+<meta property="article:published_time" content="2022-01-03T10:21:37.256Z">
+<meta property="article:modified_time" content="2022-01-03T15:08:39.613Z">
+<meta property="article:author" content="Bolin Shen">
+<meta property="article:tag" content="GNN">
+<meta property="article:tag" content="survey">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2022/01/03/dfoV2NOMFC7BkRU.png">
+
+
+<link rel="canonical" href="https://blog.edlison.com/academia/GNN/survey/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>A Comprehensive Survey on GNN | Edlison is talking here.</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NC6FWQJNCW"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-NC6FWQJNCW');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Edlison is talking here.</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">“Edlison's blog”</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Intro"><span class="nav-number">1.</span> <span class="nav-text">Intro</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Abstract"><span class="nav-number">2.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Background-amp-Definition"><span class="nav-number">3.</span> <span class="nav-text">Background &amp; Definition</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Categorization-amp-Framework"><span class="nav-number">4.</span> <span class="nav-text">Categorization &amp; Framework</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#框架"><span class="nav-number">4.1.</span> <span class="nav-text">框架</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Recurrent-Graph-Neural-Network"><span class="nav-number">5.</span> <span class="nav-text">Recurrent Graph Neural Network</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Convolutional-Graph-Neural-Network"><span class="nav-number">6.</span> <span class="nav-text">Convolutional Graph Neural Network</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spectral-based-ConvGNN"><span class="nav-number">6.1.</span> <span class="nav-text">Spectral-based ConvGNN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spatial-based-ConvGNN"><span class="nav-number">6.2.</span> <span class="nav-text">Spatial-based ConvGNN</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#NN4G"><span class="nav-number">6.2.1.</span> <span class="nav-text">NN4G</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DCNN-Diffussion-CNN"><span class="nav-number">6.2.2.</span> <span class="nav-text">DCNN(Diffussion CNN)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PGC-DGCNN"><span class="nav-number">6.2.3.</span> <span class="nav-text">PGC-DGCNN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MPNN-Message-Passing-NN"><span class="nav-number">6.2.4.</span> <span class="nav-text">MPNN(Message Passing NN)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GIN-Graph-Isomorphism"><span class="nav-number">6.2.5.</span> <span class="nav-text">GIN(Graph Isomorphism )</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GAT-Graph-Attention-Network"><span class="nav-number">6.2.6.</span> <span class="nav-text">GAT(Graph Attention Network)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Comparison-Spectral-and-Spatial-models"><span class="nav-number">6.2.7.</span> <span class="nav-text">Comparison Spectral and Spatial models</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pooling-Modules"><span class="nav-number">6.3.</span> <span class="nav-text">Pooling Modules</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Graph-Autoencoders"><span class="nav-number">7.</span> <span class="nav-text">Graph Autoencoders</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Network-Embedding"><span class="nav-number">7.1.</span> <span class="nav-text">Network Embedding</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Graph-Generation"><span class="nav-number">7.2.</span> <span class="nav-text">Graph Generation</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Spatial-Temporal-GNN"><span class="nav-number">8.</span> <span class="nav-text">Spatial-Temporal GNN</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Application"><span class="nav-number">9.</span> <span class="nav-text">Application</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Future-Directions"><span class="nav-number">10.</span> <span class="nav-text">Future Directions</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Model-depth"><span class="nav-number">10.1.</span> <span class="nav-text">Model depth</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Scalability-trade-off"><span class="nav-number">10.2.</span> <span class="nav-text">Scalability trade-off</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Heterogenity"><span class="nav-number">10.3.</span> <span class="nav-text">Heterogenity</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dynamicity"><span class="nav-number">10.4.</span> <span class="nav-text">Dynamicity</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#问题"><span class="nav-number">11.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#研究"><span class="nav-number">12.</span> <span class="nav-text">研究</span></a></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Bolin Shen</p>
+  <div class="site-description" itemprop="description">Edlison blog</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">313</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">160</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2VkbGlzb24=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;edlison"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmJvbGluLmVkbGlzb24uc2hlbkBnbWFpbC5jb20=" title="E-Mail → mailto:bolin.edlison.shen@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/GNN/survey/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          A Comprehensive Survey on GNN
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 01-03-2022 18:21:37 / Modified: 23:08:39" itemprop="dateCreated datePublished" datetime="2022-01-03T18:21:37+08:00">01-03-2022</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Academia/" itemprop="url" rel="index"><span itemprop="name">Academia</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p>A Comprehensive Survey on Graph Neural Networks 论文笔记</p>
+<a id="more"></a>
+
+<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h1><p>数据在诸如CV和NLP领域用Euclidean来表示, 但是还有很多数据如用户关系等non-Euclidean可以用图来表示.</p>
+<p>本篇论文将GNN大体分为Recurrent Graph Neural Networks, Convolutional Graph Neural Networks, Graph Autoencoders, Spatial-Temporal Graph Neural Networks四类.</p>
+<p>并在之后会讲述SOTA模型, benchmark数据集, 实际应用, 以及未来方向.</p>
+<h1 id="Background-amp-Definition"><a href="#Background-amp-Definition" class="headerlink" title="Background &amp; Definition"></a>Background &amp; Definition</h1><p><strong>GNN vs Network embedding</strong></p>
+<p>Network embedding 是用低维向量来表示网络节点, 保留了网络的拓扑结构以及节点信息. 随后可以使用传统的机器学习方法来进行classification等任务.</p>
+<p>GNN 是深度学习模型, 旨在处理图相关的端到端任务.</p>
+<p>区别在于Network embedding 包括一些非深度模型.</p>
+<p><strong>GNN vs Graph kernel methods</strong></p>
+<p>Graph kernel 可以将图或节点通过映射嵌入到向量.</p>
+<p>Graph kernel 是直接定义的, 而不是通过网络学习.</p>
+<h1 id="Categorization-amp-Framework"><a href="#Categorization-amp-Framework" class="headerlink" title="Categorization &amp; Framework"></a>Categorization &amp; Framework</h1><p><strong>RecGNN</strong></p>
+<p>图中的节点不断与邻居交换信息, 直到稳定.</p>
+<p><strong>ConvGNN</strong></p>
+<p>通过多个卷积层提取高阶节点表示</p>
+<p><strong>GAE</strong></p>
+<p>是一种无监督的框架. 将节点encode导隐空间, 然后在重建.</p>
+<p><strong>STGNN</strong></p>
+<p>同时考虑空间及时间.</p>
+<h2 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h2><p><strong>任务</strong></p>
+<ul>
+<li>Node-level</li>
+<li>Edge-level</li>
+<li>Graph-level</li>
+</ul>
+<p><strong>训练</strong></p>
+<ul>
+<li>Semi-supervised learning for node-level classification 只给部分节点打标签, 让网络学习去给unlabeled node打标签</li>
+<li>Supervised learning for graph-level classification 对整个图预测</li>
+<li>Unsupervised learning for graph embedding 探索edge-level的信息, 一种方式是用Autoencoder, 另一种方式是使用negative sampling, 取一些negative pairs, 图中出现的连接节点对是positive pairs.</li>
+</ul>
+<h1 id="Recurrent-Graph-Neural-Network"><a href="#Recurrent-Graph-Neural-Network" class="headerlink" title="Recurrent Graph Neural Network"></a>Recurrent Graph Neural Network</h1><p>对节点循环应用相同的参数去提取特征.</p>
+<p>一个节点的隐层状态由这个式子循环更新.<br>$$<br>h_v^{(t)} = \sum_{u\in N(v)}f(x_v, x^e_{(v, u)}, x_u, h_u^{(t-1)})\<br>f = (Wx + b)<br>$$<br>传统的RNN</p>
+<p><img src="https://s2.loli.net/2022/01/03/dfoV2NOMFC7BkRU.png" alt=""></p>
+<p>每一次计算包含, 当前节点, 邻居节点, 边的信息, 上一个隐层状态信息. 遍历完一个节点的所有邻居相加.</p>
+<p>此时学到的h可作为当前节点的特征.</p>
+<p><strong>Gated Graph Neural Network</strong><br>$$<br>h_v^{(t)} = GRU(h_v^{(t-1)}, \sum_{u\in N(v)}Wh_u^{(t-1)})<br>$$<br><strong>RecGNN和ConvGNN的区别</strong></p>
+<p><img src="https://s2.loli.net/2022/01/03/a6s9nT32cq51C8D.png" alt=""></p>
+<h1 id="Convolutional-Graph-Neural-Network"><a href="#Convolutional-Graph-Neural-Network" class="headerlink" title="Convolutional Graph Neural Network"></a>Convolutional Graph Neural Network</h1><h2 id="Spectral-based-ConvGNN"><a href="#Spectral-based-ConvGNN" class="headerlink" title="Spectral-based ConvGNN"></a>Spectral-based ConvGNN</h2><p>$$<br>L = I_n - D^{-{1\over2}}AD^{-{1\over2}}\<br>D_{ii}=\sum_j(A_{ij})<br>$$</p>
+<p>D是对角矩阵</p>
+<h2 id="Spatial-based-ConvGNN"><a href="#Spatial-based-ConvGNN" class="headerlink" title="Spatial-based ConvGNN"></a>Spatial-based ConvGNN</h2><h3 id="NN4G"><a href="#NN4G" class="headerlink" title="NN4G"></a>NN4G</h3><p>直接相加节点的所有邻居信息, 还应用了residual connections 和 skip connections.</p>
+<p>!!!NN4G的下一层节点状态<br>$$<br>h_v^{(k)}=f(W^{(k)^T}x_v+\sum_{i=1}^{k-1}\sum_{u\in N(v)}\Theta^{(k)^T}h_u^{(k-1)})<br>$$<br>NN4G与GCN的区别是没有用正则化的邻接矩阵.</p>
+<h3 id="DCNN-Diffussion-CNN"><a href="#DCNN-Diffussion-CNN" class="headerlink" title="DCNN(Diffussion CNN)"></a>DCNN(Diffussion CNN)</h3><p>这个模型认为信息的传递有特定的概率, 几轮后会平衡.</p>
+<h3 id="PGC-DGCNN"><a href="#PGC-DGCNN" class="headerlink" title="PGC-DGCNN"></a>PGC-DGCNN</h3><p>增加了远邻居的贡献, 定一个一个最短路径邻接矩阵S.<br>$$<br>H^{(k)}=||^r_{j=0}f((\tilde D^{(j)})^{-1}S^{(j)H^{(k-1)}}W^{(j,k)})\<br>$$</p>
+<h3 id="MPNN-Message-Passing-NN"><a href="#MPNN-Message-Passing-NN" class="headerlink" title="MPNN(Message Passing NN)"></a>MPNN(Message Passing NN)</h3><p>它将Conv视作一个信息传递的过程, 将信息从一个节点通过边传递到另一个节点.<br>$$<br>h_v^{(k)}=U_k(h_v^{(k-1)}, \sum_{u\in N(v)}M_k(h_v^{(k-1)}, h_u^{(k-1)}, x_{vu}^e))<br>$$</p>
+<h3 id="GIN-Graph-Isomorphism"><a href="#GIN-Graph-Isomorphism" class="headerlink" title="GIN(Graph Isomorphism )"></a>GIN(Graph Isomorphism )</h3><p>MPNN不能分别不同的图结构, 基于此GIN改进了一下.</p>
+<h3 id="GAT-Graph-Attention-Network"><a href="#GAT-Graph-Attention-Network" class="headerlink" title="GAT(Graph Attention Network)"></a>GAT(Graph Attention Network)</h3><p>引入了Attention 在两个连接的节点</p>
+<h3 id="Comparison-Spectral-and-Spatial-models"><a href="#Comparison-Spectral-and-Spatial-models" class="headerlink" title="Comparison Spectral and Spatial models"></a>Comparison Spectral and Spatial models</h3><ul>
+<li>Spectral 低效</li>
+<li>Spectral 需要图的傅立叶变换</li>
+<li>Spectral 只能用于无向图</li>
+</ul>
+<h2 id="Pooling-Modules"><a href="#Pooling-Modules" class="headerlink" title="Pooling Modules"></a>Pooling Modules</h2><ul>
+<li>通过下采样去减少参数去生成低维的特征, 避免过拟合, 排列不变形以及计算复杂度的问题</li>
+<li>readout计算用于生成graph-level representation</li>
+</ul>
+<p>mean/max/sum池化是比较常用的</p>
+<h1 id="Graph-Autoencoders"><a href="#Graph-Autoencoders" class="headerlink" title="Graph Autoencoders"></a>Graph Autoencoders</h1><p>将图映射到隐空间然后再重建图结构</p>
+<h2 id="Network-Embedding"><a href="#Network-Embedding" class="headerlink" title="Network Embedding"></a>Network Embedding</h2><p>目标是隐空间信息.</p>
+<p>这是一个低维的节点向量表示, 保留了节点的拓扑信息.<br>$$<br>L_1=\sum_{(v,u)\in E}A_{v,u}\Vert enc(x_v)-enc(x_u)\Vert^2\<br>L_2=\sum_{v\in V}\Vert(dec(enc(x_v))-x_v)\odot b_v\Vert^2<br>$$</p>
+<h2 id="Graph-Generation"><a href="#Graph-Generation" class="headerlink" title="Graph Generation"></a>Graph Generation</h2><p>目标是生成图.</p>
+<p>学习图的生成, 通过encode到隐空间然后再decode. 主要用于解决分子生成问题.</p>
+<h1 id="Spatial-Temporal-GNN"><a href="#Spatial-Temporal-GNN" class="headerlink" title="Spatial-Temporal GNN"></a>Spatial-Temporal GNN</h1><p>时空信息会被同时考虑.</p>
+<h1 id="Application"><a href="#Application" class="headerlink" title="Application"></a>Application</h1><ul>
+<li>CV</li>
+<li>NLP</li>
+<li>Traffic</li>
+<li>Recommender System</li>
+<li>Chemistry</li>
+</ul>
+<h1 id="Future-Directions"><a href="#Future-Directions" class="headerlink" title="Future Directions"></a>Future Directions</h1><h2 id="Model-depth"><a href="#Model-depth" class="headerlink" title="Model depth"></a>Model depth</h2><p>深度越大效果反而不好</p>
+<h2 id="Scalability-trade-off"><a href="#Scalability-trade-off" class="headerlink" title="Scalability trade-off"></a>Scalability trade-off</h2><p>通过采样, 节点可能丢失邻居信息.</p>
+<h2 id="Heterogenity"><a href="#Heterogenity" class="headerlink" title="Heterogenity"></a>Heterogenity</h2><p>当前的GNN无法直接应用到不同的图</p>
+<h2 id="Dynamicity"><a href="#Dynamicity" class="headerlink" title="Dynamicity"></a>Dynamicity</h2><p>考虑动态的空间关系</p>
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><ul>
+<li>spectral</li>
+<li>spatial-temporal</li>
+</ul>
+<h1 id="研究"><a href="#研究" class="headerlink" title="研究"></a>研究</h1><ul>
+<li>GGNN(GRU GNN)</li>
+<li>GCN</li>
+<li>PGC-DGCNN</li>
+<li>DNGR</li>
+</ul>
+<hr>
+<p>References</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuamlxaXpoaXhpbi5jb20vYXJ0aWNsZXMvMjAxOC0xMi0xNC00">https://www.jiqizhixin.com/articles/2018-12-14-4<i class="fa fa-external-link-alt"></i></span></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/GNN/" rel="tag"># GNN</a>
+              <a href="/tags/survey/" rel="tag"># survey</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/dev/vps/deploy/nginxmanager/" rel="prev" title="Deploy Nginx Proxy Manager">
+                  <i class="fa fa-chevron-left"></i> Deploy Nginx Proxy Manager
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Edlison</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

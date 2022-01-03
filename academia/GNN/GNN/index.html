@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/man-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/man-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.edlison.com","root":"/","images":"/images","scheme":"Muse","version":"8.0.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+
+  <meta name="description" content="IntroA Gentle Introduction to Graph Neural Networks">
+<meta property="og:type" content="article">
+<meta property="og:title" content="开始学习GNN">
+<meta property="og:url" content="https://blog.edlison.com/academia/GNN/GNN/index.html">
+<meta property="og:site_name" content="Edlison is talking here.">
+<meta property="og:description" content="IntroA Gentle Introduction to Graph Neural Networks">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://blogimg-1304875656.cos.ap-hongkong.myqcloud.com//20211220192722.png">
+<meta property="og:image" content="https://blogimg-1304875656.cos.ap-hongkong.myqcloud.com//20211220193102.png">
+<meta property="og:image" content="https://blogimg-1304875656.cos.ap-hongkong.myqcloud.com//20211220194530.png">
+<meta property="og:image" content="https://blogimg-1304875656.cos.ap-hongkong.myqcloud.com//20211220195224.png">
+<meta property="og:image" content="https://blogimg-1304875656.cos.ap-hongkong.myqcloud.com//20211220195545.png">
+<meta property="article:published_time" content="2021-12-20T07:05:15.064Z">
+<meta property="article:modified_time" content="2022-01-03T10:22:39.583Z">
+<meta property="article:author" content="Bolin Shen">
+<meta property="article:tag" content="GNN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blogimg-1304875656.cos.ap-hongkong.myqcloud.com//20211220192722.png">
+
+
+<link rel="canonical" href="https://blog.edlison.com/academia/GNN/GNN/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>开始学习GNN | Edlison is talking here.</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NC6FWQJNCW"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-NC6FWQJNCW');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Edlison is talking here.</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">“Edlison's blog”</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Intro"><span class="nav-number">1.</span> <span class="nav-text">Intro</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Graph"><span class="nav-number">2.</span> <span class="nav-text">Graph</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#在图片上定义图"><span class="nav-number">2.1.</span> <span class="nav-text">在图片上定义图</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Graph-Neural-Network"><span class="nav-number">3.</span> <span class="nav-text">Graph Neural Network</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#simplest-GNN"><span class="nav-number">3.1.</span> <span class="nav-text">simplest GNN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pooling"><span class="nav-number">3.2.</span> <span class="nav-text">Pooling</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Passing-message"><span class="nav-number">3.3.</span> <span class="nav-text">Passing message</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Representations"><span class="nav-number">3.4.</span> <span class="nav-text">Representations</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#本质"><span class="nav-number">4.</span> <span class="nav-text">本质</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#假设"><span class="nav-number">5.</span> <span class="nav-text">假设</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Survey"><span class="nav-number">6.</span> <span class="nav-text">Survey</span></a></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Bolin Shen</p>
+  <div class="site-description" itemprop="description">Edlison blog</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">313</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">160</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2VkbGlzb24=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;edlison"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmJvbGluLmVkbGlzb24uc2hlbkBnbWFpbC5jb20=" title="E-Mail → mailto:bolin.edlison.shen@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/GNN/GNN/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          开始学习GNN
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 12-20-2021 15:05:15" itemprop="dateCreated datePublished" datetime="2021-12-20T15:05:15+08:00">12-20-2021</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 01-03-2022 18:22:39" itemprop="dateModified" datetime="2022-01-03T18:22:39+08:00">01-03-2022</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Academia/" itemprop="url" rel="index"><span itemprop="name">Academia</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p>A Gentle Introduction to Graph Neural Networks</p>
+<a id="more"></a>
+
+<h1 id="Graph"><a href="#Graph" class="headerlink" title="Graph"></a>Graph</h1><p>V: Vertex attributes</p>
+<p>E: Edge attributes and directions</p>
+<p>U: Globle attributes</p>
+<h2 id="在图片上定义图"><a href="#在图片上定义图" class="headerlink" title="在图片上定义图"></a>在图片上定义图</h2><p><img src="https://blogimg-1304875656.cos.ap-hongkong.myqcloud.com//20211220192722.png" alt=""></p>
+<h1 id="Graph-Neural-Network"><a href="#Graph-Neural-Network" class="headerlink" title="Graph Neural Network"></a>Graph Neural Network</h1><h2 id="simplest-GNN"><a href="#simplest-GNN" class="headerlink" title="simplest GNN"></a>simplest GNN</h2><p><img src="https://blogimg-1304875656.cos.ap-hongkong.myqcloud.com//20211220193102.png" alt=""></p>
+<p>最简单的GNN, 分别在U, V, E三个层级上构建MLP</p>
+<p>这种简单的结构并没有用到Graph的连接信息</p>
+<h2 id="Pooling"><a href="#Pooling" class="headerlink" title="Pooling"></a>Pooling</h2><p>比如说在分类问题下</p>
+<p>如果V没有我们需要的信息, 可以用与之相连的E来表示, 反之亦然.</p>
+<p><img src="https://blogimg-1304875656.cos.ap-hongkong.myqcloud.com//20211220194530.png" alt=""></p>
+<p>Link prediction 比如推荐系统</p>
+<p>Node classification 比如用户</p>
+<p>Graph classification 全局 比如分子结构</p>
+<h2 id="Passing-message"><a href="#Passing-message" class="headerlink" title="Passing message"></a>Passing message</h2><ul>
+<li>每个节点获取相邻节点的embedding</li>
+<li>(sum, mean, max)这些features</li>
+<li>前向传播到nn</li>
+</ul>
+<p><img src="https://blogimg-1304875656.cos.ap-hongkong.myqcloud.com//20211220195224.png" alt=""></p>
+<p>GCN也就是不断Pooling后作为该节点update后的feature, 相邻1节点, 相邻2节点…</p>
+<h2 id="Representations"><a href="#Representations" class="headerlink" title="Representations"></a>Representations</h2><p>V的特征可以从临V或临E提取, 以及U.</p>
+<p>E的特征也是.</p>
+<p>U的特征也是.</p>
+<p><img src="https://blogimg-1304875656.cos.ap-hongkong.myqcloud.com//20211220195545.png" alt=""></p>
+<p>A: adjacent matrix</p>
+<p>X: feature matrix/attribute matrix 节点特征</p>
+<p>W: weight matrix(update)</p>
+<h1 id="本质"><a href="#本质" class="headerlink" title="本质"></a>本质</h1><p>GNN网络的本质是学习V, E, U的特征, 然后再进行分类等操作.</p>
+<h1 id="假设"><a href="#假设" class="headerlink" title="假设"></a>假设</h1><p>CNN: 空间变换不变性</p>
+<p>RNN: 时序的延续性</p>
+<p>GNN: 图的对称性, 交换顶点GNN对其作用不变</p>
+<h1 id="Survey"><a href="#Survey" class="headerlink" title="Survey"></a>Survey</h1><p>A Comprehensive Survey on Graph Anomaly Detection with Deep Learning</p>
+<p>A Comprehensive Survey on Graph Neural Networks</p>
+<p>Graph Learning: A Survey</p>
+<hr>
+<p>References</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kaXN0aWxsLnB1Yi8yMDIxL2dubi1pbnRyby8=">https://distill.pub/2021/gnn-intro/<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuYmlsaWJpbGkuY29tL3ZpZGVvL0JWMWlUNHkxZDd6UA==">https://www.bilibili.com/video/BV1iT4y1d7zP<i class="fa fa-external-link-alt"></i></span></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/GNN/" rel="tag"># GNN</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/dev/notebook/sstap/" rel="prev" title="游戏加速解决方案">
+                  <i class="fa fa-chevron-left"></i> 游戏加速解决方案
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/dev/notebook/pytorch-geometric/" rel="next" title="Pytroch Geometric Environment setup">
+                  Pytroch Geometric Environment setup <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Edlison</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
