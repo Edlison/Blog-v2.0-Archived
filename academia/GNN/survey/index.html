@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://s2.loli.net/2022/01/03/dfoV2NOMFC7BkRU.png">
 <meta property="og:image" content="https://s2.loli.net/2022/01/03/a6s9nT32cq51C8D.png">
 <meta property="article:published_time" content="2022-01-03T10:21:37.256Z">
-<meta property="article:modified_time" content="2022-01-03T15:08:39.613Z">
+<meta property="article:modified_time" content="2022-01-04T12:45:13.669Z">
 <meta property="article:author" content="Bolin Shen">
 <meta property="article:tag" content="GNN">
 <meta property="article:tag" content="survey">
@@ -206,7 +206,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">313</span>
+          <span class="site-state-item-count">316</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -219,7 +219,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">160</span>
+        <span class="site-state-item-count">166</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -291,10 +291,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 01-03-2022 18:21:37 / Modified: 23:08:39" itemprop="dateCreated datePublished" datetime="2022-01-03T18:21:37+08:00">01-03-2022</time>
+      <time title="Created: 01-03-2022 18:21:37" itemprop="dateCreated datePublished" datetime="2022-01-03T18:21:37+08:00">01-03-2022</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 01-04-2022 20:45:13" itemprop="dateModified" datetime="2022-01-04T20:45:13+08:00">01-04-2022</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -365,9 +371,9 @@
 <h1 id="Convolutional-Graph-Neural-Network"><a href="#Convolutional-Graph-Neural-Network" class="headerlink" title="Convolutional Graph Neural Network"></a>Convolutional Graph Neural Network</h1><h2 id="Spectral-based-ConvGNN"><a href="#Spectral-based-ConvGNN" class="headerlink" title="Spectral-based ConvGNN"></a>Spectral-based ConvGNN</h2><p>$$<br>L = I_n - D^{-{1\over2}}AD^{-{1\over2}}\<br>D_{ii}=\sum_j(A_{ij})<br>$$</p>
 <p>D是对角矩阵</p>
 <h2 id="Spatial-based-ConvGNN"><a href="#Spatial-based-ConvGNN" class="headerlink" title="Spatial-based ConvGNN"></a>Spatial-based ConvGNN</h2><h3 id="NN4G"><a href="#NN4G" class="headerlink" title="NN4G"></a>NN4G</h3><p>直接相加节点的所有邻居信息, 还应用了residual connections 和 skip connections.</p>
-<p>!!!NN4G的下一层节点状态<br>$$<br>h_v^{(k)}=f(W^{(k)^T}x_v+\sum_{i=1}^{k-1}\sum_{u\in N(v)}\Theta^{(k)^T}h_u^{(k-1)})<br>$$<br>NN4G与GCN的区别是没有用正则化的邻接矩阵.</p>
+<p>NN4G的下一层节点状态<br>$$<br>h_v^{(k)}=f(W^{(k)^T}x_v+\sum_{i=1}^{k-1}\sum_{u\in N(v)}\Theta^{(k)^T}h_u^{(k-1)})<br>$$<br>NN4G与GCN的区别是没有用正则化的邻接矩阵.</p>
 <h3 id="DCNN-Diffussion-CNN"><a href="#DCNN-Diffussion-CNN" class="headerlink" title="DCNN(Diffussion CNN)"></a>DCNN(Diffussion CNN)</h3><p>这个模型认为信息的传递有特定的概率, 几轮后会平衡.</p>
-<h3 id="PGC-DGCNN"><a href="#PGC-DGCNN" class="headerlink" title="PGC-DGCNN"></a>PGC-DGCNN</h3><p>增加了远邻居的贡献, 定一个一个最短路径邻接矩阵S.<br>$$<br>H^{(k)}=||^r_{j=0}f((\tilde D^{(j)})^{-1}S^{(j)H^{(k-1)}}W^{(j,k)})\<br>$$</p>
+<h3 id="PGC-DGCNN"><a href="#PGC-DGCNN" class="headerlink" title="PGC-DGCNN"></a>PGC-DGCNN</h3><p>增加了远邻居的贡献, 定一个一个最短路径邻接矩阵S.<br>$$<br>H^{(k)}=\Vert^r_{j=0}f((\tilde D^{(j)})^{-1}S^{(j)H^{(k-1)}}W^{(j,k)})\<br>$$</p>
 <h3 id="MPNN-Message-Passing-NN"><a href="#MPNN-Message-Passing-NN" class="headerlink" title="MPNN(Message Passing NN)"></a>MPNN(Message Passing NN)</h3><p>它将Conv视作一个信息传递的过程, 将信息从一个节点通过边传递到另一个节点.<br>$$<br>h_v^{(k)}=U_k(h_v^{(k-1)}, \sum_{u\in N(v)}M_k(h_v^{(k-1)}, h_u^{(k-1)}, x_{vu}^e))<br>$$</p>
 <h3 id="GIN-Graph-Isomorphism"><a href="#GIN-Graph-Isomorphism" class="headerlink" title="GIN(Graph Isomorphism )"></a>GIN(Graph Isomorphism )</h3><p>MPNN不能分别不同的图结构, 基于此GIN改进了一下.</p>
 <h3 id="GAT-Graph-Attention-Network"><a href="#GAT-Graph-Attention-Network" class="headerlink" title="GAT(Graph Attention Network)"></a>GAT(Graph Attention Network)</h3><p>引入了Attention 在两个连接的节点</p>
@@ -395,8 +401,10 @@
 <li>Chemistry</li>
 </ul>
 <h1 id="Future-Directions"><a href="#Future-Directions" class="headerlink" title="Future Directions"></a>Future Directions</h1><h2 id="Model-depth"><a href="#Model-depth" class="headerlink" title="Model depth"></a>Model depth</h2><p>深度越大效果反而不好</p>
+<p>oversmoothing</p>
 <h2 id="Scalability-trade-off"><a href="#Scalability-trade-off" class="headerlink" title="Scalability trade-off"></a>Scalability trade-off</h2><p>通过采样, 节点可能丢失邻居信息.</p>
 <h2 id="Heterogenity"><a href="#Heterogenity" class="headerlink" title="Heterogenity"></a>Heterogenity</h2><p>当前的GNN无法直接应用到不同的图</p>
+<p>异质图 节点不同类</p>
 <h2 id="Dynamicity"><a href="#Dynamicity" class="headerlink" title="Dynamicity"></a>Dynamicity</h2><p>考虑动态的空间关系</p>
 <h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><ul>
 <li>spectral</li>
@@ -407,6 +415,8 @@
 <li>GCN</li>
 <li>PGC-DGCNN</li>
 <li>DNGR</li>
+<li>GIN</li>
+<li>GAT</li>
 </ul>
 <hr>
 <p>References</p>
@@ -433,6 +443,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/academia/knowledge/embedding/" rel="next" title="Meaning of Embedding">
+                  Meaning of Embedding <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>
