@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.edlison.com/life/game/csgo-server/</loc>
+    
+    <lastmod>2022-01-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.edlison.com/dev/docker/docker-registry/</loc>
+    
+    <lastmod>2022-01-06</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.edlison.com/academia/knowledge/embedding/</loc>
     
     <lastmod>2022-01-06</lastmod>
@@ -3398,6 +3412,13 @@
     <priority>0.6</priority>
   </url>
   
+  <url>
+    <loc>https://blog.edlison.com/tags/csgo/</loc>
+    <lastmod>2022-01-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
 
   
   <url>
@@ -3598,6 +3619,13 @@
   
   <url>
     <loc>https://blog.edlison.com/categories/Academia/</loc>
+    <lastmod>2022-01-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.edlison.com/categories/Life/</loc>
     <lastmod>2022-01-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
