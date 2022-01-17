@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">318</span>
+          <span class="site-state-item-count">328</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -264,7 +264,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/vps/usage/">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/vps/deploy/docker/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -278,7 +278,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/dev/vps/usage/" class="post-title-link" itemprop="url">status of VPS</a>
+            <a href="/dev/vps/deploy/docker/" class="post-title-link" itemprop="url">install docker and compose</a>
         </h2>
 
         <div class="post-meta-container">
@@ -289,14 +289,14 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 10-09-2021 13:11:40" itemprop="dateCreated datePublished" datetime="2021-10-09T13:11:40+08:00">10-09-2021</time>
+      <time title="Created: 10-11-2021 13:25:34" itemprop="dateCreated datePublished" datetime="2021-10-11T13:25:34+08:00">10-11-2021</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 12-06-2021 14:50:21" itemprop="dateModified" datetime="2021-12-06T14:50:21+08:00">12-06-2021</time>
+        <time title="Modified: 01-04-2022 21:41:49" itemprop="dateModified" datetime="2022-01-04T21:41:49+08:00">01-04-2022</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -318,316 +318,33 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="top"><a href="#top" class="headerlink" title="top"></a>top</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">top</span><br></pre></td></tr></table></figure>
+          <h1 id="engine"><a href="#engine" class="headerlink" title="engine"></a>engine</h1><blockquote>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmRvY2tlci5jb20vZW5naW5lL2luc3RhbGwv">https://docs.docker.com/engine/install/<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -fsSL https://get.docker.com -o get-docker.sh</span><br><span class="line">sudo sh get-docker.sh</span><br></pre></td></tr></table></figure>
 
-<h2 id="cmd"><a href="#cmd" class="headerlink" title="cmd"></a>cmd</h2><ul>
-<li>P: rank by cpu usage</li>
-<li>T: rank by time</li>
-<li>M: rank by memory</li>
-<li>q: quit</li>
-<li>m: change view of memory</li>
-<li>t: change view of cpu</li>
-<li>W: write into ~/.toprc</li>
-</ul>
-<h1 id="disk-usage"><a href="#disk-usage" class="headerlink" title="disk usage"></a>disk usage</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">du -h  <span class="comment"># show current dir</span></span><br><span class="line">du -h /usr/bin</span><br><span class="line">df -h  <span class="comment"># show disk usage</span></span><br></pre></td></tr></table></figure>
 
 
-      
-    </div>
+<h1 id="compose"><a href="#compose" class="headerlink" title="compose"></a>compose</h1><blockquote>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmRvY2tlci5jb20vY29tcG9zZS9pbnN0YWxsLw==">https://docs.docker.com/compose/install/<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install docker-compose</span><br></pre></td></tr></table></figure>
 
-    
-    
-    
 
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
 
+<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><p>docker安装完毕后会自动创建一个<code>docker</code> group, 添加用户进入到该组, 否则每次执行指令都需要<code>sudo</code>权限.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo gpasswd -a <span class="variable">$USER</span> docker     	<span class="comment">#将登陆用户加入到docker用户组中</span></span><br><span class="line">newgrp docker     								<span class="comment">#更新用户组</span></span><br><span class="line"><span class="comment"># 运行这个镜像测试docker的安装</span></span><br><span class="line">docker run hello-world</span><br><span class="line"><span class="comment"># 如果出现权限问题 则是‘~/.docker/’目录收到了sudo权限的影响</span></span><br><span class="line">sudo chown <span class="string">"<span class="variable">$USER</span>"</span>:<span class="string">"<span class="variable">$USER</span>"</span> /home/<span class="string">"<span class="variable">$USER</span>"</span>/.docker -R</span><br><span class="line">sudo chmod g+rwx <span class="string">"<span class="variable">$HOME</span>/.docker"</span> -R</span><br></pre></td></tr></table></figure>
 
 
 
-    
 
 
-<div class="post-block">
-  
-  
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/vps/deploy/v2ray-lite/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/vps/deploy/v2ray-lite/" class="post-title-link" itemprop="url">lite v2ray via docker</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 10-09-2021 12:21:01" itemprop="dateCreated datePublished" datetime="2021-10-09T12:21:01+08:00">10-09-2021</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 10-10-2021 00:12:37" itemprop="dateModified" datetime="2021-10-10T00:12:37+08:00">10-10-2021</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/VPS/" itemprop="url" rel="index"><span itemprop="name">VPS</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="docker-image"><a href="#docker-image" class="headerlink" title="docker image"></a>docker image</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull teddysun/v2ray</span><br></pre></td></tr></table></figure>
-
-<h1 id="docker-compose"><a href="#docker-compose" class="headerlink" title="docker compose"></a>docker compose</h1><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3.9'</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">v2ray:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">teddysun/v2ray</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">     <span class="bullet">-</span> <span class="string">./config:/etc/v2ray</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">     <span class="bullet">-</span> <span class="number">9000</span><span class="string">:9000</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="config-json"><a href="#config-json" class="headerlink" title="config.json"></a>config.json</h1><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"inbounds"</span>: [&#123;</span><br><span class="line">    <span class="attr">"port"</span>: <span class="number">9000</span>,</span><br><span class="line">    <span class="attr">"protocol"</span>: <span class="string">"vmess"</span>,</span><br><span class="line">    <span class="attr">"settings"</span>: &#123;</span><br><span class="line">      <span class="attr">"clients"</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">"id"</span>: <span class="string">"100xxxxx-xxxx-xxxx-xxxx-00xxxxxxxxxx"</span>,</span><br><span class="line">          <span class="attr">"level"</span>: <span class="number">1</span>,</span><br><span class="line">          <span class="attr">"alterId"</span>: <span class="number">64</span></span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;],</span><br><span class="line">  <span class="attr">"outbounds"</span>: [&#123;</span><br><span class="line">    <span class="attr">"protocol"</span>: <span class="string">"freedom"</span>,</span><br><span class="line">    <span class="attr">"settings"</span>: &#123;&#125;</span><br><span class="line">  &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/vps/first-conf/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/vps/first-conf/" class="post-title-link" itemprop="url">configure new VPS</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 10-09-2021 10:57:44" itemprop="dateCreated datePublished" datetime="2021-10-09T10:57:44+08:00">10-09-2021</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 12-06-2021 14:52:18" itemprop="dateModified" datetime="2021-12-06T14:52:18+08:00">12-06-2021</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/VPS/" itemprop="url" rel="index"><span itemprop="name">VPS</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="user"><a href="#user" class="headerlink" title="user"></a>user</h1><h2 id="add-new-user"><a href="#add-new-user" class="headerlink" title="add new user"></a>add new user</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adduser ubuntu  <span class="comment"># new user's direction automatically</span></span><br><span class="line">useradd ubuntu  <span class="comment"># need to new dir manually</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="add-user-to-admin-group-edit-sudoers"><a href="#add-user-to-admin-group-edit-sudoers" class="headerlink" title="add user to admin group / edit sudoers"></a>add user to admin group / edit sudoers</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">groupadd superadmin</span><br><span class="line">usermod -g superadmin ubuntu</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adduser ubuntu --ingroup sudo  <span class="comment"># new user and assign to sudo group</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/sudoers</span><br></pre></td></tr></table></figure>
-
-<h2 id="user-state"><a href="#user-state" class="headerlink" title="user state"></a>user state</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id ubuntu</span><br></pre></td></tr></table></figure>
-
-<h1 id="upload-public-key"><a href="#upload-public-key" class="headerlink" title="upload public key"></a>upload public key</h1><h2 id="method1"><a href="#method1" class="headerlink" title="method1"></a>method1</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen</span><br></pre></td></tr></table></figure>
-
-<p>new file <code>authorized_keys</code> and paste your own public key into this file.</p>
-<h2 id="method2"><a href="#method2" class="headerlink" title="method2"></a>method2</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-copy-id -i .ssh/common.pub root@ip:port</span><br></pre></td></tr></table></figure>
-
-<p>automatically upload public key.</p>
-<h1 id="change-login-method"><a href="#change-login-method" class="headerlink" title="change login method"></a>change login method</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /etc/ssh</span><br><span class="line">vim sshd_config</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">RSAAuthentication yes</span><br><span class="line">PubkeyAuthentication yes</span><br><span class="line">PermitRootLogin no</span><br><span class="line">PasswordAuthentication no</span><br></pre></td></tr></table></figure>
-
-<p>restart ssh service</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service ssh restart</span><br></pre></td></tr></table></figure>
-
-<h1 id="log"><a href="#log" class="headerlink" title="log"></a>log</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /var/<span class="built_in">log</span></span><br></pre></td></tr></table></figure>
-
-<p>auth.log: authentication log</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/vps/performance/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/vps/performance/" class="post-title-link" itemprop="url">sh of testing performance on VPS</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 10-09-2021 00:57:37" itemprop="dateCreated datePublished" datetime="2021-10-09T00:57:37+08:00">10-09-2021</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 12-09-2021 00:39:47" itemprop="dateModified" datetime="2021-12-09T00:39:47+08:00">12-09-2021</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/VPS/" itemprop="url" rel="index"><span itemprop="name">VPS</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Superbench"><a href="#Superbench" class="headerlink" title="Superbench"></a>Superbench</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget -N --no-check-certificate https://raw.githubusercontent.com/oooldking/script/master/superbench.sh</span><br><span class="line">sudo bash superbench.sh</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">curl -Lso- https://raw.githubusercontent.com/oooldking/script/master/superbench.sh | bash</span><br></pre></td></tr></table></figure>
-
-<h1 id="Lemonbench"><a href="#Lemonbench" class="headerlink" title="Lemonbench"></a>Lemonbench</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -fsL https://ilemonra.in/LemonBenchIntl | bash -s fast</span><br><span class="line">curl -fsL https://ilemonra.in/LemonBenchIntl | bash -s full</span><br></pre></td></tr></table></figure>
-
-<h1 id="Zench–"><a href="#Zench–" class="headerlink" title="Zench–"></a>Zench–</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget -N --no-check-certificate https://raw.githubusercontent.com/FunctionClub/ZBench/master/ZBench-CN.sh</span><br><span class="line">sudo bash ZBench-CN.sh</span><br></pre></td></tr></table></figure>
-
-<h1 id="Superspeed–"><a href="#Superspeed–" class="headerlink" title="Superspeed–"></a>Superspeed–</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget https://raw.githubusercontent.com/oooldking/script/master/superspeed.sh</span><br><span class="line">chmod +x superspeed.sh</span><br><span class="line">sudo ./superspeed.sh</span><br></pre></td></tr></table></figure>
-
-<h1 id="流媒体测试"><a href="#流媒体测试" class="headerlink" title="流媒体测试"></a>流媒体测试</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash &lt;(curl -L -s https://raw.githubusercontent.com/lmc999/RegionRestrictionCheck/main/check.sh)</span><br></pre></td></tr></table></figure>
-
-<h1 id="回程测试"><a href="#回程测试" class="headerlink" title="回程测试"></a>回程测试</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -qO- git.io/besttrace | bash</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget https://raw.githubusercontent.com/nanqinlang-script/testrace/master/testrace.sh</span><br><span class="line">bash testrace.sh</span><br></pre></td></tr></table></figure>
-
-<h1 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -sL yabs.sh | bash</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget -qO- bench.sh | bash</span><br><span class="line"></span><br><span class="line">wget -qO- git.io/superbench.sh | bash</span><br><span class="line"></span><br><span class="line">bash &lt;(curl -Lso- https://git.io/superspeed)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate https://github.com/teddysun/across/raw/master/unixbench.sh</span><br><span class="line">chmod +x unixbench.sh</span><br><span class="line">./unixbench.sh</span><br></pre></td></tr></table></figure>
-
-<p>UnixBench时间很长</p>
 <hr>
 <p>Reference</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLnplcnVucy50ZWNoL2FyY2hpdmVzLzUzMy5odG1s">https://blog.zeruns.tech/archives/533.html<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cucGlnamkuY29tLzM5OS5odG1s">https://www.pigji.com/399.html<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmRvY2tlci5jb20vZW5naW5lL2luc3RhbGwvbGludXgtcG9zdGluc3RhbGwv">https://docs.docker.com/engine/install/linux-postinstall/<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ExNTU2Mjc0NDg1L2FydGljbGUvZGV0YWlscy8xMDk5OTE4Njg=">https://blog.csdn.net/a1556274485/article/details/109991868<i class="fa fa-external-link-alt"></i></span></p>
 
       
     </div>
@@ -654,7 +371,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/notebook/pt/">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/vps/deploy/cos/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -668,7 +385,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/dev/notebook/pt/" class="post-title-link" itemprop="url">about PT(private tracker)</a>
+            <a href="/dev/vps/deploy/cos/" class="post-title-link" itemprop="url">first in Github Actions</a>
         </h2>
 
         <div class="post-meta-container">
@@ -680,7 +397,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 10-06-2021 18:31:50 / Modified: 18:36:10" itemprop="dateCreated datePublished" datetime="2021-10-06T18:31:50+08:00">10-06-2021</time>
+      <time title="Created: 10-11-2021 01:28:41 / Modified: 02:31:49" itemprop="dateCreated datePublished" datetime="2021-10-11T01:28:41+08:00">10-11-2021</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -688,7 +405,7 @@
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
+          <a href="/categories/VPS/" itemprop="url" rel="index"><span itemprop="name">VPS</span></a>
         </span>
     </span>
 
@@ -702,14 +419,283 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="Famous-PT-website"><a href="#Famous-PT-website" class="headerlink" title="Famous PT website"></a>Famous PT website</h1><ul>
-<li>TTG</li>
-<li>M-Team</li>
-<li>HDGG</li>
-<li>CMCT</li>
-</ul>
-<p>All above websites are private, needing invitation or donating.</p>
+          <h1 id="coscmd"><a href="#coscmd" class="headerlink" title="coscmd"></a>coscmd</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pip install coscmd</span><br><span class="line">coscmd config -a xxxx -s xxxx -b bucket_name -r region_name</span><br><span class="line">coscmd upload file_name dest_name</span><br></pre></td></tr></table></figure>
 
+<h1 id="picgo"><a href="#picgo" class="headerlink" title="picgo"></a>picgo</h1><p>download from github</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/vps/deploy/gihubactions/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/vps/deploy/gihubactions/" class="post-title-link" itemprop="url">auto upload cos by Github Actions</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 10-10-2021 23:59:29" itemprop="dateCreated datePublished" datetime="2021-10-10T23:59:29+08:00">10-10-2021</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 10-15-2021 22:09:03" itemprop="dateModified" datetime="2021-10-15T22:09:03+08:00">10-15-2021</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/VPS/" itemprop="url" rel="index"><span itemprop="name">VPS</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="tencent-cos"><a href="#tencent-cos" class="headerlink" title="tencent cos"></a>tencent cos</h1><ol>
+<li>开通cos的api账号</li>
+<li>将api密钥添加到github项目secret</li>
+</ol>
+<h2 id="workflows"><a href="#workflows" class="headerlink" title="workflows"></a>workflows</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># This is a basic workflow to help you get started with Actions</span></span><br><span class="line"></span><br><span class="line"><span class="attr">name:</span> <span class="string">homepage-ci</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Controls when the workflow will run</span></span><br><span class="line"><span class="attr">on:</span></span><br><span class="line">  <span class="comment"># Triggers the workflow on push or pull request events but only for the main branch</span></span><br><span class="line">  <span class="attr">push:</span></span><br><span class="line">    <span class="attr">branches:</span> <span class="string">[</span> <span class="string">main</span> <span class="string">]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># A workflow run is made up of one or more jobs that can run sequentially or in parallel</span></span><br><span class="line"><span class="attr">jobs:</span></span><br><span class="line">  <span class="comment"># This workflow contains a single job called "build"</span></span><br><span class="line">  <span class="attr">build:</span></span><br><span class="line">    <span class="comment"># The type of runner that the job will run on</span></span><br><span class="line">    <span class="attr">runs-on:</span> <span class="string">ubuntu-latest</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Steps represent a sequence of tasks that will be executed as part of the job</span></span><br><span class="line">    <span class="attr">steps:</span></span><br><span class="line">      <span class="comment"># Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">uses:</span> <span class="string">actions/checkout@v2</span></span><br><span class="line"></span><br><span class="line">      <span class="comment"># Runs a single command using the runners shell</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Install</span> <span class="string">coscmd</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">sudo</span> <span class="string">pip</span> <span class="string">install</span> <span class="string">coscmd</span></span><br><span class="line"></span><br><span class="line">      <span class="comment"># Runs a set of commands using the runners shell</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Configure</span> <span class="string">coscmd</span></span><br><span class="line">        <span class="attr">env:</span> </span><br><span class="line">          <span class="attr">SECRETID:</span> <span class="string">$&#123;&#123;</span> <span class="string">secrets.SECRETID</span> <span class="string">&#125;&#125;</span></span><br><span class="line">          <span class="attr">SECRETKEY:</span> <span class="string">$&#123;&#123;</span> <span class="string">secrets.SECRETKEY</span> <span class="string">&#125;&#125;</span></span><br><span class="line">          <span class="attr">BUCKET:</span> <span class="string">homepage-1304875656</span></span><br><span class="line">          <span class="attr">REGION:</span> <span class="string">ap-shanghai</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">coscmd</span> <span class="string">config</span> <span class="string">-a</span> <span class="string">$SECRETID</span> <span class="string">-s</span> <span class="string">$SECRETKEY</span> <span class="string">-b</span> <span class="string">$BUCKET</span> <span class="string">-r</span> <span class="string">$REGION</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Upload</span> <span class="string">file</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">coscmd</span> <span class="string">upload</span> <span class="string">-r</span> <span class="string">./</span> <span class="string">/</span> <span class="string">--ignore</span> <span class="string">"./.git/*"</span></span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<p>Reference</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9jbG91ZC50ZW5jZW50LmNvbS9kZXZlbG9wZXIvYXJ0aWNsZS8xNTQ1MzAz">https://cloud.tencent.com/developer/article/1545303<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/vps/deploy/git+hook/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/vps/deploy/git+hook/" class="post-title-link" itemprop="url">homepage hook</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 10-10-2021 18:54:08 / Modified: 22:21:55" itemprop="dateCreated datePublished" datetime="2021-10-10T18:54:08+08:00">10-10-2021</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/VPS/" itemprop="url" rel="index"><span itemprop="name">VPS</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h1><p>本地编译, 将编译好的文件上传git并且文件自动部署到nginx</p>
+<p>todo: 后期将原文件上传git通过action自动编译并部署</p>
+<h2 id="思路1"><a href="#思路1" class="headerlink" title="思路1"></a>思路1</h2><p>本地push到github, 通过webhook发送POST请求到VPS, 执行shell进行clone然后拷贝至nginx</p>
+<p>问题: 服务器需要处理http请求</p>
+<h2 id="思路2"><a href="#思路2" class="headerlink" title="思路2"></a>思路2</h2><p>本地同时push到VPS和github, VPS通过hook执行shell拷贝至nginx</p>
+<p>问题: 同时push两个仓库感觉不是很优雅</p>
+<h1 id="git"><a href="#git" class="headerlink" title="git"></a>git</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adduser git --ingroup sudo  <span class="comment"># add user</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir ~/edlison/Home.git -p  <span class="comment"># new user dir and git repo</span></span><br></pre></td></tr></table></figure>
+
+<p>copy local public key to git</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote <span class="built_in">set</span>-url sj git@sj:edlison/Home.git  <span class="comment"># set push url</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="hook"><a href="#hook" class="headerlink" title="hook"></a>hook</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/edlison/Home.git/hooks</span><br><span class="line">vim post-receive</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"post-receive hook is running..."</span></span><br><span class="line"></span><br><span class="line">GIT_REPO=/home/git/edlison/Home.git</span><br><span class="line">TMP_GIT_CLONE=/tmp/homepage</span><br><span class="line">PUBLIC_WWW=/home/ubuntu/Applications/nginx/html</span><br><span class="line"></span><br><span class="line">rm -rf <span class="variable">$TMP_GIT_CLONE</span></span><br><span class="line">git <span class="built_in">clone</span> <span class="variable">$GIT_REPO</span> <span class="variable">$TMP_GIT_CLONE</span></span><br><span class="line">rm -rf <span class="variable">$&#123;PUBLIC_WWW&#125;</span>/*</span><br><span class="line">cp -rf <span class="variable">$&#123;TMP_GIT_CLONE&#125;</span>/* <span class="variable">$&#123;PUBLIC_WWW&#125;</span>/</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"post-receive hook is done!"</span></span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<p>References</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9zYW1wd29vZC5naXRodWIuaW8vMjAxOC8xMC8xNy92cHMtZ2l0LXJlcG8tbmd4aW4tZ2l0LWhvb2s=">https://sampwood.github.io/2018/10/17/vps-git-repo-ngxin-git-hook<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cDovL3llYXJpdG8uY24vcG9zdHMvaGV4by1kZXBsb3ktdG8tVlBTLmh0bWw=">http://yearito.cn/posts/hexo-deploy-to-VPS.html<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/vps/deploy/nginx/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/vps/deploy/nginx/" class="post-title-link" itemprop="url">nginx</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 10-10-2021 00:12:49" itemprop="dateCreated datePublished" datetime="2021-10-10T00:12:49+08:00">10-10-2021</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 11-13-2021 00:40:27" itemprop="dateModified" datetime="2021-11-13T00:40:27+08:00">11-13-2021</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/VPS/" itemprop="url" rel="index"><span itemprop="name">VPS</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="docker-compose"><a href="#docker-compose" class="headerlink" title="docker compose"></a>docker compose</h1><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3.9'</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">nginx:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">nginx</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">     <span class="bullet">-</span> <span class="string">./html:/usr/share/nginx/html</span></span><br><span class="line">     <span class="bullet">-</span> <span class="string">./config:/etc/nginx</span></span><br><span class="line">     <span class="bullet">-</span> <span class="string">./logs:/var/log/nginx</span></span><br><span class="line">     <span class="bullet">-</span> <span class="string">./www:/etc/www</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">     <span class="bullet">-</span> <span class="number">80</span><span class="string">:80</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">     <span class="bullet">-</span> <span class="string">NGINX_HOST=edlison.com</span></span><br><span class="line">     <span class="bullet">-</span> <span class="string">NGINX_PORT=80</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="config"><a href="#config" class="headerlink" title="config"></a>config</h1><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">worker_processes</span>  <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="section">events</span> &#123;</span><br><span class="line">   <span class="attribute">accept_mutex</span> <span class="literal">on</span>;</span><br><span class="line">   <span class="attribute">multi_accept</span> <span class="literal">on</span>;</span><br><span class="line">   <span class="attribute">worker_connections</span> <span class="number">1024</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="section">http</span> &#123;</span><br><span class="line"></span><br><span class="line">server&#123;</span><br><span class="line">  <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">  <span class="attribute">server_name</span>  edlison.com www.edlison.com;</span><br><span class="line"></span><br><span class="line">  <span class="attribute">location</span> / &#123;</span><br><span class="line">	  <span class="attribute">root</span>	/usr/share/nginx/html;</span><br><span class="line">	  <span class="attribute">index</span>	index.html;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server&#123;</span><br><span class="line">  <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">  <span class="attribute">server_name</span>  v2ray.edlison.com;</span><br><span class="line"></span><br><span class="line">  <span class="attribute">location</span> / &#123;</span><br><span class="line">            <span class="attribute">proxy_set_header</span> X_Real_IP <span class="variable">$remote_addr</span>;</span><br><span class="line">            <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$remote_addr</span>;</span><br><span class="line">            <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">            <span class="attribute">proxy_set_header</span> Host <span class="variable">$host</span>;</span><br><span class="line">      <span class="attribute">proxy_pass</span> http://107.172.102.205:2000;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server&#123;</span><br><span class="line">  <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">  <span class="attribute">server_name</span>  aria2.edlison.com;</span><br><span class="line"></span><br><span class="line">  <span class="attribute">location</span> / &#123;</span><br><span class="line">            <span class="attribute">proxy_set_header</span> X_Real_IP <span class="variable">$remote_addr</span>;</span><br><span class="line">            <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$remote_addr</span>;</span><br><span class="line">            <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">            <span class="attribute">proxy_set_header</span> Host <span class="variable">$host</span>;</span><br><span class="line">      <span class="attribute">proxy_pass</span> http://107.172.102.205:6880;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">  </span><br><span class="line">server&#123;</span><br><span class="line">  <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">  <span class="attribute">server_name</span>  lib.edlison.com;</span><br><span class="line"></span><br><span class="line">  <span class="attribute">location</span> / &#123;</span><br><span class="line">            <span class="attribute">proxy_set_header</span> X_Real_IP <span class="variable">$remote_addr</span>;</span><br><span class="line">            <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$remote_addr</span>;</span><br><span class="line">            <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">            <span class="attribute">proxy_set_header</span> Host <span class="variable">$host</span>;</span><br><span class="line">      <span class="attribute">proxy_pass</span> http://107.172.102.205:11000;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="端口转发"><a href="#端口转发" class="headerlink" title="端口转发"></a>端口转发</h1><p><code>proxy_pass</code>放在最后</p>
+<h1 id="分网站配置"><a href="#分网站配置" class="headerlink" title="分网站配置"></a>分网站配置</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">include</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -730,7 +716,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/20/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><span class="page-number current">21</span><a class="page-number" href="/page/22/">22</a><span class="space">&hellip;</span><a class="page-number" href="/page/64/">64</a><a class="extend next" rel="next" href="/page/22/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/20/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><span class="page-number current">21</span><a class="page-number" href="/page/22/">22</a><span class="space">&hellip;</span><a class="page-number" href="/page/66/">66</a><a class="extend next" rel="next" href="/page/22/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 

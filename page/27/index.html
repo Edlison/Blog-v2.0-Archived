@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">318</span>
+          <span class="site-state-item-count">328</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -264,7 +264,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/notebook/py_sys_path/">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/notebook/socketio/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -278,260 +278,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/dev/notebook/py_sys_path/" class="post-title-link" itemprop="url">Python 添加系统路径</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 05-30-2021 18:36:00 / Modified: 18:46:32" itemprop="dateCreated datePublished" datetime="2021-05-30T18:36:00+08:00">05-30-2021</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="报错’No-Module’"><a href="#报错’No-Module’" class="headerlink" title="报错’No Module’"></a>报错’No Module’</h1><p>没有讲目录添加到<code>sys path</code>下，导致python没有扫描到。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">sys.path.append(<span class="string">'/home/xxx/xxx'</span>)</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/vim/vim-pymode/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/vim/vim-pymode/" class="post-title-link" itemprop="url">Vim插件 - Python Mode</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 05-27-2021 19:47:09 / Modified: 20:33:00" itemprop="dateCreated datePublished" datetime="2021-05-27T19:47:09+08:00">05-27-2021</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Vim/" itemprop="url" rel="index"><span itemprop="name">Vim</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Plugin &#39;python-mode&#x2F;python-mode&#39;</span><br><span class="line">Plugin &#39;https:&#x2F;&#x2F;github.com.cnpmjs.org&#x2F;python-mode&#x2F;python-mode.git&#39;</span><br></pre></td></tr></table></figure>
-
-<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>由于repo中有<code>submodule</code>导致如果Github被墙的话，其中的包仍然下载不了。</p>
-<p>且clone默认是不加载<code>submodules</code>的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git submodule update --init --recursive</span><br></pre></td></tr></table></figure>
-
-<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><ol>
-<li>clone时下载</li>
-</ol>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> --recurse-submodules https://github.com/xxx/xxx.git</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>在主项目中执行</li>
-</ol>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git submodule init</span><br><span class="line">git submodule update</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/vim/vim-mode/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/vim/vim-mode/" class="post-title-link" itemprop="url">Vim 模式</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 05-27-2021 16:58:57 / Modified: 17:41:39" itemprop="dateCreated datePublished" datetime="2021-05-27T16:58:57+08:00">05-27-2021</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Vim/" itemprop="url" rel="index"><span itemprop="name">Vim</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Vim的模式"><a href="#Vim的模式" class="headerlink" title="Vim的模式"></a>Vim的模式</h1><ul>
-<li>Normal-mode 正常模式</li>
-<li>Insert-mode 插入模式</li>
-<li>Command-mode 命令模式</li>
-<li>Visual-mode 可视模式</li>
-</ul>
-<h2 id="Normal-Mode"><a href="#Normal-Mode" class="headerlink" title="Normal Mode"></a>Normal Mode</h2><p>正常模式下，各种移动逛遍，对文本进行各种操作。</p>
-<h2 id="Insert-Mode"><a href="#Insert-Mode" class="headerlink" title="Insert Mode"></a>Insert Mode</h2><p>插入模式下，会进入编辑状态，键盘会输入内容。</p>
-<h2 id="Command-Mode"><a href="#Command-Mode" class="headerlink" title="Command Mode"></a>Command Mode</h2><p>命令行模式下，可以执行Vim指令。</p>
-<p><code>:</code> 输入指令</p>
-<p><code>/</code> 按关键字查找</p>
-<h2 id="Visual-Mode"><a href="#Visual-Mode" class="headerlink" title="Visual Mode"></a>Visual Mode</h2><p>可视化模式下，可以使用鼠标进行选择。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/vim/vim-config/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/vim/vim-config/" class="post-title-link" itemprop="url">Vim配置</a>
+            <a href="/dev/notebook/socketio/" class="post-title-link" itemprop="url">Flask-Socktio</a>
         </h2>
 
         <div class="post-meta-container">
@@ -542,14 +289,14 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 05-27-2021 11:57:03" itemprop="dateCreated datePublished" datetime="2021-05-27T11:57:03+08:00">05-27-2021</time>
+      <time title="Created: 07-10-2021 16:28:05" itemprop="dateCreated datePublished" datetime="2021-07-10T16:28:05+08:00">07-10-2021</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 07-24-2021 19:08:32" itemprop="dateModified" datetime="2021-07-24T19:08:32+08:00">07-24-2021</time>
+        <time title="Modified: 07-11-2021 12:33:59" itemprop="dateModified" datetime="2021-07-11T12:33:59+08:00">07-11-2021</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -557,7 +304,7 @@
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Vim/" itemprop="url" rel="index"><span itemprop="name">Vim</span></a>
+          <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
         </span>
     </span>
 
@@ -571,23 +318,38 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="Vim配置文件"><a href="#Vim配置文件" class="headerlink" title="Vim配置文件"></a>Vim配置文件</h1><p>Vim有两个配置文件</p>
-<ul>
-<li>/etc/vim/vimrc</li>
-<li>~/.vimrc</li>
-</ul>
-<p>第一个全局有效，第二个针对当前用户有效。</p>
-<h1 id="Vim插件"><a href="#Vim插件" class="headerlink" title="Vim插件"></a>Vim插件</h1><h2 id="Vundle插件管理插件"><a href="#Vundle插件管理插件" class="headerlink" title="Vundle插件管理插件"></a>Vundle插件管理插件</h2><p>下载到~/.vim/bundle/Vundle.vim</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim</span><br></pre></td></tr></table></figure>
+          <h1 id="Start"><a href="#Start" class="headerlink" title="Start"></a>Start</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask_socketio <span class="keyword">import</span> SocketIO</span><br><span class="line"></span><br><span class="line">socketio = SocketIO(app)</span><br></pre></td></tr></table></figure>
 
-<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">set nocompatible              &quot; be iMproved, required</span><br><span class="line">filetype off                  &quot; required</span><br><span class="line">set rtp+&#x3D;~&#x2F;.vim&#x2F;bundle&#x2F;Vundle.vim</span><br><span class="line">call vundle#begin()</span><br><span class="line">Plugin &#39;VundleVim&#x2F;Vundle.vim&#39;, &#123;&#39;rtp&#39;: &#39;vim&#x2F;&#39;&#125; &quot; 指定用户&#x2F;仓库. 还可以指定run_time_path到仓库的子目录</span><br><span class="line">Plugin &#39;http:&#x2F;&#x2F;github.com&#x2F;xxx&#x2F;xxx.git&#39;, &#123;&#39;name&#39;: &#39;nerdtree&#39;&#125; &quot; 指定仓库url, 还可以指定名字</span><br><span class="line">Plugin &#39;file:&#x2F;&#x2F;&#x2F;home&#x2F;xxx&#x2F;xxx&#39; &quot; 指定本地插件</span><br><span class="line">&quot; ...</span><br><span class="line">call vundle#end()            &quot; required</span><br><span class="line">filetype plugin indent on    &quot; required</span><br></pre></td></tr></table></figure>
+<h1 id="Receiving-Messages"><a href="#Receiving-Messages" class="headerlink" title="Receiving Messages"></a>Receiving Messages</h1><p>The event name is determined. <code>&#39;message&#39;, &#39;json&#39;, &#39;xxx event&#39;</code>, you can determine these name as socket name. Particularly <code>&#39;connect&#39;, &#39;disconnecte&#39;</code> can be called when connecting or disconnecting.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@socketio.on('xxx event', namespace='/test')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">handler</span><span class="params">(json)</span>:</span></span><br><span class="line">  print(<span class="string">'receive json: '</span>, str(json))</span><br></pre></td></tr></table></figure>
 
-<h3 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h3><p><code>:PluginInstall</code></p>
-<h3 id="删除插件"><a href="#删除插件" class="headerlink" title="删除插件"></a>删除插件</h3><p><code>:PluginClean</code></p>
-<p>或在配置文件下注释掉</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">	<span class="keyword">var</span> socket = io.connect(<span class="string">'http://0.0.0.0:5001'</span>)</span></span><br><span class="line"><span class="actionscript">  socket.on(<span class="string">'connect'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">    socket.emit(<span class="string">'xxx event'</span>, &#123;<span class="string">'data'</span>: <span class="string">'connected.'</span>&#125;)</span></span><br><span class="line">  &#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="Sending-Messages"><a href="#Sending-Messages" class="headerlink" title="Sending Messages"></a>Sending Messages</h1><p><code>emit()</code> used for named events , <code>send()</code> used for unamed events.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@socketio.on('xxx event', namespace='/chatroom')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">xxx_event</span><span class="params">()</span>:</span></span><br><span class="line">  emit(<span class="string">'xxx event'</span>, &#123;<span class="string">'data'</span>: <span class="string">'xxx'</span>&#125;, namespace=<span class="string">'/chatroom'</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>Important</strong></p>
+<p>You can emit message in a router with <code>socketio.emit(&#39;xxx event&#39;, resp, namespace=&#39;/chatroom&#39;)</code>.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.rout('/send')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">send</span><span class="params">()</span>:</span></span><br><span class="line">	socketio.emit(<span class="string">'xxx event'</span>, resp, namespace=<span class="string">'/chatroom'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>You can’t use <code>emit()</code> without context of <code>socketio</code>, you should use <code>socketio.emit()</code>.</p>
+<h1 id="Broadcasting"><a href="#Broadcasting" class="headerlink" title="Broadcasting"></a>Broadcasting</h1><p>If broadcasting is enabled, all the clients connected to the namespace will receive the message.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@socketio.on('xxx event', namespace='/chatroom')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">xxx_event</span><span class="params">()</span>:</span></span><br><span class="line">  emit(<span class="string">'xxx event'</span>, &#123;<span class="string">'data'</span>: <span class="string">'xxx'</span>&#125;, namespace=<span class="string">'/chatroom'</span>, broadcast=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="Rooms"><a href="#Rooms" class="headerlink" title="Rooms"></a>Rooms</h1><p>Users can receive messages from the room they are in.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@socketio.on('join')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">on_join</span><span class="params">(data)</span>:</span></span><br><span class="line">    username = data[<span class="string">'username'</span>]</span><br><span class="line">    room = data[<span class="string">'room'</span>]</span><br><span class="line">    join_room(room)</span><br><span class="line">    send(username + <span class="string">' has entered the room.'</span>, to=room)</span><br><span class="line"></span><br><span class="line"><span class="meta">@socketio.on('leave')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">on_leave</span><span class="params">(data)</span>:</span></span><br><span class="line">    username = data[<span class="string">'username'</span>]</span><br><span class="line">    room = data[<span class="string">'room'</span>]</span><br><span class="line">    leave_room(room)</span><br><span class="line">    send(username + <span class="string">' has left the room.'</span>, to=room)</span><br></pre></td></tr></table></figure>
+
+<p>Use <code>to</code> argument set which room the message should be sent to.</p>
+<h1 id="Class-Based-Events"><a href="#Class-Based-Events" class="headerlink" title="Class-Based Events"></a>Class-Based Events</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask_socketio <span class="keyword">import</span> Namespace, emit</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyCustomNamespace</span><span class="params">(Namespace)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">on_connect</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">on_disconnect</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">on_my_event</span><span class="params">(self, data)</span>:</span></span><br><span class="line">        emit(<span class="string">'my_response'</span>, data)</span><br><span class="line"></span><br><span class="line">socketio.on_namespace(MyCustomNamespace(<span class="string">'/test'</span>))  <span class="comment"># Assign namespace</span></span><br></pre></td></tr></table></figure>
+
+<p>All the event is defined by the methods with <code>on_</code> prefix.</p>
 <hr>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vemhhb2RlaHVhL2FydGljbGVzLzE0MTc0MzM2Lmh0bWw=">https://www.cnblogs.com/zhaodehua/articles/14174336.html<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zODgxNTk5OC9hcnRpY2xlL2RldGFpbHMvMTAzNTg5MDkw">https://blog.csdn.net/weixin_38815998/article/details/103589090<i class="fa fa-external-link-alt"></i></span></p>
+<p>Reference</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9mbGFzay1zb2NrZXRpby5yZWFkdGhlZG9jcy5pbw==">https://flask-socketio.readthedocs.io<i class="fa fa-external-link-alt"></i></span></p>
 
       
     </div>
@@ -614,7 +376,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/notebook/zotero/">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/notebook/http/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -628,7 +390,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/dev/notebook/zotero/" class="post-title-link" itemprop="url">Zotero 文献管理</a>
+            <a href="/dev/notebook/http/" class="post-title-link" itemprop="url">HTTP comprehension</a>
         </h2>
 
         <div class="post-meta-container">
@@ -638,17 +400,23 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 05-22-2021 17:22:56 / Modified: 17:36:10" itemprop="dateCreated datePublished" datetime="2021-05-22T17:22:56+08:00">05-22-2021</time>
+      <time title="Created: 07-07-2021 21:59:04" itemprop="dateCreated datePublished" datetime="2021-07-07T21:59:04+08:00">07-07-2021</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 07-11-2021 17:11:37" itemprop="dateModified" datetime="2021-07-11T17:11:37+08:00">07-11-2021</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
+          <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
         </span>
     </span>
 
@@ -662,18 +430,346 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p>使用Zotero做个人文献管理，多平台实时同步。</p>
-<p>Mac(Zotero) + iPad(PaperShip)</p>
-<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="新建"><a href="#新建" class="headerlink" title="新建"></a>新建</h2><p>Zotero可以创建Group与Collection</p>
-<p>Group相当于创建一个空间，个人空间或团队协作空间等。</p>
-<p>Collection相当于在空间下创建文件夹，及subcollection分级管理文献。</p>
-<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>下载Chrome插件可以实现直接在网页下载PDF+snapshot</p>
-<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><p>remove item from collection</p>
-<p>仅将项目从当前文件夹删除，其他文件夹的文件<strong>不受影响</strong>。</p>
-<p>move item to trash</p>
-<p>将项目移动到回收站，所有subcollection中含有该项目的<strong>一同删除</strong>。</p>
+          <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><h2 id="Features"><a href="#Features" class="headerlink" title="Features"></a>Features</h2><ul>
+<li>no connection: process one request in each connection.</li>
+<li>no status: if current transaction needs previous information, it should be transfered again.</li>
+<li>media independent: any type of media that is able to process can be transferred.</li>
+</ul>
+<h2 id="URI-amp-URL"><a href="#URI-amp-URL" class="headerlink" title="URI &amp; URL"></a>URI &amp; URL</h2><p>URI (Uniform Resource Identifiers), is a abstract concept.</p>
+<p>URL (Uniform Resource Locator), a specific URI, can locate a specific resource.</p>
+<h1 id="Request"><a href="#Request" class="headerlink" title="Request"></a>Request</h1><h2 id="Request-contains"><a href="#Request-contains" class="headerlink" title="Request contains"></a>Request contains</h2><ul>
+<li>Request line(Method, URL, HTTP version)</li>
+<li>Header(key&amp;value)</li>
+<li>CR LF</li>
+<li>Body(Only in POST method*)</li>
+</ul>
+<h2 id="GET"><a href="#GET" class="headerlink" title="GET"></a>GET</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">GET /xxxxxxx.jpg HTTP/1.1  # section 1</span><br><span class="line">Host:img.mukewang.com  # section 2</span><br><span class="line">Accept:image/webp,image/*,*/*;q=0.8</span><br><span class="line">Accept-Encoding:gzip, deflate, sdch</span><br><span class="line">Accept-Language:zh-CN,zh;q=0.8</span><br><span class="line">CR(carriage reture) LF(line feed)  # section 3</span><br></pre></td></tr></table></figure>
+
+<p>Section1: Request line</p>
+<p>Section2: Header</p>
+<p>Section3: CR LF</p>
+<p>Body not in GET method.</p>
+<h2 id="POST"><a href="#POST" class="headerlink" title="POST"></a>POST</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">POST / HTTP1.1  # seciton 1</span><br><span class="line">Host:www.wrox.com  # section 2</span><br><span class="line">User-Agent:Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 2.0.50727; .NET CLR 3.0.04506.648; .NET CLR 3.5.21022)</span><br><span class="line"><span class="attribute">Content-Type:application/x-www-form-urlencoded</span></span><br><span class="line"><span class="attribute">Content-Length:40</span></span><br><span class="line"><span class="attribute">Connection</span>: Keep-Alive</span><br><span class="line">  # section 3</span><br><span class="line">name=Professional%20Ajax&amp;publisher=Wiley  # section 4</span><br></pre></td></tr></table></figure>
+
+<p>Section1: Request line</p>
+<p>Section2: Header</p>
+<p>Section3: CR LF</p>
+<p>Section4: Body(type defined by Content-Type in Header)</p>
+<h2 id="GET-amp-POST"><a href="#GET-amp-POST" class="headerlink" title="GET &amp; POST"></a>GET &amp; POST</h2><p>Usually GET method pass value through params which is attached to URL, and body is empty. Although in current HTTP version, GET method pass value through body is accepted. We should follow the common sense that do not put value in body.</p>
+<h1 id="Respond"><a href="#Respond" class="headerlink" title="Respond"></a>Respond</h1><h2 id="Respond-contains"><a href="#Respond-contains" class="headerlink" title="Respond contains"></a>Respond contains</h2><ul>
+<li>Respond line(HTTP version, Status code, Reason phrase)</li>
+<li>Header</li>
+<li>CR LF</li>
+<li>Body</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 <span class="number">200</span> OK  # section 1</span><br><span class="line"><span class="attribute">Date</span>: Fri, 22 May 2009 06:07:21 GMT  # section 2</span><br><span class="line"><span class="attribute">Content-Type</span>: text/html; charset=UTF-8</span><br><span class="line">  # section 3</span><br><span class="line">&lt;html&gt;  # section 4</span><br><span class="line">      &lt;head&gt;&lt;/head&gt;</span><br><span class="line">      &lt;body&gt;</span><br><span class="line">            &lt;!--body goes here--&gt;</span><br><span class="line">      &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Section1: Respond line</p>
+<p>Section2: Header</p>
+<p>Section3: CR LF</p>
+<p>Section4: Body</p>
+<h1 id="Parameters"><a href="#Parameters" class="headerlink" title="Parameters"></a>Parameters</h1><h2 id="Status-code"><a href="#Status-code" class="headerlink" title="Status code"></a>Status code</h2><table>
+<thead>
+<tr>
+<th>code</th>
+<th>describe</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1xx</td>
+<td>infomation</td>
+</tr>
+<tr>
+<td>2xx</td>
+<td>success</td>
+</tr>
+<tr>
+<td>3xx</td>
+<td>redirection</td>
+</tr>
+<tr>
+<td>4xx</td>
+<td>client error</td>
+</tr>
+<tr>
+<td>5xx</td>
+<td>server error</td>
+</tr>
+</tbody></table>
+<h2 id="Content-Type"><a href="#Content-Type" class="headerlink" title="Content-Type"></a>Content-Type</h2><p><strong>application/x-www-form-urlencoded</strong></p>
+<p>default method, only tansfer text</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">POST  HTTP&#x2F;1.1</span><br><span class="line">Host: test.app.com</span><br><span class="line">Content-Type: application&#x2F;x-www-form-urlencoded</span><br><span class="line">Cache-Control: no-cache</span><br><span class="line">Postman-Token: e00dbaf5-15e8-3667-6fc5-48ee3cc89758</span><br><span class="line"></span><br><span class="line">key1&#x3D;value1&amp;key2&#x3D;value2</span><br></pre></td></tr></table></figure>
+
+<p><strong>multipart/form-data</strong></p>
+<p>transfer text or files</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Content-Type: multipart&#x2F;form-data; boundary&#x3D;----WebKitFormBoundary7MA4YWxkTrZu0gW</span><br><span class="line"></span><br><span class="line">------WebKitFormBoundary7MA4YWxkTrZu0gW</span><br><span class="line">Content-Disposition: form-data; name&#x3D;&quot;filekey&quot;; filename&#x3D;&quot;&quot;</span><br><span class="line">Content-Type: </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">------WebKitFormBoundary7MA4YWxkTrZu0gW</span><br><span class="line">Content-Disposition: form-data; name&#x3D;&quot;textkey&quot;</span><br></pre></td></tr></table></figure>
+
+<p>You can transfer text and files at one time. The Body is seperated by boundary.</p>
+<p><strong>application/json</strong></p>
+<p>assign date type in Body</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	&#39;name&#39;: &#39;edlison&#39;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>You need to serialize the data before tansfering.</p>
 <hr>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3F1ZXN0aW9uLzI4ODE4NjEwNy9hbnN3ZXIvMTMyNzk2NjA2MQ==">https://www.zhihu.com/question/288186107/answer/1327966061<i class="fa fa-external-link-alt"></i></span></p>
+<p>Reference</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vcmFueW9uc3VlL3AvNTk4NDAwMS5odG1s">https://www.cnblogs.com/ranyonsue/p/5984001.html<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC80NTE3Mzg2Mg==">https://zhuanlan.zhihu.com/p/45173862<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vd2JsMDAxL3AvMTIwNTA3NTEuaHRtbA==">https://www.cnblogs.com/wbl001/p/12050751.html<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/ml/deep_learning/Dropout/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/ml/deep_learning/Dropout/" class="post-title-link" itemprop="url">Dropout</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 07-07-2021 20:49:37" itemprop="dateCreated datePublished" datetime="2021-07-07T20:49:37+08:00">07-07-2021</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 10-16-2021 03:39:26" itemprop="dateModified" datetime="2021-10-16T03:39:26+08:00">10-16-2021</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Deep-Learning/" itemprop="url" rel="index"><span itemprop="name">Deep Learning</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Dropout-Layer"><a href="#Dropout-Layer" class="headerlink" title="Dropout Layer"></a>Dropout Layer</h1><p>To avoid two main defects in training deep network, overfit and time consuming.</p>
+<p>It has the ability to achieve regulation.</p>
+<p>The process of Dropout layer is that hide a part of the node i one layer and start forward and backward. So only a part of nodes that didn’t be hidden are updated. Repeat this process.</p>
+<hr>
+<p>Reference</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC8zODIwMDk4MA==">https://zhuanlan.zhihu.com/p/38200980<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/ml/deep_learning/BatchNorm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/ml/deep_learning/BatchNorm/" class="post-title-link" itemprop="url">Batch Normalization</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 07-07-2021 20:49:26" itemprop="dateCreated datePublished" datetime="2021-07-07T20:49:26+08:00">07-07-2021</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 10-16-2021 03:38:39" itemprop="dateModified" datetime="2021-10-16T03:38:39+08:00">10-16-2021</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Deep-Learning/" itemprop="url" rel="index"><span itemprop="name">Deep Learning</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Batch-Normalization-Layer"><a href="#Batch-Normalization-Layer" class="headerlink" title="Batch Normalization Layer"></a>Batch Normalization Layer</h1><p>It is usually used before the activation node. The most important improvement is that the speed of convergence is faster, and the model is more stable, avoiding the exploading and vanishing of grad.</p>
+<p>Algorithmn of BN is calculating the mean and variance of each batch and transfering the value of all batch to mean 0, variance 1.</p>
+<hr>
+<p>Reference</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3NlYXJjaD9xPWJhdGNoJTIwbm9ybWFsaXphdGlvbiZhbXA7dXRtX2NvbnRlbnQ9c2VhcmNoX3N1Z2dlc3Rpb24mYW1wO3R5cGU9Y29udGVudA==">https://www.zhihu.com/search?q=batch%20normalization&amp;utm_content=search_suggestion&amp;type=content<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/ml/deep_learning/term/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/ml/deep_learning/term/" class="post-title-link" itemprop="url">Terms in Deep Learning</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 07-07-2021 20:34:04" itemprop="dateCreated datePublished" datetime="2021-07-07T20:34:04+08:00">07-07-2021</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 10-16-2021 03:38:44" itemprop="dateModified" datetime="2021-10-16T03:38:44+08:00">10-16-2021</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Deep-Learning/" itemprop="url" rel="index"><span itemprop="name">Deep Learning</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Term"><a href="#Term" class="headerlink" title="Term"></a>Term</h1><h2 id="SOTA"><a href="#SOTA" class="headerlink" title="SOTA"></a>SOTA</h2><p>state of the art</p>
+<p>To illustrate the best model in the paticular task.</p>
+<h2 id="Baseline"><a href="#Baseline" class="headerlink" title="Baseline"></a>Baseline</h2><p>The experiment part that you need to compete with.</p>
+<h2 id="Benchmark"><a href="#Benchmark" class="headerlink" title="Benchmark"></a>Benchmark</h2><p>The target value of the experiment that you need to compete with.</p>
 
       
     </div>
@@ -695,7 +791,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/26/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><span class="page-number current">27</span><a class="page-number" href="/page/28/">28</a><span class="space">&hellip;</span><a class="page-number" href="/page/64/">64</a><a class="extend next" rel="next" href="/page/28/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/26/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><span class="page-number current">27</span><a class="page-number" href="/page/28/">28</a><span class="space">&hellip;</span><a class="page-number" href="/page/66/">66</a><a class="extend next" rel="next" href="/page/28/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 

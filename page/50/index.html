@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">318</span>
+          <span class="site-state-item-count">328</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -264,7 +264,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/Others/Attention-Transformer/">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/notebook/py-decorator/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -278,72 +278,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/academia/Others/Attention-Transformer/" class="post-title-link" itemprop="url">academia/Others/Attention-Transformer</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 09-18-2020 21:39:50 / Modified: 21:40:18" itemprop="dateCreated datePublished" datetime="2020-09-18T21:39:50+08:00">09-18-2020</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Transformer"><a href="#Transformer" class="headerlink" title="Transformer"></a>Transformer</h1>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/Others/XLNet/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/academia/Others/XLNet/" class="post-title-link" itemprop="url">XLNet</a>
+            <a href="/dev/notebook/py-decorator/" class="post-title-link" itemprop="url">Python装饰器(Decorator)</a>
         </h2>
 
         <div class="post-meta-container">
@@ -354,14 +289,14 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 09-18-2020 17:33:11" itemprop="dateCreated datePublished" datetime="2020-09-18T17:33:11+08:00">09-18-2020</time>
+      <time title="Created: 12-30-2020 23:21:45" itemprop="dateCreated datePublished" datetime="2020-12-30T23:21:45+08:00">12-30-2020</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 02-04-2021 13:49:16" itemprop="dateModified" datetime="2021-02-04T13:49:16+08:00">02-04-2021</time>
+        <time title="Modified: 12-31-2020 01:41:29" itemprop="dateModified" datetime="2020-12-31T01:41:29+08:00">12-31-2020</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -369,11 +304,7 @@
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Paper/NLP/" itemprop="url" rel="index"><span itemprop="name">NLP</span></a>
+          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
         </span>
     </span>
 
@@ -387,68 +318,43 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="XLNet-Generalized-Autoregressive-Pretraining-for-Language-Understanding"><a href="#XLNet-Generalized-Autoregressive-Pretraining-for-Language-Understanding" class="headerlink" title="XLNet Generalized Autoregressive Pretraining for Language Understanding"></a>XLNet Generalized Autoregressive Pretraining for Language Understanding</h1><h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h1><p>Bert基于去噪自编码器的预训练模型，性能优于自回归语言模型的预训练方法。而由于mask一部分输入，bert忽略了被mask位置之间的依赖关系。</p>
-<p>XLNet基于此优缺点可以</p>
+          <h2 id="一切皆对象"><a href="#一切皆对象" class="headerlink" title="一切皆对象"></a>一切皆对象</h2><p>函数也可以是对象，如果不加()即视为不调用该函数，只是获取函数的对象。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hi</span><span class="params">(name=<span class="string">'edlison'</span>)</span></span></span><br><span class="line"><span class="function">    <span class="title">return</span> '<span class="title">hello</span>' + <span class="title">name</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line">greet = hi</span><br><span class="line"></span><br><span class="line">print(greet())  <span class="comment"># 'hi edlison'</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="函数中定义函数"><a href="#函数中定义函数" class="headerlink" title="函数中定义函数"></a>函数中定义函数</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hi</span><span class="params">(name=<span class="string">'edlison'</span>)</span></span></span><br><span class="line"><span class="function">    <span class="title">print</span><span class="params">(<span class="string">'in hi()'</span>)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">    <span class="title">def</span> <span class="title">greet</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">'in greet'</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">'in hello'</span></span><br><span class="line">    </span><br><span class="line">    print(<span class="string">'back'</span>)</span><br></pre></td></tr></table></figure>
+<p>函数内部依次执行，函数内部的函数只能内部调用。</p>
+<h2 id="函数中返回函数"><a href="#函数中返回函数" class="headerlink" title="函数中返回函数"></a>函数中返回函数</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hi</span><span class="params">(name=<span class="string">'edlison'</span>)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">greet</span><span class="params">()</span></span></span><br><span class="line"><span class="function">        <span class="title">return</span> '<span class="title">in</span> <span class="title">greet</span><span class="params">()</span>'</span></span><br><span class="line"><span class="function">    </span></span><br><span class="line">    if name == 'edlison':</span><br><span class="line">        <span class="keyword">return</span> greet</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'no'</span></span><br><span class="line"></span><br><span class="line">a = hi()</span><br><span class="line">b = a()</span><br></pre></td></tr></table></figure>
+<p>此时a指向greet函数，但并没有执行这个函数。<br>b执行了greet函数，输出’in greet()’。</p>
+<h2 id="函数作为参数传给另一个函数"><a href="#函数作为参数传给另一个函数" class="headerlink" title="函数作为参数传给另一个函数"></a>函数作为参数传给另一个函数</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hi</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">'hi'</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">before_hi</span><span class="params">(f)</span>:</span></span><br><span class="line">    print(<span class="string">'before'</span>)</span><br><span class="line">    print(f())</span><br><span class="line"></span><br><span class="line">before_hi(hi)</span><br></pre></td></tr></table></figure>
+<p>将hi函数作为参数传入另一个函数中，并在函数中调用。</p>
+<h2 id="装饰器"><a href="#装饰器" class="headerlink" title="装饰器"></a>装饰器</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dec</span><span class="params">(f)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrap_func</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="comment"># before func</span></span><br><span class="line">        f()</span><br><span class="line">        <span class="comment"># after func</span></span><br><span class="line">    <span class="keyword">return</span> wrap_func  <span class="comment"># 这里返回里层的函数，但并不会调用。</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">need_dec</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'need dec'</span>)</span><br><span class="line"></span><br><span class="line">need_dec = dec(need_dec)</span><br><span class="line">need_dec()</span><br></pre></td></tr></table></figure>
+
+<p>或者可以使用@符号来简化生成一个被装饰的函数。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@dec</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">need_dec</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'need dec'</span>)</span><br><span class="line"></span><br><span class="line">deed_dec()</span><br></pre></td></tr></table></figure>
+<p>使用@注解只是简化了need_dec = dec(need_dec)这一步。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dec</span><span class="params">(f)</span>:</span></span><br><span class="line"><span class="meta">    @wrap(f)  # 保留原函数的所有属性</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrap_func</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="comment"># before func</span></span><br><span class="line">        f()</span><br><span class="line">        <span class="comment"># after func</span></span><br><span class="line">    <span class="keyword">return</span> wrap_func</span><br></pre></td></tr></table></figure>
+<p>经过装饰器后，由于返回的里层的wrap_func，所以拿到的函数变为了里层的wrap_func。使用<code>@wrap</code>可以保留原函数的所有属性。</p>
+<p>如果想要带参数的装饰类，则需要再创建一个函数，然后在内嵌套装饰器。</p>
+<h2 id="装饰类"><a href="#装饰类" class="headerlink" title="装饰类"></a>装饰类</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">logit</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, logfile=<span class="string">'out.log'</span>)</span>:</span></span><br><span class="line">        self.logfile = logfile</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__call__</span><span class="params">(self, func)</span>:</span></span><br><span class="line"><span class="meta">        @wrap(func)</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">wrap_func</span><span class="params">(*args, **kwargs)</span>:</span></span><br><span class="line">            ...</span><br><span class="line">            <span class="keyword">return</span> func(*args, **kwargs)</span><br><span class="line">        <span class="keyword">return</span> wrap_func</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">notify</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">raise</span> NotImplementError</span><br></pre></td></tr></table></figure>
+<p>优点：</p>
 <ul>
-<li>通过最大化所有可能的因式分解顺序的对数似然，学习双向语境信息</li>
-<li>用自回归本身的特点克服bert的缺点</li>
-<li>融合了自回归模型Transformer-XT的思路</li>
+<li>如果想设计带参数的装饰类，不需要使用函数嵌套装饰器。</li>
+<li>可以创建一个基类，装饰过程中可能会用到一些重写的方法，通过子类继承重写。</li>
 </ul>
-<p>作者从自回归(autoregressive)和自编码(autoencoding)两大范式分析了当前的预训练语言模型。</p>
-<h1 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1 介绍"></a>1 介绍</h1><h2 id="1-1-AutoRegression与AutoEncoding两大阵营"><a href="#1-1-AutoRegression与AutoEncoding两大阵营" class="headerlink" title="1.1 AutoRegression与AutoEncoding两大阵营"></a>1.1 AutoRegression与AutoEncoding两大阵营</h2><p>XLNet是一个类似BERT的模型，XLNet是一种通用的自回归预训练方法。</p>
-<h3 id="自回归-AutoRegression-语言模型"><a href="#自回归-AutoRegression-语言模型" class="headerlink" title="自回归(AutoRegression)语言模型"></a>自回归(AutoRegression)语言模型</h3><p>AR语言模型是一种使用上下文词来预测下一个词的模型，但是上下文单词被限制在两个方向，前向和后向。(例如：GPT，GPT-2)</p>
-<p><img src="https://img-blog.csdnimg.cn/20190810224951812.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzk0NzE1Ng==,size_16,color_FFFFFF,t_70" alt="img-前向后向"></p>
-<p>AR语言模型擅长生成式NLP任务，生成上下文时总是前向的。</p>
-<p>但是AR只能使用前向上下文或后向上下文，这意味着它不能同时使用前向和后向上下文。</p>
-<h3 id="自编码-AutoEncoding-语言模型"><a href="#自编码-AutoEncoding-语言模型" class="headerlink" title="自编码(AutoEncoding)语言模型"></a>自编码(AutoEncoding)语言模型</h3><p>BERT被归类为自编码器语言模型。AE旨在从损坏的输入中重建原始数据。</p>
-<p>损坏的输入意味着我们在预训练阶段用[MASK]替换原始词，目标是预测得到原始句子。<br><img src="https://img-blog.csdnimg.cn/20190810225020688.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzk0NzE1Ng==,size_16,color_FFFFFF,t_70" alt="img-双向"></p>
-<p>AE语言模型的优势是，它可以从前向和后向的方向看到上下文。</p>
-<p>AE语言模型的缺点是</p>
-<ul>
-<li>[MASK]这种人为的符号在调优时在真实数据中并不存在，会导致预训练-调优的差异(pretrain-finetune discrepancy)</li>
-<li>[MASK]假设mask词在给定未mask词的情况下彼此独立（例：住房危机已经变成银行业危机。 其忽略了 银行业 与 危机 间的关系）。</li>
-</ul>
-<h2 id="1-2-两大阵营需要新的XLNet"><a href="#1-2-两大阵营需要新的XLNet" class="headerlink" title="1.2 两大阵营需要新的XLNet"></a>1.2 两大阵营需要新的XLNet</h2><p>XLNet提出了一种让AR语言模型从双向上下文中学习的新方法，以避免[MASK]方法在AE语言模型中带来的缺点。</p>
-<p>XLNet是一种泛化自回归(AR)方法，既集合了AR和AE方法的优势，又避免了二者的缺陷。</p>
-<ul>
-<li>XLNet不使用传统AR模型中固定的前向或后向因式分解顺序，而是最大化所有可能因式分解顺序的期望对数似然，由于对因式分解顺序的排列操作，每个位置的语境都包含来自左侧和右侧的token。因此，每个位置都能学习来自所有位置的语境信息，即捕获双向语境。</li>
-<li>作为一个泛化自回归(AR)模型，XLNet不依赖残缺数据。不会有BERT的预训练-微调差异。自回归目标提供一种自然的方式，来利用乘法法则对预测token的联合概率执行因式分解(factorize)，这消除了BERT中的独立性假设。</li>
-<li>XLNet将Transformer-XL的分割循环机制和相对编码范式整合到预训练中。</li>
-</ul>
-<h1 id="2-Proposed-Solution"><a href="#2-Proposed-Solution" class="headerlink" title="2 Proposed Solution"></a>2 Proposed Solution</h1><h2 id="2-1-在自回归模型中引入双向语言模型基本思想"><a href="#2-1-在自回归模型中引入双向语言模型基本思想" class="headerlink" title="2.1 在自回归模型中引入双向语言模型基本思想"></a>2.1 在自回归模型中引入双向语言模型基本思想</h2><p>XLNet仍然遵循两阶段的过程(pretrain fine-tune)。其主要希望改动第一阶段的过程，即不像BERT那样带[MASK]的Denoising-autoencoder的模式，而是采用AR语言模型的模式。</p>
-<p>简单来说就是，输入句子X仍然使自左向右的输入，看到Ti单词的上文Context-before来预测Ti这个单词，又希望Context-before例不仅看到上文单词又能看到后面的Context-after里的下文单词。这样一来BERT预训练阶段引入的[MASK]符号就不需要了。</p>
-<p>基本思想：在预训练阶段引入Permutation LM的训练目标。</p>
-<p>举例：比如包含单词Ti的当前输入的句子X，由顺序的几个单词构成x1, x2, x3, x4四个单词顺序组成。假设x3为要预测的单词Ti，其所在的位置为Position 3，要想让它能够在上文Context-before中，也就是Pos 1或Pos 2的位置看到Pos 4的单词x4。可以这么做，假设固定住x3的位置，也就是仍在x3，之后随机排列组合句子中的4个单词，在所有可能里训责一部分作为模型的预训练的输入X。比如随机排列组合后x4, x2, x3, x1这样一个排列组合作为模型的输入X。于是x3就能同时看到上文x2以及下文x4的内容了。</p>
-<p><img src="https://pic3.zhimg.com/80/v2-05d785e9d8f810d118e4fa93f8e9b39f_1440w.jpg" alt="img-permutation-language-model"></p>
-<p>看上去仍然是个自回归的从左到右的模型，但是其实通过对句子中单词排列组合，把一部分Ti下文的单词排到Ti上文位置中，于是就看到了上文和下文，但是形式上看上去仍然是从左到右在预测后一个单词。</p>
-<h2 id="2-2-具体实现"><a href="#2-2-具体实现" class="headerlink" title="2.2 具体实现"></a>2.2 具体实现</h2><p>尽管基本思想里提到把句子X的单词排列组合后，再随机抽取例子作为输入，但实际上不可以，因为Fine-tune阶段不可能去排列组合原始输入。所以必须让预训练阶段的输入部分<strong>看上去</strong>仍然是x1, x2, x3, x4这个顺序，但是可以在Transformer部分做些工作，来达成目标。</p>
-<p>XLNet采取了Attention掩码机制，输入的X没有任何变化，单词Ti还是第i个单词，前面有1到i-1个单词。但是Transformer内部，通过Attention掩码从X的输入单词里，也就是Ti的Context-before和Context-after中随机选择i-1个单词，放到Ti的Context-before上，把其他单词的输入通过Attention掩码隐藏掉。（当然这个所谓放到Ti的上文位置，只是一种形象的说法，其实在内部，就是通过Attention Mask，把其它没有被选到的单词Mask掉，不让它们在预测单词Ti的时候发生作用，如此而已。看着就类似于把这些被选中的单词放到了上文Context_before的位置了）。</p>
-<p>XLNet是用<strong>双流自注意力模型</strong>实现的。一个是内容流自注意力，其实就是标准的Transformer的计算过程，主要引入了Query流自注意力。其实就是用来替代[MASK]标记的，XLNet因为要抛弃[MASK]又不能看到x3的输入，于是Query流就直接忽略掉x3的输入，只保留这个位置信息，用参数w来代表位置的embedding编码。<strong>其实XLNet只是抛弃了[MASK]这个占位符号，内部还是引入Query流来忽略掉被MASK的这个单词。和BERT比只是实现方式不同而已</strong>。</p>
-<p><img src="https://picb.zhimg.com/80/v2-2bb1a60af4fe2fa751647fdce48e337c_1440w.jpg" alt="img-two-stream-attention"></p>
-<p>如图所示，输入序列仍是x1, x2, x3, x4，通过不同的掩码矩阵，让当前单词Xi只能看到被排列组合后的顺序x3-&gt;x2-&gt;x4-&gt;x1中自己前面的单词。</p>
-<h2 id="2-3-XLNet与BERT"><a href="#2-3-XLNet与BERT" class="headerlink" title="2.3 XLNet与BERT"></a>2.3 XLNet与BERT</h2><p>通过改造BERT预训练的过程，其实可以模拟XLNet的PLM过程。</p>
-<p>第一种思路：Bert目前的做法是，给定输入句子X，随机Mask掉15%的单词，然后要求利用剩下的85%的单词去预测任意一个被Mask掉的单词。对于输入句子，随机选择X中的任意i个单词，只用这i个单词去预测被Mask的单词。这个过程理论上可以在Transformer内采用Attention Mask来实现，这样BERT的预训练模型就和XLNet基本等价了。</p>
-<p>第二种思路：假设仍使用BERT目前的Mask机制，将Mask 15%改为，每次一个句子只Mask掉一个单词，利用剩下的单词来预测被Mask掉的单词。因为XLNet在实现的时候，为了提升效率，其实是选择每个句子最后末尾的1/K个单词被预测，假设K=7，意味着一个句子X，只有末尾的1/7的单词会被预测。这样两者基本是等价的。</p>
-<p>XLNet维持了自回归(AR)语言模型的从左向右的模式，这个BERT做不到。明显的好处是，对于生成类的任务，能够在维持表面从左向右的生成过程前提下，模型里隐含了上下文的信息。XLNet貌似应该对于生成类型的NLP任务，会比BERT又明显优势。此外，XLNet还引入了Transformer XL机制，所以对于长文档输入类型的NLP任务，也会比BERT有明显优势。</p>
-<h2 id="3-总结"><a href="#3-总结" class="headerlink" title="3 总结"></a>3 总结</h2><p>Permutation Language Model是XLNet的主要理论创新，<strong>它开启了自回归(AR)语言模型如何引入下文的一个思路</strong>。</p>
-<p>XLNet也相当于是BERT, GPT2.0, Transformer XL的综合体。</p>
-<ul>
-<li>通过Permutation LM 预训练目标，吸收了BERT的双向语言模型；</li>
-<li>吸收了GPT2.0使用更多更高质量的预训练数据；</li>
-<li>吸收了Transformer XL的主要思想。</li>
-</ul>
-<p>XLNet其实本质上还是ELMO/GPT/BERT这一系列两阶段模型的进一步延伸。在自回归(AR)语言模型方向引入双向语言模型打开了新思路。</p>
-<p>未来预期</p>
-<ul>
-<li>Transformer天然对长文档任务处理有弱点，所以XLNet对于长文档NLP任务相比BERT应该有直接且比较明显的性能提升；</li>
-<li>对于生成类的NLP任务，XLNet的预训练模式符合下游任务序列生成结果。</li>
-</ul>
+<h2 id="多个装饰器的执行顺序"><a href="#多个装饰器的执行顺序" class="headerlink" title="多个装饰器的执行顺序"></a>多个装饰器的执行顺序</h2><p>先会执行离需要装饰的函数近的装饰器。但是，内部的wrap_func函数中执行的顺序其实是先执行离函数最远的装饰器中的内容。</p>
+<p>相当于先依次调用装饰器内的东西，再从内到外层层封装。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dec_a</span><span class="params">(func)</span>:</span></span><br><span class="line">    print(<span class="string">'dec_a'</span>)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">inner_a</span><span class="params">()</span>:</span></span><br><span class="line">        print(<span class="string">'inner_a'</span>)</span><br><span class="line">        func()</span><br><span class="line">    <span class="keyword">return</span> inner_a</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dec_b</span><span class="params">(func)</span>:</span></span><br><span class="line">    print(<span class="string">'dec_b'</span>)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">inner_b</span><span class="params">()</span>:</span></span><br><span class="line">        print(<span class="string">'inner_b'</span>)</span><br><span class="line">        func()</span><br><span class="line">    <span class="keyword">return</span> inner_b</span><br><span class="line"></span><br><span class="line"><span class="meta">@dec_b</span></span><br><span class="line"><span class="meta">@dec_a</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">need_dec</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'need_dec'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># dec_a</span></span><br><span class="line"><span class="comment"># dec_b</span></span><br><span class="line"><span class="comment"># inner_b</span></span><br><span class="line"><span class="comment"># inner_a</span></span><br><span class="line"><span class="comment"># need_dec</span></span><br></pre></td></tr></table></figure>
+
+<p>如果装饰器内<strong>没</strong>东西执行，可以认为<strong>从上到下</strong>依次执行装饰器。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
+<li>装饰器可以在每个函数的执行前或执行后进行一些其他操作。</li>
+<li>被装饰的函数可以在内部函数内执行，也可以作为内部函数的返回值，但是<strong>一定要调用这个函数</strong>。</li>
+<li>装饰类与装饰函数其实都是使用了对象的思想，个人认为装饰类的实现更优，更简单也更灵活。</li>
+<li>装饰器的常见应用：授权，日志。</li>
+</ol>
 <hr>
-<p>Rreference</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC83MDI1NzQyNw==">https://zhuanlan.zhihu.com/p/70257427<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzk0NzE1Ni9hcnRpY2xlL2RldGFpbHMvOTMwMzU2MDc=">https://blog.csdn.net/weixin_37947156/article/details/93035607<i class="fa fa-external-link-alt"></i></span></p>
-<p>// AR AE LM 实现步骤？<br>// TODO Transformer 较于 RNN？<br>// TODO encoding decoding？<br>// TODO denoising-autoencoder?  </p>
-<p>// TODO Transformer-XL 分割循环机制 相对编码范式??<br>// TODO BERT 预训练-微调两阶段模式(pretrain fine-tune) 抛弃mask使两阶段保持一致？ fine-tune阶段？<br>// TODO AR模型前向后向因式分解顺序？  </p>
+<p>Reference: <span class="exturl" data-url="aHR0cHM6Ly93d3cucnVub29iLmNvbS93M2Nub3RlL3B5dGhvbi1mdW5jLWRlY29yYXRvcnMuaHRtbA==">https://www.runoob.com/w3cnote/python-func-decorators.html<i class="fa fa-external-link-alt"></i></span></p>
 
       
     </div>
@@ -475,7 +381,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/notebook/implements-extends-2/">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/notebook/flask-start/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -489,78 +395,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/dev/notebook/implements-extends-2/" class="post-title-link" itemprop="url">dev/notebook/implements-extends-2</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 09-16-2020 11:31:35 / Modified: 12:14:19" itemprop="dateCreated datePublished" datetime="2020-09-16T11:31:35+08:00">09-16-2020</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Java中继承与实现的思考"><a href="#Java中继承与实现的思考" class="headerlink" title="Java中继承与实现的思考"></a>Java中继承与实现的思考</h1><p>继承(extend): 继承传达的意思是is-a, 比如Cat is an Animal.</p>
-<p>实现(Implement): 实现传达的意思是able一种能力, 比如Cat is swimmable.</p>
-<h2 id="extend"><a href="#extend" class="headerlink" title="extend"></a>extend</h2><p>比较灵活可以继承抽象类，也可以继承实体类。<br>抽象类可以定义非抽象方法与抽象方法，如果有抽象方法则子类必须继承，如果子类没有重写非抽象方法则子类的实例使用的是父类的方法。</p>
-<p><strong>多态</strong><br>如果实例化一个子类赋给一个父类(例: Animal cat = new Cat())， 则只能够使用父类中的field与method，如果method被子类重写则会调用子类的method。</p>
-<h2 id="implement"><a href="#implement" class="headerlink" title="implement"></a>implement</h2><p>比较严格，若实现则必须实现所有方法。<br>其中的field都是static final修饰的，且只能被实现的子类获取。method不能有body，但是如果static修饰则可以有body(怎么用？)。</p>
-<p><strong>多态</strong><br>如果实例化一个子类赋给一个接口(例: Swimmable cat = new Cat())，则只能够使用该接口的field并且无法获得field。<br>如果一个子类继承了一个实现了该接口的父类则可以重写方法，如果没有重写则(Swimmable cat = new Cat())中cat获取的方法则是父类中实现的方法。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/docker/docker-lineloss/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/docker/docker-lineloss/" class="post-title-link" itemprop="url">dev/docker/docker-lineloss</a>
+            <a href="/dev/notebook/flask-start/" class="post-title-link" itemprop="url">Flask入门</a>
         </h2>
 
         <div class="post-meta-container">
@@ -571,126 +406,14 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 09-15-2020 12:11:47" itemprop="dateCreated datePublished" datetime="2020-09-15T12:11:47+08:00">09-15-2020</time>
+      <time title="Created: 12-29-2020 00:14:51" itemprop="dateCreated datePublished" datetime="2020-12-29T00:14:51+08:00">12-29-2020</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 09-16-2020 20:52:06" itemprop="dateModified" datetime="2020-09-16T20:52:06+08:00">09-16-2020</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Docker-部署-Lineloss"><a href="#Docker-部署-Lineloss" class="headerlink" title="Docker 部署 Lineloss"></a>Docker 部署 Lineloss</h1><h2 id="1-拉取redhat镜像"><a href="#1-拉取redhat镜像" class="headerlink" title="1 拉取redhat镜像"></a>1 拉取redhat镜像</h2><p><code>docker pull yjjy0921/redhat7.2</code></p>
-<h2 id="2-进入镜像换yum源"><a href="#2-进入镜像换yum源" class="headerlink" title="2 进入镜像换yum源"></a>2 进入镜像换yum源</h2><ul>
-<li>rpm安装wget(docker cp host.path cotainer:container.path)</li>
-<li>wget下载yum相关包</li>
-<li>rpm安装下载的相关包</li>
-</ul>
-<p><strong>报错：</strong><br>python-urlgrabber &gt;= 3.10-8 is needed by yum-3.4.3-167.el7.centos.noarch<br>rpm &gt;= 0:4.11.3-22 is needed by yum-3.4.3-167.el7.centos.noarch</p>
-<p>查询存在的python-urlgrabber包<br><code>rpm -q python-urlgrabber</code>~~</p>
-<p>删除python-urlgrabber包<br><code>rpm -e python-urlgrabber</code></p>
-<p>更新rpm包<br><code>rpm -Uvh rpm-4.11.3-43.el7.x86_64.rpm --nodeps</code></p>
-<h2 id="3-创建aliyun-repo"><a href="#3-创建aliyun-repo" class="headerlink" title="3 创建aliyun.repo"></a>3 创建aliyun.repo</h2><p><code>cd /etc/yum.repo.d/</code><br><code>vim aliyun.repo</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">[base]</span><br><span class="line">name&#x3D;CentOS-$releasever - Base</span><br><span class="line">baseurl&#x3D;http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;centos&#x2F;7.8.2003&#x2F;os&#x2F;$basearch&#x2F;</span><br><span class="line">gpgcheck&#x3D;1</span><br><span class="line">gpgkey&#x3D;http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;centos&#x2F;7.8.2003&#x2F;os&#x2F;x86_64&#x2F;RPM-GPG-KEY-CentOS-7</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#released updates</span><br><span class="line">[updates]</span><br><span class="line">name&#x3D;CentOS-$releasever - Updates</span><br><span class="line">baseurl&#x3D;http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;centos&#x2F;7.8.2003&#x2F;updates&#x2F;$basearch&#x2F;</span><br><span class="line">gpgcheck&#x3D;1</span><br><span class="line">gpgkey&#x3D;http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;centos&#x2F;7.8.2003&#x2F;os&#x2F;x86_64&#x2F;RPM-GPG-KEY-CentOS-7</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[extras]</span><br><span class="line">name&#x3D;CentOS-$releasever - Extras</span><br><span class="line">baseurl&#x3D;http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;centos&#x2F;7.8.2003&#x2F;extras&#x2F;&#x2F;$basearch&#x2F;</span><br><span class="line">gpgcheck&#x3D;1</span><br><span class="line">gpgkey&#x3D;http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;centos&#x2F;7.8.2003&#x2F;os&#x2F;x86_64&#x2F;RPM-GPG-KEY-CentOS-7</span><br><span class="line"></span><br><span class="line">[centosplus]</span><br><span class="line">name&#x3D;CentOS-$releasever - Plus</span><br><span class="line">baseurl&#x3D;http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;centos&#x2F;7.8.2003&#x2F;centosplus&#x2F;&#x2F;$basearch&#x2F;</span><br><span class="line">gpgcheck&#x3D;1</span><br><span class="line">enabled&#x3D;0</span><br></pre></td></tr></table></figure>
-
-<p>清除redhat.repo<br><code>mv redhat.repo redhat.temp</code></p>
-<p>检验yum配置成功<br><code>yum update -y --skip-broken</code></p>
-<h2 id="4-安装mariadb"><a href="#4-安装mariadb" class="headerlink" title="4 安装mariadb"></a>4 安装mariadb</h2><p>安装<br><code>yum install -y mysql</code></p>
-<p><strong>注意</strong><br>docker无法使用systemctl指令使mysql后台运行</p>
-<p>查看容器配置文件<br><code>docker inspect containerID</code></p>
-<p><em>修改已经运行的容器配置文件</em><br><code>/usr/lib/docker...</code></p>
-<p>运行镜像时需要<br><code>docker run --privileged --name=lineloss -d -it edlison/lineloss /usr/sbin/init</code></p>
-<p><code>--privileged</code>赋予额外权限<br><code>/usr/sbin/init</code>将cmd设置为这个 dbus服务就会运行</p>
-<p><code>systemctl start mariadb</code> 启动服务<br><code>systemctl enable mariadb</code> 设置开机启动<br><code>systemctl restart mariadb</code> 重新启动<br><code>systemctl stop mariadb.service</code> 停止MariaDB</p>
-<p>初始化数据库<br><code>mysql_secure_installation</code></p>
-<p>设置密码<br><code>mysqladmin -u root password &#39;newpassword&#39;</code></p>
-<p>导入数据<br><code>create database lineloss;</code><br><code>use lineloss;</code><br><code>source /home/xs_project/sql/lineloss.sql</code></p>
-<h2 id="5-Java环境"><a href="#5-Java环境" class="headerlink" title="5 Java环境"></a>5 Java环境</h2><p>安装Java<br><code>yum install java</code></p>
-<h2 id="6-Python环境"><a href="#6-Python环境" class="headerlink" title="6 Python环境"></a>6 Python环境</h2><p>安装python3<br><code>yum install python3</code></p>
-<p>安装依赖<br><code>pip3 install Flask</code><br><code>pip3 install flask_sqlalchemy</code><br><code>pip3 install pymysql</code><br><code>pip3 install numpy</code><br><code>pip3 install sklearn</code><br><code>pip3 install jieba</code><br><code>pip3 install pandas</code><br><code>pip3 install statsmodels</code></p>
-<h2 id="7-运行测试"><a href="#7-运行测试" class="headerlink" title="7 运行测试"></a>7 运行测试</h2><p>运行镜像<br><code>docker run --privileged --name=lineloss -d -p 18084:18084 -it edlison/lineloss /usr/sbin/init</code></p>
-<p>Java<br><code>cd /home/xs_project/java</code><br><code>java -jar RuoYi.jar</code></p>
-<p>Python<br><code>cd /home/xs_project/python/LineLoss</code><br><code>python3 service.py</code></p>
-<h2 id="8-Dockerfile"><a href="#8-Dockerfile" class="headerlink" title="8 Dockerfile"></a>8 Dockerfile</h2><p>只是构建镜像？？？不便于执行镜像内程序？？？</p>
-<h2 id="9-其他"><a href="#9-其他" class="headerlink" title="9 其他"></a>9 其他</h2><h2 id="复制文件"><a href="#复制文件" class="headerlink" title="复制文件"></a>复制文件</h2><p>容器内新建文件夹<br><code>mkdir /home/xs_project/java</code><br><code>mkdir /home/xs_project/python</code><br><code>mkdir /home/xs_project/sql</code></p>
-<p>将文件复制到容器内<br><code>cp RuoYi.jar containerID:/home/xs_project/java</code><br><code>cp LineLoss.zip containerID:/home/xs_project/python</code><br><code>cp lineloss.sql containerID:/home/xs_project/sql</code></p>
-<h2 id="容器提交成镜像"><a href="#容器提交成镜像" class="headerlink" title="容器提交成镜像"></a>容器提交成镜像</h2><p><code>docker commit -a &quot;userid&quot; -m &quot;comment&quot; containerID imageName:tag</code></p>
-<h2 id="镜像上传仓库"><a href="#镜像上传仓库" class="headerlink" title="镜像上传仓库"></a>镜像上传仓库</h2><p><code>docker push userName/imageName</code></p>
-<p><strong>注意</strong></p>
-<p>tag命令修改为规范的镜像名<br><code>docker tag lineloss:latest edlison/lineloss</code></p>
-<p>push到用户仓库<br><code>docker push edlison/lineloss</code></p>
-<h2 id="镜像导出导入"><a href="#镜像导出导入" class="headerlink" title="镜像导出导入"></a>镜像导出导入</h2><p>导出镜像<br><code>docker save -o lineloss.tar edlison/lineloss</code>或<br><code>docker save edlison/lineloss&gt;/home/lineloss.tar</code></p>
-<p>导入镜像<br><code>docker load&lt;lineloss.tar</code></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/Others/Attention/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/academia/Others/Attention/" class="post-title-link" itemprop="url">Attention Is All You Need</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 09-13-2020 20:32:41" itemprop="dateCreated datePublished" datetime="2020-09-13T20:32:41+08:00">09-13-2020</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 02-04-2021 13:49:28" itemprop="dateModified" datetime="2021-02-04T13:49:28+08:00">02-04-2021</time>
+        <time title="Modified: 12-30-2020 23:22:15" itemprop="dateModified" datetime="2020-12-30T23:22:15+08:00">12-30-2020</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -698,7 +421,7 @@
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a>
+          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
         </span>
     </span>
 
@@ -712,34 +435,373 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="Attention-Is-All-You-Need"><a href="#Attention-Is-All-You-Need" class="headerlink" title="Attention Is All You Need"></a>Attention Is All You Need</h1><h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>我们提出一种全新的简洁的网络架构–Transfomer，它完全基于Attention机制，舍弃了循环与卷积。</p>
-<h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1 Introduction"></a>1 Introduction</h2><p>Transformer的并行性很好的解决了RNN模型的序列化输入输出。</p>
-<h2 id="2-Background"><a href="#2-Background" class="headerlink" title="2 Background"></a>2 Background</h2><h2 id="3-Model-Architecture"><a href="#3-Model-Architecture" class="headerlink" title="3 Model Architecture"></a>3 Model Architecture</h2><p>大部分序列神经网络模型都具有encoder-decoder结构。</p>
-<h3 id="3-1-Encoder-and-Decoder-Stacks"><a href="#3-1-Encoder-and-Decoder-Stacks" class="headerlink" title="3.1 Encoder and Decoder Stacks"></a>3.1 Encoder and Decoder Stacks</h3><p>encoder由6个相同的层构成，每一层有两个子层。第一个是一个多Attention机制，第二个是一个简单的全连接feed-forward网络。两个子层中间部署一个参差网络，后接一个正则化。</p>
-<p>decoder也是由6个相同的层构成。除了两个子层外中间还加入了一个第三子层Multi-head Attention.</p>
-<h3 id="3-2-Attention"><a href="#3-2-Attention" class="headerlink" title="3.2 Attention"></a>3.2 Attention</h3><p>Attention的核心内容是为输入向量的每个单词(512d)学习一个权重。在self-attention中，每个单词有3个不同的向量，Query，Key，Value，长度均是64. 他们通过3个不同的权值矩阵由嵌入向量X乘以三个不同的权值矩阵WQ，WK，WV(512 * 64)得到。</p>
-<p>Attention计算步骤：</p>
+          <h2 id="Flask模块化管理"><a href="#Flask模块化管理" class="headerlink" title="Flask模块化管理"></a>Flask模块化管理</h2><p>Bluepoint可以实现Flask的模块化管理，在每个包的<code>__init__</code>文件中可以定义对应的蓝图。蓝图仅是静态的，需要在应用运行时，对其进行装载。</p>
+<p><strong>注意</strong></p>
+<ol>
+<li><code>__init__</code>文件中定义好蓝图后一定要将包含路由的文件import进来，否则不能识别相应的路由。</li>
+<li>import文件时不能使用通配符*进行导入。</li>
+</ol>
+<h2 id="Flask中的request与respond"><a href="#Flask中的request与respond" class="headerlink" title="Flask中的request与respond"></a>Flask中的request与respond</h2><h3 id="request"><a href="#request" class="headerlink" title="request"></a>request</h3><p><code>from flask import request</code></p>
+<ol>
+<li><p>param传参<br>使用request.args.get(‘argname’)获取键值对。</p>
+</li>
+<li><p>body传参<br>使用request.form.get(‘argname’)获取form格式传参键值对。<br>使用request.get_data()获取全部raw格式内容。<br>使用request.get_json()获取全部raw格式内容，且必须为json格式。</p>
+</li>
+</ol>
+<p><strong>注意</strong><br>form-data: 可以传键值对和文件。<br>x-www-form-urlencodes: 只能传键值对。</p>
+<h3 id="respond"><a href="#respond" class="headerlink" title="respond"></a>respond</h3><p><code>from flask import jsoniify</code><br><code>import json</code></p>
+<ol>
+<li>直接返回json</li>
+</ol>
 <ul>
-<li>将输入单词转换成词向量</li>
-<li>根据词向量得到q, k, v三个向量</li>
-<li>为每个向量计算一个score: score = q * kT</li>
-<li>为了梯度的稳定，Transformer使用了score归一化，即除以根号dk</li>
-<li>对score过一遍softmax函数</li>
-<li>softmax点乘value得到每个输入向量的评分v</li>
-<li>想家之后得到最终的输出结果z=∑v</li>
+<li>jsonify()可以直接制作json返回 (返回的格式也定义为application/json)</li>
+<li>json.dumps()可以将dict生成json (返回的格式默认为text)</li>
 </ul>
-<h3 id="3-3-Multi-Head-Attention"><a href="#3-3-Multi-Head-Attention" class="headerlink" title="3.3 Multi-Head Attention"></a>3.3 Multi-Head Attention</h3><p>Multi-Head Attention相当于h个不同的self-attention的集成。</p>
-<p>Multi-Head输出分三步</p>
+<ol start="2">
+<li>简易定义make_respond</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>args</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>respond</code></td>
+<td>返回的内容data</td>
+</tr>
+<tr>
+<td><code>status_code</code></td>
+<td>返回状态码</td>
+</tr>
+<tr>
+<td><code>headers</code></td>
+<td>返回头部信息为键值对</td>
+</tr>
+</tbody></table>
+<ol start="3">
+<li>详细定义Respond</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>args</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>respond</code></td>
+<td>返回的内容data</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td>返回状态 格式为’200 OK’</td>
+</tr>
+<tr>
+<td><code>status_code</code></td>
+<td>返回状态码</td>
+</tr>
+<tr>
+<td><code>headers</code></td>
+<td>返回头部信息为键值对</td>
+</tr>
+<tr>
+<td><code>set_cookie</code></td>
+<td>设置cookie</td>
+</tr>
+<tr>
+<td><code>del_cookie</code></td>
+<td>删除cookie</td>
+</tr>
+</tbody></table>
+<h2 id="Flask中的session"><a href="#Flask中的session" class="headerlink" title="Flask中的session"></a>Flask中的session</h2><p><code>from flask import session</code></p>
+<ol>
+<li><p>使用session需要设置config<br>app.config[‘SECRET_KEY’]=os.urandom(24)</p>
+</li>
+<li><p>Flask提供的session是储存在cookie中的<br>session[‘username’] = data[‘username’]<br>此时的cookie中存储了加密过的username。</p>
+</li>
+<li><p>获取session<br>session.get(‘key’)或session[‘key’]<br>但是后者如果没有这个key会报错。<br>获取到的session自动经过了解密。</p>
+</li>
+<li><p>删除session<br>session.pop(‘key’)或session[‘key’]=False<br>session.clear清除session中所有数据。</p>
+</li>
+</ol>
+<h2 id="Flask-SQLAlechemy"><a href="#Flask-SQLAlechemy" class="headerlink" title="Flask_SQLAlechemy"></a>Flask_SQLAlechemy</h2><p><strong>注意</strong></p>
+<ol>
+<li><p>如果蓝图中有用到db，则一定要在db创建后import蓝图！！！</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">db = SQLAlchemy()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_app</span><span class="params">()</span>:</span></span><br><span class="line">    app = Flask(__name__)</span><br><span class="line">    app.config[<span class="string">'SECRET_KEY'</span>] = os.urandom(<span class="number">24</span>)</span><br><span class="line">    app.config[<span class="string">'SQLALCHEMY_DATABASE_URI'</span>] = <span class="string">'mysql+pymysql://library:library@119.23.107.61:3306/library'</span></span><br><span class="line">    app.config[<span class="string">'SQLALCHEMY_TRACK_MODIFICATIONS'</span>] = <span class="literal">True</span></span><br><span class="line">    db.init_app(app)</span><br><span class="line">    <span class="keyword">from</span> .user <span class="keyword">import</span> user_blu</span><br><span class="line">    app.register_blueprint(user_blu)</span><br><span class="line">    print(app.url_map)</span><br><span class="line">    <span class="keyword">return</span> app</span><br></pre></td></tr></table></figure>
+<p>因为代码是按照顺序执行的，当你从其他模块导入蓝图的时候就需要 db 了，但是这个时候db 还没有生成，所以会报出错误 提示不可以从当中导入相应的模块。</p>
+</li>
+<li><p>如果db=SQLAlechemy()中没有传app，则后面需要先<code>db.app=app</code>然后再<code>db.init_app(app)</code>???</p>
+</li>
+</ol>
+<h2 id="Flask-g"><a href="#Flask-g" class="headerlink" title="Flask g"></a>Flask g</h2><ol>
+<li>g对象</li>
+</ol>
 <ul>
-<li>将X分别输入到8个self-attention中得到8个加权后的特征矩阵Z</li>
-<li>将8个Z按列拼接成一个大的特征矩阵</li>
-<li>将特征矩阵经过一层fc后得到输出Z</li>
+<li>专门用来存储用户信息</li>
+<li>g只在一次请求中的所有代码有用</li>
 </ul>
-<h3 id="3-4-损失层"><a href="#3-4-损失层" class="headerlink" title="3.4 损失层"></a>3.4 损失层</h3><p>解码器解码后，解码的特征向量通过一层激活函数为softmax的全连接层之后得到反应每个单词概率的输出向量。此时通过CTC等损失函数训练模型。</p>
-<h2 id="4-位置编码"><a href="#4-位置编码" class="headerlink" title="4 位置编码"></a>4 位置编码</h2><p>Transfomer无法捕捉循序序列的能力。论文在编码词向量时引入了位置编码的特征，位置编码会在词向量中加入单词的位置信息。</p>
-<p>在上式中， [公式] 表示单词的位置， [公式] 表示单词的维度。关于位置编码的实现可在Google开源的算法中get_timing_signal_1d()函数找到对应的代码。</p>
-<p>作者这么设计的原因是考虑到在NLP任务重，除了单词的绝对位置，单词的相对位置也非常重要。根据公式 [公式] 以及[公式] ，这表明位置 [公式] 的位置向量可以表示为位置 [公式] 的特征向量的线性变化，这为模型捕捉单词之间的相对位置关系提供了非常大的便利。</p>
-<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>位置编码对词袋模型等具有普适性？<br>encoder/decoder通过self-attention层所得到的向量即理解为加密/解密？<br>得到最后的Z之后怎么用？</p>
+<ol start="2">
+<li>g与session的区别</li>
+</ol>
+<ul>
+<li>session只要未失效，不同的request请求都可以获得session，由cookie决定</li>
+<li>每一次请求都会改变g对象</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/notebook/git/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/notebook/git/" class="post-title-link" itemprop="url">Git日常使用笔记</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 11-16-2020 00:58:51 / Modified: 01:39:25" itemprop="dateCreated datePublished" datetime="2020-11-16T00:58:51+08:00">11-16-2020</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><img src="https://upload-images.jianshu.io/upload_images/8048507-9ea56a58f75ebc00.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/617/format/webp" alt="img"></p>
+<h2 id="reset"><a href="#reset" class="headerlink" title="reset"></a>reset</h2><p><code>git reset [--soft | --mixed | --hard] [HEAD]</code></p>
+<p><code>--soft</code><br>修改版本库，保留暂存区，保留工作区。头指针全部重置到指定版本，也会重置暂存区，并且会将工作区代码也回退到这个版本。</p>
+<p><code>--hard</code><br>修改版本库，修改暂存区，修改工作区。头指针全部重置到指定版本，且将这次提交之后的所有变更都移动到暂存区。</p>
+<p>Tips:<br>使用<code>git reset --hard HEAD</code>移除当前暂存区及工作区所有的修改。</p>
+<h2 id="tag"><a href="#tag" class="headerlink" title="tag"></a>tag</h2><p>给当前commit打标签。<br><code>git tag v1.0</code></p>
+<p>删除标签<br><code>git tag -d v1.0</code></p>
+<p>显示标签修改内容<br><code>git show v1.0</code></p>
+<h2 id="log"><a href="#log" class="headerlink" title="log"></a>log</h2><p>查看最近提交的文件差异，最近两篇。<br><code>git log -p -2</code></p>
+<h2 id="clean"><a href="#clean" class="headerlink" title="clean"></a>clean</h2><p>用于删除Untracked file, 常与<code>git reset --hard</code>一起使用，完全回复到指定commit。<br><code>git clean -df</code>d为文件夹，f为文件。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/linux/linux-path/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/linux/linux-path/" class="post-title-link" itemprop="url">修改环境变量</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 11-07-2020 02:09:33" itemprop="dateCreated datePublished" datetime="2020-11-07T02:09:33+08:00">11-07-2020</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 11-12-2020 02:18:32" itemprop="dateModified" datetime="2020-11-12T02:18:32+08:00">11-12-2020</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Linux下修改环境变量"><a href="#Linux下修改环境变量" class="headerlink" title="Linux下修改环境变量"></a>Linux下修改环境变量</h1><h2 id="查看PATH"><a href="#查看PATH" class="headerlink" title="查看PATH"></a>查看PATH</h2><p>echo $PATH<br>以添加mongodb server为列</p>
+<h2 id="修改方法一"><a href="#修改方法一" class="headerlink" title="修改方法一"></a>修改方法一</h2><p>export PATH=/usr/local/mongodb/bin:$PATH<br>//配置完后可以通过echo $PATH查看配置结果。<br>生效方法：立即生效<br>有效期限：临时改变，只能在当前的终端窗口中有效，当前窗口关闭后就会恢复原有的path配置<br>用户局限：仅对当前用户</p>
+<h2 id="修改方法二"><a href="#修改方法二" class="headerlink" title="修改方法二"></a>修改方法二</h2><p>通过修改.bashrc文件:<br>vim ~/.bashrc<br>//在最后一行添上：<br>export PATH=/usr/local/mongodb/bin:$PATH<br>生效方法：（有以下两种）<br>1、关闭当前终端窗口，重新打开一个新终端窗口就能生效<br>2、输入“source ~/.bashrc”命令，立即生效<br>有效期限：永久有效<br>用户局限：仅对当前用户</p>
+<h2 id="修改方法三"><a href="#修改方法三" class="headerlink" title="修改方法三"></a>修改方法三</h2><p>通过修改profile文件:<br>vim /etc/profile<br>/export PATH //找到设置PATH的行，添加<br>export PATH=/usr/local/mongodb/bin:$PATH<br>生效方法：系统重启<br>有效期限：永久有效<br>用户局限：对所有用户</p>
+<h2 id="修改方法四"><a href="#修改方法四" class="headerlink" title="修改方法四"></a>修改方法四</h2><p>通过修改environment文件:<br>vim /etc/environment<br>在PATH=”/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games”中加入“:/usr/local/mongodb/bin”<br>生效方法：系统重启<br>有效期限：永久有效<br>用户局限：对所有用户</p>
+<h2 id="MacOS"><a href="#MacOS" class="headerlink" title="MacOS"></a>MacOS</h2><p>MAC OS X环境配置的加载顺序</p>
+<ul>
+<li><p>系统级别<br>/etc/profile<br>/etc/paths </p>
+</li>
+<li><p>用户级别<br>~/.bash_profile<br>~/.bash_login<br>~/.profile<br>~/.bashrc  （在打开shell时加载）</p>
+</li>
+</ul>
+<p>/etc/paths 全局建议修改这个文件<br>/etc/profile 不建议修改这个文件，全局共有配置，用户登录时候都会加载该文件<br>/etc/bashrc 一般在这个文件中添加系统级别的环境变量，全局共有配置，bash shell执行时候都会加载</p>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><p>想要立即生效执行<code>source</code></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/notebook/jupyter-kernel/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/notebook/jupyter-kernel/" class="post-title-link" itemprop="url">dev/notebook/jupyter-kernel</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 11-07-2020 01:34:26 / Modified: 01:38:41" itemprop="dateCreated datePublished" datetime="2020-11-07T01:34:26+08:00">11-07-2020</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="对Jupyter添加Kernel"><a href="#对Jupyter添加Kernel" class="headerlink" title="对Jupyter添加Kernel"></a>对Jupyter添加Kernel</h1><h2 id="对虚拟环境的操作"><a href="#对虚拟环境的操作" class="headerlink" title="对虚拟环境的操作"></a>对虚拟环境的操作</h2><p>进入想要添加到Jupyter的Python虚拟环境</p>
+<p><code>conda activate pytorch</code></p>
+<p>安装<code>ipykernel</code></p>
+<p><code>conda install ipykernel</code></p>
+<p>在虚拟环境中执行以下以添加Kernel到Jupyter</p>
+<p><code>python -m ipykernel install --name kernelname</code></p>
+<h2 id="对Jupyter的操作"><a href="#对Jupyter的操作" class="headerlink" title="对Jupyter的操作"></a>对Jupyter的操作</h2><p>查看存在的Kernel</p>
+<p><code>jupyter kernelspec list</code></p>
+<p>删除Kernel</p>
+<p><code>jupyter kernelspec remove kernelname</code></p>
 
       
     </div>
@@ -761,7 +823,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/49/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/49/">49</a><span class="page-number current">50</span><a class="page-number" href="/page/51/">51</a><span class="space">&hellip;</span><a class="page-number" href="/page/64/">64</a><a class="extend next" rel="next" href="/page/51/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/49/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/49/">49</a><span class="page-number current">50</span><a class="page-number" href="/page/51/">51</a><span class="space">&hellip;</span><a class="page-number" href="/page/66/">66</a><a class="extend next" rel="next" href="/page/51/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 

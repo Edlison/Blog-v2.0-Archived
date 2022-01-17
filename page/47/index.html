@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">318</span>
+          <span class="site-state-item-count">328</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -264,7 +264,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/vim/vim-start/">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/datascience/spark/start/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -278,7 +278,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/dev/vim/vim-start/" class="post-title-link" itemprop="url">Vim入门</a>
+            <a href="/dev/datascience/spark/start/" class="post-title-link" itemprop="url">Spark - start</a>
         </h2>
 
         <div class="post-meta-container">
@@ -289,14 +289,14 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 01-20-2021 15:13:20" itemprop="dateCreated datePublished" datetime="2021-01-20T15:13:20+08:00">01-20-2021</time>
+      <time title="Created: 01-27-2021 11:48:52" itemprop="dateCreated datePublished" datetime="2021-01-27T11:48:52+08:00">01-27-2021</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 05-27-2021 12:00:14" itemprop="dateModified" datetime="2021-05-27T12:00:14+08:00">05-27-2021</time>
+        <time title="Modified: 01-29-2021 11:32:44" itemprop="dateModified" datetime="2021-01-29T11:32:44+08:00">01-29-2021</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -304,7 +304,7 @@
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Vim/" itemprop="url" rel="index"><span itemprop="name">Vim</span></a>
+          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
         </span>
     </span>
 
@@ -318,42 +318,16 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="Norm-Mode"><a href="#Norm-Mode" class="headerlink" title="Norm Mode"></a>Norm Mode</h1><h2 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h2><p><code>i</code>在光标前插入</p>
-<p><code>I</code>在所在行行首插入</p>
-<p><code>a</code>在光标所在字符后</p>
-<p><code>A</code>在所在行行尾插入</p>
-<p><code>o</code>在光标所在行下一行行首插入</p>
-<p><code>O</code>在光标所在行上一行行首插入</p>
-<p><code>s</code>删除光标所在处的字符然后插入</p>
-<p><code>S</code>删除所在行并在行首插入</p>
-<h2 id="快速移动光标"><a href="#快速移动光标" class="headerlink" title="快速移动光标"></a>快速移动光标</h2><p><code>h</code>左移</p>
-<p><code>j</code>下移</p>
-<p><code>k</code>上移</p>
-<p><code>l</code>右移</p>
-<h3 id="词上的移动"><a href="#词上的移动" class="headerlink" title="词上的移动"></a>词上的移动</h3><p><code>0</code>移动到行头</p>
-<p><code>$</code>移动到行尾</p>
-<p><code>w</code>移动到下一个单词的开头</p>
-<p><code>e</code>移动到下一个单词的结尾</p>
-<p><code>b</code>移动到上一个单词的开头</p>
-<p><code>ge</code>移动到上一个单词的结尾</p>
-<h3 id="行上的移动"><a href="#行上的移动" class="headerlink" title="行上的移动"></a>行上的移动</h3><p><code>nG</code>定位到第n行行首</p>
-<p><code>gg</code>定位到第一行的行首</p>
-<p><code>G</code>定位到最后一行的行首</p>
-<p><code>H</code>定位到当前屏幕的第一行行首</p>
-<p><code>M</code>定位到当前屏幕的中间</p>
-<p><code>L</code>定位到当前屏幕的尾部</p>
-<h3 id="页上的移动"><a href="#页上的移动" class="headerlink" title="页上的移动"></a>页上的移动</h3><p><code>ctrl+f</code>下一页</p>
-<p><code>ctrl+b</code>上一页</p>
-<h2 id="编辑操作"><a href="#编辑操作" class="headerlink" title="编辑操作"></a>编辑操作</h2><p><code>dw</code>删除一个单词（dnw删除n个单词，ndd删除n行）</p>
-<p><code>dd</code>删除一行</p>
-<p><code>yw</code>复制一个单词</p>
-<p><code>yy</code>复制一行</p>
-<p><code>p</code>在光标后开始复制</p>
-<p><code>P</code>在光标前开始复制</p>
-<h2 id="撤销恢复"><a href="#撤销恢复" class="headerlink" title="撤销恢复"></a>撤销恢复</h2><p><code>u</code>undo</p>
-<p><code>ctrl+r</code>reundo</p>
-<h1 id="Command-Mode"><a href="#Command-Mode" class="headerlink" title="Command Mode"></a>Command Mode</h1><p><code>:set nu</code>显示行号</p>
-<p><code>:set nonu</code>取消行号</p>
+          <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Spark是一个集群计算的框架，类似于Hadoop. 其最大的优化是让计算任务的中间结果存储在内存中，不需要每次都写入HDFS。</p>
+<p>Spark是基于RDD的核心编程，使用内存进行计算，比死板的MapReduce模型的性能大大提高。</p>
+<h1 id="Spark-RDDs-弹性分布式数据集"><a href="#Spark-RDDs-弹性分布式数据集" class="headerlink" title="Spark RDDs 弹性分布式数据集"></a>Spark RDDs 弹性分布式数据集</h1><p>一个可并行操作的有容错机制的数据集合。</p>
+<h1 id="Spark-Streaming"><a href="#Spark-Streaming" class="headerlink" title="Spark Streaming"></a>Spark Streaming</h1><p>对事实数据流进行处理，处理后的数据再应用。</p>
+<p>一个处理过程。</p>
+<h1 id="Spark-SQL"><a href="#Spark-SQL" class="headerlink" title="Spark SQL"></a>Spark SQL</h1><p>允许Spark执行用SQL, Scala等表示的关系查询。</p>
+<h1 id="GraphX"><a href="#GraphX" class="headerlink" title="GraphX"></a>GraphX</h1><p>用于图和并行图计算。</p>
+<hr>
+<p>Reference</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cudzNjc2Nob29sLmNuL3NwYXJr">https://www.w3cschool.cn/spark<i class="fa fa-external-link-alt"></i></span></p>
 
       
     </div>
@@ -380,7 +354,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/notebook/Fluent-Python-1.18-1/">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/datascience/hadoop/start/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -394,7 +368,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/dev/notebook/Fluent-Python-1.18-1/" class="post-title-link" itemprop="url">Fluent-Python-PartIII-Functions as Objects</a>
+            <a href="/dev/datascience/hadoop/start/" class="post-title-link" itemprop="url">Hadoop - start</a>
         </h2>
 
         <div class="post-meta-container">
@@ -406,275 +380,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 01-18-2021 15:00:10 / Modified: 16:49:14" itemprop="dateCreated datePublished" datetime="2021-01-18T15:00:10+08:00">01-18-2021</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="5-First-Class-Functions"><a href="#5-First-Class-Functions" class="headerlink" title="5-First-Class Functions"></a>5-First-Class Functions</h1><p>Python中所有的函数都是first-class对象（一级对象？）</p>
-<ul>
-<li>在运行时创建</li>
-<li>赋值给数据结构中的变量或元素</li>
-<li>作为参数传递给函数</li>
-<li>作为函数的结果返回</li>
-</ul>
-<h2 id="可调用对象的7中风格"><a href="#可调用对象的7中风格" class="headerlink" title="可调用对象的7中风格"></a>可调用对象的7中风格</h2><ol>
-<li>用户定义方程</li>
-</ol>
-<p>使用<code>def</code>语句或<code>lambda</code>表达式创建。</p>
-<ol start="2">
-<li>内建函数</li>
-</ol>
-<p><code>len</code></p>
-<ol start="3">
-<li>内建方法</li>
-</ol>
-<p>Dice.get</p>
-<ol start="4">
-<li>方法</li>
-</ol>
-<p>定义在类内部的函数</p>
-<ol start="5">
-<li>类</li>
-</ol>
-<p>可以调用<code>__new__</code>方法去生成实例的类，然后通过<code>__init__</code>方法来初始化它。</p>
-<ol start="6">
-<li>类实例</li>
-</ol>
-<p>如果一个类定义了一个<code>__call__</code>方法，那这个实例就会当作函数被调用。</p>
-<ol start="7">
-<li>生成器函数</li>
-</ol>
-<p>函数或方法使用<code>yield</code>关键字，当调用的时候，生成器函数返回一个生成器对象。</p>
-<h2 id="User-Defined-Callable-Types用户定义的可调用类型"><a href="#User-Defined-Callable-Types用户定义的可调用类型" class="headerlink" title="User-Defined Callable Types用户定义的可调用类型"></a>User-Defined Callable Types用户定义的可调用类型</h2><p>Python函数不仅是真正的对象，而且任意的Python对象也可以表现的像函数一样。只要实现<code>__call__</code>实例方法。</p>
-<h1 id="6-Design-Patterns-with-First-Class-Functions"><a href="#6-Design-Patterns-with-First-Class-Functions" class="headerlink" title="6-Design Patterns with First-Class Functions"></a>6-Design Patterns with First-Class Functions</h1><p>项目实例</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/notebook/Fluent-Python-1.18/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/notebook/Fluent-Python-1.18/" class="post-title-link" itemprop="url">Fluent-Python-PartI-Prologue</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 01-18-2021 09:15:46 / Modified: 15:02:39" itemprop="dateCreated datePublished" datetime="2021-01-18T09:15:46+08:00">01-18-2021</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="开始Fluent-Python"><a href="#开始Fluent-Python" class="headerlink" title="开始Fluent-Python"></a>开始Fluent-Python</h1><p>前言：</p>
-<p>Here’s the plan: when someone uses a feature you don’t understand, simply shoot them.</p>
-<h1 id="1-The-Python-Data-Model"><a href="#1-The-Python-Data-Model" class="headerlink" title="1-The Python Data Model"></a>1-The Python Data Model</h1><p>魔术方法也叫做Dunder方法，一般under-under-getitem-under-under也可以叫做dunder-getitem.</p>
-<p>Example 1-1</p>
-<p>我们可以通过重写<code>__len__</code>方法与<code>__getitem__</code>方法实现对象的获取书长度，与获取数据。</p>
-<p>特殊方法的调用时隐式的，例如<code>for i in x:</code>就隐式的调用了iter(x).</p>
-<p>代码中不应该有很多对特殊方法的直接调用，除非你在进行元编程。</p>
-<p>Example 1-2</p>
-<p><code>__repr__</code>与<code>__str__</code>方法类似，但是在打印一个实例的信息时会调用<code>__repr</code>方法。如果没有重写该方法console会显示类似<code>&lt;Vector object at 0x10e100070&gt;</code>的信息。</p>
-<p><code>__str__</code>由str()函数调用，强烈建议重写<code>__repr__</code>如果没有<code>__str__</code>则会调用<code>__repr__</code>.</p>
-<p><code>bool()</code>调用<code>__bool__</code>的结果，如果没有实现<code>__bool__</code>那么会调用<code>__len__</code>如果长度为0则返回<code>False</code>.</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/Others/AnomalyDetectionViaRobust/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/academia/Others/AnomalyDetectionViaRobust/" class="post-title-link" itemprop="url">Multi-view Anomaly Detection via Robust Probabilistic Latent Variable Models</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 01-15-2021 13:24:35" itemprop="dateCreated datePublished" datetime="2021-01-15T13:24:35+08:00">01-15-2021</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 02-04-2021 13:49:35" itemprop="dateModified" datetime="2021-02-04T13:49:35+08:00">02-04-2021</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>对于多视图的异常检测提出了概率隐变量模型。</p>
-<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>多视图的异常检测与传统的单视图的异常检测不同。单视图的异常检测发现那些与预期行为不符的实例。图1显示了在一个2个视图的数据上，一个多视图异常与一个单视图异常的不同。M是一个多视图异常，M在不同的视图上属于不同的聚类，且M的视图不连续。S是一个单视图异常，S在任何视图上与其它实例都很远。然而，视图S与其它实例有相同的关系。</p>
-<p>S不是一个多视图的异常。单视图的异常检测方法，例如SVM或是基于张量的异常检测，就认为S是异常的。另一方面我们想开发一个多视图的异常检测方法去检测M是否为异常而不是S。尽管单视图的异常不是普遍的实例，如果他们是不连续的跨了多个视图，多视图的异常检测会是主要的成分。</p>
-<p>我们针对多视图的异常检测提出了一个概率隐空间变量模型。有一个隐空间跨了所有视图。我们假设正常实例的所有视图都是用一个单一隐向量生成。另一方面，一个异常实例被假设有多个隐向量，它的不同视图使用不同的隐向量生成。</p>
-<p>每一个非多视图的两个视图的异常(?)可以由隐向量生成。另一方面，两个视图的多视图异常M不是连续的，由两个视图使用映射向量生成。</p>
-<p>对于每个实例的隐向量的数量是未知的，我们根据数据使用Dirichlet priors自动的推测。预测模型是基于EM算法。</p>
-<p>在E-step中…</p>
-<p>在M-step中…</p>
-<p>通过迭代E,M-steps我们推测每一个实例使用的隐向量，并计算它的异常分数通过使用多余一个隐向量的可能性。</p>
-<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>先生成隐向量，只要拿到隐向量，就可以通过<strong>EM算法</strong>，对类别进行判断。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/notebook/py-*args**kwargs/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/notebook/py-*args**kwargs/" class="post-title-link" itemprop="url">Python中的*arg与**kwarg</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 12-31-2020 00:46:38 / Modified: 00:54:37" itemprop="dateCreated datePublished" datetime="2020-12-31T00:46:38+08:00">12-31-2020</time>
+      <time title="Created: 01-27-2021 11:29:44 / Modified: 18:20:29" itemprop="dateCreated datePublished" datetime="2021-01-27T11:29:44+08:00">01-27-2021</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -696,15 +402,327 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="参数的规则"><a href="#参数的规则" class="headerlink" title="参数的规则"></a>参数的规则</h2><h3 id="参数的顺序1："><a href="#参数的顺序1：" class="headerlink" title="参数的顺序1："></a>参数的顺序1：</h3><p>位置参数 - <em>arg - *</em>kwarg</p>
-<p><em>arg会把多出来的位置参数转化为<code>tuple</code><br>*</em>kwarg会把关键字参数转化为<code>dict</code></p>
-<h3 id="参数的顺序2："><a href="#参数的顺序2：" class="headerlink" title="参数的顺序2："></a>参数的顺序2：</h3><p>位置参数 - * - 关键字…</p>
-<p>关键字亦看作位置参数，如果<strong>不传则会报错</strong>。</p>
-<h2 id="传参时的技巧"><a href="#传参时的技巧" class="headerlink" title="传参时的技巧"></a>传参时的技巧</h2><p>获取参数时：<br><em>可以看作是将参数打包成<code>tuple</code><br>*</em>可以看作是将参数打包成<code>dict</code></p>
-<p>传参时：<br>可以将<em>tuple解压包并传入<br>可以将*</em>dict解压包并传入</p>
-<hr>
-<p>Reference: <span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC9lMGQ0NzA1ZTgyOTM=">https://www.jianshu.com/p/e0d4705e8293<i class="fa fa-external-link-alt"></i></span></p>
+          <h1 id="QuikStart"><a href="#QuikStart" class="headerlink" title="QuikStart"></a>QuikStart</h1><h2 id="安装Hadoop"><a href="#安装Hadoop" class="headerlink" title="安装Hadoop"></a>安装Hadoop</h2><p><code>wget https://archive.apache.org/dist/hadoop/common/hadoop-3.2.2/hadoop-3.2.2.tar.gz</code></p>
+<h1 id="Hadoop操作模式"><a href="#Hadoop操作模式" class="headerlink" title="Hadoop操作模式"></a>Hadoop操作模式</h1><p>可以选择Hadoop集群以以下三个支持模式之一：</p>
+<ul>
+<li>独立/单机模式：默认情况下，被配置在一个独立的模式中运行Java程序。</li>
+<li>模拟分布式模式：这是单台机器的分布式模拟。Hadoop守护每个进程，如hdfs, yarn, MapReduce等，都将作为一个独立的Java程序运行，对开发有利。</li>
+<li>完全分布式模式：这种模式时完全分布式的最小两台或多台计算机的集群。</li>
+</ul>
+<h1 id="在单机模式下安装Hadoop"><a href="#在单机模式下安装Hadoop" class="headerlink" title="在单机模式下安装Hadoop"></a>在单机模式下安装Hadoop</h1><p>独立/单机模式适合开发期间运行MapReduce程序，容易进行测试和调试。</p>
+<p><strong>设置<code>JAVA_HOME</code>变量</strong></p>
+<p><code>export JAVA_HOME=pwd</code></p>
+<p><strong>设置Java环境变量</strong></p>
+<p><code>export PATH=$PATH:$JAVA_HOME/bin</code></p>
+<p>将Hadoop添加到环境变量</p>
+<p><code>export PATH=$PATH:/home/hadoop/bin</code></p>
+<p><strong>检验Hadoop安装</strong></p>
+<p><code>hadoop version</code></p>
+<p><strong>测试基本功能</strong></p>
+<p>编译MapReduce实例，提供了若干功能。</p>
+<p><code>hadoop jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.2.2.jar</code></p>
+<p>使用MapReduce计算单词个数</p>
+<p><code>hadoop jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.2.2.jar wordcount input output</code></p>
+<h1 id="模拟分布式模式安装Hadoop"><a href="#模拟分布式模式安装Hadoop" class="headerlink" title="模拟分布式模式安装Hadoop"></a>模拟分布式模式安装Hadoop</h1><p>在伪分布式模式下安装Hadoop</p>
+<h2 id="设置Hadoop"><a href="#设置Hadoop" class="headerlink" title="设置Hadoop"></a>设置Hadoop</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">export HADOOP_HOME=/usr/local/hadoop </span><br><span class="line">export HADOOP_MAPRED_HOME=$HADOOP_HOME </span><br><span class="line">export HADOOP_COMMON_HOME=$HADOOP_HOME </span><br><span class="line">export HADOOP_HDFS_HOME=$HADOOP_HOME </span><br><span class="line">export YARN_HOME=$HADOOP_HOME </span><br><span class="line">export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native </span><br><span class="line">export PATH=$PATH:$HADOOP_HOME/sbin:$HADOOP_HOME/bin </span><br><span class="line">export HADOOP_INSTALL=$HADOOP_HOME</span><br></pre></td></tr></table></figure>
 
+<p>提交</p>
+<p><code>source ~/.bashrc</code></p>
+<h2 id="Hadoop配置-TODO-配置文件的意义"><a href="#Hadoop配置-TODO-配置文件的意义" class="headerlink" title="Hadoop配置  TODO 配置文件的意义"></a>Hadoop配置  TODO 配置文件的意义</h2><p>core-site.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">name</span>&gt;</span>fs.default.name <span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">value</span>&gt;</span> hdfs://localhost:9000 <span class="tag">&lt;/<span class="name">value</span>&gt;</span> </span><br><span class="line">   <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"> </span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>hdfs-site.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.replication<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">value</span>&gt;</span>1<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">   <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.name.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">value</span>&gt;</span>file:///home/hadoop/hadoopinfra/hdfs/namenode <span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">   <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.data.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span> </span><br><span class="line">      <span class="tag">&lt;<span class="name">value</span>&gt;</span>file:///home/hadoop/hadoopinfra/hdfs/datanode <span class="tag">&lt;/<span class="name">value</span>&gt;</span> </span><br><span class="line">   <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">       </span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>yarn-site.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"> </span><br><span class="line">   <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.nodemanager.aux-services<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">value</span>&gt;</span>mapreduce_shuffle<span class="tag">&lt;/<span class="name">value</span>&gt;</span> </span><br><span class="line">   <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">  </span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>mapred-site.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"> </span><br><span class="line">   <span class="tag">&lt;<span class="name">property</span>&gt;</span> </span><br><span class="line">      <span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.framework.name<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">value</span>&gt;</span>yarn<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">   </span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="验证安装-TODO-指令含义"><a href="#验证安装-TODO-指令含义" class="headerlink" title="验证安装  TODO 指令含义"></a>验证安装  TODO 指令含义</h2><ol>
+<li>名称节点设置</li>
+</ol>
+<p><code>hdfs name -format</code></p>
+<ol start="2">
+<li>验证DFS</li>
+</ol>
+<p><code>start-dfs.sh</code></p>
+<ol start="3">
+<li>验证Yarn</li>
+</ol>
+<p><code>start-yarn.sh</code></p>
+<p><strong>注意</strong></p>
+<ol>
+<li>报错<code>ERROR: Attempting to operate on hdfs namenode as root</code></li>
+</ol>
+<p>在<code>start-dfs.sh</code>, <code>stop-dfs.sh</code>文件添加</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">HDFS_DATANODE_USER=root</span><br><span class="line">HADOOP_SECURE_DN_USER=hdfs</span><br><span class="line">HDFS_NAMENODE_USER=root</span><br><span class="line">HDFS_SECONDARYNAMENODE_USER=root</span><br></pre></td></tr></table></figure>
+
+<p>在<code>start-yarn.sh</code>, <code>stop-yarn.sh</code>文件添加</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">YARN_RESOURCEMANAGER_USER=root</span><br><span class="line">HADOOP_SECURE_DN_USER=yarn</span><br><span class="line">YARN_NODEMANAGER_USER=root</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>报错<code>Permission denied (publickey,gssapi-keyex,gssapi-with-mic,password).</code></li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br><span class="line">ssh-copy-id -i ~/.ssh/id_rsa.pub root@Ali-Edlison-Server01</span><br></pre></td></tr></table></figure>
+
+<h2 id="浏览器访问Hadoop-TODO-端口对应含义"><a href="#浏览器访问Hadoop-TODO-端口对应含义" class="headerlink" title="浏览器访问Hadoop  TODO 端口对应含义"></a>浏览器访问Hadoop  TODO 端口对应含义</h2><p>访问集群信息</p>
+<p><code>http://ip:8042/</code></p>
+<hr>
+<p>References</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cueWlpYmFpLmNvbS9oYWRvb3AvaGFkb29wX2Vudmlvcm5tZW50X3NldHVwLmh0bWw=">https://www.yiibai.com/hadoop/hadoop_enviornment_setup.html<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vd29vZndvb2YvcC8xMDAyNDEwNC5odG1s">https://www.cnblogs.com/woofwoof/p/10024104.html<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/java/design/abstractfactory/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/java/design/abstractfactory/" class="post-title-link" itemprop="url">AbstractFactory抽象工厂模式</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 01-26-2021 14:57:30" itemprop="dateCreated datePublished" datetime="2021-01-26T14:57:30+08:00">01-26-2021</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 01-28-2021 18:12:00" itemprop="dateModified" datetime="2021-01-28T18:12:00+08:00">01-28-2021</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="项目架构"><a href="#项目架构" class="headerlink" title="项目架构"></a>项目架构</h1><p><strong>抽象产品</strong></p>
+<p>每一种产品都有一个产品的声明接口。</p>
+<p><strong>具体产品</strong></p>
+<p>每一个产品下有不同类型的实现，每一个产品都实现对应的产品接口。</p>
+<p><strong>抽象工厂</strong></p>
+<p>用于创建所有产品的声明接口。</p>
+<p><strong>具体工厂</strong></p>
+<p>具体的工厂对应产生具体的产品，用于创建这种产品。</p>
+<p><strong>客户端类</strong></p>
+<p>抽象工厂作为数据成员，其中可以执行各种抽象工厂定义的方法，及各种客户端需要处理的业务。</p>
+<p><strong>运行类</strong></p>
+<p>首先需要准备配置（具体工厂类），在配置文件中根据当前的需求实例话对应的具体工厂。</p>
+<p>在运行时实例化客户端类，并对其传入配置文件（具体工厂类）。</p>
+<p>此时客户端就可以根据当前的实际情况运行。</p>
+<hr>
+<p>Reference</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9yZWZhY3RvcmluZ2d1cnUuY24vZGVzaWduLXBhdHRlcm5zL2Fic3RyYWN0LWZhY3Rvcnk=">https://refactoringguru.cn/design-patterns/abstract-factory<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/linux/linux-nohup/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/linux/linux-nohup/" class="post-title-link" itemprop="url">Linux中的nohup</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 01-26-2021 09:53:14 / Modified: 09:59:40" itemprop="dateCreated datePublished" datetime="2021-01-26T09:53:14+08:00">01-26-2021</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="nohup输出到指定文件"><a href="#nohup输出到指定文件" class="headerlink" title="nohup输出到指定文件"></a>nohup输出到指定文件</h1><p>输出到默认文件<code>nohup.out</code></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup python train.py&amp;</span><br></pre></td></tr></table></figure>
+
+<p>输出到指定文件</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup python train.py&amp;&gt; train.out&amp;</span><br></pre></td></tr></table></figure>
+
+<h1 id="实时监控输出内容"><a href="#实时监控输出内容" class="headerlink" title="实时监控输出内容"></a>实时监控输出内容</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tail -f nohup.out</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="查看程序进程"><a href="#查看程序进程" class="headerlink" title="查看程序进程"></a>查看程序进程</h1><p><code>ps</code>显示当前进程状态，及其启动时的命令行参数</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | grep cmd</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/notebook/websocket-start/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/notebook/websocket-start/" class="post-title-link" itemprop="url">websocket入门</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 01-22-2021 15:26:15 / Modified: 18:03:39" itemprop="dateCreated datePublished" datetime="2021-01-22T15:26:15+08:00">01-22-2021</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id=""><a href="#" class="headerlink" title=""></a></h1>
       
     </div>
 
@@ -725,7 +743,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/46/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/46/">46</a><span class="page-number current">47</span><a class="page-number" href="/page/48/">48</a><span class="space">&hellip;</span><a class="page-number" href="/page/64/">64</a><a class="extend next" rel="next" href="/page/48/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/46/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/46/">46</a><span class="page-number current">47</span><a class="page-number" href="/page/48/">48</a><span class="space">&hellip;</span><a class="page-number" href="/page/66/">66</a><a class="extend next" rel="next" href="/page/48/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
