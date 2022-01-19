@@ -23,12 +23,12 @@
     var CONFIG = {"hostname":"blog.edlison.com","root":"/","images":"/images","scheme":"Muse","version":"8.0.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
   </script>
 
-  <meta name="description" content="Intro现在很多方法都在试图改进循环模型与Encoder-Decoder模型. 循环模型有一个致命的缺点就是无法并行, 在长序列中劣势更为明显. Attention使得模型不用在意输入与输出序列之间的距离, 在这种架构下我们可以获得一个全局的依赖. Background现在的模型都有这个问题, 就是距离越远就越难获得它的依赖. Self-attention, intra-attention是同一">
+  <meta name="description" content="Intro现在很多方法都在试图改进循环模型与Encoder-Decoder模型. 循环模型有一个致命的缺点就是无法并行, 在长序列中劣势更为明显. Attention使得模型不用在意输入与输出序列之间的距离, 在这种架构下我们可以获得一个全局的依赖.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Paper | Attention">
 <meta property="og:url" content="https://blog.edlison.com/academia/attention/index.html">
 <meta property="og:site_name" content="Edlison is talking here.">
-<meta property="og:description" content="Intro现在很多方法都在试图改进循环模型与Encoder-Decoder模型. 循环模型有一个致命的缺点就是无法并行, 在长序列中劣势更为明显. Attention使得模型不用在意输入与输出序列之间的距离, 在这种架构下我们可以获得一个全局的依赖. Background现在的模型都有这个问题, 就是距离越远就越难获得它的依赖. Self-attention, intra-attention是同一">
+<meta property="og:description" content="Intro现在很多方法都在试图改进循环模型与Encoder-Decoder模型. 循环模型有一个致命的缺点就是无法并行, 在长序列中劣势更为明显. Attention使得模型不用在意输入与输出序列之间的距离, 在这种架构下我们可以获得一个全局的依赖.">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://s2.loli.net/2022/01/18/zH1I6UhNDwgbmiL.png">
 <meta property="og:image" content="https://s2.loli.net/2022/01/18/XUJkjF59NGWMDuc.png">
@@ -36,7 +36,7 @@
 <meta property="og:image" content="https://blogimg-1304875656.cos.ap-hongkong.myqcloud.com//20220118214436.png">
 <meta property="og:image" content="https://blogimg-1304875656.cos.ap-hongkong.myqcloud.com//20220118221725.png">
 <meta property="article:published_time" content="2022-01-18T11:51:07.955Z">
-<meta property="article:modified_time" content="2022-01-19T12:08:43.911Z">
+<meta property="article:modified_time" content="2022-01-19T19:11:33.494Z">
 <meta property="article:author" content="Bolin Shen">
 <meta property="article:tag" content="attention">
 <meta name="twitter:card" content="summary">
@@ -208,7 +208,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">330</span>
+          <span class="site-state-item-count">331</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -301,7 +301,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 01-19-2022 20:08:43" itemprop="dateModified" datetime="2022-01-19T20:08:43+08:00">01-19-2022</time>
+        <time title="Modified: 01-20-2022 03:11:33" itemprop="dateModified" datetime="2022-01-20T03:11:33+08:00">01-20-2022</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -332,6 +332,8 @@
     <div class="post-body" itemprop="articleBody">
         <h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p>现在很多方法都在试图改进循环模型与Encoder-Decoder模型. 循环模型有一个致命的缺点就是无法并行, 在长序列中劣势更为明显.</p>
 <p>Attention使得模型不用在意输入与输出序列之间的距离, 在这种架构下我们可以获得一个全局的依赖.</p>
+<a id="more"></a>
+
 <h1 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h1><p>现在的模型都有这个问题, 就是距离越远就越难获得它的依赖. Self-attention, intra-attention是同一意思注意力机制, 根据一个序列不同位置来计算整个序列的表示.</p>
 <h1 id="Model-Architecture"><a href="#Model-Architecture" class="headerlink" title="Model Architecture"></a>Model Architecture</h1><p>Encoder将符号序列映射为一个连续的序列表示, 然后Decoder用这个z再转换为符号序列表示.</p>
 <p><img src="https://s2.loli.net/2022/01/18/zH1I6UhNDwgbmiL.png" alt=""></p>

@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">330</span>
+          <span class="site-state-item-count">331</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -256,6 +256,72 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/docker/docker-gitlab/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/docker/docker-gitlab/" class="post-title-link" itemprop="url">dev/docker/docker-gitlab</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 07-14-2020 23:31:04" itemprop="dateCreated datePublished" datetime="2020-07-14T23:31:04+08:00">07-14-2020</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Docker-GitLab"><a href="#Docker-GitLab" class="headerlink" title="Docker-GitLab"></a>Docker-GitLab</h1><h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>若容器端口号设置为80，如果你这时修改external_url地址为<span class="exturl" data-url="aHR0cDovL2lwOjgwODA=">http://ip:8080<i class="fa fa-external-link-alt"></i></span>.<br>那GitLab肯定访问不了，因为已经将内部的端口号修改为8080端口了，而映射的是容器的80端口。</p>
+<h2 id="故一定要将容器内部端口号与宿主机端口号映射一致！！！"><a href="#故一定要将容器内部端口号与宿主机端口号映射一致！！！" class="headerlink" title="故一定要将容器内部端口号与宿主机端口号映射一致！！！"></a>故一定要将容器内部端口号与宿主机端口号映射一致！！！</h2><p>external_utl ‘<span class="exturl" data-url="aHR0cDovLzExOS4yMy4xMDcuNjE6MTMwMDAmIzM5Ow==">http://119.23.107.61:13000&#39;<i class="fa fa-external-link-alt"></i></span><br>ports:<br>      - “13000:13000”</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3'</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">gitlab:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">gitlab/gitlab-ce</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">TZ:</span> <span class="string">"Asia/Shanghai"</span></span><br><span class="line">      <span class="attr">GITLAB_OMNIBUS_CONFIG:</span> <span class="string">|</span></span><br><span class="line">        <span class="string">external_url</span> <span class="string">'http://119.23.107.61:13000'</span> <span class="string">//</span> <span class="string">好像需要手动改</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">~/docker_gitlab/config:/etc/gitlab</span> </span><br><span class="line">      <span class="bullet">-</span> <span class="string">~/docker_gitlab/logs:/var/log/gitlab</span> </span><br><span class="line">      <span class="bullet">-</span> <span class="string">~/docker_gitlab/data:/var/opt/gitlab</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">"13000:13000"</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">"13443:443"</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">"13022:22"</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -621,268 +687,10 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/ml/KNN-%E6%89%8B%E5%86%99%E4%BD%93%E6%95%B0%E5%AD%97%E6%95%B0%E6%8D%AE%E9%9B%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/ml/KNN-%E6%89%8B%E5%86%99%E4%BD%93%E6%95%B0%E5%AD%97%E6%95%B0%E6%8D%AE%E9%9B%86/" class="post-title-link" itemprop="url">dev/ml/KNN-手写体数字数据集</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 05-17-2020 16:37:20 / Modified: 16:38:09" itemprop="dateCreated datePublished" datetime="2020-05-17T16:37:20+08:00">05-17-2020</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="KNN-手写体数字数据集"><a href="#KNN-手写体数字数据集" class="headerlink" title="KNN-手写体数字数据集"></a>KNN-手写体数字数据集</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> datasets</span><br><span class="line"><span class="keyword">from</span> sklearn.neighbors <span class="keyword">import</span> KNeighborsClassifier</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">digits = datasets.load_digits()</span><br><span class="line">X = digits.data</span><br><span class="line">X.shape</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>(1797, 64)</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">y = digits.target</span><br><span class="line">y.shape</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>(1797,)</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">one = X[<span class="number">100</span>]</span><br><span class="line">one = one.reshape(<span class="number">8</span>, <span class="number">8</span>)</span><br><span class="line">one</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>array([[ 0.,  0.,  0.,  2., 13.,  0.,  0.,  0.],
-       [ 0.,  0.,  0.,  8., 15.,  0.,  0.,  0.],
-       [ 0.,  0.,  5., 16.,  5.,  2.,  0.,  0.],
-       [ 0.,  0., 15., 12.,  1., 16.,  4.,  0.],
-       [ 0.,  4., 16.,  2.,  9., 16.,  8.,  0.],
-       [ 0.,  0., 10., 14., 16., 16.,  4.,  0.],
-       [ 0.,  0.,  0.,  0., 13.,  8.,  0.,  0.],
-       [ 0.,  0.,  0.,  0., 13.,  6.,  0.,  0.]])</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plt.imshow(one)</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&lt;matplotlib.image.AxesImage at 0x1a203a9ad0&gt;</code></pre><p><img src="data/output_5_1.png" alt="png"></p>
-<h1 id="分离训练测试集"><a href="#分离训练测试集" class="headerlink" title="分离训练测试集"></a>分离训练测试集</h1><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line">train_test_split?</span><br></pre></td></tr></table></figure>
-
-
-<pre><code>[0;31mSignature:[0m [0mtrain_test_split[0m[0;34m([0m[0;34m*[0m[0marrays[0m[0;34m,[0m [0;34m**[0m[0moptions[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0;31mDocstring:[0m
-Split arrays or matrices into random train and test subsets
-
-Quick utility that wraps input validation and
-``next(ShuffleSplit().split(X, y))`` and application to input data
-into a single call for splitting (and optionally subsampling) data in a
-oneliner.
-
-Read more in the :ref:`User Guide &lt;cross_validation&gt;`.
-
-Parameters
-----------
-*arrays : sequence of indexables with same length / shape[0]
-    Allowed inputs are lists, numpy arrays, scipy-sparse
-    matrices or pandas dataframes.
-
-test_size : float, int or None, optional (default=None)
-    If float, should be between 0.0 and 1.0 and represent the proportion
-    of the dataset to include in the test split. If int, represents the
-    absolute number of test samples. If None, the value is set to the
-    complement of the train size. If ``train_size`` is also None, it will
-    be set to 0.25.
-
-train_size : float, int, or None, (default=None)
-    If float, should be between 0.0 and 1.0 and represent the
-    proportion of the dataset to include in the train split. If
-    int, represents the absolute number of train samples. If None,
-    the value is automatically set to the complement of the test size.
-
-random_state : int, RandomState instance or None, optional (default=None)
-    If int, random_state is the seed used by the random number generator;
-    If RandomState instance, random_state is the random number generator;
-    If None, the random number generator is the RandomState instance used
-    by `np.random`.
-
-shuffle : boolean, optional (default=True)
-    Whether or not to shuffle the data before splitting. If shuffle=False
-    then stratify must be None.
-
-stratify : array-like or None (default=None)
-    If not None, data is split in a stratified fashion, using this as
-    the class labels.
-
-Returns
--------
-splitting : list, length=2 * len(arrays)
-    List containing train-test split of inputs.
-
-    .. versionadded:: 0.16
-        If the input is sparse, the output will be a
-        ``scipy.sparse.csr_matrix``. Else, output type is the same as the
-        input type.
-
-Examples
---------
-&gt;&gt;&gt; import numpy as np
-&gt;&gt;&gt; from sklearn.model_selection import train_test_split
-&gt;&gt;&gt; X, y = np.arange(10).reshape((5, 2)), range(5)
-&gt;&gt;&gt; X
-array([[0, 1],
-       [2, 3],
-       [4, 5],
-       [6, 7],
-       [8, 9]])
-&gt;&gt;&gt; list(y)
-[0, 1, 2, 3, 4]
-
-&gt;&gt;&gt; X_train, X_test, y_train, y_test = train_test_split(
-...     X, y, test_size=0.33, random_state=42)
-...
-&gt;&gt;&gt; X_train
-array([[4, 5],
-       [0, 1],
-       [6, 7]])
-&gt;&gt;&gt; y_train
-[2, 0, 3]
-&gt;&gt;&gt; X_test
-array([[2, 3],
-       [8, 9]])
-&gt;&gt;&gt; y_test
-[1, 4]
-
-&gt;&gt;&gt; train_test_split(y, shuffle=False)
-[[0, 1, 2], [3, 4]]
-[0;31mFile:[0m      /Applications/anaconda3/lib/python3.7/site-packages/sklearn/model_selection/_split.py
-[0;31mType:[0m      function</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=<span class="number">0.2</span>)</span><br><span class="line">print(X_train.shape)</span><br><span class="line">print(y_train.shape)</span><br><span class="line">print(X_test.shape)</span><br><span class="line">print(y_test.shape)</span><br></pre></td></tr></table></figure>
-
-<pre><code>(1437, 64)
-(1437,)
-(360, 64)
-(360,)</code></pre><h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">KNNClf = KNeighborsClassifier(n_neighbors=<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">KNNClf.fit(X_train, y_train)</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>KNeighborsClassifier(algorithm=&apos;auto&apos;, leaf_size=30, metric=&apos;minkowski&apos;,
-                     metric_params=None, n_jobs=None, n_neighbors=3, p=2,
-                     weights=&apos;uniform&apos;)</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">res = KNNClf.predict(X_test)</span><br><span class="line">res</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>array([3, 4, 8, 5, 5, 7, 0, 3, 1, 4, 7, 5, 5, 8, 0, 7, 4, 7, 1, 7, 9, 4,
-       4, 7, 6, 1, 2, 9, 1, 3, 3, 3, 7, 0, 7, 0, 2, 8, 9, 1, 1, 5, 4, 8,
-       9, 0, 4, 9, 4, 9, 7, 2, 7, 3, 3, 4, 1, 9, 9, 9, 0, 4, 0, 6, 1, 0,
-       0, 3, 6, 2, 3, 2, 8, 5, 9, 3, 1, 1, 6, 9, 8, 1, 2, 3, 2, 6, 8, 8,
-       4, 6, 8, 6, 3, 9, 2, 8, 3, 6, 5, 7, 1, 7, 3, 8, 8, 8, 0, 0, 9, 1,
-       9, 8, 5, 1, 1, 0, 1, 6, 5, 1, 7, 6, 5, 7, 7, 2, 2, 7, 3, 1, 9, 5,
-       9, 5, 5, 3, 8, 4, 9, 5, 4, 6, 0, 5, 4, 8, 6, 1, 2, 8, 0, 9, 0, 9,
-       7, 9, 7, 0, 2, 8, 2, 4, 0, 6, 2, 6, 7, 5, 6, 3, 8, 8, 0, 3, 2, 0,
-       6, 1, 0, 6, 0, 5, 9, 3, 3, 0, 4, 0, 4, 2, 4, 9, 0, 6, 7, 4, 6, 5,
-       9, 7, 2, 2, 3, 3, 0, 3, 9, 4, 9, 8, 5, 6, 9, 0, 1, 3, 5, 0, 5, 1,
-       6, 4, 6, 6, 6, 7, 9, 1, 0, 7, 6, 6, 7, 8, 0, 3, 8, 5, 6, 8, 1, 3,
-       0, 3, 6, 0, 3, 5, 6, 7, 0, 6, 9, 7, 0, 0, 2, 1, 6, 6, 9, 1, 6, 9,
-       8, 7, 0, 2, 5, 1, 8, 6, 4, 3, 8, 2, 9, 2, 8, 4, 6, 4, 8, 9, 3, 1,
-       1, 5, 0, 7, 8, 2, 3, 8, 4, 7, 7, 7, 7, 9, 4, 1, 7, 0, 2, 9, 1, 8,
-       2, 4, 1, 0, 7, 5, 6, 0, 7, 1, 1, 5, 7, 1, 1, 6, 5, 6, 2, 2, 3, 9,
-       7, 5, 3, 1, 5, 9, 9, 2, 5, 1, 6, 8, 2, 2, 4, 2, 1, 0, 6, 1, 2, 9,
-       7, 5, 3, 5, 6, 1, 8, 1])</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">y_test</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>array([3, 4, 8, 5, 5, 7, 0, 3, 1, 4, 7, 5, 5, 8, 0, 7, 4, 7, 1, 7, 9, 4,
-       4, 7, 6, 1, 2, 9, 1, 3, 3, 3, 7, 0, 7, 0, 2, 8, 9, 1, 1, 5, 4, 8,
-       9, 0, 4, 9, 4, 9, 7, 2, 7, 8, 3, 4, 1, 9, 9, 9, 0, 4, 0, 6, 1, 0,
-       0, 3, 6, 2, 3, 2, 8, 5, 9, 3, 1, 1, 6, 9, 8, 1, 2, 3, 2, 6, 8, 8,
-       4, 6, 8, 6, 3, 9, 2, 8, 3, 6, 5, 7, 1, 7, 9, 8, 8, 8, 0, 0, 9, 1,
-       4, 8, 5, 1, 1, 0, 1, 6, 5, 1, 7, 6, 5, 7, 7, 2, 2, 7, 3, 1, 9, 5,
-       9, 5, 5, 3, 8, 4, 9, 5, 4, 6, 0, 5, 4, 8, 6, 1, 2, 8, 0, 9, 0, 9,
-       7, 9, 7, 0, 2, 8, 2, 4, 0, 6, 2, 6, 7, 5, 6, 3, 8, 8, 0, 3, 2, 0,
-       6, 1, 0, 6, 0, 5, 9, 3, 3, 0, 4, 0, 4, 2, 4, 9, 0, 6, 7, 4, 6, 5,
-       9, 7, 2, 2, 3, 3, 0, 3, 9, 4, 9, 8, 5, 6, 9, 0, 1, 3, 5, 0, 5, 1,
-       6, 4, 6, 6, 6, 7, 9, 1, 0, 7, 6, 6, 7, 8, 0, 3, 8, 5, 6, 8, 1, 3,
-       0, 3, 6, 0, 3, 5, 6, 7, 0, 6, 9, 7, 0, 0, 2, 1, 6, 6, 9, 1, 6, 9,
-       8, 7, 0, 2, 5, 1, 8, 6, 4, 3, 8, 2, 9, 2, 8, 4, 6, 4, 8, 9, 3, 1,
-       1, 5, 0, 7, 8, 2, 3, 8, 4, 7, 7, 7, 7, 7, 4, 1, 3, 0, 2, 9, 1, 8,
-       2, 4, 1, 0, 7, 5, 6, 0, 7, 1, 1, 5, 7, 1, 1, 6, 5, 6, 2, 2, 3, 9,
-       7, 5, 3, 1, 5, 9, 9, 2, 5, 1, 6, 8, 2, 2, 4, 2, 1, 0, 6, 1, 2, 9,
-       7, 5, 3, 5, 6, 1, 8, 8])</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">num = sum(res == y_test)</span><br><span class="line">num</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>354</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">'accuracy '</span>, num / len(y_test))</span><br></pre></td></tr></table></figure>
-
-<pre><code>accuracy  0.9833333333333333</code></pre><h4 id="使用sklearn中封装的计算精确度的方法"><a href="#使用sklearn中封装的计算精确度的方法" class="headerlink" title="使用sklearn中封装的计算精确度的方法"></a>使用sklearn中封装的计算精确度的方法</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> accuracy_score <span class="keyword">as</span> accuracy</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">accuracy(res, y_test)</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>0.9833333333333333</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/54/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/54/">54</a><span class="page-number current">55</span><a class="page-number" href="/page/56/">56</a><span class="space">&hellip;</span><a class="page-number" href="/page/66/">66</a><a class="extend next" rel="next" href="/page/56/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/54/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/54/">54</a><span class="page-number current">55</span><a class="page-number" href="/page/56/">56</a><span class="space">&hellip;</span><a class="page-number" href="/page/67/">67</a><a class="extend next" rel="next" href="/page/56/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
