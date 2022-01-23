@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">333</span>
+          <span class="site-state-item-count">334</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -256,6 +256,114 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/Others/Attention/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/academia/Others/Attention/" class="post-title-link" itemprop="url">Attention Is All You Need</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 09-13-2020 20:32:41" itemprop="dateCreated datePublished" datetime="2020-09-13T20:32:41+08:00">09-13-2020</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 02-04-2021 13:49:28" itemprop="dateModified" datetime="2021-02-04T13:49:28+08:00">02-04-2021</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Attention-Is-All-You-Need"><a href="#Attention-Is-All-You-Need" class="headerlink" title="Attention Is All You Need"></a>Attention Is All You Need</h1><h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>我们提出一种全新的简洁的网络架构–Transfomer，它完全基于Attention机制，舍弃了循环与卷积。</p>
+<h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1 Introduction"></a>1 Introduction</h2><p>Transformer的并行性很好的解决了RNN模型的序列化输入输出。</p>
+<h2 id="2-Background"><a href="#2-Background" class="headerlink" title="2 Background"></a>2 Background</h2><h2 id="3-Model-Architecture"><a href="#3-Model-Architecture" class="headerlink" title="3 Model Architecture"></a>3 Model Architecture</h2><p>大部分序列神经网络模型都具有encoder-decoder结构。</p>
+<h3 id="3-1-Encoder-and-Decoder-Stacks"><a href="#3-1-Encoder-and-Decoder-Stacks" class="headerlink" title="3.1 Encoder and Decoder Stacks"></a>3.1 Encoder and Decoder Stacks</h3><p>encoder由6个相同的层构成，每一层有两个子层。第一个是一个多Attention机制，第二个是一个简单的全连接feed-forward网络。两个子层中间部署一个参差网络，后接一个正则化。</p>
+<p>decoder也是由6个相同的层构成。除了两个子层外中间还加入了一个第三子层Multi-head Attention.</p>
+<h3 id="3-2-Attention"><a href="#3-2-Attention" class="headerlink" title="3.2 Attention"></a>3.2 Attention</h3><p>Attention的核心内容是为输入向量的每个单词(512d)学习一个权重。在self-attention中，每个单词有3个不同的向量，Query，Key，Value，长度均是64. 他们通过3个不同的权值矩阵由嵌入向量X乘以三个不同的权值矩阵WQ，WK，WV(512 * 64)得到。</p>
+<p>Attention计算步骤：</p>
+<ul>
+<li>将输入单词转换成词向量</li>
+<li>根据词向量得到q, k, v三个向量</li>
+<li>为每个向量计算一个score: score = q * kT</li>
+<li>为了梯度的稳定，Transformer使用了score归一化，即除以根号dk</li>
+<li>对score过一遍softmax函数</li>
+<li>softmax点乘value得到每个输入向量的评分v</li>
+<li>想家之后得到最终的输出结果z=∑v</li>
+</ul>
+<h3 id="3-3-Multi-Head-Attention"><a href="#3-3-Multi-Head-Attention" class="headerlink" title="3.3 Multi-Head Attention"></a>3.3 Multi-Head Attention</h3><p>Multi-Head Attention相当于h个不同的self-attention的集成。</p>
+<p>Multi-Head输出分三步</p>
+<ul>
+<li>将X分别输入到8个self-attention中得到8个加权后的特征矩阵Z</li>
+<li>将8个Z按列拼接成一个大的特征矩阵</li>
+<li>将特征矩阵经过一层fc后得到输出Z</li>
+</ul>
+<h3 id="3-4-损失层"><a href="#3-4-损失层" class="headerlink" title="3.4 损失层"></a>3.4 损失层</h3><p>解码器解码后，解码的特征向量通过一层激活函数为softmax的全连接层之后得到反应每个单词概率的输出向量。此时通过CTC等损失函数训练模型。</p>
+<h2 id="4-位置编码"><a href="#4-位置编码" class="headerlink" title="4 位置编码"></a>4 位置编码</h2><p>Transfomer无法捕捉循序序列的能力。论文在编码词向量时引入了位置编码的特征，位置编码会在词向量中加入单词的位置信息。</p>
+<p>在上式中， [公式] 表示单词的位置， [公式] 表示单词的维度。关于位置编码的实现可在Google开源的算法中get_timing_signal_1d()函数找到对应的代码。</p>
+<p>作者这么设计的原因是考虑到在NLP任务重，除了单词的绝对位置，单词的相对位置也非常重要。根据公式 [公式] 以及[公式] ，这表明位置 [公式] 的位置向量可以表示为位置 [公式] 的特征向量的线性变化，这为模型捕捉单词之间的相对位置关系提供了非常大的便利。</p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>位置编码对词袋模型等具有普适性？<br>encoder/decoder通过self-attention层所得到的向量即理解为加密/解密？<br>得到最后的Z之后怎么用？</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -806,77 +914,6 @@
     
     <div class="post-body" itemprop="articleBody">
           <h1 id="Docker-NextCloud"><a href="#Docker-NextCloud" class="headerlink" title="Docker-NextCloud"></a>Docker-NextCloud</h1><h2 id="docker-compose-yml"><a href="#docker-compose-yml" class="headerlink" title="docker-compose.yml"></a>docker-compose.yml</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">version: &#39;3&#39;</span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line">  nextcloud:</span><br><span class="line">    image: nextcloud</span><br><span class="line">    restart: &quot;no&quot;</span><br><span class="line">    volumes:</span><br><span class="line">      - ~&#x2F;docker_nextcloud&#x2F;data&#x2F;:&#x2F;var&#x2F;www&#x2F;html</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;25000:80&quot;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/notebook/grpc/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/notebook/grpc/" class="post-title-link" itemprop="url">dev/notebook/grpc</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 07-14-2020 23:31:04" itemprop="dateCreated datePublished" datetime="2020-07-14T23:31:04+08:00">07-14-2020</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="gRPC入门"><a href="#gRPC入门" class="headerlink" title="gRPC入门"></a>gRPC入门</h1><h2 id="下载依赖"><a href="#下载依赖" class="headerlink" title="下载依赖"></a>下载依赖</h2><p><code>pip install grpc</code><br><code>pip install proto</code><br><code>pip install grpc-tools</code>  </p>
-<h2 id="设置接口"><a href="#设置接口" class="headerlink" title="设置接口"></a>设置接口</h2><p>在.proto文件中定义接口</p>
-<h2 id="生成文件"><a href="#生成文件" class="headerlink" title="生成文件"></a>生成文件</h2><p><code>python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. api.proto</code></p>
-<h2 id="proto示例"><a href="#proto示例" class="headerlink" title="proto示例"></a>proto示例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">syntax &#x3D; &quot;proto3&quot;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; The greeting service definition.</span><br><span class="line">service Greeter &#123;</span><br><span class="line">  &#x2F;&#x2F; Sends a greeting</span><br><span class="line">  rpc SayHello (HelloRequest) returns (HelloReply) &#123;&#125;</span><br><span class="line">  &#x2F;&#x2F; Sends another greeting</span><br><span class="line">  rpc SayHelloAgain (HelloRequest) returns (HelloReply) &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; The request message containing the user&#39;s name.</span><br><span class="line">message HelloRequest &#123;</span><br><span class="line">  string name &#x3D; 1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; The response message containing the greetings</span><br><span class="line">message HelloReply &#123;</span><br><span class="line">  string message &#x3D; 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="server示例"><a href="#server示例" class="headerlink" title="server示例"></a>server示例</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Greeter</span><span class="params">(api_pb2_grpc.GreeterServicer)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">SayHello</span><span class="params">(self, request, context)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> api_pb2.HelloReply(message=<span class="string">'Hello, %s!'</span> % request.name)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">SayHelloAgain</span><span class="params">(self, request, context)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> api_pb2.HelloReply(message=<span class="string">'Hello again, %s!'</span> % request.name)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">serve</span><span class="params">()</span>:</span></span><br><span class="line">    server = grpc.server(futures.ThreadPoolExecutor(max_workers=<span class="number">4</span>))</span><br><span class="line">    api_pb2_grpc.add_GreeterServicer_to_server(Greeter(), server)</span><br><span class="line">    server.add_insecure_port(<span class="string">'localhost:50051'</span>)</span><br><span class="line">    server.start()</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            time.sleep(<span class="number">60</span> * <span class="number">60</span> * <span class="number">24</span>)</span><br><span class="line">    <span class="keyword">except</span> KeyboardInterrupt:</span><br><span class="line">        server.stop(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    serve()</span><br></pre></td></tr></table></figure>
-
-<h2 id="client示例"><a href="#client示例" class="headerlink" title="client示例"></a>client示例</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">()</span>:</span></span><br><span class="line">  channel = grpc.insecure_channel(<span class="string">'localhost:50051'</span>)</span><br><span class="line">  stub = api_pb2_grpc.GreeterStub(channel)</span><br><span class="line">  response = stub.SayHello(api_pb2.HelloRequest(name=<span class="string">'you'</span>))</span><br><span class="line">  print(<span class="string">"Greeter client received: "</span> + response.message)</span><br><span class="line">  response = stub.SayHelloAgain(api_pb2.HelloRequest(name=<span class="string">'you'</span>))</span><br><span class="line">  print(<span class="string">"Greeter client received: "</span> + response.message)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    run()</span><br></pre></td></tr></table></figure>
       
     </div>
 

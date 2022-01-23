@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">333</span>
+          <span class="site-state-item-count">334</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -256,6 +256,88 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/docker/docker-anaconda/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/docker/docker-anaconda/" class="post-title-link" itemprop="url">dev/docker/docker-anaconda</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 07-14-2020 23:31:04" itemprop="dateCreated datePublished" datetime="2020-07-14T23:31:04+08:00">07-14-2020</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="使用Docker配置Anaconda环境运行Jupyter"><a href="#使用Docker配置Anaconda环境运行Jupyter" class="headerlink" title="使用Docker配置Anaconda环境运行Jupyter"></a>使用Docker配置Anaconda环境运行Jupyter</h1><h2 id="配置Anaconda环境"><a href="#配置Anaconda环境" class="headerlink" title="配置Anaconda环境"></a>配置Anaconda环境</h2><p><strong>挂载</strong></p>
+<ul>
+<li><p>文件夹挂载<br><code>-v /root/notebook:/notebook</code><br>(宿主机目录:镜像内挂载目录)</p>
+</li>
+<li><p><em>配置文件挂载</em>(生成的文件夹)<br><code>-v /root/docker/config/anaconda3/jupyter_notebook_config.json:/root/.jupyter/jupyter_notebook_config.json</code></p>
+</li>
+</ul>
+<p><strong>Example</strong><br><code>docker run -i -t -p 11000:8888 -v ~/notebook:/notebook -v ~/docker/config/jupyter:/root/.jupyter continuumio/anaconda3 /bin/bash</code><br>挂载参数要在容器前</p>
+<h2 id="配置Jupyter-Notebook"><a href="#配置Jupyter-Notebook" class="headerlink" title="配置Jupyter Notebook"></a>配置Jupyter Notebook</h2><p><code>jupyter notebook --allow-root</code></p>
+<p>启动Notebook<br><code>jupyter notebook --port 8888 --ip 0.0.0.0 --allow-root</code></p>
+<p>后台运行Notebook<br><code>nohup jupyter notebook --port 8888 --ip 0.0.0.0 --allow-root &amp;</code></p>
+<p><strong>相关配置</strong></p>
+<p>配置文件</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">c = get_config()</span><br><span class="line">c.IPKernelApp.pylab = <span class="string">"inline"</span></span><br><span class="line">c.NotebookApp.ip = <span class="string">"*"</span></span><br><span class="line">c.NotebookAPp.open_browser = <span class="literal">False</span></span><br><span class="line">c.NotebookApp.password = <span class="string">'sha1:5295d47ebd06:cdca9499f90b4b4616c935fdff61dda71e1e4393'</span></span><br><span class="line"><span class="comment"># c.NotebookApp.certfile = u'/root/.jupyter/mycert.pem'</span></span><br><span class="line">c.NotebookApp.port= <span class="number">8888</span></span><br><span class="line">c.NotebookApp.notebook_dir = <span class="string">"/"</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><em>docker-compose配置出问题？</em></p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3'</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">notebook:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">continuumio/anaconda3</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">"no"</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">~/notebook:/notebook</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">~/docker/config/jupyter:/root/.jupyter</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">"11000:80"</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -1064,197 +1146,6 @@ https://en.wikipedia.org/wiki/K-nearest_neighbor_algorithm
 
 <pre><code>accuracy  1.0</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/ml/KNN-%E6%89%8B%E5%8A%A8%E5%AE%9E%E7%8E%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/ml/KNN-%E6%89%8B%E5%8A%A8%E5%AE%9E%E7%8E%B0/" class="post-title-link" itemprop="url">dev/ml/KNN-手动实现</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 05-17-2020 16:34:34 / Modified: 16:36:05" itemprop="dateCreated datePublished" datetime="2020-05-17T16:34:34+08:00">05-17-2020</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="手动实现KNN"><a href="#手动实现KNN" class="headerlink" title="手动实现KNN"></a>手动实现KNN</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">raw_data_x = [[<span class="number">3.393533211</span>, <span class="number">2.331273381</span>],</span><br><span class="line">              [<span class="number">3.110073483</span>, <span class="number">1.781539638</span>],</span><br><span class="line">              [<span class="number">1.343808831</span>, <span class="number">3.368360954</span>],</span><br><span class="line">              [<span class="number">3.582294042</span>, <span class="number">4.679179110</span>],</span><br><span class="line">              [<span class="number">2.280362439</span>, <span class="number">2.866990263</span>],</span><br><span class="line">              [<span class="number">7.423436942</span>, <span class="number">4.696522875</span>],</span><br><span class="line">              [<span class="number">5.745051997</span>, <span class="number">3.533989803</span>],</span><br><span class="line">              [<span class="number">9.172168622</span>, <span class="number">2.511101045</span>],</span><br><span class="line">              [<span class="number">7.792783481</span>, <span class="number">3.424088941</span>],</span><br><span class="line">              [<span class="number">7.939820817</span>, <span class="number">0.791637231</span>]</span><br><span class="line">             ]</span><br><span class="line">raw_data_y = [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>]</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x_train = np.array(raw_data_x)</span><br><span class="line">y_train = np.array(raw_data_y)</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x_train</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>array([[3.39353321, 2.33127338],
-       [3.11007348, 1.78153964],
-       [1.34380883, 3.36836095],
-       [3.58229404, 4.67917911],
-       [2.28036244, 2.86699026],
-       [7.42343694, 4.69652288],
-       [5.745052  , 3.5339898 ],
-       [9.17216862, 2.51110105],
-       [7.79278348, 3.42408894],
-       [7.93982082, 0.79163723]])</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">y_train==<span class="number">1</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>array([False, False, False, False, False,  True,  True,  True,  True,
-        True])</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">plt.scatter(x_train[y_train==<span class="number">1</span>, <span class="number">0</span>], x_train[y_train==<span class="number">1</span>, <span class="number">1</span>], color=<span class="string">'r'</span>, label=<span class="string">'1'</span>)</span><br><span class="line">plt.scatter(x_train[y_train==<span class="number">0</span>, <span class="number">0</span>], x_train[y_train==<span class="number">0</span>, <span class="number">1</span>], color=<span class="string">'g'</span>, label=<span class="string">'0'</span>)</span><br><span class="line">plt.legend()</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&lt;matplotlib.legend.Legend at 0x122311ad0&gt;</code></pre><p><img src="data/output_6_1.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">x = np.array([<span class="number">8.093607318</span>, <span class="number">3.365731514</span>])</span><br><span class="line"></span><br><span class="line">plt.scatter(x_train[y_train==<span class="number">1</span>, <span class="number">0</span>], x_train[y_train==<span class="number">1</span>, <span class="number">1</span>], color=<span class="string">'r'</span>, label=<span class="string">'1'</span>)</span><br><span class="line">plt.scatter(x_train[y_train==<span class="number">0</span>, <span class="number">0</span>], x_train[y_train==<span class="number">0</span>, <span class="number">1</span>], color=<span class="string">'g'</span>, label=<span class="string">'0'</span>)</span><br><span class="line">plt.scatter(x[<span class="number">0</span>], x[<span class="number">1</span>], color=<span class="string">'b'</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-
-
-<p><img src="data/output_7_0.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line">distance = []</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> each <span class="keyword">in</span> x_train:</span><br><span class="line">    d = math.sqrt(np.sum((each - x) ** <span class="number">2</span>))</span><br><span class="line">    distance.append(d)</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">distance</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>[4.812566907609877,
- 5.229270827235305,
- 6.749798999160064,
- 4.6986266144110695,
- 5.83460014556857,
- 1.4900114024329525,
- 2.354574897431513,
- 1.3761132675144652,
- 0.3064319992975,
- 2.5786840957478887]</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">distances = [math.sqrt(np.sum((each - x) ** <span class="number">2</span>)) <span class="keyword">for</span> each <span class="keyword">in</span> x_train]</span><br><span class="line">distances</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>[4.812566907609877,
- 5.229270827235305,
- 6.749798999160064,
- 4.6986266144110695,
- 5.83460014556857,
- 1.4900114024329525,
- 2.354574897431513,
- 1.3761132675144652,
- 0.3064319992975,
- 2.5786840957478887]</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nearest = np.argsort(distances)</span><br><span class="line">nearest</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>array([8, 7, 5, 6, 9, 3, 0, 1, 4, 2])</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">k = <span class="number">6</span></span><br><span class="line">topK_y = [y_train[i] <span class="keyword">for</span> i <span class="keyword">in</span> nearest[:k]]</span><br><span class="line">topK_y</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>[1, 1, 1, 1, 1, 0]</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> collections</span><br><span class="line">votes = collections.Counter(topK_y)</span><br><span class="line">votes</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>Counter({1: 5, 0: 1})</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">votes.most_common(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>[(1, 5)]</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">predict_y = votes.most_common(<span class="number">1</span>)[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line">predict_y</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>1</code></pre><h1 id="scikit-learn实现KNN"><a href="#scikit-learn实现KNN" class="headerlink" title="scikit-learn实现KNN"></a>scikit-learn实现KNN</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> sklearn.neighbors <span class="keyword">import</span> KNeighborsClassifier</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">raw_data_x = [[<span class="number">3.393533211</span>, <span class="number">2.331273381</span>],</span><br><span class="line">              [<span class="number">3.110073483</span>, <span class="number">1.781539638</span>],</span><br><span class="line">              [<span class="number">1.343808831</span>, <span class="number">3.368360954</span>],</span><br><span class="line">              [<span class="number">3.582294042</span>, <span class="number">4.679179110</span>],</span><br><span class="line">              [<span class="number">2.280362439</span>, <span class="number">2.866990263</span>],</span><br><span class="line">              [<span class="number">7.423436942</span>, <span class="number">4.696522875</span>],</span><br><span class="line">              [<span class="number">5.745051997</span>, <span class="number">3.533989803</span>],</span><br><span class="line">              [<span class="number">9.172168622</span>, <span class="number">2.511101045</span>],</span><br><span class="line">              [<span class="number">7.792783481</span>, <span class="number">3.424088941</span>],</span><br><span class="line">              [<span class="number">7.939820817</span>, <span class="number">0.791637231</span>]</span><br><span class="line">             ]</span><br><span class="line">raw_data_y = [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">x_train = np.array(raw_data_x)</span><br><span class="line">y_train = np.array(raw_data_y)</span><br><span class="line"></span><br><span class="line">target = np.array([<span class="number">8.093607318</span>, <span class="number">3.365731514</span>])</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">KNN_classifier = KNeighborsClassifier(n_neighbors=<span class="number">6</span>)</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">KNN_classifier.fit(x_train, y_train)</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>KNeighborsClassifier(algorithm=&apos;auto&apos;, leaf_size=30, metric=&apos;minkowski&apos;,
-                     metric_params=None, n_jobs=None, n_neighbors=6, p=2,
-                     weights=&apos;uniform&apos;)</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">target = x.reshape(<span class="number">1</span>, <span class="number">-1</span>)</span><br><span class="line">print(target)</span><br></pre></td></tr></table></figure>
-
-<pre><code>[[8.09360732 3.36573151]]</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">KNN_classifier.predict(target)</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>array([1])</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">res = KNN_classifier.predict(target)</span><br><span class="line">res[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>1</code></pre>
       
     </div>
 

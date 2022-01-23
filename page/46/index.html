@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">333</span>
+          <span class="site-state-item-count">334</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -256,6 +256,109 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/datascience/spark/deploy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/datascience/spark/deploy/" class="post-title-link" itemprop="url">Spark - 部署</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 01-29-2021 11:32:37 / Modified: 15:19:33" itemprop="dateCreated datePublished" datetime="2021-01-29T11:32:37+08:00">01-29-2021</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>从腾讯云镜像安装(这是内网地址)</p>
+<p><code>wget http://mirrors.tencentyun.com/apache/xxx</code></p>
+<p>解压到<code>~/applications</code></p>
+<p>创建软连接，方便管理不同版本。</p>
+<p><code>ln -s spark-3.0.1-bin-hadoop2.7 spark</code></p>
+<p><code>export SPARK_HOME=/home/ubuntu/applications/spark</code></p>
+<p>以后只要将软连接的指向改动到新版本，不需要改动环境变量。</p>
+<h1 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h1><h2 id="安装JDK"><a href="#安装JDK" class="headerlink" title="安装JDK"></a>安装JDK</h2><p><code>sudo apt install openjdk-11-jdk</code></p>
+<h2 id="使用Scala-Shell启动Spark"><a href="#使用Scala-Shell启动Spark" class="headerlink" title="使用Scala Shell启动Spark"></a>使用Scala Shell启动Spark</h2><p><code>spark-shell</code></p>
+<h2 id="简单的例子"><a href="#简单的例子" class="headerlink" title="简单的例子"></a>简单的例子</h2><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> file = sc.textFile(<span class="string">"/home/ubuntu/documents/xxx.txt"</span>)</span><br><span class="line"><span class="comment">// 打印行数</span></span><br><span class="line">file.count()</span><br><span class="line"><span class="comment">// 打印第一行</span></span><br><span class="line">file.first()</span><br><span class="line"><span class="comment">// 过滤打印</span></span><br><span class="line">file.filter(line =&gt; line.contains(<span class="string">"spark"</span>)).count()</span><br></pre></td></tr></table></figure>
+
+<h2 id="启动节点"><a href="#启动节点" class="headerlink" title="启动节点"></a>启动节点</h2><h3 id="主节点"><a href="#主节点" class="headerlink" title="主节点"></a>主节点</h3><p><code>cd $SPARK_HOME/sbin</code></p>
+<p><code>./start-master.sh</code></p>
+<p>通过<code>ip:8080</code>可以web访问</p>
+<p>获取Master节点的Url</p>
+<p><code>spark://localhost.localdomain:7077</code></p>
+<h3 id="从节点"><a href="#从节点" class="headerlink" title="从节点"></a>从节点</h3><p><code>./start-slave.sh spark://localhost.localdomain:7077</code></p>
+<p>可以通过<code>jps</code>（显示当前的Java进程）查看启动的服务</p>
+<p>Web端可以看到有了Workers</p>
+<h3 id="用Shell连接Master"><a href="#用Shell连接Master" class="headerlink" title="用Shell连接Master"></a>用Shell连接Master</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MASTER=spark://localhost.localdomain:7077 spark-shell</span><br></pre></td></tr></table></figure>
+
+<p>Web端可以看到RunningApplications有了Shell</p>
+<h3 id="停止服务"><a href="#停止服务" class="headerlink" title="停止服务"></a>停止服务</h3><p><code>./stop-all.sh</code></p>
+<p><code>jps</code>查看</p>
+<h1 id="集群部署"><a href="#集群部署" class="headerlink" title="集群部署"></a>集群部署</h1><h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><p>主节点配置环境变量<code>conf/spark-env.sh</code></p>
+<p>主节点配置从节点的主机名<code>conf/slaves</code>, 此时主机名要写入hosts中</p>
+<p>将spark整体文件拷贝到所有从节点，路径与主节点一致</p>
+<p>配置<strong>主节点到从节点</strong>的SSH Key无密码登录</p>
+<p>启动集群<code>sbin/start-all.sh</code></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -627,92 +730,6 @@
 </ol>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop cmd</span><br></pre></td></tr></table></figure>
 
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/datascience/hadoop/hdfs/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/datascience/hadoop/hdfs/" class="post-title-link" itemprop="url">Hadoop - hdfs</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 01-28-2021 09:57:08 / Modified: 10:43:48" itemprop="dateCreated datePublished" datetime="2021-01-28T09:57:08+08:00">01-28-2021</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h1><p>HDFS是Master和Slave结构，分为NameNode, Secondary NameNode, DataNode.</p>
-<ul>
-<li>NameNode: 在Hadoop中只有一个，管理HDF的名称空间，数据块映射信息等。</li>
-<li>Secondary: 辅助NameNode, 分担NameNode的工作，可以辅助恢复NameNode.</li>
-<li>DataNode: Slave节点，实际存储数据，执行数据块的读写并汇报存储信息给NameNode。</li>
-</ul>
-<h1 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h1><h2 id="将数据插入到HDFS"><a href="#将数据插入到HDFS" class="headerlink" title="将数据插入到HDFS"></a>将数据插入到HDFS</h2><p><code>hadoop fs -mkdir</code></p>
-<p><code>hadoop fs -put</code></p>
-<p>…</p>
-<h2 id="从HDFS获取数据到本地文件系统"><a href="#从HDFS获取数据到本地文件系统" class="headerlink" title="从HDFS获取数据到本地文件系统"></a>从HDFS获取数据到本地文件系统</h2><p><code>hadoop fs -get</code></p>
-<p>…</p>
-<h2 id="命令参考"><a href="#命令参考" class="headerlink" title="命令参考"></a>命令参考</h2><p><span class="exturl" data-url="aHR0cHM6Ly93d3cueWlpYmFpLmNvbS9oYWRvb3AvaGFkb29wX2NvbW1hbmRfcmVmZXJlbmNlLmh0bWw=">https://www.yiibai.com/hadoop/hadoop_command_reference.html<i class="fa fa-external-link-alt"></i></span></p>
 
       
     </div>
