@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://blogimg-1304875656.cos.ap-hongkong.myqcloud.com//20220119200029.png">
 <meta property="og:image" content="https://blogimg-1304875656.cos.ap-hongkong.myqcloud.com//20220119200038.png">
 <meta property="article:published_time" content="2022-01-19T10:10:47.797Z">
-<meta property="article:modified_time" content="2022-01-23T19:03:11.674Z">
+<meta property="article:modified_time" content="2022-01-24T12:11:44.337Z">
 <meta property="article:author" content="Bolin Shen">
 <meta property="article:tag" content="attention">
 <meta property="article:tag" content="GNN">
@@ -299,7 +299,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 01-24-2022 03:03:11" itemprop="dateModified" datetime="2022-01-24T03:03:11+08:00">01-24-2022</time>
+        <time title="Modified: 01-24-2022 20:11:44" itemprop="dateModified" datetime="2022-01-24T20:11:44+08:00">01-24-2022</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -344,7 +344,7 @@
 <p>引入多头注意力机制</p>
 <p>注意力后的特征<br>$$<br>\overrightarrow h_j’ = \sigma(\sum_{j\in{N_i}}\alpha_{ij}W\overrightarrow h_j)<br>$$</p>
 <p>$$<br>\overrightarrow h_j’ = \Vert_{k=1}^K \sigma(\sum_{j\in{N_i}}\alpha_{ij}^kW^k\overrightarrow h_j)<br>$$</p>
-<p>如果是在最后一层, 多痛注意力就不能简单的拼接起来了, 要使用一个平均, 最后再来一个归一化.<br>$$<br>\overrightarrow h_j’ = \sigma({1\over K}\sum_{k=1}^K\sum_{j\in{N_i}}\alpha_{ij}^kW^k\overrightarrow h_j)<br>$$</p>
+<p>如果是在最后一层, 多头注意力就不能简单的拼接起来了, 要使用一个平均, 最后再来一个归一化.<br>$$<br>\overrightarrow h_j’ = \sigma({1\over K}\sum_{k=1}^K\sum_{j\in{N_i}}\alpha_{ij}^kW^k\overrightarrow h_j)<br>$$</p>
 <p>通过mask来注入图的结构</p>
 <hr>
 <p>Reference</p>
