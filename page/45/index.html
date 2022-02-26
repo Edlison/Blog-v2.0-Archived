@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">337</span>
+          <span class="site-state-item-count">338</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -256,6 +256,97 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/java/spring/aop-start/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/java/spring/aop-start/" class="post-title-link" itemprop="url">SpringAOP - Start</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 02-02-2021 09:34:03 / Modified: 16:47:46" itemprop="dateCreated datePublished" datetime="2021-02-02T09:34:03+08:00">02-02-2021</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="静态代理模式"><a href="#静态代理模式" class="headerlink" title="静态代理模式"></a>静态代理模式</h1><p>![image-20210202095609829](/Users/edlison/Library/Application Support/typora-user-images/image-20210202095609829.png)</p>
+<h2 id="架构分析"><a href="#架构分析" class="headerlink" title="架构分析"></a>架构分析</h2><ul>
+<li>抽象角色：用于设计被代理角色的方法。一般使用抽象类或接口。</li>
+<li>真实角色：被代理的角色。</li>
+<li>代理角色：对真实角色进行代理，一般还会有一些代理角色附加的业务。</li>
+<li>客户：访问代理。</li>
+</ul>
+<h2 id="好处"><a href="#好处" class="headerlink" title="好处"></a>好处</h2><ul>
+<li>真实角色只需要专注他需要处理的业务，更加纯粹。</li>
+<li>公共业务交给代理，实现了<strong>业务分工</strong>。</li>
+<li>业务<strong>扩展方便</strong>，方便<strong>集中管理</strong>。</li>
+</ul>
+<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><ul>
+<li>一个真实角色就会产生一个代理角色。<strong>代码量</strong>翻倍。</li>
+</ul>
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>代理模式使用<strong>组合</strong>(作为数据成员)的方式，将<code>Host</code>传入<code>Proxy</code>。</p>
+<p>如果使用<strong>继承</strong>(extends)的方式，灵活度降低。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -722,93 +813,6 @@
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"user"</span> <span class="attr">class</span>=<span class="string">"com.edlison.design.spring.ioc.pojo.UserDAO"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"this is username by constructor"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>在配置文件加载的时候，容器里的实例就已经被创建了，并且内存中<strong>仅有一个实例</strong>。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/life/poets/deadpoetssociety/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/life/poets/deadpoetssociety/" class="post-title-link" itemprop="url">Dead Poets Society</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 01-30-2021 00:36:52 / Modified: 01:24:40" itemprop="dateCreated datePublished" datetime="2021-01-30T00:36:52+08:00">01-30-2021</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Poets/" itemprop="url" rel="index"><span itemprop="name">Poets</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>But poetry, beauty, romance, love… these are what we stay alive for.</p>
-</blockquote>
-<p><em>但是，诗歌，美，浪漫，爱。这些是我们活着的意义。</em></p>
-<blockquote>
-<p>Most men lead lives of quiet desperation.</p>
-</blockquote>
-<p><em>大多数人，都生活在平静的绝望中。</em></p>
-<blockquote>
-<p>To quote from Whitman, “O me, O life of the questions of these recurring. Of the endless trains of the faithless. Of cities filled with the foolish. What good amid these, O me, O life? Answer: That you are here. That life exists and identity. That the powerful play goes on and you may contribute a verse. That the powerful play goes on, and you can contrubute a verse.” What will your verse be?</p>
-</blockquote>
-<p><em>惠特曼写道：“自我？生命？这些问题总在不停出现。毫无信仰的人川流不息。城市充斥着愚昧。生活其中有什么意义？自我？生命？答案：因为你在这里。因为生命存在并各有特性。因为伟大的戏剧在继续，并且你可以奉献一段。因为伟大的戏剧在继续，并且你可以奉献一段。你的段落会是什么样？”</em></p>
-<p>于2021.1.30 0:55:30 与章章 她在家里我在南京宿舍</p>
 
       
     </div>
