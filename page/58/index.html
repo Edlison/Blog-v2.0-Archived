@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">338</span>
+          <span class="site-state-item-count">339</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -216,7 +216,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">173</span>
+        <span class="site-state-item-count">174</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -256,6 +256,197 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/ml/KNN-%E6%89%8B%E5%8A%A8%E5%AE%9E%E7%8E%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/ml/KNN-%E6%89%8B%E5%8A%A8%E5%AE%9E%E7%8E%B0/" class="post-title-link" itemprop="url">dev/ml/KNN-手动实现</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 05-17-2020 16:34:34 / Modified: 16:36:05" itemprop="dateCreated datePublished" datetime="2020-05-17T16:34:34+08:00">05-17-2020</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="手动实现KNN"><a href="#手动实现KNN" class="headerlink" title="手动实现KNN"></a>手动实现KNN</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">raw_data_x = [[<span class="number">3.393533211</span>, <span class="number">2.331273381</span>],</span><br><span class="line">              [<span class="number">3.110073483</span>, <span class="number">1.781539638</span>],</span><br><span class="line">              [<span class="number">1.343808831</span>, <span class="number">3.368360954</span>],</span><br><span class="line">              [<span class="number">3.582294042</span>, <span class="number">4.679179110</span>],</span><br><span class="line">              [<span class="number">2.280362439</span>, <span class="number">2.866990263</span>],</span><br><span class="line">              [<span class="number">7.423436942</span>, <span class="number">4.696522875</span>],</span><br><span class="line">              [<span class="number">5.745051997</span>, <span class="number">3.533989803</span>],</span><br><span class="line">              [<span class="number">9.172168622</span>, <span class="number">2.511101045</span>],</span><br><span class="line">              [<span class="number">7.792783481</span>, <span class="number">3.424088941</span>],</span><br><span class="line">              [<span class="number">7.939820817</span>, <span class="number">0.791637231</span>]</span><br><span class="line">             ]</span><br><span class="line">raw_data_y = [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x_train = np.array(raw_data_x)</span><br><span class="line">y_train = np.array(raw_data_y)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x_train</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>array([[3.39353321, 2.33127338],
+       [3.11007348, 1.78153964],
+       [1.34380883, 3.36836095],
+       [3.58229404, 4.67917911],
+       [2.28036244, 2.86699026],
+       [7.42343694, 4.69652288],
+       [5.745052  , 3.5339898 ],
+       [9.17216862, 2.51110105],
+       [7.79278348, 3.42408894],
+       [7.93982082, 0.79163723]])</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">y_train==<span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>array([False, False, False, False, False,  True,  True,  True,  True,
+        True])</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">plt.scatter(x_train[y_train==<span class="number">1</span>, <span class="number">0</span>], x_train[y_train==<span class="number">1</span>, <span class="number">1</span>], color=<span class="string">'r'</span>, label=<span class="string">'1'</span>)</span><br><span class="line">plt.scatter(x_train[y_train==<span class="number">0</span>, <span class="number">0</span>], x_train[y_train==<span class="number">0</span>, <span class="number">1</span>], color=<span class="string">'g'</span>, label=<span class="string">'0'</span>)</span><br><span class="line">plt.legend()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>&lt;matplotlib.legend.Legend at 0x122311ad0&gt;</code></pre><p><img src="data/output_6_1.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">x = np.array([<span class="number">8.093607318</span>, <span class="number">3.365731514</span>])</span><br><span class="line"></span><br><span class="line">plt.scatter(x_train[y_train==<span class="number">1</span>, <span class="number">0</span>], x_train[y_train==<span class="number">1</span>, <span class="number">1</span>], color=<span class="string">'r'</span>, label=<span class="string">'1'</span>)</span><br><span class="line">plt.scatter(x_train[y_train==<span class="number">0</span>, <span class="number">0</span>], x_train[y_train==<span class="number">0</span>, <span class="number">1</span>], color=<span class="string">'g'</span>, label=<span class="string">'0'</span>)</span><br><span class="line">plt.scatter(x[<span class="number">0</span>], x[<span class="number">1</span>], color=<span class="string">'b'</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="data/output_7_0.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line">distance = []</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> each <span class="keyword">in</span> x_train:</span><br><span class="line">    d = math.sqrt(np.sum((each - x) ** <span class="number">2</span>))</span><br><span class="line">    distance.append(d)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">distance</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>[4.812566907609877,
+ 5.229270827235305,
+ 6.749798999160064,
+ 4.6986266144110695,
+ 5.83460014556857,
+ 1.4900114024329525,
+ 2.354574897431513,
+ 1.3761132675144652,
+ 0.3064319992975,
+ 2.5786840957478887]</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">distances = [math.sqrt(np.sum((each - x) ** <span class="number">2</span>)) <span class="keyword">for</span> each <span class="keyword">in</span> x_train]</span><br><span class="line">distances</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>[4.812566907609877,
+ 5.229270827235305,
+ 6.749798999160064,
+ 4.6986266144110695,
+ 5.83460014556857,
+ 1.4900114024329525,
+ 2.354574897431513,
+ 1.3761132675144652,
+ 0.3064319992975,
+ 2.5786840957478887]</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nearest = np.argsort(distances)</span><br><span class="line">nearest</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>array([8, 7, 5, 6, 9, 3, 0, 1, 4, 2])</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">k = <span class="number">6</span></span><br><span class="line">topK_y = [y_train[i] <span class="keyword">for</span> i <span class="keyword">in</span> nearest[:k]]</span><br><span class="line">topK_y</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>[1, 1, 1, 1, 1, 0]</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> collections</span><br><span class="line">votes = collections.Counter(topK_y)</span><br><span class="line">votes</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>Counter({1: 5, 0: 1})</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">votes.most_common(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>[(1, 5)]</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">predict_y = votes.most_common(<span class="number">1</span>)[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line">predict_y</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>1</code></pre><h1 id="scikit-learn实现KNN"><a href="#scikit-learn实现KNN" class="headerlink" title="scikit-learn实现KNN"></a>scikit-learn实现KNN</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> sklearn.neighbors <span class="keyword">import</span> KNeighborsClassifier</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">raw_data_x = [[<span class="number">3.393533211</span>, <span class="number">2.331273381</span>],</span><br><span class="line">              [<span class="number">3.110073483</span>, <span class="number">1.781539638</span>],</span><br><span class="line">              [<span class="number">1.343808831</span>, <span class="number">3.368360954</span>],</span><br><span class="line">              [<span class="number">3.582294042</span>, <span class="number">4.679179110</span>],</span><br><span class="line">              [<span class="number">2.280362439</span>, <span class="number">2.866990263</span>],</span><br><span class="line">              [<span class="number">7.423436942</span>, <span class="number">4.696522875</span>],</span><br><span class="line">              [<span class="number">5.745051997</span>, <span class="number">3.533989803</span>],</span><br><span class="line">              [<span class="number">9.172168622</span>, <span class="number">2.511101045</span>],</span><br><span class="line">              [<span class="number">7.792783481</span>, <span class="number">3.424088941</span>],</span><br><span class="line">              [<span class="number">7.939820817</span>, <span class="number">0.791637231</span>]</span><br><span class="line">             ]</span><br><span class="line">raw_data_y = [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">x_train = np.array(raw_data_x)</span><br><span class="line">y_train = np.array(raw_data_y)</span><br><span class="line"></span><br><span class="line">target = np.array([<span class="number">8.093607318</span>, <span class="number">3.365731514</span>])</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">KNN_classifier = KNeighborsClassifier(n_neighbors=<span class="number">6</span>)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">KNN_classifier.fit(x_train, y_train)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>KNeighborsClassifier(algorithm=&apos;auto&apos;, leaf_size=30, metric=&apos;minkowski&apos;,
+                     metric_params=None, n_jobs=None, n_neighbors=6, p=2,
+                     weights=&apos;uniform&apos;)</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">target = x.reshape(<span class="number">1</span>, <span class="number">-1</span>)</span><br><span class="line">print(target)</span><br></pre></td></tr></table></figure>
+
+<pre><code>[[8.09360732 3.36573151]]</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">KNN_classifier.predict(target)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>array([1])</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">res = KNN_classifier.predict(target)</span><br><span class="line">res[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>1</code></pre>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -3616,92 +3807,6 @@ dtype: object</code></pre><p><code>apply()</code> 方法也可以应用函数至
     <div class="post-body" itemprop="articleBody">
           <h1 id="矩阵连乘-Multiplying-a-sequence-of-matrices"><a href="#矩阵连乘-Multiplying-a-sequence-of-matrices" class="headerlink" title="矩阵连乘 (Multiplying a sequence of matrices)"></a>矩阵连乘 (Multiplying a sequence of matrices)</h1><p>我们想从两个以上矩阵连乘的式子中得到最佳的次序，使得计算时乘法运算最少。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DynamicProgramming</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> N = <span class="number">5</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span>[][] C = <span class="keyword">new</span> <span class="keyword">int</span>[N][N];</span><br><span class="line">		<span class="keyword">int</span>[][] S = <span class="keyword">new</span> <span class="keyword">int</span>[N][N];</span><br><span class="line">		<span class="keyword">int</span>[] r = &#123;<span class="number">4</span>, <span class="number">5</span>, <span class="number">3</span>, <span class="number">6</span>, <span class="number">4</span>, <span class="number">5</span>&#125;;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;<span class="comment">// 初始化 最小乘运算数组</span></span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; N; j++) &#123;</span><br><span class="line">				C[i][j] = <span class="number">0</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;<span class="comment">// 初始化 分割位置</span></span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; N; j++) &#123;</span><br><span class="line">				S[i][j] = <span class="number">0</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> p = <span class="number">2</span>; p &lt;= N; p++) &#123;<span class="comment">// P 为间隔</span></span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>, j; i &lt; N - p + <span class="number">1</span>; i++) &#123;<span class="comment">// i 为起始值</span></span><br><span class="line">				j = i + p - <span class="number">1</span>;<span class="comment">// j 为终止值</span></span><br><span class="line">				C[i][j] = C[i][i] + C[i + <span class="number">1</span>][j] + r[i] * r[i + <span class="number">1</span>] * r[j + <span class="number">1</span>];<span class="comment">// 赋 C[i][j] 的初值方便下文比较取得最小值</span></span><br><span class="line">				S[i][j] = i;</span><br><span class="line">				<span class="keyword">for</span> (<span class="keyword">int</span> k = i; k&lt; j; k++) &#123;<span class="comment">// k 为中间分割值 </span></span><br><span class="line">					<span class="keyword">int</span> temp = C[i][k] + C[k + <span class="number">1</span>][j] + r[i] * r[k + <span class="number">1</span>] * r[j + <span class="number">1</span>];</span><br><span class="line">					</span><br><span class="line">					<span class="keyword">if</span> (temp &lt; C[i][j]) &#123;<span class="comment">// 取得每次分割后的最小值</span></span><br><span class="line">						C[i][j] = temp;</span><br><span class="line">						S[i][j] = k;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; N; j++) &#123;</span><br><span class="line">				System.out.print(C[i][j] + <span class="string">"\t"</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			System.out.println();</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		System.out.println();</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; N; j++) &#123;</span><br><span class="line">				<span class="keyword">if</span> (j &gt; i) System.out.print(S[i][j] + <span class="number">1</span> + <span class="string">"\t"</span>);</span><br><span class="line">				<span class="keyword">else</span> System.out.print(<span class="number">0</span> + <span class="string">"\t"</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			System.out.println();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* result</span></span><br><span class="line"><span class="comment">0	60	132	180	252	</span></span><br><span class="line"><span class="comment">0	0	90	132	207	</span></span><br><span class="line"><span class="comment">0	0	0	72	132	</span></span><br><span class="line"><span class="comment">0	0	0	0	120	</span></span><br><span class="line"><span class="comment">0	0	0	0	0	</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">0	1	2	2	2	</span></span><br><span class="line"><span class="comment">0	0	2	2	2	</span></span><br><span class="line"><span class="comment">0	0	0	3	4	</span></span><br><span class="line"><span class="comment">0	0	0	0	4	</span></span><br><span class="line"><span class="comment">0	0	0	0	0</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">(A1 * A2) * ((A3 * A4) * A5)</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/leetcode/[DP]LCS/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/leetcode/%5BDP%5DLCS/" class="post-title-link" itemprop="url">dev/leetcode/[DP]LCS</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 04-26-2020 21:48:21" itemprop="dateCreated datePublished" datetime="2020-04-26T21:48:21+08:00">04-26-2020</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 04-29-2020 00:31:16" itemprop="dateModified" datetime="2020-04-29T00:31:16+08:00">04-29-2020</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="最长公共子序列-Longest-Common-Subsequence"><a href="#最长公共子序列-Longest-Common-Subsequence" class="headerlink" title="最长公共子序列 (Longest Common Subsequence)"></a>最长公共子序列 (Longest Common Subsequence)</h1><p>给定两个字符串 text1 和 text2，返回这两个字符串的最长公共子序列的长度。</p>
-<p>一个字符串的 子序列 是指这样一个新的字符串：它是由原字符串在不改变字符的相对顺序的情况下删除某些字符（也可以不删除任何字符）后组成的新字符串。<br>例如，”ace” 是 “abcde” 的子序列，但 “aec” 不是 “abcde” 的子序列。两个字符串的「公共子序列」是这两个字符串所共同拥有的子序列。</p>
-<p>若这两个字符串没有公共子序列，则返回 0。</p>
-<p>示例:</p>
-<p>输入：text1 = “abcde”, text2 = “ace”<br>输出：3<br>解释：最长公共子序列是 “ace”，它的长度为 3。  </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DynamicProgramming</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		String A = <span class="string">"xzyzzyx"</span>;</span><br><span class="line">		String B = <span class="string">"zxyyzxz"</span>;</span><br><span class="line">		String res = <span class="string">""</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[A.length() + <span class="number">1</span>][B.length() + <span class="number">1</span>];</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= A.length(); i++) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= B.length(); j++) &#123;</span><br><span class="line">				<span class="keyword">if</span> (i == <span class="number">0</span> || j == <span class="number">0</span>) &#123;</span><br><span class="line">					dp[i][j] = <span class="number">0</span>;</span><br><span class="line">					<span class="keyword">continue</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				</span><br><span class="line">				<span class="keyword">if</span> (A.charAt(i - <span class="number">1</span>) == B.charAt(j - <span class="number">1</span>)) &#123;</span><br><span class="line">					dp[i][j] = dp[i - <span class="number">1</span>][j - <span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line">					<span class="keyword">continue</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				</span><br><span class="line">				<span class="keyword">if</span> (A.charAt(i - <span class="number">1</span>) != B.charAt(j - <span class="number">1</span>)) &#123;</span><br><span class="line">					dp[i][j] = Math.max(dp[i - <span class="number">1</span>][j], dp[i][j - <span class="number">1</span>]);</span><br><span class="line">					<span class="keyword">continue</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">int</span> row = A.length();</span><br><span class="line">		<span class="keyword">int</span> col = B.length();</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">while</span> (row &gt; <span class="number">0</span> &amp;&amp; col &gt; <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">if</span> (dp[row - <span class="number">1</span>][col - <span class="number">1</span>] &lt; dp[row][col]) &#123;</span><br><span class="line">				res = res + A.charAt(row - <span class="number">1</span>);</span><br><span class="line">				row--; col--;</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				row--;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		System.out.println(<span class="string">"DP matrix is below: "</span>);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= A.length(); i++) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= B.length(); j++) &#123;</span><br><span class="line">				System.out.print(dp[i][j] + <span class="string">" "</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			System.out.println();</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		System.out.print(<span class="string">"One of th LCS is: "</span>);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = res.length() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">			System.out.print(res.charAt(i));</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* result</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">DP matrix is below: </span></span><br><span class="line"><span class="comment">0 0 0 0 0 0 0 0 </span></span><br><span class="line"><span class="comment">0 0 1 1 1 1 1 1 </span></span><br><span class="line"><span class="comment">0 1 1 1 1 2 2 2 </span></span><br><span class="line"><span class="comment">0 1 1 2 2 2 2 2 </span></span><br><span class="line"><span class="comment">0 1 1 2 2 3 3 3 </span></span><br><span class="line"><span class="comment">0 1 1 2 2 3 3 4 </span></span><br><span class="line"><span class="comment">0 1 1 2 3 3 3 4 </span></span><br><span class="line"><span class="comment">0 1 2 2 3 3 4 4 </span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">One of th LCS is: xyzx</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-
-<p>典型的动态规划问题</p>
-<p>首先声明一个以字符串A为行B为列的二维数组。</p>
-<ul>
-<li>当<code>i=0</code>或<code>j=0</code>时<code>dp[i][j]=0</code></li>
-<li>当<code>ai=bi</code>时<code>dp[i][j]=dp[i-1][j-1]</code>(对应位置相等的话公共子串在<code>row-1</code>,<code>col-1</code>的情况下加1.)</li>
-<li>当<code>ai!=bi</code>时<code>dp[i][j]=max{dp[i-1][j], dp[i][j-1]}</code>(不想等则取字符串A,B上一个相邻字符最长公共子串.)</li>
-</ul>
-<p>最后显示一个最长子串时必须<strong>从后向前</strong>判断，顺序判断出的可能不是最长的子串。</p>
-
       
     </div>
 
