@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">341</span>
+          <span class="site-state-item-count">345</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -216,7 +216,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">174</span>
+        <span class="site-state-item-count">178</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -256,6 +256,453 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/knowledge/tensor_inplace/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/academia/knowledge/tensor_inplace/" class="post-title-link" itemprop="url">Pytorch中的inplace</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 02-09-2021 02:18:39" itemprop="dateCreated datePublished" datetime="2021-02-09T02:18:39+08:00">02-09-2021</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 02-10-2021 02:21:19" itemprop="dateModified" datetime="2021-02-10T02:21:19+08:00">02-10-2021</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Inplace操作就是将操作后的<strong>新值赋值到原变量地址</strong>上的操作。如<code>x += 1</code>.</p>
+<h1 id="Pytorch中的操作"><a href="#Pytorch中的操作" class="headerlink" title="Pytorch中的操作"></a>Pytorch中的操作</h1><p>带有<code>_</code>后缀对Tensor的操作都是Inplace操作。</p>
+<p><code>.squeeze()</code>不是Inplace操作，<code>.squeeze_()</code>是Inplace操作。</p>
+<p><code>x += 1</code>是Inplace操作，<code>x = x + 1</code>不是Inplace操作。</p>
+<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><p><strong>在 pytorch 中, 有两种情况不能使用 inplace operation:</strong></p>
+<ol>
+<li>对于 requires_grad=True 的 <strong>叶子张量(leaf tensor)</strong> 不能使用 inplace operation</li>
+<li>对于在 <strong>求梯度阶段需要用到的张量</strong> 不能使用 inplace operation</li>
+</ol>
+<hr>
+<p>Reference</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC8zODQ3NTE4Mw==">https://zhuanlan.zhihu.com/p/38475183<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/knowledge/gan/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/academia/knowledge/gan/" class="post-title-link" itemprop="url">GAN</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 02-04-2021 10:50:20" itemprop="dateCreated datePublished" datetime="2021-02-04T10:50:20+08:00">02-04-2021</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 02-11-2021 02:31:36" itemprop="dateModified" datetime="2021-02-11T02:31:36+08:00">02-11-2021</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="图片Img数组的取值范围及含义"><a href="#图片Img数组的取值范围及含义" class="headerlink" title="图片Img数组的取值范围及含义"></a>图片Img数组的取值范围及含义</h1><p>Loader返回的值形式为[batch, channel, row, col]. (N * C * H * W)</p>
+<p>channel：通道数，<strong>通道的维度上就保存了各个通道上的值</strong>，如RGB。</p>
+<p>torchvision.transforms中的<code>.toTensor()</code>就是将图片的[0, 255]范围转换为了Tensor上的[0.0, 1.0]。因此mnist数据集中每个像素点上的值在[0, 1]区间上。</p>
+<h1 id="G-与-D-进行两次前向传播"><a href="#G-与-D-进行两次前向传播" class="headerlink" title="G 与 D 进行两次前向传播"></a>G 与 D 进行两次前向传播</h1><p><strong>两次的参数均独立生成。</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># G的前向传播</span></span><br><span class="line">noise = torch.autograd.Variable(torch.randn(imgs_batch, self.latent_dim)).cuda()</span><br><span class="line">gen_imgs = self.G(noise)</span><br><span class="line">d_fake = self.D(gen_imgs)</span><br><span class="line">g_loss = sef.bce_loss(d_fake, real_label)</span><br><span class="line"><span class="comment"># 训练G</span></span><br><span class="line">...</span><br><span class="line"><span class="comment"># D的前向传播</span></span><br><span class="line">gen_imgs = self.G(noise)</span><br><span class="line">d_fake = self.D(gen_imgs)</span><br><span class="line">d_real = self.D(real_imgs)</span><br><span class="line">d_loss_fake = self.bce_loss(d_fake, fake_label)</span><br><span class="line">d_loss_real = self.bce_loss(d_real, real_label)</span><br><span class="line">d_loss = d_loss_fake + d_loss_real</span><br><span class="line"><span class="comment"># 训练D</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong></p>
+<p>每一次进行前向计算的参数都是独立的参数，在生成计算图时都是独立的。因此，如果计算后一个网络的时候还传的是一开始的<code>gen_imgs</code>其实没有变化，指向的还是同一个参数。但是如果再次让<code>noise</code>经过G生成一个<code>gen_imgs</code>，因为G已经更新过了，此时的<code>gen_imgs</code>也发生了变化，因此再进行前向传播，生成的就是另外一个计算图了。</p>
+<p>因此这种情况根本不需要再第一次反向传播的时候设置<code>retain_graph=True</code>.</p>
+<h1 id="G-与-D-只进行一次前向传播"><a href="#G-与-D-只进行一次前向传播" class="headerlink" title="G 与 D 只进行一次前向传播"></a>G 与 D 只进行一次前向传播</h1><p><strong>共用一次前向计算的参数。</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 参数只进行一次前向传播</span></span><br><span class="line">noise = torch.autograd.Variable(torch.randn(imgs_batch, self.latent_dim)).cuda()</span><br><span class="line">gen_imgs = self.G(noise)</span><br><span class="line">d_fake = self.D(gen_imgs)</span><br><span class="line">d_real = self.D(real_imgs)</span><br><span class="line"></span><br><span class="line">g_loss = self.bce_loss(d_fake, real_label)</span><br><span class="line">d_loss_fake = self.bce_loss(d_fake, fake_label)</span><br><span class="line">d_loss_real = self.bce_loss(d_real, real_label)</span><br><span class="line">d_loss = d_loss_fake + d_loss_real</span><br><span class="line"><span class="comment"># 同时训练</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="方法一（错误的）"><a href="#方法一（错误的）" class="headerlink" title="方法一（错误的）"></a>方法一（错误的）</h2><p>两个网络<strong>同时训练</strong>的参数的优化器同时梯度清零-&gt;损失反向传播-&gt;梯度下降，此时的网络无法得到优化。而且此时因为两个loss的反向传播有重合的部分，必须要<code>retain_graph=True</code>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">self.optimizer_G.zero_grad()</span><br><span class="line">self.optimizer_D.zero_grad()</span><br><span class="line">g_loss.backward(retain_graph=<span class="literal">True</span>)</span><br><span class="line">d_loss.backward()</span><br><span class="line">self.optimizer_G.step()</span><br><span class="line">self.optimizer_D.step()</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong></p>
+<p>此时根本不会对网络有优化的作用，并没有产生‘对抗’的效果。</p>
+<h2 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h2><p>两个网络<strong>先后训练</strong>，先优化G，后优化D。但是此时loss反向传播时，仍然会有参数重复计算梯度且没有更新的部分（网络D中的参数）。必须要在先进行反向传播的loss加上<code>retain_graph=True</code>.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">self.optimizer_G.zero_grad()</span><br><span class="line">g_loss.backward(retain_graph=<span class="literal">True</span>)</span><br><span class="line">self.optimizer_G.step()</span><br><span class="line"></span><br><span class="line">self.optimizer_D.zero_grad()</span><br><span class="line">d_loss.backward()</span><br><span class="line">self.optimizer_D.step()</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong></p>
+<p>这种方法更注重的是<strong>二次</strong>求导，也就是原计算图保存的是<code>g_loss</code>对网络D中参数的梯度，然后叠加上<code>d_loss</code>对网络D中参数的梯度。一并对网络D的参数进行更新。</p>
+<h1 id="Conv2d"><a href="#Conv2d" class="headerlink" title="Conv2d"></a>Conv2d</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nn.Conv2d(in_channels, out_channels, kernel_size, stride, padding)</span><br></pre></td></tr></table></figure>
+
+<p>in_channels: 输入通道数。</p>
+<p>out_channels: 输出通道数。</p>
+<p>kernel_size: 卷积核大小。（如果长宽不一样，传一个tuple）</p>
+<p>stride: 卷积核移动步长。</p>
+<p>padding: 图片上下左右的填充。</p>
+<p>输入的shape应该是：[batch_size, channels, height, weight]</p>
+<h1 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h1><p>GAN这种结构最大的问题就是虽然<strong>可以生成很相似的东西</strong>，但是如果生成的东西有很强的类别属性，<strong>无法指定生成的类别</strong>。</p>
+<p>Optimizer<strong>优化器就是训练网络</strong>，虽然进入网络的样本也被装入了<code>Variable</code>计算图中，其实际上不会被更新，如果没有设置<code>requires_grad=False</code>本质上还是会被计算梯度的，因此对非网络中的参数指定不计算梯度，可以提升运行效率。</p>
+<p><code>retain_graph</code>实质上是<strong>对计算图进行保留</strong>，由于训练基本上是不断生成一个计算图然后反向传播，默认在反向传播后就抛弃掉了这个计算图结构。</p>
+<p>只进行一次前向计算就是<strong>同时训练两个网络</strong>（训练网络D并不是在更新了网络G的基础上）；进行两次前向计算就是<strong>分别训练两个网络</strong>（训练网络D是在网络G更新的基础上）。</p>
+<p>保留计算图或不保留计算图的本质就在于，对网络D的更新是否<strong>叠加</strong>上了网络G更新时反向传播的<code>g_loss</code>对网络D中参数的梯度。（<strong>不是计算二阶导数！</strong>）</p>
+<p>网络的最后一层要在[0, 1]上，由于没有用卷积，在数字意外部分多还是噪声的影响大，因此造成了数字以外区域黑白。</p>
+<p>batch大小的调整直接影响到了权重的迭代。（问题就出在batch=10000忘记调回来了！！！）：很大的一个作用是可以在一个epoch上迭代很多次！！！</p>
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>shape操作 reshape, view, squeeze, flatten…</p>
+<p>共享内存 如(a.view(-1, 1)/ b = a.view(-1, 1)) a内存中的tensor都会变吗，还是只有b拿到了？inplace</p>
+<hr>
+<p>Reference</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3NlYXJjaD9xPWJhdGNoJTIwc2l6ZSZhbXA7dXRtX2NvbnRlbnQ9c2VhcmNoX3N1Z2dlc3Rpb24mYW1wO3R5cGU9Y29udGVudA==">https://www.zhihu.com/search?q=batch%20size&amp;utm_content=search_suggestion&amp;type=content<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIwMjYzNS9hcnRpY2xlL2RldGFpbHMvODQyMDQxODA=">https://blog.csdn.net/weixin_43202635/article/details/84204180<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/knowledge/tensor_shape/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/academia/knowledge/tensor_shape/" class="post-title-link" itemprop="url">Tensor的Shape操作</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 02-04-2021 10:49:48" itemprop="dateCreated datePublished" datetime="2021-02-04T10:49:48+08:00">02-04-2021</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 02-10-2021 19:51:52" itemprop="dateModified" datetime="2021-02-10T19:51:52+08:00">02-10-2021</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="改变Tensor形状"><a href="#改变Tensor形状" class="headerlink" title="改变Tensor形状"></a>改变Tensor形状</h1><p>改变Tensor形状时，原Tensor中的数据是如何重构的。</p>
+<h2 id="Tensor数据形状的变化"><a href="#Tensor数据形状的变化" class="headerlink" title="Tensor数据形状的变化"></a>Tensor数据形状的变化</h2><h3 id="同一维度"><a href="#同一维度" class="headerlink" title="同一维度"></a>同一维度</h3><p>每一行往前或往后拼接，直到满足这个维度要求的值。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">x = torch.autograd.Variable(torch.Tensor([[<span class="number">1</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>], [<span class="number">5</span>, <span class="number">6</span>]]), requires_grad=<span class="literal">True</span>)</span><br><span class="line">tensor([[<span class="number">1.</span>, <span class="number">2.</span>],</span><br><span class="line">        [<span class="number">3.</span>, <span class="number">4.</span>],</span><br><span class="line">        [<span class="number">5.</span>, <span class="number">6.</span>]], requires_grad=<span class="literal">True</span>)</span><br><span class="line">x = x.view(<span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">tensor([[<span class="number">1.</span>, <span class="number">2.</span>, <span class="number">3.</span>],</span><br><span class="line">        [<span class="number">4.</span>, <span class="number">5.</span>, <span class="number">6.</span>]], grad_fn=&lt;ViewBackward&gt;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="跨维度"><a href="#跨维度" class="headerlink" title="跨维度"></a>跨维度</h3><p>从最低维上的数值一直到高纬进行拼接，不同维度上不够的会跨维度进行拼接。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">x = torch.autograd.Variable(torch.Tensor([[[<span class="number">1</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>], [<span class="number">5</span>, <span class="number">6</span>]], [[<span class="number">7</span>, <span class="number">8</span>], [<span class="number">9</span>, <span class="number">10</span>], [<span class="number">11</span>, <span class="number">12</span>]]]), requires_grad=<span class="literal">True</span>)</span><br><span class="line">tensor([[[ <span class="number">1.</span>,  <span class="number">2.</span>],</span><br><span class="line">         [ <span class="number">3.</span>,  <span class="number">4.</span>],</span><br><span class="line">         [ <span class="number">5.</span>,  <span class="number">6.</span>]],</span><br><span class="line"></span><br><span class="line">        [[ <span class="number">7.</span>,  <span class="number">8.</span>],</span><br><span class="line">         [ <span class="number">9.</span>, <span class="number">10.</span>],</span><br><span class="line">         [<span class="number">11.</span>, <span class="number">12.</span>]]], requires_grad=<span class="literal">True</span>)</span><br><span class="line">x = x.view(<span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line">tensor([[ <span class="number">1.</span>,  <span class="number">2.</span>,  <span class="number">3.</span>,  <span class="number">4.</span>],</span><br><span class="line">        [ <span class="number">5.</span>,  <span class="number">6.</span>,  <span class="number">7.</span>,  <span class="number">8.</span>],</span><br><span class="line">        [ <span class="number">9.</span>, <span class="number">10.</span>, <span class="number">11.</span>, <span class="number">12.</span>]], grad_fn=&lt;ViewBackward&gt;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看形状的方式"><a href="#查看形状的方式" class="headerlink" title="查看形状的方式"></a>查看形状的方式</h2><h3 id="1-shape"><a href="#1-shape" class="headerlink" title="1. shape"></a>1. shape</h3><p>通过<code>Tensor.shape</code>可以获取该Tensor的形状信息。这里的<code>shape</code>属于Field，它是一个数组。</p>
+<p>使用方法：想要获取某个维度的大小只需要<code>.shape[0]</code>就可以了。</p>
+<h3 id="2-size"><a href="#2-size" class="headerlink" title="2. size"></a>2. size</h3><p>通过<code>Tensor.size()</code>可以获取该Tensor<strong>某个维度上</strong>的信息。这里的<code>size</code>属于Method，它是一个方法，需要传dim信息。</p>
+<p>使用方法：<code>.size(0)</code></p>
+<h2 id="改变形状的方式"><a href="#改变形状的方式" class="headerlink" title="改变形状的方式"></a>改变形状的方式</h2><h3 id="1-reshape"><a href="#1-reshape" class="headerlink" title="1. reshape"></a>1. reshape</h3><ul>
+<li><p>不受该Tensor是否是连续的影响。</p>
+</li>
+<li><p>返回的<strong>可能是</strong>Tensor的copy，<strong>也可能不是</strong>。</p>
+</li>
+</ul>
+<h3 id="2-view"><a href="#2-view" class="headerlink" title="2. view"></a>2. view</h3><ul>
+<li>只能改变连续的Tensor（没有调用过<code>transpose</code>, <code>permute</code>等）。</li>
+<li>与原Tensor共享存储器（不是内存）。</li>
+</ul>
+<h3 id="3-squeeze-unsqueeze"><a href="#3-squeeze-unsqueeze" class="headerlink" title="3. squeeze/unsqueeze"></a>3. squeeze/unsqueeze</h3><p>对Tensor维度值为1的维度进行删除或增加。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">a = Tensor(<span class="number">2</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">1</span>)</span><br><span class="line"><span class="comment"># torch.Size([2, 1, 3, 1])</span></span><br><span class="line">a = a.squeeze(<span class="number">1</span>)</span><br><span class="line"><span class="comment"># torch.Size([2, 3, 1])</span></span><br><span class="line">a = a.unsqueeze(<span class="number">0</span>)</span><br><span class="line"><span class="comment"># torch.Size([1, 2, 3, 1])</span></span><br><span class="line">a = a.squeeze()</span><br><span class="line"><span class="comment"># torch.Size([2, 3])</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong></p>
+<ul>
+<li>不传参删除所有维度值为1的维度。</li>
+<li>不在原本的存储空间上操作，<strong>只是显示改变样子</strong>，想要获取需要赋值。</li>
+</ul>
+<h1 id="Tensor的拼接"><a href="#Tensor的拼接" class="headerlink" title="Tensor的拼接"></a>Tensor的拼接</h1><p>将多个Tensor进行拼接，使用<code>torch.cat(inputs, dim=0)</code>.</p>
+<p>将输入在dim维度上进行拼接。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">x = Tensor([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]])</span><br><span class="line"><span class="comment"># x:  tensor([[1., 2., 3.],</span></span><br><span class="line"><span class="comment">#         [4., 5., 6.]], device='cuda:7')</span></span><br><span class="line">y = Tensor([[<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>], [<span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]])</span><br><span class="line"><span class="comment"># y:  tensor([[4., 5., 6.],</span></span><br><span class="line"><span class="comment">#         [7., 8., 9.]], device='cuda:7')</span></span><br><span class="line">z = torch.cat([x, y], dim=<span class="number">0</span>)</span><br><span class="line"><span class="comment"># tensor([[1., 2., 3.],</span></span><br><span class="line"><span class="comment">#         [4., 5., 6.],</span></span><br><span class="line"><span class="comment">#         [4., 5., 6.],</span></span><br><span class="line"><span class="comment">#         [7., 8., 9.]], device='cuda:7') torch.Size([4, 3])</span></span><br><span class="line">z = torch.cat([x, y], dim=<span class="number">1</span>)</span><br><span class="line"><span class="comment"># tensor([[1., 2., 3., 4., 5., 6.],</span></span><br><span class="line"><span class="comment">#         [4., 5., 6., 7., 8., 9.]], device='cuda:7') torch.Size([2, 6])</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong></p>
+<ul>
+<li>传入的inputs是一个序列，<code>list</code>或<code>tuple</code>.</li>
+<li>传入的inputs在需要拼接的dim上shape必须一致。</li>
+</ul>
+<h1 id="Tensor的合并"><a href="#Tensor的合并" class="headerlink" title="Tensor的合并"></a>Tensor的合并</h1><p><code>torch.flatten(input, start_dim, end_dim)</code></p>
+<p>将<code>start_dim</code>到<code>end_dim</code>维度之间的值合并。</p>
+<p><strong>好像</strong>torch下的方法，都可以通过<code>Tensor.flatten()</code>来调用。</p>
+<h1 id="Tensor的分解"><a href="#Tensor的分解" class="headerlink" title="Tensor的分解"></a>Tensor的分解</h1><h2 id="1-torch-split"><a href="#1-torch-split" class="headerlink" title="1. torch.split()"></a>1. torch.split()</h2><p><code>torch.split(tensor, split_size, dim)</code></p>
+<p><code>split_size</code>: 间隔大小。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = Tensor(<span class="number">3</span>, <span class="number">2</span>)</span><br><span class="line">x, y, z = a.split(<span class="number">1</span>, <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong>：</p>
+<ul>
+<li>最后不足的也会被分成一个块。</li>
+<li>注意类型，返回的是一个tuple，可以用多个变量来接收，tuple里装的是Tensor。</li>
+</ul>
+<h2 id="2-torch-chunk"><a href="#2-torch-chunk" class="headerlink" title="2. torch.chunk()"></a>2. torch.chunk()</h2><p><code>torch.chunk(tensor, chunks, dim)</code></p>
+<p><code>chunks</code>: 分块数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = Tensor(<span class="number">3</span>, <span class="number">2</span>)</span><br><span class="line">x, y, z = a.chunk(<span class="number">3</span>, <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong>：最后不足的也会被分成一个块。</p>
+<hr>
+<p>Reference</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vZGlsdGhleS9wLzEyMzc2MTc5Lmh0bWw=">https://www.cnblogs.com/dilthey/p/12376179.html<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/notebook/idea-jdk-version/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/notebook/idea-jdk-version/" class="post-title-link" itemprop="url">Idea编译Java版本出错</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 02-02-2021 23:16:00 / Modified: 23:22:05" itemprop="dateCreated datePublished" datetime="2021-02-02T23:16:00+08:00">02-02-2021</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notebook/Error/" itemprop="url" rel="index"><span itemprop="name">Error</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Idea控制Java版本"><a href="#Idea控制Java版本" class="headerlink" title="Idea控制Java版本"></a>Idea控制Java版本</h1><h2 id="1-包管理中"><a href="#1-包管理中" class="headerlink" title="1. 包管理中"></a>1. 包管理中</h2><ul>
+<li><p>Project</p>
+</li>
+<li><p>Modules</p>
+</li>
+</ul>
+<p>两个地方都有设置Java版本的位置。</p>
+<h2 id="2-偏好设置中"><a href="#2-偏好设置中" class="headerlink" title="2. 偏好设置中"></a>2. 偏好设置中</h2><p><code>Cmd</code> + <code>,</code></p>
+<p>在<code>Java Compiler</code>中也可以指定Java版本</p>
+<h1 id="Maven控制Java版本"><a href="#Maven控制Java版本" class="headerlink" title="Maven控制Java版本"></a>Maven控制Java版本</h1><p>如果是Maven项目，很有可能是因为Maven默认的Java的版本而出错。</p>
+<p>在<code>pom.xml</code>中进行配置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-compiler-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">source</span>&gt;</span>11<span class="tag">&lt;/<span class="name">source</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">target</span>&gt;</span>11<span class="tag">&lt;/<span class="name">target</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>只要刷新Maven项目，就可以解决Java版本问题。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -329,378 +776,6 @@
 <li>执行先后顺序与视频中的不一样，与Python装饰器的不一样，使用配置类的原因？</li>
 <li><code>@Component</code>与<code>@Bean</code>重复？</li>
 </ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/java/spring/aop-two/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/java/spring/aop-two/" class="post-title-link" itemprop="url">SpringAOP - 自定义切面实现AOP</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 02-02-2021 22:33:19 / Modified: 22:55:33" itemprop="dateCreated datePublished" datetime="2021-02-02T22:33:19+08:00">02-02-2021</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notebook/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="自定义切面实现AOP"><a href="#自定义切面实现AOP" class="headerlink" title="自定义切面实现AOP"></a>自定义切面实现AOP</h1><p>通过切面来实现AOP</p>
-<h2 id="Aspect"><a href="#Aspect" class="headerlink" title="Aspect"></a>Aspect</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomAspect</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">before</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"[Log] Before..."</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">after</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"[Log] After..."</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">ref</span>=<span class="string">"customAspect"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">"first"</span></span></span><br><span class="line"><span class="tag">                          <span class="attr">expression</span>=<span class="string">"execution(* com.edlison.design.spring.aop.style_api.service.UserServiceImpl.*(..))"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="tag">&lt;<span class="name">aop:before</span> <span class="attr">method</span>=<span class="string">"before"</span> <span class="attr">pointcut-ref</span>=<span class="string">"first"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">aop:after</span> <span class="attr">method</span>=<span class="string">"after"</span> <span class="attr">pointcut-ref</span>=<span class="string">"first"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>这种方式更加简便，只需要定义一个切面类，类中的方法即可通过配置，来对切点进行操作，不再需要繁琐的实现接口。</p>
-<p>但是无法实现更复杂的操作，比如打印调用的切点方法，类名等。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/java/spring/aop-one/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/java/spring/aop-one/" class="post-title-link" itemprop="url">SpringAOP - 使用Spring的API接口实现AOP</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 02-02-2021 21:43:43 / Modified: 22:34:24" itemprop="dateCreated datePublished" datetime="2021-02-02T21:43:43+08:00">02-02-2021</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notebook/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="术语"><a href="#术语" class="headerlink" title="术语"></a>术语</h1><p>Spring AOP最重要的是可以让用户<strong>自定义切面</strong>。</p>
-<p>![image-20210202221824940](/Users/edlison/Library/Application Support/typora-user-images/image-20210202221824940.png)</p>
-<h1 id="使用Spring的API接口实现AOP"><a href="#使用Spring的API接口实现AOP" class="headerlink" title="使用Spring的API接口实现AOP"></a>使用Spring的API接口实现AOP</h1><h2 id="需要实现的接口"><a href="#需要实现的接口" class="headerlink" title="需要实现的接口"></a>需要实现的接口</h2><p>![image-20210202221950162](/Users/edlison/Library/Application Support/typora-user-images/image-20210202221950162.png)</p>
-<h2 id="前置通知"><a href="#前置通知" class="headerlink" title="前置通知"></a>前置通知</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LogBefore</span> <span class="keyword">implements</span> <span class="title">MethodBeforeAdvice</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="comment">// method: 要执行的目标对象的方法，objects: 参数，o: 目标对象</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">before</span><span class="params">(Method method, Object[] objects, Object o)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"[Log Before]ClassName: "</span> + o.getClass().getSimpleName() + <span class="string">" MethodName: "</span> + method.getName());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="后置通知"><a href="#后置通知" class="headerlink" title="后置通知"></a>后置通知</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LogAfter</span> <span class="keyword">implements</span> <span class="title">AfterReturningAdvice</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterReturning</span><span class="params">(Object returnValue, Method method, Object[] args, Object target)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"[Log After]ClassName: "</span> + target.getClass().getSimpleName() + <span class="string">" MethodName: "</span> + method.getName());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:aop</span>=<span class="string">"http://www.springframework.org/schema/aop"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">        http://www.springframework.org/schema/beans/spring-beans.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">        http://www.springframework.org/schema/aop</span></span></span><br><span class="line"><span class="tag"><span class="string">        http://www.springframework.org/schema/aop/spring-aop.xsd"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"userService"</span> <span class="attr">class</span>=<span class="string">"com.edlison.design.spring.aop.style_one.service.UserServiceImpl"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"logBefore"</span> <span class="attr">class</span>=<span class="string">"com.edlison.design.spring.aop.style_one.log.LogBefore"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"logAfter"</span> <span class="attr">class</span>=<span class="string">"com.edlison.design.spring.aop.style_one.log.LogAfter"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">"first"</span></span></span><br><span class="line"><span class="tag">                      <span class="attr">expression</span>=<span class="string">"execution(* com.edlison.design.spring.aop.style_one.service.UserServiceImpl.* (..))"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:advisor</span> <span class="attr">advice-ref</span>=<span class="string">"logBefore"</span> <span class="attr">pointcut-ref</span>=<span class="string">"first"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:advisor</span> <span class="attr">advice-ref</span>=<span class="string">"logAfter"</span> <span class="attr">pointcut-ref</span>=<span class="string">"first"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>配置文件中，首先注册<code>Bean</code>，引入AOP约束，对AOP进行配置。</p>
-<ul>
-<li>定义切入点(PointCut).</li>
-<li>写表达式(Expression).</li>
-<li>配置通知器(advisor)，并将其与切入点绑定。</li>
-</ul>
-<p>通知器执行前后，完全靠<strong>实现的接口</strong>决定。</p>
-<p><strong>注意</strong>：</p>
-<p>表达式见Google</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/java/spring/aop-proxy/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/java/spring/aop-proxy/" class="post-title-link" itemprop="url">SpringAOP - 动态代理</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 02-02-2021 16:47:49 / Modified: 17:53:29" itemprop="dateCreated datePublished" datetime="2021-02-02T16:47:49+08:00">02-02-2021</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h1><p>相较于静态代理模式，所有的方法动态生成。</p>
-<p>这里介绍基于JDK的方式实现动态代理。</p>
-<h1 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProxyInvocationHandler</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 被代理的接口</span></span><br><span class="line">    <span class="keyword">private</span> Object target;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 传入被代理的接口</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setTarget</span><span class="params">(Object target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.target = target;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 生成代理类</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getProxy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Proxy.newProxyInstance(<span class="keyword">this</span>.getClass().getClassLoader(), target.getClass().getInterfaces(), <span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 唤醒方法 返回结果</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        log(method.getName());</span><br><span class="line">        Object result = method.invoke(target, args);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 定义唤起方法执行前后进行装饰的方法</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">log</span><span class="params">(String msg)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"[Log] "</span> + msg);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Proxy"><a href="#Proxy" class="headerlink" title="Proxy"></a>Proxy</h2><p>返回代理类，需要传入：</p>
-<ul>
-<li>当前作为Proxy的<code>Class加载器</code>.</li>
-<li>需要代理的<code>对象的接口</code>。</li>
-<li>自定义的InvocationHandler，实现了<code>InvocationHandler</code>接口。</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">getProxy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Proxy.newProxyInstance(<span class="keyword">this</span>.getClass().getClassLoader(), target.getClass().getInterfaces(), <span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="InvocationHandler"><a href="#InvocationHandler" class="headerlink" title="InvocationHandler"></a>InvocationHandler</h2><p>唤起事务处理。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        log(method.getName());</span><br><span class="line">        Object result = method.invoke(target, args);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p>实现了<code>InvocationHandler</code>，需要重写<code>invoke</code>方法。</p>
-<p>使用反射的方法执行<code>method.invoke</code>传入</p>
-<ul>
-<li>被代理的接口(target)</li>
-<li>执行时的形参(args)</li>
-</ul>
-<p>在唤起执行<strong>方法前后</strong>，可以加入<strong>自定义的事务处理</strong>。</p>
-<h1 id="自定义"><a href="#自定义" class="headerlink" title="自定义"></a>自定义</h1><p>可以实现将一个<code>ProxyInvocationHandler</code>分成一个<code>CustomProxy</code>和一个<code>CustomInvocationHandler</code>。</p>
-<h2 id="CustomInvocationHandler"><a href="#CustomInvocationHandler" class="headerlink" title="CustomInvocationHandler"></a>CustomInvocationHandler</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomInvocationHandler</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> IndexService indexService;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">CustomInvocationHandler</span><span class="params">(IndexService indexService)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.indexService = indexService;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;  <span class="comment">// TODO Proxy的作用？</span></span><br><span class="line">        logBefore(method.getName());</span><br><span class="line">        Object res = method.invoke(indexService, args);</span><br><span class="line">        logAfter(indexService.getClass().getName());</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 以下定义 前后装饰方法</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">logBefore</span><span class="params">(String msg)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"[Log] "</span> + msg);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">logAfter</span><span class="params">(String msg)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"[Log] "</span> + msg + <span class="string">"has been done!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="CustomProxy"><a href="#CustomProxy" class="headerlink" title="CustomProxy"></a>CustomProxy</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomProxy</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getProxy</span><span class="params">(IndexService indexService, InvocationHandler invocationHandler)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Proxy.newProxyInstance(<span class="keyword">this</span>.getClass().getClassLoader(), indexService.getClass().getInterfaces(), invocationHandler);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Client"><a href="#Client" class="headerlink" title="Client"></a>Client</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomClient</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 需要代理的接口</span></span><br><span class="line">        IndexService indexService = <span class="keyword">new</span> IndexServiceImpl();</span><br><span class="line">        <span class="comment">// 实例化 自定义代理接口需要进行的处理类</span></span><br><span class="line">        CustomInvocationHandler customInvocationHandler = <span class="keyword">new</span> CustomInvocationHandler(indexService);</span><br><span class="line">        <span class="comment">// 实例化 自定义的代理类</span></span><br><span class="line">        CustomProxy customProxy = <span class="keyword">new</span> CustomProxy();</span><br><span class="line">        <span class="comment">// 获取代理 需要传入代理的接口及自定义的处理类</span></span><br><span class="line">        IndexService proxy = (IndexService) customProxy.getProxy(indexService, customInvocationHandler);</span><br><span class="line">        <span class="comment">// 执行测试</span></span><br><span class="line">        proxy.add();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>Proxy</code>与<code>InvocationHandler</code>可以分离。</p>
-<ul>
-<li><code>InvocationHandler</code>必须要传需要代理的接口。</li>
-<li><code>Proxy</code>必须要传需要代理的接口，以及自定义的<code>Handler</code>。</li>
-</ul>
-<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p><code>Proxy</code>与<code>InvocationHandler</code>可以解藕，但是他们都需要被代理的接口。</p>
-<p>进行<strong>接口实现接口</strong>的设计？</p>
-<p><code>InvocationHandler</code>中实现了<code>invoke</code>后其中传的<code>Proxy</code>的作用？</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/java/anno_reflect/reflect-anno/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/java/anno_reflect/reflect-anno/" class="post-title-link" itemprop="url">Java反射 - 通过反射获取注解的值</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 02-02-2021 16:07:01 / Modified: 16:11:17" itemprop="dateCreated datePublished" datetime="2021-02-02T16:07:01+08:00">02-02-2021</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="一个ORM例子"><a href="#一个ORM例子" class="headerlink" title="一个ORM例子"></a>一个ORM例子</h1><h2 id="定义注解"><a href="#定义注解" class="headerlink" title="定义注解"></a>定义注解</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target</span>(ElementType.TYPE)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@interface</span> Table &#123;</span><br><span class="line">    <span class="function">String <span class="title">value</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Target</span>(ElementType.FIELD)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@interface</span> Field &#123;</span><br><span class="line">    <span class="function">String <span class="title">colName</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function">String <span class="title">type</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">length</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="实体类"><a href="#实体类" class="headerlink" title="实体类"></a>实体类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Table</span>(<span class="string">"user"</span>)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Field</span>(colName = <span class="string">"user_id"</span>, type = <span class="string">"int"</span>, length = <span class="number">10</span>)</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">    <span class="meta">@Field</span>(colName = <span class="string">"user_name"</span>, type = <span class="string">"varchar"</span>, length = <span class="number">10</span>)</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="meta">@Field</span>(colName = <span class="string">"user_password"</span>, type = <span class="string">"varchar"</span>, length = <span class="number">64</span>)</span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="获取注解进行处理"><a href="#获取注解进行处理" class="headerlink" title="获取注解进行处理"></a>获取注解进行处理</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReflectAnno</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> NoSuchFieldException, NoSuchMethodException </span>&#123;</span><br><span class="line">        Class&lt;User&gt; c = User<span class="class">.<span class="keyword">class</span></span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 获得类上的注解</span></span><br><span class="line">        Annotation[] annotations = c.getAnnotations();</span><br><span class="line">        <span class="keyword">for</span> (Annotation annotation : annotations) &#123;</span><br><span class="line">            System.out.println(<span class="string">"annotation = "</span> + annotation);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 获取注解的值</span></span><br><span class="line">        Table target = c.getAnnotation(Table<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">        System.out.println(target.value());</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 获取类的Field</span></span><br><span class="line">        java.lang.reflect.Field name = c.getDeclaredField(<span class="string">"name"</span>);</span><br><span class="line">        <span class="comment">// 获取Field上的注解</span></span><br><span class="line">        Field nameAnnotation = name.getAnnotation(Field<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">        <span class="comment">// 获取注解的值</span></span><br><span class="line">        System.out.println(<span class="string">"nameAnnotation.colName() = "</span> + nameAnnotation.colName());</span><br><span class="line">        System.out.println(<span class="string">"nameAnnotation.type() = "</span> + nameAnnotation.type());</span><br><span class="line">        System.out.println(<span class="string">"nameAnnotation.length() = "</span> + nameAnnotation.length());</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 获取类的Method</span></span><br><span class="line">        Method setPassword = c.getDeclaredMethod(<span class="string">"setPassword"</span>, String<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">        <span class="comment">// 获取Method上的注解</span></span><br><span class="line">        setPassword.getAnnotations();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 
       
     </div>

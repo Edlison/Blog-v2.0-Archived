@@ -2,6 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.edlison.com/academia/knowledge/grad_update/</loc>
+    
+    <lastmod>2022-03-03</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.edlison.com/academia/knowledge/grad_van_exp/</loc>
+    
+    <lastmod>2022-03-03</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.edlison.com/academia/knowledge/need_focusing/</loc>
+    
+    <lastmod>2022-03-03</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.edlison.com/academia/knowledge/convex/</loc>
+    
+    <lastmod>2022-03-03</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.edlison.com/academia/knowledge/tensor_t_transpose/</loc>
     
     <lastmod>2022-03-03</lastmod>
@@ -3624,6 +3652,34 @@
   
   <url>
     <loc>https://blog.edlison.com/tags/bp/</loc>
+    <lastmod>2022-03-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.edlison.com/tags/convex/</loc>
+    <lastmod>2022-03-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.edlison.com/tags/grad/</loc>
+    <lastmod>2022-03-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.edlison.com/tags/vanish/</loc>
+    <lastmod>2022-03-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.edlison.com/tags/deeplearning/</loc>
     <lastmod>2022-03-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
