@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">340</span>
+          <span class="site-state-item-count">341</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -256,6 +256,108 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/notebook/anaconda/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/notebook/anaconda/" class="post-title-link" itemprop="url">Install anaconda on linux</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 05-14-2020 19:15:25" itemprop="dateCreated datePublished" datetime="2020-05-14T19:15:25+08:00">05-14-2020</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 08-05-2021 20:09:52" itemprop="dateModified" datetime="2021-08-05T20:09:52+08:00">08-05-2021</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://repo.anaconda.com/archive/Anaconda3-2021.05-Linux-x86_64.sh</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="MacOS安装Anaconda"><a href="#MacOS安装Anaconda" class="headerlink" title="MacOS安装Anaconda"></a>MacOS安装Anaconda</h1><h2 id="conda配置文件"><a href="#conda配置文件" class="headerlink" title="conda配置文件"></a>conda配置文件</h2><p>位置<br><code>~/.condarc</code></p>
+<p>配置zsh环境变量<br><code>export PATH=/Applications/anaconda3/bin:$PATH</code></p>
+<h2 id="conda镜像源"><a href="#conda镜像源" class="headerlink" title="conda镜像源"></a>conda镜像源</h2><p>添加镜像指令(亦可以直接在配置文件中添加)<br><code>conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</code><br><code>conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge</code><br><code>conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/msys2/</code>  </p>
+<p>设置搜索时显示通道地址<br><code>conda config --set show_channel_urls yes</code></p>
+<h2 id="shell虚拟环境"><a href="#shell虚拟环境" class="headerlink" title="shell虚拟环境"></a>shell虚拟环境</h2><p><strong>取消命令行前出现的(base)</strong></p>
+<ul>
+<li><p>每次在命令行通过<code>conda deactivate</code>退出base环境回到系统自动的环境</p>
+</li>
+<li><p><code>conda config --set auto_activate_base false</code></p>
+</li>
+</ul>
+<h2 id="安装TensorFlow环境"><a href="#安装TensorFlow环境" class="headerlink" title="安装TensorFlow环境"></a>安装TensorFlow环境</h2><p>新建一个tf环境<br><code>conda create -n tensorflow python=3.7</code></p>
+<p>进入tf环境<br><code>conda activate tensorflow</code></p>
+<p>pip安装tf<br><code>pip install -i https://pypi.tuna.tsinghua.edu.cn/simple tensorflow</code></p>
+<p>指定版本安装<br><code>conda install tensorflow=1.4</code><br><code>pip install tensorflow==1.4</code></p>
+<h2 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h2><p>安装clean包<br><code>conda install anaconda-clean</code></p>
+<p>文件进行删除<br><code>anaconda-clean</code></p>
+<p>删除Anaconda主文件包(默认路径)<br><code>/opt/anaconda3</code></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -557,81 +659,10 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/linux/linux-java/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/linux/linux-java/" class="post-title-link" itemprop="url">dev/linux/linux-java</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 04-17-2020 19:23:29 / Modified: 19:41:07" itemprop="dateCreated datePublished" datetime="2020-04-17T19:23:29+08:00">04-17-2020</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Linux-安装Java在多个版本中切换"><a href="#Linux-安装Java在多个版本中切换" class="headerlink" title="[Linux]安装Java在多个版本中切换"></a>[Linux]安装Java在多个版本中切换</h1><h2 id="查看yum中的Java版本"><a href="#查看yum中的Java版本" class="headerlink" title="查看yum中的Java版本"></a>查看yum中的Java版本</h2><p><code>$ yum search java-1.8</code></p>
-<h2 id="安装JDK"><a href="#安装JDK" class="headerlink" title="安装JDK"></a>安装JDK</h2><p><code>yum install java-1.8.0-openjdk-devel</code></p>
-<p>安装JDK包含JRE</p>
-<p>Java Development EnvironmentKit 为 JDK<br>Java Runtime Environment 为 JRE</p>
-<h2 id="切换Java版本"><a href="#切换Java版本" class="headerlink" title="切换Java版本"></a>切换Java版本</h2><p><code>$ sudo update-alternatives --display java</code> 查看安装了几个java<br><code>$ sudo update-alternatives --config java</code> 设置java的版本<br><code>$ alternatives --config javac</code> 设置javac的版本</p>
-<p>如已手动安装的可以用下面的命令去添加到列表<br><code>$ alternatives --install /usr/bin/java java /usr/java/jdk1.8/bin/java 180000</code><br><code>$ alternatives --install /usr/bin/java javac /usr/java/jdk1.8/bin/javac 180000</code></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/58/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/58/">58</a><span class="page-number current">59</span><a class="page-number" href="/page/60/">60</a><span class="space">&hellip;</span><a class="page-number" href="/page/68/">68</a><a class="extend next" rel="next" href="/page/60/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/58/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/58/">58</a><span class="page-number current">59</span><a class="page-number" href="/page/60/">60</a><span class="space">&hellip;</span><a class="page-number" href="/page/69/">69</a><a class="extend next" rel="next" href="/page/60/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
