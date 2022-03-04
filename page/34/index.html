@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">345</span>
+          <span class="site-state-item-count">346</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -256,6 +256,73 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/life/toefl/toefl-conn/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/life/toefl/toefl-conn/" class="post-title-link" itemprop="url">TOEFL - 句子和连词的关系</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 04-15-2021 21:51:47 / Modified: 21:53:31" itemprop="dateCreated datePublished" datetime="2021-04-15T21:51:47+08:00">04-15-2021</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="英语中句子与连词的关系"><a href="#英语中句子与连词的关系" class="headerlink" title="英语中句子与连词的关系"></a>英语中句子与连词的关系</h1><p>不能有because… so… 的情况出现</p>
+<p><strong>本质是</strong> 句子个数 &gt;= 连词个数 + 1</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -575,91 +642,10 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/notebook/mysql-pwd/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/notebook/mysql-pwd/" class="post-title-link" itemprop="url">Mysql改密码</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 04-07-2021 08:50:24 / Modified: 08:58:48" itemprop="dateCreated datePublished" datetime="2021-04-07T08:50:24+08:00">04-07-2021</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="进入Mysql后Set修改"><a href="#进入Mysql后Set修改" class="headerlink" title="进入Mysql后Set修改"></a>进入Mysql后Set修改</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set password for root@localhost &#x3D; password(&#39;abc&#39;);</span><br></pre></td></tr></table></figure>
-
-<h1 id="用mysqladmin指令"><a href="#用mysqladmin指令" class="headerlink" title="用mysqladmin指令"></a>用mysqladmin指令</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqladmin -uroot -p123 password abc</span><br></pre></td></tr></table></figure>
-
-<p>把root的密码从123 改为 abc</p>
-<h1 id="用update直接更新"><a href="#用update直接更新" class="headerlink" title="用update直接更新"></a>用update直接更新</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">use mysql;</span><br><span class="line">update user set password&#x3D;password(&#39;abc&#39;) where user&#x3D;&#39;root&#39; and host&#x3D;&#39;localhost&#39;;</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-<hr>
-<p>Reference</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cudzNjc2Nob29sLmNuL215c3FsL215c3FsLXdhdXoyb3dsLmh0bWw=">https://www.w3cschool.cn/mysql/mysql-wauz2owl.html<i class="fa fa-external-link-alt"></i></span></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/33/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/33/">33</a><span class="page-number current">34</span><a class="page-number" href="/page/35/">35</a><span class="space">&hellip;</span><a class="page-number" href="/page/69/">69</a><a class="extend next" rel="next" href="/page/35/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/33/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/33/">33</a><span class="page-number current">34</span><a class="page-number" href="/page/35/">35</a><span class="space">&hellip;</span><a class="page-number" href="/page/70/">70</a><a class="extend next" rel="next" href="/page/35/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 

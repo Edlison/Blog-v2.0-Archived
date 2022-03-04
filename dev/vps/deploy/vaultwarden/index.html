@@ -31,7 +31,7 @@
 <meta property="og:description" content="Intro自建密码管理系统VaultWarden">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-12-06T18:42:59.704Z">
-<meta property="article:modified_time" content="2021-12-10T15:12:31.868Z">
+<meta property="article:modified_time" content="2022-03-04T09:11:31.194Z">
 <meta property="article:author" content="Bolin Shen">
 <meta property="article:tag" content="docker-compose">
 <meta name="twitter:card" content="summary">
@@ -188,7 +188,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <section class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Intro"><span class="nav-number">1.</span> <span class="nav-text">Intro</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Compose"><span class="nav-number">2.</span> <span class="nav-text">Compose</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#注意"><span class="nav-number">3.</span> <span class="nav-text">注意</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Intro"><span class="nav-number">1.</span> <span class="nav-text">Intro</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Compose"><span class="nav-number">2.</span> <span class="nav-text">Compose</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Settings"><span class="nav-number">3.</span> <span class="nav-text">Settings</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#admin-page"><span class="nav-number">3.1.</span> <span class="nav-text">admin page</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#domain"><span class="nav-number">3.2.</span> <span class="nav-text">domain</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#注意"><span class="nav-number">4.</span> <span class="nav-text">注意</span></a></li></ol></div>
         </section>
         <!--/noindex-->
 
@@ -202,7 +202,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">345</span>
+          <span class="site-state-item-count">346</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -295,7 +295,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 12-10-2021 23:12:31" itemprop="dateModified" datetime="2021-12-10T23:12:31+08:00">12-10-2021</time>
+        <time title="Modified: 03-04-2022 17:11:31" itemprop="dateModified" datetime="2022-03-04T17:11:31+08:00">03-04-2022</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -327,9 +327,18 @@
         <h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p>自建密码管理系统VaultWarden</p>
 <a id="more"></a>
 
-<h1 id="Compose"><a href="#Compose" class="headerlink" title="Compose"></a>Compose</h1><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3.3'</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">vaultwarden:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">vaultwarden/server</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">vaultwarden</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">     <span class="bullet">-</span> <span class="string">./data:/data</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">     <span class="bullet">-</span> <span class="number">10006</span><span class="string">:80</span></span><br></pre></td></tr></table></figure>
+<h1 id="Compose"><a href="#Compose" class="headerlink" title="Compose"></a>Compose</h1><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3.3'</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">vaultwarden:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">vaultwarden/server</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">vaultwarden</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">ADMIN_TOKEN=your_random_token_gen_by_openssl_rand</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">DOMAIN=https://vaultwarden.edlison.com</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">     <span class="bullet">-</span> <span class="string">./data:/data</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">     <span class="bullet">-</span> <span class="number">10006</span><span class="string">:80</span></span><br></pre></td></tr></table></figure>
 
-<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><p>需要https</p>
+<h1 id="Settings"><a href="#Settings" class="headerlink" title="Settings"></a>Settings</h1><h2 id="admin-page"><a href="#admin-page" class="headerlink" title="admin page"></a>admin page</h2><blockquote>
+<p>To enable the admin page, you need to set an authentication token. This token can be anything, but it’s recommended to use a long, randomly generated string of characters, for example running <code>openssl rand -base64 48</code>. <strong>Keep this token secret, this is the password to access the admin area of your server!</strong></p>
+</blockquote>
+<p>To set the token, use the <code>ADMIN_TOKEN</code> variable:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ADMIN_TOKEN&#x3D;your_random_token_gen_by_openssl_rand</span><br></pre></td></tr></table></figure>
+
+<h2 id="domain"><a href="#domain" class="headerlink" title="domain"></a>domain</h2><p>Make sure to set the <code>DOMAIN</code> environment variable (or <code>domain</code> in the config file) to the URL you use to access your vaultwarden instance. If you don’t, it’s likely that various functionality will break mysteriously. Some examples:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DOMAIN&#x3D;https:&#x2F;&#x2F;vaultwarden.edlison.com</span><br></pre></td></tr></table></figure>
+
+<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><p>必须要https</p>
 <hr>
 <p>Reference</p>
 <p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2RhbmktZ2FyY2lhL3ZhdWx0d2FyZGVuL3dpa2k=">https://github.com/dani-garcia/vaultwarden/wiki<i class="fa fa-external-link-alt"></i></span></p>
