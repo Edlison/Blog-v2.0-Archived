@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">346</span>
+          <span class="site-state-item-count">347</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -216,7 +216,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">178</span>
+        <span class="site-state-item-count">180</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -256,6 +256,89 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/leetcode/maxpublicex/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/leetcode/maxpublicex/" class="post-title-link" itemprop="url">dev/leetcode/maxpublicex</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 03-14-2020 22:51:58 / Modified: 22:59:09" itemprop="dateCreated datePublished" datetime="2020-03-14T22:51:58+08:00">03-14-2020</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Longest-Common-Prefix"><a href="#Longest-Common-Prefix" class="headerlink" title="Longest Common Prefix"></a>Longest Common Prefix</h1><p>Write a function to find the longest common prefix string amongst an array of strings.</p>
+<p>If there is no common prefix, return an empty string “”.</p>
+<p><strong>Example 1:</strong></p>
+<p>Input: [“flower”,”flow”,”flight”]<br>Output: “fl”</p>
+<p><strong>Example 2:</strong></p>
+<p>Input: [“dog”,”racecar”,”car”]<br>Output: “”<br>Explanation: There is no common prefix among the input strings.</p>
+<p><strong>Note:</strong></p>
+<p>All given inputs are in lowercase letters a-z.</p>
+<p><em>Unsolved</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">[&quot;aa&quot;,&quot;a&quot;]</span><br><span class="line">Output:</span><br><span class="line">&quot;aa&quot;</span><br><span class="line">Answer:</span><br><span class="line">&quot;a&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">longestCommonPrefix</span><span class="params">(String[] strs)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (strs == <span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line"></span><br><span class="line">        String res = strs[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">char</span>[] resChar = res.toCharArray();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; strs.length; i++) &#123;</span><br><span class="line">            <span class="keyword">char</span>[] tempChar = strs[i].toCharArray();</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; tempChar.length &amp; j &lt; resChar.length; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (resChar[j] != tempChar[j]) &#123;</span><br><span class="line">                    res = strs[i].substring(<span class="number">0</span>, j);</span><br><span class="line">                    resChar = res.toCharArray();</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>LeetCode Solution</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">longestCommonPrefix</span><span class="params">(String[] strs)</span> </span>&#123;</span><br><span class="line">   <span class="keyword">if</span> (strs.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">   String prefix = strs[<span class="number">0</span>];</span><br><span class="line">   <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; strs.length; i++)</span><br><span class="line">       <span class="keyword">while</span> (strs[i].indexOf(prefix) != <span class="number">0</span>) &#123;</span><br><span class="line">           prefix = prefix.substring(<span class="number">0</span>, prefix.length() - <span class="number">1</span>);</span><br><span class="line">           <span class="keyword">if</span> (prefix.isEmpty()) <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">       &#125;        </span><br><span class="line">   <span class="keyword">return</span> prefix;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Nice idea to use substring to find out what index is it. If <code>strs</code> doesn’t have a substring the index can not be 0. All we need to do is cut the <code>prefix</code>‘s length.</p>
+<blockquote>
+<p>Reference<br><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvbG9uZ2VzdC1jb21tb24tcHJlZml4">https://leetcode-cn.com/problems/longest-common-prefix<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -620,101 +703,6 @@
 </ul>
 <blockquote>
 <p>references:<br><span class="exturl" data-url="aHR0cDovL2hpLmJhaWR1LmNvbS96aHVtdWxhbmdtYS9pdGVtL2JjZDQ3OGMxNDA0MjdiMmNlZjQ2NjUzMg==">http://hi.baidu.com/zhumulangma/item/bcd478c140427b2cef466532<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cDovL2R1cWlhbmdjaXNlLml0ZXllLmNvbS9ibG9nLzY5NzQ3Ng==">http://duqiangcise.iteye.com/blog/697476<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/notebook/final/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/notebook/final/" class="post-title-link" itemprop="url">dev/notebook/final</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 03-11-2020 21:50:04" itemprop="dateCreated datePublished" datetime="2020-03-11T21:50:04+08:00">03-11-2020</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 03-12-2020 00:10:48" itemprop="dateModified" datetime="2020-03-12T00:10:48+08:00">03-12-2020</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Final-理解"><a href="#Final-理解" class="headerlink" title="Final 理解"></a>Final 理解</h1><h2 id="一．Final-修饰成员变量的注意事项"><a href="#一．Final-修饰成员变量的注意事项" class="headerlink" title="一．Final 修饰成员变量的注意事项"></a>一．Final 修饰成员变量的注意事项</h2><p>final修饰成员变量，该成员变量必须在创建对象之前进行赋值，否则编译失败<br>final修饰成员变量，固定的不是成员变量拥有的默认值，如果固定的是默认值，那么将导致被final修饰的成员变量的值永远无法修改，只能是默认值，这也不符合语法规则  </p>
-<p>成员变量的赋值有三种实现方式：</p>
-<ul>
-<li>定义成员变量的时候手动赋值</li>
-<li>利用构造器对成员变量进行赋值</li>
-<li>利用set函数进行赋值（也即利用一般的方法进行赋值）</li>
-</ul>
-<p><strong>注意</strong><br>被final修饰的成员变量，只能拥有3中所描述的赋值方法的1，2。3为什么不行？</p>
-<p>解释：如1所描述，被final修饰的成员变量必须在对象创建之前进行赋值，如果方法3可以，那么我们知道对象创建后，才能调用方法3，也就是说成员变量利用方法3进行赋值，会导致成员变量的赋值发生在对象创建之后</p>
-<h2 id="二-为什么被Final修饰的成员变量必须在对象创建之前进行赋值？"><a href="#二-为什么被Final修饰的成员变量必须在对象创建之前进行赋值？" class="headerlink" title="二. 为什么被Final修饰的成员变量必须在对象创建之前进行赋值？"></a>二. 为什么被Final修饰的成员变量必须在对象创建之前进行赋值？</h2><p>理解：<br>被final关键字修饰的东西有一个特点，那就是一旦被修饰，那么它的值也就终生不变，可见final关键字起到了固定的作用，既然起到固定那么，你就要提前告诉final固定的是谁，如果允许被final修饰的成员变量赋值发生在对象创建之后，那么对象创建完成后final固定的值还是未可知的</p>
-<h2 id="三-final修饰成员变量和final修饰局部变量的区别与联系："><a href="#三-final修饰成员变量和final修饰局部变量的区别与联系：" class="headerlink" title="三. final修饰成员变量和final修饰局部变量的区别与联系："></a>三. final修饰成员变量和final修饰局部变量的区别与联系：</h2><ol>
-<li>被final修饰的成员变量与局部变量均具有：一旦赋值，该值就终身不变</li>
-<li>被final修饰的成员变量必须要在创建对象之前进行赋值，否则会编译失败，但是局部变量可以不赋值，但是没有被赋值的局部变量不能够被使用，一旦被使用就会编译失败</li>
-<li>综上：一旦决定使用final关键字来修饰成员变量或者局部变量，一定要做到提前赋值</li>
-</ol>
-<h2 id="四．Final修饰成员方法："><a href="#四．Final修饰成员方法：" class="headerlink" title="四．Final修饰成员方法："></a>四．Final修饰成员方法：</h2><ol>
-<li>final修饰成员方法，该成员方法就不能被子类重写，但是仍然可以被子类继承并可以通过子类对象调用该方法</li>
-</ol>
-<h2 id="五．Final修饰类"><a href="#五．Final修饰类" class="headerlink" title="五．Final修饰类"></a>五．Final修饰类</h2><p>1.final修饰类，该类便不能被其他类继承，但是该类仍然能够创建对象，并且，可以利用该对象调用该类的成员变量或者成员方法</p>
-<h2 id="六．Final使用范围："><a href="#六．Final使用范围：" class="headerlink" title="六．Final使用范围："></a>六．Final使用范围：</h2><p>Final关键字可以修饰类，类的成员变量，类的成员方法，成员方法的局部变量，等等，</p>
-<p>但是final关键字不能用来修饰构造方法？<br>理解：<br>final修饰普通方法，将导致子类无法重写该方法，而构造方法本身就不能够被子类重写，故如果用final修饰，如同多此一举</p>
-<blockquote>
-<p>Reference<br><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3hpY2hlbmdmZW5neXVsb3UvYXJ0aWNsZS9kZXRhaWxzLzgxMTU1Mjkw">https://blog.csdn.net/xichengfengyulou/article/details/81155290<i class="fa fa-external-link-alt"></i></span></p>
 </blockquote>
 
       
