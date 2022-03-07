@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">347</span>
+          <span class="site-state-item-count">349</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -216,7 +216,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">180</span>
+        <span class="site-state-item-count">181</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -256,6 +256,205 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/notebook/py-*args**kwargs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/notebook/py-*args**kwargs/" class="post-title-link" itemprop="url">Python中的*arg与**kwarg</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 12-31-2020 00:46:38 / Modified: 00:54:37" itemprop="dateCreated datePublished" datetime="2020-12-31T00:46:38+08:00">12-31-2020</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="参数的规则"><a href="#参数的规则" class="headerlink" title="参数的规则"></a>参数的规则</h2><h3 id="参数的顺序1："><a href="#参数的顺序1：" class="headerlink" title="参数的顺序1："></a>参数的顺序1：</h3><p>位置参数 - <em>arg - *</em>kwarg</p>
+<p><em>arg会把多出来的位置参数转化为<code>tuple</code><br>*</em>kwarg会把关键字参数转化为<code>dict</code></p>
+<h3 id="参数的顺序2："><a href="#参数的顺序2：" class="headerlink" title="参数的顺序2："></a>参数的顺序2：</h3><p>位置参数 - * - 关键字…</p>
+<p>关键字亦看作位置参数，如果<strong>不传则会报错</strong>。</p>
+<h2 id="传参时的技巧"><a href="#传参时的技巧" class="headerlink" title="传参时的技巧"></a>传参时的技巧</h2><p>获取参数时：<br><em>可以看作是将参数打包成<code>tuple</code><br>*</em>可以看作是将参数打包成<code>dict</code></p>
+<p>传参时：<br>可以将<em>tuple解压包并传入<br>可以将*</em>dict解压包并传入</p>
+<hr>
+<p>Reference: <span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC9lMGQ0NzA1ZTgyOTM=">https://www.jianshu.com/p/e0d4705e8293<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/notebook/py-decorator/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/notebook/py-decorator/" class="post-title-link" itemprop="url">Python装饰器(Decorator)</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 12-30-2020 23:21:45" itemprop="dateCreated datePublished" datetime="2020-12-30T23:21:45+08:00">12-30-2020</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 12-31-2020 01:41:29" itemprop="dateModified" datetime="2020-12-31T01:41:29+08:00">12-31-2020</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="一切皆对象"><a href="#一切皆对象" class="headerlink" title="一切皆对象"></a>一切皆对象</h2><p>函数也可以是对象，如果不加()即视为不调用该函数，只是获取函数的对象。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hi</span><span class="params">(name=<span class="string">'edlison'</span>)</span></span></span><br><span class="line"><span class="function">    <span class="title">return</span> '<span class="title">hello</span>' + <span class="title">name</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line">greet = hi</span><br><span class="line"></span><br><span class="line">print(greet())  <span class="comment"># 'hi edlison'</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="函数中定义函数"><a href="#函数中定义函数" class="headerlink" title="函数中定义函数"></a>函数中定义函数</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hi</span><span class="params">(name=<span class="string">'edlison'</span>)</span></span></span><br><span class="line"><span class="function">    <span class="title">print</span><span class="params">(<span class="string">'in hi()'</span>)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">    <span class="title">def</span> <span class="title">greet</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">'in greet'</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">'in hello'</span></span><br><span class="line">    </span><br><span class="line">    print(<span class="string">'back'</span>)</span><br></pre></td></tr></table></figure>
+<p>函数内部依次执行，函数内部的函数只能内部调用。</p>
+<h2 id="函数中返回函数"><a href="#函数中返回函数" class="headerlink" title="函数中返回函数"></a>函数中返回函数</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hi</span><span class="params">(name=<span class="string">'edlison'</span>)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">greet</span><span class="params">()</span></span></span><br><span class="line"><span class="function">        <span class="title">return</span> '<span class="title">in</span> <span class="title">greet</span><span class="params">()</span>'</span></span><br><span class="line"><span class="function">    </span></span><br><span class="line">    if name == 'edlison':</span><br><span class="line">        <span class="keyword">return</span> greet</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'no'</span></span><br><span class="line"></span><br><span class="line">a = hi()</span><br><span class="line">b = a()</span><br></pre></td></tr></table></figure>
+<p>此时a指向greet函数，但并没有执行这个函数。<br>b执行了greet函数，输出’in greet()’。</p>
+<h2 id="函数作为参数传给另一个函数"><a href="#函数作为参数传给另一个函数" class="headerlink" title="函数作为参数传给另一个函数"></a>函数作为参数传给另一个函数</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hi</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">'hi'</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">before_hi</span><span class="params">(f)</span>:</span></span><br><span class="line">    print(<span class="string">'before'</span>)</span><br><span class="line">    print(f())</span><br><span class="line"></span><br><span class="line">before_hi(hi)</span><br></pre></td></tr></table></figure>
+<p>将hi函数作为参数传入另一个函数中，并在函数中调用。</p>
+<h2 id="装饰器"><a href="#装饰器" class="headerlink" title="装饰器"></a>装饰器</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dec</span><span class="params">(f)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrap_func</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="comment"># before func</span></span><br><span class="line">        f()</span><br><span class="line">        <span class="comment"># after func</span></span><br><span class="line">    <span class="keyword">return</span> wrap_func  <span class="comment"># 这里返回里层的函数，但并不会调用。</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">need_dec</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'need dec'</span>)</span><br><span class="line"></span><br><span class="line">need_dec = dec(need_dec)</span><br><span class="line">need_dec()</span><br></pre></td></tr></table></figure>
+
+<p>或者可以使用@符号来简化生成一个被装饰的函数。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@dec</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">need_dec</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'need dec'</span>)</span><br><span class="line"></span><br><span class="line">deed_dec()</span><br></pre></td></tr></table></figure>
+<p>使用@注解只是简化了need_dec = dec(need_dec)这一步。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dec</span><span class="params">(f)</span>:</span></span><br><span class="line"><span class="meta">    @wrap(f)  # 保留原函数的所有属性</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrap_func</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="comment"># before func</span></span><br><span class="line">        f()</span><br><span class="line">        <span class="comment"># after func</span></span><br><span class="line">    <span class="keyword">return</span> wrap_func</span><br></pre></td></tr></table></figure>
+<p>经过装饰器后，由于返回的里层的wrap_func，所以拿到的函数变为了里层的wrap_func。使用<code>@wrap</code>可以保留原函数的所有属性。</p>
+<p>如果想要带参数的装饰类，则需要再创建一个函数，然后在内嵌套装饰器。</p>
+<h2 id="装饰类"><a href="#装饰类" class="headerlink" title="装饰类"></a>装饰类</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">logit</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, logfile=<span class="string">'out.log'</span>)</span>:</span></span><br><span class="line">        self.logfile = logfile</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__call__</span><span class="params">(self, func)</span>:</span></span><br><span class="line"><span class="meta">        @wrap(func)</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">wrap_func</span><span class="params">(*args, **kwargs)</span>:</span></span><br><span class="line">            ...</span><br><span class="line">            <span class="keyword">return</span> func(*args, **kwargs)</span><br><span class="line">        <span class="keyword">return</span> wrap_func</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">notify</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">raise</span> NotImplementError</span><br></pre></td></tr></table></figure>
+<p>优点：</p>
+<ul>
+<li>如果想设计带参数的装饰类，不需要使用函数嵌套装饰器。</li>
+<li>可以创建一个基类，装饰过程中可能会用到一些重写的方法，通过子类继承重写。</li>
+</ul>
+<h2 id="多个装饰器的执行顺序"><a href="#多个装饰器的执行顺序" class="headerlink" title="多个装饰器的执行顺序"></a>多个装饰器的执行顺序</h2><p>先会执行离需要装饰的函数近的装饰器。但是，内部的wrap_func函数中执行的顺序其实是先执行离函数最远的装饰器中的内容。</p>
+<p>相当于先依次调用装饰器内的东西，再从内到外层层封装。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dec_a</span><span class="params">(func)</span>:</span></span><br><span class="line">    print(<span class="string">'dec_a'</span>)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">inner_a</span><span class="params">()</span>:</span></span><br><span class="line">        print(<span class="string">'inner_a'</span>)</span><br><span class="line">        func()</span><br><span class="line">    <span class="keyword">return</span> inner_a</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dec_b</span><span class="params">(func)</span>:</span></span><br><span class="line">    print(<span class="string">'dec_b'</span>)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">inner_b</span><span class="params">()</span>:</span></span><br><span class="line">        print(<span class="string">'inner_b'</span>)</span><br><span class="line">        func()</span><br><span class="line">    <span class="keyword">return</span> inner_b</span><br><span class="line"></span><br><span class="line"><span class="meta">@dec_b</span></span><br><span class="line"><span class="meta">@dec_a</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">need_dec</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'need_dec'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># dec_a</span></span><br><span class="line"><span class="comment"># dec_b</span></span><br><span class="line"><span class="comment"># inner_b</span></span><br><span class="line"><span class="comment"># inner_a</span></span><br><span class="line"><span class="comment"># need_dec</span></span><br></pre></td></tr></table></figure>
+
+<p>如果装饰器内<strong>没</strong>东西执行，可以认为<strong>从上到下</strong>依次执行装饰器。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
+<li>装饰器可以在每个函数的执行前或执行后进行一些其他操作。</li>
+<li>被装饰的函数可以在内部函数内执行，也可以作为内部函数的返回值，但是<strong>一定要调用这个函数</strong>。</li>
+<li>装饰类与装饰函数其实都是使用了对象的思想，个人认为装饰类的实现更优，更简单也更灵活。</li>
+<li>装饰器的常见应用：授权，日志。</li>
+</ol>
+<hr>
+<p>Reference: <span class="exturl" data-url="aHR0cHM6Ly93d3cucnVub29iLmNvbS93M2Nub3RlL3B5dGhvbi1mdW5jLWRlY29yYXRvcnMuaHRtbA==">https://www.runoob.com/w3cnote/python-func-decorators.html<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -610,159 +809,6 @@
 </ul>
 <p>/etc/paths 全局建议修改这个文件<br>/etc/profile 不建议修改这个文件，全局共有配置，用户登录时候都会加载该文件<br>/etc/bashrc 一般在这个文件中添加系统级别的环境变量，全局共有配置，bash shell执行时候都会加载</p>
 <h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><p>想要立即生效执行<code>source</code></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/notebook/jupyter-kernel/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/notebook/jupyter-kernel/" class="post-title-link" itemprop="url">dev/notebook/jupyter-kernel</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 11-07-2020 01:34:26 / Modified: 01:38:41" itemprop="dateCreated datePublished" datetime="2020-11-07T01:34:26+08:00">11-07-2020</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="对Jupyter添加Kernel"><a href="#对Jupyter添加Kernel" class="headerlink" title="对Jupyter添加Kernel"></a>对Jupyter添加Kernel</h1><h2 id="对虚拟环境的操作"><a href="#对虚拟环境的操作" class="headerlink" title="对虚拟环境的操作"></a>对虚拟环境的操作</h2><p>进入想要添加到Jupyter的Python虚拟环境</p>
-<p><code>conda activate pytorch</code></p>
-<p>安装<code>ipykernel</code></p>
-<p><code>conda install ipykernel</code></p>
-<p>在虚拟环境中执行以下以添加Kernel到Jupyter</p>
-<p><code>python -m ipykernel install --name kernelname</code></p>
-<h2 id="对Jupyter的操作"><a href="#对Jupyter的操作" class="headerlink" title="对Jupyter的操作"></a>对Jupyter的操作</h2><p>查看存在的Kernel</p>
-<p><code>jupyter kernelspec list</code></p>
-<p>删除Kernel</p>
-<p><code>jupyter kernelspec remove kernelname</code></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/reproduction/ClusteringGANSiamese/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/academia/reproduction/ClusteringGANSiamese/" class="post-title-link" itemprop="url">CluasteringGANSiamese</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 11-06-2020 20:25:17" itemprop="dateCreated datePublished" datetime="2020-11-06T20:25:17+08:00">11-06-2020</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 02-27-2021 19:58:49" itemprop="dateModified" datetime="2021-02-27T19:58:49+08:00">02-27-2021</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="CluasteringGANSiamese"><a href="#CluasteringGANSiamese" class="headerlink" title="CluasteringGANSiamese"></a>CluasteringGANSiamese</h1><h2 id="代码复现"><a href="#代码复现" class="headerlink" title="代码复现"></a>代码复现</h2><p>ST-SiameseNet</p>
-<p>安装依赖<code>pip install -r requirement</code>  </p>
-<p>pip指定版本安装<code>pip install xxx==version</code></p>
-<p>conda指定版本安装<code>conda install xx=version</code></p>
-<p>作为Keras后台的Tensorflow有一些版本约束-<span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmZsb3lkaHViLmNvbS9ndWlkZXMvZW52aXJvbm1lbnRzLw==">版本匹配<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="GAN"><a href="#GAN" class="headerlink" title="GAN"></a>GAN</h2><p>报错信息<br><code>Error while reading resource variable _AnonymousVar41 from Container: localhost. This could mean that the variable was uninitialized. Not found: Resource localhost/_AnonymousVar41/class tensorflow::Var does not exist.</code></p>
-<p>解决办法<br>keras改为tensorflow.keras</p>
 
       
     </div>

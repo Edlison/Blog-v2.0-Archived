@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/man-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/man-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.edlison.com","root":"/","images":"/images","scheme":"Muse","version":"8.0.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+
+  <meta name="description" content="IntroChallengesAnomaly-aware training objectives在判断异常数据, 及设计Loss比较困难 Anomaly interpretability异常检测的可解释性 High training cost图包含的信息更多, 需要消耗更多时间与空间资源 Hyperparameter tuning超参数调优, 特别是在非监督学习下, 通过没有打过标签的数据很难判断">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A Comprehensive Survey on Graph Anomaly Detection">
+<meta property="og:url" content="https://blog.edlison.com/academia/GNN/survey_ad/index.html">
+<meta property="og:site_name" content="Edlison is talking here.">
+<meta property="og:description" content="IntroChallengesAnomaly-aware training objectives在判断异常数据, 及设计Loss比较困难 Anomaly interpretability异常检测的可解释性 High training cost图包含的信息更多, 需要消耗更多时间与空间资源 Hyperparameter tuning超参数调优, 特别是在非监督学习下, 通过没有打过标签的数据很难判断">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.imgur.com/V1N6ugS.png">
+<meta property="article:published_time" content="2022-03-06T13:45:48.493Z">
+<meta property="article:modified_time" content="2022-03-07T02:25:19.908Z">
+<meta property="article:author" content="Bolin Shen">
+<meta property="article:tag" content="GNN">
+<meta property="article:tag" content="survey">
+<meta property="article:tag" content="Anomaly Detection">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/V1N6ugS.png">
+
+
+<link rel="canonical" href="https://blog.edlison.com/academia/GNN/survey_ad/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>A Comprehensive Survey on Graph Anomaly Detection | Edlison is talking here.</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NC6FWQJNCW"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-NC6FWQJNCW');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Edlison is talking here.</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">“Edlison's blog”</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Intro"><span class="nav-number">1.</span> <span class="nav-text">Intro</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Challenges"><span class="nav-number">2.</span> <span class="nav-text">Challenges</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Anomaly-aware-training-objectives"><span class="nav-number">2.1.</span> <span class="nav-text">Anomaly-aware training objectives</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Anomaly-interpretability"><span class="nav-number">2.2.</span> <span class="nav-text">Anomaly interpretability</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#High-training-cost"><span class="nav-number">2.3.</span> <span class="nav-text">High training cost</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hyperparameter-tuning"><span class="nav-number">2.4.</span> <span class="nav-text">Hyperparameter tuning</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Preliminaries"><span class="nav-number">3.</span> <span class="nav-text">Preliminaries</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Plain-Graph"><span class="nav-number">3.1.</span> <span class="nav-text">Plain Graph</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Attributed-Graph"><span class="nav-number">3.2.</span> <span class="nav-text">Attributed Graph</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dynamic-Graph"><span class="nav-number">3.3.</span> <span class="nav-text">Dynamic Graph</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Anomalous-Node-Detection"><span class="nav-number">4.</span> <span class="nav-text">Anomalous Node Detection</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#on-Plain-Graphs"><span class="nav-number">4.1.</span> <span class="nav-text">on Plain Graphs</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Non-Deep-Learning"><span class="nav-number">4.1.1.</span> <span class="nav-text">Non-Deep Learning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deep-Learning"><span class="nav-number">4.1.2.</span> <span class="nav-text">Deep Learning</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#on-Attribute-Graphs"><span class="nav-number">4.2.</span> <span class="nav-text">on Attribute Graphs</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">4.2.1.</span> <span class="nav-text"></span></a></li></ol></li></ol></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Bolin Shen</p>
+  <div class="site-description" itemprop="description">Edlison blog</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">349</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">181</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2VkbGlzb24=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;edlison"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmJvbGluLmVkbGlzb24uc2hlbkBnbWFpbC5jb20=" title="E-Mail → mailto:bolin.edlison.shen@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/GNN/survey_ad/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          A Comprehensive Survey on Graph Anomaly Detection
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 03-06-2022 21:45:48" itemprop="dateCreated datePublished" datetime="2022-03-06T21:45:48+08:00">03-06-2022</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 03-07-2022 10:25:19" itemprop="dateModified" datetime="2022-03-07T10:25:19+08:00">03-07-2022</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Academia/" itemprop="url" rel="index"><span itemprop="name">Academia</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><h1 id="Challenges"><a href="#Challenges" class="headerlink" title="Challenges"></a>Challenges</h1><h2 id="Anomaly-aware-training-objectives"><a href="#Anomaly-aware-training-objectives" class="headerlink" title="Anomaly-aware training objectives"></a>Anomaly-aware training objectives</h2><p>在判断异常数据, 及设计Loss比较困难</p>
+<h2 id="Anomaly-interpretability"><a href="#Anomaly-interpretability" class="headerlink" title="Anomaly interpretability"></a>Anomaly interpretability</h2><p>异常检测的可解释性</p>
+<h2 id="High-training-cost"><a href="#High-training-cost" class="headerlink" title="High training cost"></a>High training cost</h2><p>图包含的信息更多, 需要消耗更多时间与空间资源</p>
+<h2 id="Hyperparameter-tuning"><a href="#Hyperparameter-tuning" class="headerlink" title="Hyperparameter tuning"></a>Hyperparameter tuning</h2><p>超参数调优, 特别是在非监督学习下, 通过没有打过标签的数据很难判断模型的性能.</p>
+<h1 id="Preliminaries"><a href="#Preliminaries" class="headerlink" title="Preliminaries"></a>Preliminaries</h1><h2 id="Plain-Graph"><a href="#Plain-Graph" class="headerlink" title="Plain Graph"></a>Plain Graph</h2><p>静态的图结构<br>$$<br>G={V,E}<br>$$</p>
+<p>$$<br>V={v_i}^n,<br>E={e_{i,j}}<br>$$</p>
+<p>$$<br>A=[a_{i,j}]_{n*n}<br>$$</p>
+<p>邻接矩阵存储结构信息</p>
+<h2 id="Attributed-Graph"><a href="#Attributed-Graph" class="headerlink" title="Attributed Graph"></a>Attributed Graph</h2><p>$$<br>G={V,E,X}<br>$$</p>
+<p>$$<br>X=[x_i]_{n*k}<br>$$</p>
+<p>X时节点上的特征向量, k维</p>
+<h2 id="Dynamic-Graph"><a href="#Dynamic-Graph" class="headerlink" title="Dynamic Graph"></a>Dynamic Graph</h2><p>$$<br>G(t)={V(t), E(t), X_v(t), X_e(t)}<br>$$</p>
+<p>代表t时刻图的结构, $X_v$是node的特征向量, $X_e$是edge的特征向量.</p>
+<h1 id="Anomalous-Node-Detection"><a href="#Anomalous-Node-Detection" class="headerlink" title="Anomalous Node Detection"></a>Anomalous Node Detection</h1><p><strong>Global anomalies</strong></p>
+<p>只考虑节点特征, 完全不同于其他节点的.</p>
+<p><strong>Structural anomalies</strong></p>
+<p>只考虑图结构信息, 有着不同连接模式的节点是异常节点.</p>
+<p><strong>Community anomalies</strong></p>
+<p>同时考虑节点属性和图结构信息, 在一个区域内与其他节点有着不同的特征.</p>
+<p><img src="https://i.imgur.com/V1N6ugS.png" alt=""></p>
+<p>Node14是Global异常, 它有别于所有其他节点特征.</p>
+<p>Node5,6,11是Structural异常, 它们的结构信息与内部的其他节点不一样.</p>
+<p>Node2, 7是Community异常, 它有别于内部的其他节点特征.</p>
+<h2 id="on-Plain-Graphs"><a href="#on-Plain-Graphs" class="headerlink" title="on Plain Graphs"></a>on Plain Graphs</h2><h3 id="Non-Deep-Learning"><a href="#Non-Deep-Learning" class="headerlink" title="Non-Deep Learning"></a>Non-Deep Learning</h3><p>使用统计特征, 如in/out的度数.</p>
+<h3 id="Deep-Learning"><a href="#Deep-Learning" class="headerlink" title="Deep Learning"></a>Deep Learning</h3><p>深度学习的方法将图结构encode到一个embedding向量, 然后在对异常节点进行进一步分析.</p>
+<p>检测结构异常</p>
+<ol>
+<li>分割算法: node到d个communities</li>
+<li>使用一个embedding算法, 拿到节点link信息的embedding</li>
+<li>如果node属于community-c,yc的值就高.</li>
+<li>计算nodei到所有邻居节点的分数, 如果有link到community那么分数就高.</li>
+<li>Score把这些分数加起来, 如果link到了多个community一场分数就会很高.</li>
+</ol>
+<h2 id="on-Attribute-Graphs"><a href="#on-Attribute-Graphs" class="headerlink" title="on Attribute Graphs"></a>on Attribute Graphs</h2><h3 id=""><a href="#" class="headerlink" title=""></a></h3>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/GNN/" rel="tag"># GNN</a>
+              <a href="/tags/survey/" rel="tag"># survey</a>
+              <a href="/tags/Anomaly-Detection/" rel="tag"># Anomaly Detection</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/academia/knowledge/func/" rel="prev" title="常用函数整理">
+                  <i class="fa fa-chevron-left"></i> 常用函数整理
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/academia/knowledge/attention/" rel="next" title="Attention 新理解">
+                  Attention 新理解 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Edlison</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+  
+
+  
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

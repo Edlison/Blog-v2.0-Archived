@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">347</span>
+          <span class="site-state-item-count">349</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -216,7 +216,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">180</span>
+        <span class="site-state-item-count">181</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -256,6 +256,213 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/life/game/csgo-general/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/life/game/csgo-general/" class="post-title-link" itemprop="url">CSGO Dedicated Server 解决方案</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 01-08-2022 13:06:22" itemprop="dateCreated datePublished" datetime="2022-01-08T13:06:22+08:00">01-08-2022</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 01-18-2022 04:23:39" itemprop="dateModified" datetime="2022-01-18T04:23:39+08:00">01-18-2022</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Game/" itemprop="url" rel="index"><span itemprop="name">Game</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p>比较了几种主流搭建方法, 都是Linux平台.</p>
+<h1 id="Compare"><a href="#Compare" class="headerlink" title="Compare"></a>Compare</h1><h2 id="纯Docker"><a href="#纯Docker" class="headerlink" title="纯Docker"></a>纯Docker</h2><p><span class="exturl" data-url="aHR0cHM6Ly9odWIuZG9ja2VyLmNvbS9yL2NtMm5ldHdvcmsvY3Nnby8=">cm2network<i class="fa fa-external-link-alt"></i></span></p>
+<p>优点: 这个方法完全依据valve提供的工具, 玩家可以指定环境变量来迅速启动</p>
+<p>缺点: 不灵活</p>
+<h2 id="CSGO-Server-Launcher"><a href="#CSGO-Server-Launcher" class="headerlink" title="CSGO Server Launcher"></a>CSGO Server Launcher</h2><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2NyYXp5LW1heC9jc2dvLXNlcnZlci1sYXVuY2hlcg==">crazy-max<i class="fa fa-external-link-alt"></i></span></p>
+<p>好像是一个纯脚本, 提供了一个CLI工具.</p>
+<h2 id="LinuxGSM"><a href="#LinuxGSM" class="headerlink" title="LinuxGSM"></a>LinuxGSM</h2><p><span class="exturl" data-url="aHR0cHM6Ly9saW51eGdzbS5jb20vbGdzbS9jc2dvc2VydmVyLw==">csgoserver<i class="fa fa-external-link-alt"></i></span></p>
+<p>提供了一个CLI工具</p>
+<p><strong>Features</strong></p>
+<ul>
+<li>Backup</li>
+<li>Console</li>
+<li>Details</li>
+<li>Installer (SteamCMD)</li>
+<li>Monitor</li>
+<li>Alerts (Email, Pushbullet)</li>
+<li>Update (SteamCMD)</li>
+<li>Start/Stop/Restart server</li>
+</ul>
+<h1 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h1><p>最终准备采取Docker+LinuxGSM的方案, 即隔离了环境, 方便移植, 也保留了足够的配置灵活性, 也很简单.</p>
+<h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><ol>
+<li>安装steamcmd</li>
+</ol>
+<p>这一步的<code>Dockerfile</code>参考了cm2network</p>
+<ol start="2">
+<li>安装LinuxGSM</li>
+</ol>
+<p>国内网络现状</p>
+<p><img src="https://s2.loli.net/2022/01/08/yYI4BmekKLl7tTC.png" alt=""></p>
+<h1 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h1><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> debian:buster-slim</span><br><span class="line"></span><br><span class="line"><span class="keyword">ARG</span> PUID=<span class="number">1000</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">ENV</span> <span class="keyword">USER</span> steam</span><br><span class="line"><span class="keyword">ENV</span> HOMEDIR <span class="string">"/home/$&#123;USER&#125;"</span></span><br><span class="line"><span class="keyword">ENV</span> STEAMCMDDIR <span class="string">"$&#123;HOMEDIR&#125;/steamcmd"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Install, update &amp; upgrade packages</span></span><br><span class="line"><span class="comment"># Create user for the server</span></span><br><span class="line"><span class="comment"># This also creates the home directory we later need</span></span><br><span class="line"><span class="comment"># Clean TMP, apt-get cache and other stuff to make the image smaller</span></span><br><span class="line"><span class="comment"># Create Directory for SteamCMD</span></span><br><span class="line"><span class="comment"># Download SteamCMD</span></span><br><span class="line"><span class="comment"># Extract and delete archive</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> <span class="built_in">set</span> -x \</span></span><br><span class="line"><span class="bash">	&amp;&amp; dpkg --add-architecture i386 \</span></span><br><span class="line"><span class="bash">	&amp;&amp; apt-get update \</span></span><br><span class="line"><span class="bash">	&amp;&amp; apt-get install -y --no-install-recommends --no-install-suggests \</span></span><br><span class="line"><span class="bash">		lib32stdc++6=8.3.0-6 \</span></span><br><span class="line"><span class="bash">		lib32gcc1=1:8.3.0-6 \</span></span><br><span class="line"><span class="bash">		wget=1.20.1-1.1 \</span></span><br><span class="line"><span class="bash">		ca-certificates=20200601~deb10u2 \</span></span><br><span class="line"><span class="bash">		nano=3.2-3 \</span></span><br><span class="line"><span class="bash">		libsdl2-2.0-0:i386=2.0.9+dfsg1-1 \</span></span><br><span class="line"><span class="bash">		curl=7.64.0-4+deb10u2 \</span></span><br><span class="line"><span class="bash">		locales=2.28-10 \</span></span><br><span class="line"><span class="bash">	&amp;&amp; sed -i -e <span class="string">'s/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/'</span> /etc/locale.gen \</span></span><br><span class="line"><span class="bash">	&amp;&amp; dpkg-reconfigure --frontend=noninteractive locales \</span></span><br><span class="line"><span class="bash">	&amp;&amp; useradd -u <span class="string">"<span class="variable">$&#123;PUID&#125;</span>"</span> -m <span class="string">"<span class="variable">$&#123;USER&#125;</span>"</span> \</span></span><br><span class="line"><span class="bash">        &amp;&amp; su <span class="string">"<span class="variable">$&#123;USER&#125;</span>"</span> -c \</span></span><br><span class="line"><span class="bash">                <span class="string">"mkdir -p \"<span class="variable">$&#123;STEAMCMDDIR&#125;</span>\" \</span></span></span><br><span class="line"><span class="bash">                &amp;&amp; wget -qO- <span class="string">'https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz'</span> | tar xvzf - -C \"<span class="variable">$&#123;STEAMCMDDIR&#125;</span>\" \</span></span><br><span class="line"><span class="bash">                &amp;&amp; \"./<span class="variable">$&#123;STEAMCMDDIR&#125;</span>/steamcmd.sh\" +quit \</span></span><br><span class="line"><span class="bash">                &amp;&amp; mkdir -p \"<span class="variable">$&#123;HOMEDIR&#125;</span>/.steam/sdk32\" \</span></span><br><span class="line"><span class="bash">                &amp;&amp; ln -s \"<span class="variable">$&#123;STEAMCMDDIR&#125;</span>/linux32/steamclient.so\" \"<span class="variable">$&#123;HOMEDIR&#125;</span>/.steam/sdk32/steamclient.so\" \</span></span><br><span class="line"><span class="bash">		&amp;&amp; ln -s \"<span class="variable">$&#123;STEAMCMDDIR&#125;</span>/linux32/steamcmd\" \"<span class="variable">$&#123;STEAMCMDDIR&#125;</span>/linux32/steam\" \</span></span><br><span class="line"><span class="bash">		&amp;&amp; ln -s \"<span class="variable">$&#123;STEAMCMDDIR&#125;</span>/steamcmd.sh\" \"<span class="variable">$&#123;STEAMCMDDIR&#125;</span>/steam.sh\"<span class="string">" \</span></span></span><br><span class="line"><span class="bash">	&amp;&amp; ln -s <span class="string">"<span class="variable">$&#123;STEAMCMDDIR&#125;</span>/linux32/steamclient.so"</span> <span class="string">"/usr/lib/i386-linux-gnu/steamclient.so"</span> \</span></span><br><span class="line"><span class="bash">	&amp;&amp; ln -s <span class="string">"<span class="variable">$&#123;STEAMCMDDIR&#125;</span>/linux64/steamclient.so"</span> <span class="string">"/usr/lib/x86_64-linux-gnu/steamclient.so"</span> \</span></span><br><span class="line"><span class="bash">	&amp;&amp; apt-get remove --purge -y \</span></span><br><span class="line"><span class="bash">		wget \</span></span><br><span class="line"><span class="bash">	&amp;&amp; apt-get clean autoclean \</span></span><br><span class="line"><span class="bash">	&amp;&amp; apt-get autoremove -y \</span></span><br><span class="line"><span class="bash">	&amp;&amp; rm -rf /var/lib/apt/lists/*</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Switch to user</span></span><br><span class="line"><span class="keyword">USER</span> $&#123;<span class="keyword">USER</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> <span class="variable">$&#123;STEAMCMDDIR&#125;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">VOLUME</span><span class="bash"> <span class="variable">$&#123;STEAMCMDDIR&#125;</span></span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> steamcmd:latest</span><br><span class="line"></span><br><span class="line"><span class="keyword">ENV</span> APP csgo</span><br><span class="line"><span class="keyword">ENV</span> APPDIR <span class="string">"$&#123;HOMEDIR&#125;/$&#123;APP&#125;"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> linuxgsm.sh <span class="variable">$&#123;HOMEDIR&#125;</span>/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> mkdir <span class="variable">$&#123;APPDIR&#125;</span> &amp;&amp; mv linuxgsm.sh <span class="variable">$&#123;APP&#125;</span> \</span></span><br><span class="line"><span class="bash">	&amp;&amp; ./csgoserver install</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">VOLUME</span><span class="bash"> <span class="variable">$&#123;APPDIR&#125;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">USER</span> $&#123;<span class="keyword">USER</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> <span class="variable">$&#123;HOMEDIR&#125;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">27015</span>/tcp \</span><br><span class="line">	<span class="number">27015</span>/udp \</span><br><span class="line">	<span class="number">27020</span>/udp</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> debian:buster-slim</span><br><span class="line"></span><br><span class="line"><span class="keyword">ARG</span> PUID=<span class="number">1000</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">ENV</span> <span class="keyword">USER</span> steam</span><br><span class="line"><span class="keyword">ENV</span> HOMEDIR <span class="string">"/home/$&#123;USER&#125;"</span></span><br><span class="line"><span class="keyword">ENV</span> STEAMCMDDIR <span class="string">"$&#123;HOMEDIR&#125;/steamcmd"</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><code>entry.sh</code> </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">mkdir -p "$&#123;STEAMAPPDIR&#125;" || true  </span><br><span class="line"></span><br><span class="line">bash "$&#123;STEAMCMDDIR&#125;/steamcmd.sh" +force_install_dir "$&#123;STEAMAPPDIR&#125;" \</span><br><span class="line">				+login anonymous \</span><br><span class="line">				+app_update "$&#123;STEAMAPPID&#125;" \</span><br><span class="line">				+quit</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> We assume that <span class="keyword">if</span> the config is missing, that this is a fresh container</span></span><br><span class="line">if [ ! -f "$&#123;STEAMAPPDIR&#125;/$&#123;STEAMAPP&#125;/cfg/server.cfg" ]; then</span><br><span class="line"><span class="meta">	#</span><span class="bash"> Download &amp; extract the config</span></span><br><span class="line">	wget -qO- "$&#123;DLURL&#125;/master/etc/cfg.tar.gz" | tar xvzf - -C "$&#123;STEAMAPPDIR&#125;/$&#123;STEAMAPP&#125;"</span><br><span class="line">	</span><br><span class="line"><span class="meta">	#</span><span class="bash"> Are we <span class="keyword">in</span> a metamod container?</span></span><br><span class="line">	if [ ! -z "$METAMOD_VERSION" ]; then</span><br><span class="line">		LATESTMM=$(wget -qO- https://mms.alliedmods.net/mmsdrop/"$&#123;METAMOD_VERSION&#125;"/mmsource-latest-linux)</span><br><span class="line">		wget -qO- https://mms.alliedmods.net/mmsdrop/"$&#123;METAMOD_VERSION&#125;"/"$&#123;LATESTMM&#125;" | tar xvzf - -C "$&#123;STEAMAPPDIR&#125;/$&#123;STEAMAPP&#125;"	</span><br><span class="line">	fi</span><br><span class="line"></span><br><span class="line"><span class="meta">	#</span><span class="bash"> Are we <span class="keyword">in</span> a sourcemod container?</span></span><br><span class="line">	if [ ! -z "$SOURCEMOD_VERSION" ]; then</span><br><span class="line">		LATESTSM=$(wget -qO- https://sm.alliedmods.net/smdrop/"$&#123;SOURCEMOD_VERSION&#125;"/sourcemod-latest-linux)</span><br><span class="line">		wget -qO- https://sm.alliedmods.net/smdrop/"$&#123;SOURCEMOD_VERSION&#125;"/"$&#123;LATESTSM&#125;" | tar xvzf - -C "$&#123;STEAMAPPDIR&#125;/$&#123;STEAMAPP&#125;"</span><br><span class="line">	fi</span><br><span class="line"></span><br><span class="line"><span class="meta">	#</span><span class="bash"> Change hostname on first launch (you can comment this out <span class="keyword">if</span> it has <span class="keyword">done</span> its purpose)</span></span><br><span class="line">	sed -i -e 's/&#123;&#123;SERVER_HOSTNAME&#125;&#125;/'"$&#123;SRCDS_HOSTNAME&#125;"'/g' "$&#123;STEAMAPPDIR&#125;/$&#123;STEAMAPP&#125;/cfg/server.cfg"</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Believe it or not, <span class="keyword">if</span> you don<span class="string">'t do this srcds_run shits itself</span></span></span><br><span class="line">cd "$&#123;STEAMAPPDIR&#125;"</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Check <span class="keyword">if</span> autoexec file exists</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Passing arguments directly to srcds_run, ignores values <span class="built_in">set</span> <span class="keyword">in</span> autoexec.cfg</span></span><br><span class="line">autoexec_file="$&#123;STEAMAPPDIR&#125;/$&#123;STEAMAPP&#125;/cfg/autoexec.cfg"</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Overwritable arguments</span></span><br><span class="line">ow_args=""</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> If you need to overwrite a specific launch argument, add it to this loop and drop it from the subsequent srcds_run call</span></span><br><span class="line">if [ -f "$autoexec_file" ]; then</span><br><span class="line">        # TAB delimited name    default</span><br><span class="line">        # HERE doc to not add extra file</span><br><span class="line">        while IFS=$'\t' read -r name default</span><br><span class="line">        do</span><br><span class="line">                if ! grep -q "^\s*$name" "$autoexec_file"; then</span><br><span class="line">                        ow_args="$&#123;ow_args&#125; $default"</span><br><span class="line">                fi</span><br><span class="line">        done &lt;&lt;EOM</span><br><span class="line">sv_password	+sv_password "$&#123;SRCDS_PW&#125;"</span><br><span class="line">rcon_password	+rcon_password "$&#123;SRCDS_RCONPW&#125;"</span><br><span class="line">EOM</span><br><span class="line"><span class="meta">	#</span><span class="bash"> <span class="keyword">if</span> autoexec is present, drop overwritten arguments here (example: SRCDS_PW &amp; SRCDS_RCONPW)</span></span><br><span class="line">	bash "$&#123;STEAMAPPDIR&#125;/srcds_run" -game "$&#123;STEAMAPP&#125;" -console -autoupdate \</span><br><span class="line">				-steam_dir "$&#123;STEAMCMDDIR&#125;" \</span><br><span class="line">				-steamcmd_script "$&#123;HOMEDIR&#125;/$&#123;STEAMAPP&#125;_update.txt" \</span><br><span class="line">				-usercon \</span><br><span class="line">				+fps_max "$&#123;SRCDS_FPSMAX&#125;" \</span><br><span class="line">				-tickrate "$&#123;SRCDS_TICKRATE&#125;" \</span><br><span class="line">				-port "$&#123;SRCDS_PORT&#125;" \</span><br><span class="line">				+tv_port "$&#123;SRCDS_TV_PORT&#125;" \</span><br><span class="line">				+clientport "$&#123;SRCDS_CLIENT_PORT&#125;" \</span><br><span class="line">				-maxplayers_override "$&#123;SRCDS_MAXPLAYERS&#125;" \</span><br><span class="line">				+game_type "$&#123;SRCDS_GAMETYPE&#125;" \</span><br><span class="line">				+game_mode "$&#123;SRCDS_GAMEMODE&#125;" \</span><br><span class="line">				+mapgroup "$&#123;SRCDS_MAPGROUP&#125;" \</span><br><span class="line">				+map "$&#123;SRCDS_STARTMAP&#125;" \</span><br><span class="line">				+sv_setsteamaccount "$&#123;SRCDS_TOKEN&#125;" \</span><br><span class="line">				+sv_region "$&#123;SRCDS_REGION&#125;" \</span><br><span class="line">				+net_public_adr "$&#123;SRCDS_NET_PUBLIC_ADDRESS&#125;" \</span><br><span class="line">				-ip "$&#123;SRCDS_IP&#125;" \</span><br><span class="line">				+host_workshop_collection "$&#123;SRCDS_HOST_WORKSHOP_COLLECTION&#125;" \</span><br><span class="line">				+workshop_start_map "$&#123;SRCDS_WORKSHOP_START_MAP&#125;" \</span><br><span class="line">				-authkey "$&#123;SRCDS_WORKSHOP_AUTHKEY&#125;" \</span><br><span class="line">				"$&#123;ow_args&#125;" \</span><br><span class="line">				"$&#123;ADDITIONAL_ARGS&#125;"</span><br><span class="line">else</span><br><span class="line"><span class="meta">	#</span><span class="bash"> If no autoexec is present, use all parameters</span></span><br><span class="line">	bash "$&#123;STEAMAPPDIR&#125;/srcds_run" -game "$&#123;STEAMAPP&#125;" -console -autoupdate \</span><br><span class="line">				-steam_dir "$&#123;STEAMCMDDIR&#125;" \</span><br><span class="line">				-steamcmd_script "$&#123;HOMEDIR&#125;/$&#123;STEAMAPP&#125;_update.txt" \</span><br><span class="line">				-usercon \</span><br><span class="line">				+fps_max "$&#123;SRCDS_FPSMAX&#125;" \</span><br><span class="line">				-tickrate "$&#123;SRCDS_TICKRATE&#125;" \</span><br><span class="line">				-port "$&#123;SRCDS_PORT&#125;" \</span><br><span class="line">				+tv_port "$&#123;SRCDS_TV_PORT&#125;" \</span><br><span class="line">				+clientport "$&#123;SRCDS_CLIENT_PORT&#125;" \</span><br><span class="line">				-maxplayers_override "$&#123;SRCDS_MAXPLAYERS&#125;" \</span><br><span class="line">				+game_type "$&#123;SRCDS_GAMETYPE&#125;" \</span><br><span class="line">				+game_mode "$&#123;SRCDS_GAMEMODE&#125;" \</span><br><span class="line">				+mapgroup "$&#123;SRCDS_MAPGROUP&#125;" \</span><br><span class="line">				+map "$&#123;SRCDS_STARTMAP&#125;" \</span><br><span class="line">				+sv_setsteamaccount "$&#123;SRCDS_TOKEN&#125;" \</span><br><span class="line">				+rcon_password "$&#123;SRCDS_RCONPW&#125;" \</span><br><span class="line">				+sv_password "$&#123;SRCDS_PW&#125;" \</span><br><span class="line">				+sv_region "$&#123;SRCDS_REGION&#125;" \</span><br><span class="line">				+net_public_adr "$&#123;SRCDS_NET_PUBLIC_ADDRESS&#125;" \</span><br><span class="line">				-ip "$&#123;SRCDS_IP&#125;" \</span><br><span class="line">				+host_workshop_collection "$&#123;SRCDS_HOST_WORKSHOP_COLLECTION&#125;" \</span><br><span class="line">				+workshop_start_map "$&#123;SRCDS_WORKSHOP_START_MAP&#125;" \</span><br><span class="line">				-authkey "$&#123;SRCDS_WORKSHOP_AUTHKEY&#125;" \</span><br><span class="line">				"$&#123;ADDITIONAL_ARGS&#125;"</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<p>References</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0NNMldhbGtpL0NTR08=">https://github.com/CM2Walki/CSGO<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/docker/docker-registry/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/docker/docker-registry/" class="post-title-link" itemprop="url">Docker commit to self-hosted registry</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 01-07-2022 00:32:51 / Modified: 00:36:43" itemprop="dateCreated datePublished" datetime="2022-01-07T00:32:51+08:00">01-07-2022</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p>提交image到私有仓库.</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/dev/docker/docker-registry/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -486,176 +693,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/academia/knowledge/mlp-fc/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/knowledge/embedding/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/academia/knowledge/embedding/" class="post-title-link" itemprop="url">Meaning of Embedding</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 01-06-2022 15:56:45 / Modified: 16:16:24" itemprop="dateCreated datePublished" datetime="2022-01-06T15:56:45+08:00">01-06-2022</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Academia/" itemprop="url" rel="index"><span itemprop="name">Academia</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p>Embedding 的意义</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/academia/knowledge/embedding/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/GNN/survey/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/academia/GNN/survey/" class="post-title-link" itemprop="url">A Comprehensive Survey on GNN</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 01-03-2022 18:21:37" itemprop="dateCreated datePublished" datetime="2022-01-03T18:21:37+08:00">01-03-2022</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 01-04-2022 20:45:13" itemprop="dateModified" datetime="2022-01-04T20:45:13+08:00">01-04-2022</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Academia/" itemprop="url" rel="index"><span itemprop="name">Academia</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p>A Comprehensive Survey on Graph Neural Networks 论文笔记</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/academia/GNN/survey/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
