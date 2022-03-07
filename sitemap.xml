@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://blog.edlison.com/academia/knowledge/attention/</loc>
+    <loc>https://blog.edlison.com/academia/venue/dblp/</loc>
     
     <lastmod>2022-03-07</lastmod>
     
@@ -10,6 +10,13 @@
   
   <url>
     <loc>https://blog.edlison.com/academia/GNN/survey_ad/</loc>
+    
+    <lastmod>2022-03-07</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.edlison.com/academia/knowledge/attention/</loc>
     
     <lastmod>2022-03-07</lastmod>
     
@@ -3729,6 +3736,13 @@
   
   <url>
     <loc>https://blog.edlison.com/tags/Anomaly-Detection/</loc>
+    <lastmod>2022-03-07</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.edlison.com/tags/dblp/</loc>
     <lastmod>2022-03-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
