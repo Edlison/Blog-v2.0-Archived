@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">354</span>
+          <span class="site-state-item-count">355</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -216,7 +216,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">185</span>
+        <span class="site-state-item-count">186</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -256,6 +256,116 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/knowledge/mvadg/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/academia/knowledge/mvadg/" class="post-title-link" itemprop="url">搭建MVADG网络</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 02-11-2021 02:13:46" itemprop="dateCreated datePublished" datetime="2021-02-11T02:13:46+08:00">02-11-2021</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 03-18-2021 00:14:44" itemprop="dateModified" datetime="2021-03-18T00:14:44+08:00">03-18-2021</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="遇到的坑"><a href="#遇到的坑" class="headerlink" title="遇到的坑"></a>遇到的坑</h1><h2 id="1-np-prod"><a href="#1-np-prod" class="headerlink" title="1. np.prod()"></a>1. np.prod()</h2><p>对传入的list计算乘积，可以指定dim。</p>
+<h2 id="2-nn-ConvTranspose2d"><a href="#2-nn-ConvTranspose2d" class="headerlink" title="2. nn.ConvTranspose2d()"></a>2. nn.ConvTranspose2d()</h2><p>反卷积操作。</p>
+<h2 id="3-argument-after-must-be-an-iterable"><a href="#3-argument-after-must-be-an-iterable" class="headerlink" title="3. argument after * must be an iterable"></a>3. argument after * must be an iterable</h2><p>如果在函数内部使用了*, 对传入的参数进行unpack, 需要注意需要传入一个可以迭代的对象。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Reshape</span><span class="params">(input, shape)</span>:</span></span><br><span class="line">  <span class="keyword">return</span> input.view(input.shape[<span class="number">0</span>], *shape)</span><br></pre></td></tr></table></figure>
+
+<p>如果传的是一个标量，可以将它变为一个tuple传入。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">shape = np.prod([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line">Reshape(input, (shape,))</span><br></pre></td></tr></table></figure>
+
+<p>在传入的shape后加一个<code>,</code>就相当于是一个tuple了。</p>
+<h2 id="4-reduce-failed-to-synchronize-device-side-assert-triggered"><a href="#4-reduce-failed-to-synchronize-device-side-assert-triggered" class="headerlink" title="4. reduce failed to synchronize: device-side assert triggered."></a>4. reduce failed to synchronize: device-side assert triggered.</h2><p>这是神经网络最后一层没有normalize导致的，可以加一层Sigmoid()解决。</p>
+<h2 id="5-d-fake的batch-size一直是torch-Size-256-1"><a href="#5-d-fake的batch-size一直是torch-Size-256-1" class="headerlink" title="5. d_fake的batch_size一直是torch.Size([256, 1])"></a>5. d_fake的batch_size一直是torch.Size([256, 1])</h2><p>在计算<code>bce_loss(d_fake, real_label)</code>时，生成的d_fake没有与最后一个batch_size匹配。原因在于Net中d_fake是由gen_imgs输入D生成的，而一开始生成的噪声的batch_size决定了gen_imgs的第一维度的大小。</p>
+<p>问题出在一开始生成噪声的时候输入的是self.batch_size而不是imgs_batch.</p>
+<h2 id="6-std-evaluated-to-zero-after-conversion-to-torch-int64-leading-to-division-by-zero"><a href="#6-std-evaluated-to-zero-after-conversion-to-torch-int64-leading-to-division-by-zero" class="headerlink" title="6. std evaluated to zero after conversion to torch.int64, leading to division by zero."></a>6. std evaluated to zero after conversion to torch.int64, leading to division by zero.</h2><p>dataset在返回数据时通过<code>transform.Normalize()</code>时出现的问题。</p>
+<p>dataset在读取自制的数据集时，类型转换的问题。需要将文本的<code>str</code>格式转成<code>float</code>,而不是<code>int</code>.</p>
+<h2 id="7-output-with-shape-1-28-28-doesn’t-match-the-broadcast-shape-3-28-28"><a href="#7-output-with-shape-1-28-28-doesn’t-match-the-broadcast-shape-3-28-28" class="headerlink" title="7. output with shape [1, 28, 28] doesn’t match the broadcast shape [3, 28, 28]."></a>7. output with shape [1, 28, 28] doesn’t match the broadcast shape [3, 28, 28].</h2><p>由于MNIST数据集通道的问题。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">transforms.Normalize((<span class="number">0.5</span>, <span class="number">0.5</span>, <span class="number">0.5</span>), (<span class="number">0.5</span>, <span class="number">0.5</span>, <span class="number">0.5</span>))</span><br><span class="line"><span class="comment"># 改为</span></span><br><span class="line">transforms.Normalize((<span class="number">0.5</span>,), (<span class="number">0.5</span>,))</span><br></pre></td></tr></table></figure>
+
+<h2 id="8-pickle-UnpicklingError-A-load-persistent-id-instruction-was-encountered-but-no-persistent-load…"><a href="#8-pickle-UnpicklingError-A-load-persistent-id-instruction-was-encountered-but-no-persistent-load…" class="headerlink" title="8. _pickle.UnpicklingError: A load persistent id instruction was encountered, but no persistent_load…"></a>8. _pickle.UnpicklingError: A load persistent id instruction was encountered, but no persistent_load…</h2><p>由于pytorch版本所致，<code>torch.save()</code>, <code>torch.load()</code>里面保存了版本信息，不一样的话会报错。</p>
+<h2 id="9-Only-one-class-present-in-y-true-ROC-AUC-score-is-not-defined-in-that-case"><a href="#9-Only-one-class-present-in-y-true-ROC-AUC-score-is-not-defined-in-that-case" class="headerlink" title="9. Only one class present in y_true. ROC AUC score is not defined in that case."></a>9. Only one class present in y_true. ROC AUC score is not defined in that case.</h2><p>在计算ROC AUC时，如果一个batch中的类别都是同样的，就会报错。</p>
+<p>解决方案</p>
+<ul>
+<li>整理0，1标签数据较为均衡</li>
+<li>使用try except然后pass</li>
+</ul>
+<h2 id="10-one-of-the-variables-needed-for-gradient-computation-has-been-modified-by-an-inplace-operation-由于Pytorch版本的大坑"><a href="#10-one-of-the-variables-needed-for-gradient-computation-has-been-modified-by-an-inplace-operation-由于Pytorch版本的大坑" class="headerlink" title="10. one of the variables needed for gradient computation has been modified by an inplace operation 由于Pytorch版本的大坑"></a>10. one of the variables needed for gradient computation has been modified by an inplace operation 由于Pytorch版本的大坑</h2><p>由于pytorch版本不一样，因此报错！！！</p>
+<p>都是Python3.7</p>
+<p>Pytorch = 1.7.1 (报错)</p>
+<p>Pytorch = 1.0.0 (不报错)</p>
+<h2 id="11-Pytorch自带的mnist数据集读取库-由于Pytorch版本的坑"><a href="#11-Pytorch自带的mnist数据集读取库-由于Pytorch版本的坑" class="headerlink" title="11. Pytorch自带的mnist数据集读取库 由于Pytorch版本的坑"></a>11. Pytorch自带的mnist数据集读取库 由于Pytorch版本的坑</h2><p>Pytorch = 1.7.1 (指定到有mnist的目录)</p>
+<p>Pytorch = 1.0.0 (指定到有raw的目录)</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -615,98 +725,6 @@
 <ul>
 <li>每次修正都向各自样本的梯度方向修正，<strong>难收敛</strong>。</li>
 </ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/knowledge/tensor_inplace/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/academia/knowledge/tensor_inplace/" class="post-title-link" itemprop="url">Pytorch中的inplace</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 02-09-2021 02:18:39" itemprop="dateCreated datePublished" datetime="2021-02-09T02:18:39+08:00">02-09-2021</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 02-10-2021 02:21:19" itemprop="dateModified" datetime="2021-02-10T02:21:19+08:00">02-10-2021</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Inplace操作就是将操作后的<strong>新值赋值到原变量地址</strong>上的操作。如<code>x += 1</code>.</p>
-<h1 id="Pytorch中的操作"><a href="#Pytorch中的操作" class="headerlink" title="Pytorch中的操作"></a>Pytorch中的操作</h1><p>带有<code>_</code>后缀对Tensor的操作都是Inplace操作。</p>
-<p><code>.squeeze()</code>不是Inplace操作，<code>.squeeze_()</code>是Inplace操作。</p>
-<p><code>x += 1</code>是Inplace操作，<code>x = x + 1</code>不是Inplace操作。</p>
-<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><p><strong>在 pytorch 中, 有两种情况不能使用 inplace operation:</strong></p>
-<ol>
-<li>对于 requires_grad=True 的 <strong>叶子张量(leaf tensor)</strong> 不能使用 inplace operation</li>
-<li>对于在 <strong>求梯度阶段需要用到的张量</strong> 不能使用 inplace operation</li>
-</ol>
-<hr>
-<p>Reference</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC8zODQ3NTE4Mw==">https://zhuanlan.zhihu.com/p/38475183<i class="fa fa-external-link-alt"></i></span></p>
 
       
     </div>

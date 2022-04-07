@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">354</span>
+          <span class="site-state-item-count">355</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -216,7 +216,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">185</span>
+        <span class="site-state-item-count">186</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -256,6 +256,100 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/linux/linux-path/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/linux/linux-path/" class="post-title-link" itemprop="url">修改环境变量</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 11-07-2020 02:09:33" itemprop="dateCreated datePublished" datetime="2020-11-07T02:09:33+08:00">11-07-2020</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 11-12-2020 02:18:32" itemprop="dateModified" datetime="2020-11-12T02:18:32+08:00">11-12-2020</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Linux下修改环境变量"><a href="#Linux下修改环境变量" class="headerlink" title="Linux下修改环境变量"></a>Linux下修改环境变量</h1><h2 id="查看PATH"><a href="#查看PATH" class="headerlink" title="查看PATH"></a>查看PATH</h2><p>echo $PATH<br>以添加mongodb server为列</p>
+<h2 id="修改方法一"><a href="#修改方法一" class="headerlink" title="修改方法一"></a>修改方法一</h2><p>export PATH=/usr/local/mongodb/bin:$PATH<br>//配置完后可以通过echo $PATH查看配置结果。<br>生效方法：立即生效<br>有效期限：临时改变，只能在当前的终端窗口中有效，当前窗口关闭后就会恢复原有的path配置<br>用户局限：仅对当前用户</p>
+<h2 id="修改方法二"><a href="#修改方法二" class="headerlink" title="修改方法二"></a>修改方法二</h2><p>通过修改.bashrc文件:<br>vim ~/.bashrc<br>//在最后一行添上：<br>export PATH=/usr/local/mongodb/bin:$PATH<br>生效方法：（有以下两种）<br>1、关闭当前终端窗口，重新打开一个新终端窗口就能生效<br>2、输入“source ~/.bashrc”命令，立即生效<br>有效期限：永久有效<br>用户局限：仅对当前用户</p>
+<h2 id="修改方法三"><a href="#修改方法三" class="headerlink" title="修改方法三"></a>修改方法三</h2><p>通过修改profile文件:<br>vim /etc/profile<br>/export PATH //找到设置PATH的行，添加<br>export PATH=/usr/local/mongodb/bin:$PATH<br>生效方法：系统重启<br>有效期限：永久有效<br>用户局限：对所有用户</p>
+<h2 id="修改方法四"><a href="#修改方法四" class="headerlink" title="修改方法四"></a>修改方法四</h2><p>通过修改environment文件:<br>vim /etc/environment<br>在PATH=”/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games”中加入“:/usr/local/mongodb/bin”<br>生效方法：系统重启<br>有效期限：永久有效<br>用户局限：对所有用户</p>
+<h2 id="MacOS"><a href="#MacOS" class="headerlink" title="MacOS"></a>MacOS</h2><p>MAC OS X环境配置的加载顺序</p>
+<ul>
+<li><p>系统级别<br>/etc/profile<br>/etc/paths </p>
+</li>
+<li><p>用户级别<br>~/.bash_profile<br>~/.bash_login<br>~/.profile<br>~/.bashrc  （在打开shell时加载）</p>
+</li>
+</ul>
+<p>/etc/paths 全局建议修改这个文件<br>/etc/profile 不建议修改这个文件，全局共有配置，用户登录时候都会加载该文件<br>/etc/bashrc 一般在这个文件中添加系统级别的环境变量，全局共有配置，bash shell执行时候都会加载</p>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><p>想要立即生效执行<code>source</code></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -680,121 +774,6 @@
 <hr>
 <p>Reference</p>
 <p>BERT | Bidirectional Encoder Representation from Transformers<br><span class="exturl" data-url="aHR0cHM6Ly9lYXN5YWkudGVjaC9haS1kZWZpbml0aW9uL2JlcnQv">https://easyai.tech/ai-definition/bert/<i class="fa fa-external-link-alt"></i></span></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/ml/deep_learning/Transformer/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/ml/deep_learning/Transformer/" class="post-title-link" itemprop="url">dev/ml/deep_learning/Transformer</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 09-23-2020 11:57:22" itemprop="dateCreated datePublished" datetime="2020-09-23T11:57:22+08:00">09-23-2020</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 10-10-2021 22:35:09" itemprop="dateModified" datetime="2021-10-10T22:35:09+08:00">10-10-2021</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Transfomer-概述"><a href="#Transfomer-概述" class="headerlink" title="Transfomer 概述"></a>Transfomer 概述</h1><p>和经典的 seq2seq 模型一样，Transformer 模型中也采用了 encoer-decoder 架构。上图的左半边用 NX 框出来的，就代表一层 encoder，其中论文里面的 encoder 一共有6层这样的结构。上图的右半边用 NX 框出来的，则代表一层 decoder，同样也有6层。</p>
-<p>定义输入序列首先经过 word embedding，再和 positional encoding 相加后，输入到 encoder 中。输出序列经过的处理和输入序列一样，然后输入到 decoder。</p>
-<p>最后，decoder 的输出经过一个线性层，再接 Softmax。</p>
-<p>于上便是 Transformer 的整体框架，下面先来介绍 encoder 和 decoder。</p>
-<p><strong>Encoder</strong></p>
-<p>由 6 层相同的层组成，每一层分别由两部分组成：</p>
-<ul>
-<li><p>第一部分是 multi-head self-attention</p>
-</li>
-<li><p>第二部分是 position-wise feed-forward network，是一个全连接层</p>
-</li>
-</ul>
-<p>两个部分，都有一个残差连接(residual connection)，然后接着一个 Layer Normalization。</p>
-<p><strong>Decoder</strong></p>
-<p>和 encoder 类似，decoder 也是由6个相同的层组成，每一层由三个部分组成：</p>
-<ul>
-<li>第一个部分是 multi-head self-attention mechanism</li>
-<li>第二部分是 multi-head context-attention mechanism</li>
-<li>第三部分是一个 position-wise feed-forward network和encoder 一样，上面三个部分的每一个部分，都有一个残差连接，后接一个 Layer Normalization。</li>
-</ul>
-<p>decoder 和 encoder 不同的地方在 multi-head context-attention mechanism</p>
-<p><strong>Attention</strong></p>
-<p>Attention用一句话来描述，就是encoder层的输出经过加权平均后再输入到decoder层中。它主要应用在seq2seq模型中，这个加权可以用矩阵来表示，也叫Attention矩阵。它表示对于某个时刻的输出y，他在输入x上各个部分的注意力。这个注意力就是加权。</p>
-<p><strong>Self-Attention</strong></p>
-<p>attention有两个隐状态，hi和st。前者是输入序列第i个位置产生的隐状态，后者是输出序列在第t个位置产生的隐状态。self-attention就是，输出序列就是输入序列。自己计算自己的attention得分。</p>
-<p><strong>Context-Attention</strong></p>
-<p>context-attention是encoder和decoder之间的attention，是两个不同序列之间的attention，与来源于自身的self-attention相区别。</p>
-<p>计算attention权重的方法：</p>
-<ul>
-<li>additive attention</li>
-<li>local-base</li>
-<li>general</li>
-<li>dot-product</li>
-<li>scaled dot-product</li>
-</ul>
-<p><strong>Scaled Dot-Product Attention</strong></p>
-<p>通过query和key的相似性程度来确定value的权重分布。</p>
-<p><img src="https://pic4.zhimg.com/80/v2-e2bc3a470b359e8bdce750843140897e_720w.jpg" alt="img-scaled-dot-attention"></p>
-<hr>
-<p>Reference</p>
-<p>Transformer<br><span class="exturl" data-url="aHR0cHM6Ly9lYXN5YWkudGVjaC9haS1kZWZpbml0aW9uL3RyYW5zZm9ybWVyLw==">https://easyai.tech/ai-definition/transformer/<i class="fa fa-external-link-alt"></i></span></p>
-<p>Attention<br><span class="exturl" data-url="aHR0cHM6Ly9lYXN5YWkudGVjaC9haS1kZWZpbml0aW9uL2F0dGVudGlvbi8=">https://easyai.tech/ai-definition/attention/<i class="fa fa-external-link-alt"></i></span></p>
-<p>EncoderDecoder Seq2Seq</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9lYXN5YWkudGVjaC9haS1kZWZpbml0aW9uL2VuY29kZXItZGVjb2Rlci1zZXEyc2VxLw==">https://easyai.tech/ai-definition/encoder-decoder-seq2seq/<i class="fa fa-external-link-alt"></i></span></p>
 
       
     </div>
