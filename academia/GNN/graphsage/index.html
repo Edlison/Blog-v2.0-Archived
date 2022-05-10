@@ -23,17 +23,17 @@
     var CONFIG = {"hostname":"blog.edlison.com","root":"/","images":"/images","scheme":"Muse","version":"8.0.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
   </script>
 
-  <meta name="description" content="Intro大多数graph embedding框架是transductive（直推式的），只能对一个固定的图生成embedding。这种transductive的方法不能对图中没有的新节点生成embedding。 相对的，GraphSAGE是一个inductive（归纳式）框架，能够高效地利用节点的属性信息对新节点生成embedding。">
+  <meta name="description" content="IntroGraphSAGE 大多数graph embedding框架是transductive（直推式的），只能对一个固定的图生成embedding。这种transductive的方法不能对图中没有的新节点生成embedding。 相对的，GraphSAGE是一个inductive（归纳式）框架，能够高效地利用节点的属性信息对新节点生成embedding。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Paper | Inductive Representation Learning on Large Graphs">
 <meta property="og:url" content="https://blog.edlison.com/academia/GNN/graphsage/index.html">
 <meta property="og:site_name" content="Edlison is talking here.">
-<meta property="og:description" content="Intro大多数graph embedding框架是transductive（直推式的），只能对一个固定的图生成embedding。这种transductive的方法不能对图中没有的新节点生成embedding。 相对的，GraphSAGE是一个inductive（归纳式）框架，能够高效地利用节点的属性信息对新节点生成embedding。">
+<meta property="og:description" content="IntroGraphSAGE 大多数graph embedding框架是transductive（直推式的），只能对一个固定的图生成embedding。这种transductive的方法不能对图中没有的新节点生成embedding。 相对的，GraphSAGE是一个inductive（归纳式）框架，能够高效地利用节点的属性信息对新节点生成embedding。">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://i.imgur.com/srvtHjZ.png">
 <meta property="og:image" content="https://i.imgur.com/Yvcu4v4.png">
 <meta property="article:published_time" content="2022-05-10T08:23:45.178Z">
-<meta property="article:modified_time" content="2022-05-10T09:26:38.579Z">
+<meta property="article:modified_time" content="2022-05-10T09:27:39.531Z">
 <meta property="article:author" content="Bolin Shen">
 <meta property="article:tag" content="GNN">
 <meta name="twitter:card" content="summary">
@@ -205,7 +205,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">357</span>
+          <span class="site-state-item-count">358</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -292,7 +292,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 05-10-2022 16:23:45 / Modified: 17:26:38" itemprop="dateCreated datePublished" datetime="2022-05-10T16:23:45+08:00">05-10-2022</time>
+      <time title="Created: 05-10-2022 16:23:45 / Modified: 17:27:39" itemprop="dateCreated datePublished" datetime="2022-05-10T16:23:45+08:00">05-10-2022</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -321,7 +321,8 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p>大多数graph embedding框架是transductive（直推式的），只能对一个固定的图生成embedding。这种transductive的方法不能对图中没有的新节点生成embedding。</p>
+        <h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p>GraphSAGE</p>
+<p>大多数graph embedding框架是transductive（直推式的），只能对一个固定的图生成embedding。这种transductive的方法不能对图中没有的新节点生成embedding。</p>
 <p>相对的，GraphSAGE是一个inductive（归纳式）框架，能够高效地利用节点的属性信息对新节点生成embedding。</p>
 <a id="more"></a>
 
@@ -358,6 +359,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/academia/GNN/tgat/" rel="next" title="Paper | INDUCTIVE REPRESENTATION LEARNING ON TEMPORAL GRAPHS">
+                  Paper | INDUCTIVE REPRESENTATION LEARNING ON TEMPORAL GRAPHS <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>
