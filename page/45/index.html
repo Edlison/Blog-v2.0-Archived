@@ -203,20 +203,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">358</span>
+          <span class="site-state-item-count">359</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-count">32</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">188</span>
+        <span class="site-state-item-count">189</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -256,6 +256,115 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/notebook/ce-start/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/notebook/ce-start/" class="post-title-link" itemprop="url">Cheat Engine 入门</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 02-17-2021 13:44:06 / Modified: 15:23:13" itemprop="dateCreated datePublished" datetime="2021-02-17T13:44:06+08:00">02-17-2021</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>Cheat Engine通过修改内存的方式对应用程序进行修改。</p>
+<p>能够实现简单的逆向工程。</p>
+<h2 id="查找内存地址并修改值"><a href="#查找内存地址并修改值" class="headerlink" title="查找内存地址并修改值"></a>查找内存地址并修改值</h2><ol>
+<li>初始查找</li>
+</ol>
+<p>可以使用精确查找(exact)，比大小(bigger smaller)，间值(between)，未知(unknown)这几种方法。</p>
+<ol start="2">
+<li>进一步筛选</li>
+</ol>
+<p>可以使用精确，大于，小于，增减的具体值等等。</p>
+<p>通过不断筛选，可以得到我们需要的内存地址。</p>
+<ol start="3">
+<li>修改值</li>
+</ol>
+<p>对内存地址位置的值进行修改就可以了</p>
+<p><strong>注意</strong></p>
+<ul>
+<li>绿色的是基址，黑色的是动态地址。</li>
+<li>win程序中的变量一般都是4个字节。</li>
+</ul>
+<h2 id="代码替换"><a href="#代码替换" class="headerlink" title="代码替换"></a>代码替换</h2><p>首先找到内存地址。</p>
+<p><code>find out what writes to this address</code>找到改写这个地址的代码。直接点击<code>replace</code>就会将该条汇编代码用<code>nop</code>覆盖掉。</p>
+<h2 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h2><h3 id="多级指针"><a href="#多级指针" class="headerlink" title="多级指针"></a>多级指针</h3><p>先查找是什么访问了这个地址(代码)，再查找是什么访问了这个地址(寄存器)。</p>
+<p>一步一步找到最开始的<strong>基址</strong>。手动添加一个地址，在基址的基础上按照指针的顺序，依次可以找到需要改变的地址。</p>
+<h2 id="反汇编"><a href="#反汇编" class="headerlink" title="反汇编"></a>反汇编</h2><p>找到改写地址值的代码，显示反汇编程序。</p>
+<ul>
+<li>从模版导入CT表框架代码</li>
+<li>代码注入</li>
+<li>更改源码</li>
+<li>保存当前脚本</li>
+</ul>
+<h2 id="共享代码"><a href="#共享代码" class="headerlink" title="共享代码"></a>共享代码</h2><p>一个对象的所有实例的表结构都是一样的。因此获取实例的内存位置，可以看到该实例的其他属性。比如敌人，队友等。通过这个判断，加入到注入代码中，就可以实现对队友和敌人分开操作。</p>
+<hr>
+<p>Reference</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9jbmJsb2dzLmNvbS9MeVNoYXJr">https://cnblogs.com/LyShark<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -575,91 +684,6 @@
 <p>Pytorch = 1.0.0 (不报错)</p>
 <h2 id="11-Pytorch自带的mnist数据集读取库-由于Pytorch版本的坑"><a href="#11-Pytorch自带的mnist数据集读取库-由于Pytorch版本的坑" class="headerlink" title="11. Pytorch自带的mnist数据集读取库 由于Pytorch版本的坑"></a>11. Pytorch自带的mnist数据集读取库 由于Pytorch版本的坑</h2><p>Pytorch = 1.7.1 (指定到有mnist的目录)</p>
 <p>Pytorch = 1.0.0 (指定到有raw的目录)</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/notebook/py-init/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/notebook/py-init/" class="post-title-link" itemprop="url">Python的__init__.py文件</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 02-11-2021 00:18:04 / Modified: 01:12:44" itemprop="dateCreated datePublished" datetime="2021-02-11T00:18:04+08:00">02-11-2021</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="init-py文件的主要作用"><a href="#init-py文件的主要作用" class="headerlink" title="init.py文件的主要作用"></a>init.py文件的主要作用</h1><p>用来管理当前目录下的<code>.py</code>文件。</p>
-<ol>
-<li><code>__init__.py</code>是package的标识。</li>
-<li>其中<code>__all__</code>可以用来进行模糊导入(<code>import *</code>)。</li>
-</ol>
-<p>使用<code>import</code>导入包的时候，就相当于导入了这个包的<code>__init__.py</code>。</p>
-<h1 id="import的理解"><a href="#import的理解" class="headerlink" title="import的理解"></a>import的理解</h1><p>可以导入<strong>包</strong>或<strong>文件</strong>或<strong>变量</strong>。</p>
-<h1 id="from的理解"><a href="#from的理解" class="headerlink" title="from的理解"></a>from的理解</h1><p>只能<strong>包</strong>或<strong>文件</strong>。</p>
-<hr>
-<p>Reference</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vQmx1ZVNreXlqL3AvOTQxNTA4Ny5odG1s">https://www.cnblogs.com/BlueSkyyj/p/9415087.html<i class="fa fa-external-link-alt"></i></span></p>
 
       
     </div>

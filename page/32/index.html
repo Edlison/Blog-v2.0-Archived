@@ -203,20 +203,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">358</span>
+          <span class="site-state-item-count">359</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-count">32</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">188</span>
+        <span class="site-state-item-count">189</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -256,6 +256,102 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/notebook/anaconda-rename/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/dev/notebook/anaconda-rename/" class="post-title-link" itemprop="url">Conda create/delete/rename environments</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 07-30-2021 23:09:02" itemprop="dateCreated datePublished" datetime="2021-07-30T23:09:02+08:00">07-30-2021</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 08-05-2021 20:38:58" itemprop="dateModified" datetime="2021-08-05T20:38:58+08:00">08-05-2021</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Create"><a href="#Create" class="headerlink" title="Create"></a>Create</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create -n tensorflow20 python=3.6</span><br></pre></td></tr></table></figure>
+
+<h1 id="Delete"><a href="#Delete" class="headerlink" title="Delete"></a>Delete</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda remove -n tensorflow20 --all</span><br></pre></td></tr></table></figure>
+
+<h1 id="Rename"><a href="#Rename" class="headerlink" title="Rename"></a>Rename</h1><p>clone and delete</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda create -n tf20 --clone tensorflow20</span><br><span class="line">conda remove -n tensorflow20 --all</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<hr>
+<p>Reference</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC83MjY1MDExYmEzZjI=">https://www.jianshu.com/p/7265011ba3f2<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -572,84 +668,6 @@
 <h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>由于在域名提供商指定的域名是到IP的80端口</p>
 <p>容器需要映射到宿主机的80端口，否则需要在网址后面加<code>:8080</code></p>
 <p><strong>域名提供商</strong>或<strong>服务器商</strong>如果在国内的话，需要网站备案！</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/dev/notebook/socketio-dev/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/dev/notebook/socketio-dev/" class="post-title-link" itemprop="url">Flask-SocketIO development experience</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 07-13-2021 11:29:48 / Modified: 11:39:27" itemprop="dateCreated datePublished" datetime="2021-07-13T11:29:48+08:00">07-13-2021</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="socketio-init"><a href="#socketio-init" class="headerlink" title="socketio init"></a>socketio init</h1><p>socketio must input flask_app context, so the web service is constructed based socketio web service.</p>
-<h1 id="join-room"><a href="#join-room" class="headerlink" title="join_room"></a>join_room</h1><p>If you want to create private room, you need to apply <code>join_room(room_id)</code> when users entering. After this, we can use <code>emit(to=room_id)</code> to send message to specific room.</p>
-<h1 id="socketio-on"><a href="#socketio-on" class="headerlink" title="socketio.on"></a>socketio.on</h1><p>is used to receive message.</p>
-<h1 id="socketio-emit"><a href="#socketio-emit" class="headerlink" title="socketio.emit"></a>socketio.emit</h1><p>is used to send message.</p>
 
       
     </div>
