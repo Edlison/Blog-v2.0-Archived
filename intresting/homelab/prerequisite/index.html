@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/man-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/man-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.edlison.com","root":"/","images":"/images","scheme":"Muse","version":"8.0.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+
+  <meta name="description" content="Intro开始搭建Home Lab的前期准备工作 预备知识Legacy - UEFILegacy这种启动模式兼容性较好，在安装操作系统时只可以选择32位或64位的，但是硬盘分区最大支持支持2TB，理论支持安装Windows所有版本的系统；而UEFI启动模式只能安装64位的操作系统，硬盘分区最大支持18EB，基本上算是无限大，相对启动速度会更快，同时为用户在BIOS中提供支持鼠标等功能的更高级的图形">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Home Lab prerequisite">
+<meta property="og:url" content="https://blog.edlison.com/intresting/homelab/prerequisite/index.html">
+<meta property="og:site_name" content="Edlison is talking here.">
+<meta property="og:description" content="Intro开始搭建Home Lab的前期准备工作 预备知识Legacy - UEFILegacy这种启动模式兼容性较好，在安装操作系统时只可以选择32位或64位的，但是硬盘分区最大支持支持2TB，理论支持安装Windows所有版本的系统；而UEFI启动模式只能安装64位的操作系统，硬盘分区最大支持18EB，基本上算是无限大，相对启动速度会更快，同时为用户在BIOS中提供支持鼠标等功能的更高级的图形">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://blogimg-1304875656.cos.ap-hongkong.myqcloud.com//20211029230958.png">
+<meta property="og:image" content="https://blogimg-1304875656.cos.ap-hongkong.myqcloud.com//20211029232104.png">
+<meta property="og:image" content="https://blogimg-1304875656.cos.ap-hongkong.myqcloud.com//20211030001812.png">
+<meta property="og:image" content="https://blogimg-1304875656.cos.ap-hongkong.myqcloud.com//20211030002007.png">
+<meta property="og:image" content="https://blogimg-1304875656.cos.ap-hongkong.myqcloud.com//20211030003204.png">
+<meta property="article:published_time" content="2021-10-29T04:57:16.623Z">
+<meta property="article:modified_time" content="2021-10-29T16:42:07.660Z">
+<meta property="article:author" content="Bolin Shen">
+<meta property="article:tag" content="Edlison">
+<meta property="article:tag" content="edlison">
+<meta property="article:tag" content="blog">
+<meta property="article:tag" content="code">
+<meta property="article:tag" content="solution">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blogimg-1304875656.cos.ap-hongkong.myqcloud.com//20211029230958.png">
+
+
+<link rel="canonical" href="https://blog.edlison.com/intresting/homelab/prerequisite/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Home Lab prerequisite | Edlison is talking here.</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NC6FWQJNCW"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-NC6FWQJNCW');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Edlison is talking here.</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">“Edlison's blog”</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Intro"><span class="nav-number">1.</span> <span class="nav-text">Intro</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#预备知识"><span class="nav-number">2.</span> <span class="nav-text">预备知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Legacy-UEFI"><span class="nav-number">2.1.</span> <span class="nav-text">Legacy - UEFI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DHCP"><span class="nav-number">2.2.</span> <span class="nav-text">DHCP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PCI-PCIe"><span class="nav-number">2.3.</span> <span class="nav-text">PCI PCIe</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#南桥北桥"><span class="nav-number">2.4.</span> <span class="nav-text">南桥北桥</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接口"><span class="nav-number">2.5.</span> <span class="nav-text">接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#m-2"><span class="nav-number">2.5.1.</span> <span class="nav-text">m.2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NVMe"><span class="nav-number">2.5.2.</span> <span class="nav-text">NVMe</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iperf"><span class="nav-number">2.6.</span> <span class="nav-text">iperf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多播"><span class="nav-number">2.7.</span> <span class="nav-text">多播</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SR-IOV"><span class="nav-number">2.8.</span> <span class="nav-text">SR-IOV</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常见设备"><span class="nav-number">2.8.1.</span> <span class="nav-text">常见设备</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#raid"><span class="nav-number">2.9.</span> <span class="nav-text">raid</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#硬盘"><span class="nav-number">2.10.</span> <span class="nav-text">硬盘</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网线"><span class="nav-number">2.11.</span> <span class="nav-text">网线</span></a></li></ol></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Bolin Shen</p>
+  <div class="site-description" itemprop="description">Edlison blog</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">358</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">189</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2VkbGlzb24=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;edlison"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmJvbGluLmVkbGlzb24uc2hlbkBnbWFpbC5jb20=" title="E-Mail → mailto:bolin.edlison.shen@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/intresting/homelab/prerequisite/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Home Lab prerequisite
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 10-29-2021 12:57:16" itemprop="dateCreated datePublished" datetime="2021-10-29T12:57:16+08:00">10-29-2021</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 10-30-2021 00:42:07" itemprop="dateModified" datetime="2021-10-30T00:42:07+08:00">10-30-2021</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Home-Lab/" itemprop="url" rel="index"><span itemprop="name">Home Lab</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p>开始搭建Home Lab的前期准备工作</p>
+<h1 id="预备知识"><a href="#预备知识" class="headerlink" title="预备知识"></a>预备知识</h1><h2 id="Legacy-UEFI"><a href="#Legacy-UEFI" class="headerlink" title="Legacy - UEFI"></a>Legacy - UEFI</h2><p>Legacy这种启动模式兼容性较好，在安装操作系统时只可以选择32位或64位的，但是硬盘分区最大支持支持2TB，理论支持安装Windows所有版本的系统；而UEFI启动模式只能安装64位的操作系统，硬盘分区最大支持18EB，基本上算是无限大，相对启动速度会更快，同时为用户在BIOS中提供支持鼠标等功能的更高级的图形界面。</p>
+<h2 id="DHCP"><a href="#DHCP" class="headerlink" title="DHCP"></a>DHCP</h2><p>Dynamic Host Configuration Protocol(动态主机配置协议)</p>
+<p>C/S形式, 客户端向服务端申请IP, 服务端动态生成IP并分发</p>
+<p>AP(access point)桥接模式下需要关闭DHCP</p>
+<h2 id="PCI-PCIe"><a href="#PCI-PCIe" class="headerlink" title="PCI PCIe"></a>PCI PCIe</h2><p>Peripheral Component Interconnect Express</p>
+<p><img src="https://blogimg-1304875656.cos.ap-hongkong.myqcloud.com//20211029230958.png" alt=""></p>
+<p>带宽的计算公式<br>$$<br>带宽=时钟*(位宽/8)<br>$$<br>PCIe尺寸</p>
+<ul>
+<li>半长&lt;167.65mm</li>
+<li>全长&lt;312.00mm</li>
+<li>半高&lt;68.9mm</li>
+<li>全高&lt;111.15mm</li>
+</ul>
+<p>一些服务器上的PCIe设备需要通过转接器才能装在主机上.</p>
+<p>由于适配问题x4, x8, x16都是一样大的</p>
+<p>x1也可以装在x16上, 且占用的只是x1的带宽</p>
+<h2 id="南桥北桥"><a href="#南桥北桥" class="headerlink" title="南桥北桥"></a>南桥北桥</h2><blockquote>
+<p>其中的北桥负责CPU与内存的数据交换、图形处理、CPU与PCIE数据交换; 南桥则负责系统的输入输出功能。</p>
+<p>所以北桥芯片还有个名字叫“图形与内存控制器”，南桥叫“输入/输出控制器”。</p>
+</blockquote>
+<p><img src="https://blogimg-1304875656.cos.ap-hongkong.myqcloud.com//20211029232104.png" alt=""></p>
+<p>与CPU直接相连的PCIe3.0一共就16位, 上限16GB/s</p>
+<p>而从南桥过来的所有数据共享一个DMI3.0总线, 实际上是PCIeX4, 因此上限为4GB/s</p>
+<p>m.2走南桥PCIe通道, 最快也就4GB/s</p>
+<p><img src="https://blogimg-1304875656.cos.ap-hongkong.myqcloud.com//20211030001812.png" alt=""></p>
+<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><p><img src="https://blogimg-1304875656.cos.ap-hongkong.myqcloud.com//20211030002007.png" alt=""></p>
+<h3 id="m-2"><a href="#m-2" class="headerlink" title="m.2"></a>m.2</h3><p>是一种接口, 有多种长度可选</p>
+<p>最普通的m.2走SATA通道, m.2 NVMe走PCIe通道</p>
+<p>以上两种不兼容, SATA协议有3段金手指, NVMe协议有两段金手指</p>
+<h3 id="NVMe"><a href="#NVMe" class="headerlink" title="NVMe"></a>NVMe</h3><p>是一种协议, PCIe是一种通道, NVMe协议基于这个通道上实现了性能增强, 延迟降低</p>
+<h2 id="iperf"><a href="#iperf" class="headerlink" title="iperf"></a>iperf</h2><p>测试带宽性能</p>
+<h2 id="多播"><a href="#多播" class="headerlink" title="多播"></a>多播</h2><blockquote>
+<p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC80MjQzMTA5Mw==">https://zhuanlan.zhihu.com/p/42431093<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<h2 id="SR-IOV"><a href="#SR-IOV" class="headerlink" title="SR-IOV"></a>SR-IOV</h2><p>Single Root I/O Virtualization</p>
+<p>对PCIe接口IO硬件进行虚拟, 需要软件硬件同时支持</p>
+<h3 id="常见设备"><a href="#常见设备" class="headerlink" title="常见设备"></a>常见设备</h3><p>hp331flr - Broadcom bcm5419 不支持 1Gbps*4</p>
+<p>hp366flr - Intel i350T4 支持 1Gbps*4</p>
+<p>hp561flr - Intel x540T2 支持 10Gbps*2</p>
+<h2 id="raid"><a href="#raid" class="headerlink" title="raid"></a>raid</h2><blockquote>
+<p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC8xMTk0NTI5MTM=">https://zhuanlan.zhihu.com/p/119452913<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<h2 id="硬盘"><a href="#硬盘" class="headerlink" title="硬盘"></a>硬盘</h2><p><img src="https://blogimg-1304875656.cos.ap-hongkong.myqcloud.com//20211030003204.png" alt=""></p>
+<h2 id="网线"><a href="#网线" class="headerlink" title="网线"></a>网线</h2><p>千兆</p>
+<p>1000Mbps - 1Gbps - 125MBps</p>
+<p>万兆</p>
+<p>10000Mbps - 10Gbps - 1.25GBps</p>
+<p>CAT5(5类线)</p>
+<p>100Mbps</p>
+<p>CAT5e(超5类线)</p>
+<p>1000Mbps</p>
+<p>CAT6(6类线)</p>
+<p>1Gbps</p>
+<p>CAT6e(超6类线)</p>
+<p>10Gbps</p>
+<hr>
+<p>Reference</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC8yNjE3Mjk3Mg==">https://zhuanlan.zhihu.com/p/26172972<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC8zNzU4MDQ3NTc=">https://zhuanlan.zhihu.com/p/375804757<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9wb3N0LnNtemRtLmNvbS9wL2Fvb3c4NXo3Lw==">https://post.smzdm.com/p/aoow85z7/<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC80MjQzMTA5Mw==">https://zhuanlan.zhihu.com/p/42431093<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC8xMTk0NTI5MTM=">https://zhuanlan.zhihu.com/p/119452913<i class="fa fa-external-link-alt"></i></span></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/intresting/homelab/framework/" rel="prev" title="Framework of Home Lab">
+                  <i class="fa fa-chevron-left"></i> Framework of Home Lab
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/dev/error/fanerror/" rel="next" title="Asus B85 Gamer shows CPU Fan Error!">
+                  Asus B85 Gamer shows CPU Fan Error! <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Edlison</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+  
+
+  
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">360</span>
+          <span class="site-state-item-count">358</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -481,7 +481,8 @@
 
 </body>
 </html>
-        const display = !!node.type.match(/; *mode=display/);
+{
+              const display = !!node.type.match(/; *mode=display/);
               const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
               const text = document.createTextNode('');
               node.parentNode.replaceChild(text, node);
