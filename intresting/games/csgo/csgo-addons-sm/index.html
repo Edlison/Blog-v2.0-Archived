@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/man-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/man-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.edlison.com","root":"/","images":"/images","scheme":"Muse","version":"8.0.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+
+  <meta name="description" content="IntroCSGO SourceMod插件设定">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSGO Addons SourceMod">
+<meta property="og:url" content="https://blog.edlison.com/intresting/games/csgo/csgo-addons-sm/index.html">
+<meta property="og:site_name" content="Edlison is talking here.">
+<meta property="og:description" content="IntroCSGO SourceMod插件设定">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://blogimg-1304875656.cos.ap-hongkong.myqcloud.com//20220120025315.png">
+<meta property="og:image" content="https://blogimg-1304875656.cos.ap-hongkong.myqcloud.com//20220120025153.png">
+<meta property="og:image" content="https://blogimg-1304875656.cos.ap-hongkong.myqcloud.com//20220120025419.png">
+<meta property="article:published_time" content="2022-01-17T12:10:54.986Z">
+<meta property="article:modified_time" content="2022-01-19T19:00:17.936Z">
+<meta property="article:author" content="Bolin Shen">
+<meta property="article:tag" content="csgo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blogimg-1304875656.cos.ap-hongkong.myqcloud.com//20220120025315.png">
+
+
+<link rel="canonical" href="https://blog.edlison.com/intresting/games/csgo/csgo-addons-sm/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>CSGO Addons SourceMod | Edlison is talking here.</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NC6FWQJNCW"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-NC6FWQJNCW');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Edlison is talking here.</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">“Edlison's blog”</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Intro"><span class="nav-number">1.</span> <span class="nav-text">Intro</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#General"><span class="nav-number">2.</span> <span class="nav-text">General</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Config"><span class="nav-number">3.</span> <span class="nav-text">Config</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#添加管理"><span class="nav-number">3.1.</span> <span class="nav-text">添加管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加插件"><span class="nav-number">3.2.</span> <span class="nav-text">添加插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义Menu"><span class="nav-number">3.3.</span> <span class="nav-text">自定义Menu</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#地图"><span class="nav-number">3.4.</span> <span class="nav-text">地图</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关闭插件"><span class="nav-number">4.</span> <span class="nav-text">关闭插件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Manage-SourceMod"><span class="nav-number">5.</span> <span class="nav-text">Manage SourceMod</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Admin-Command"><span class="nav-number">6.</span> <span class="nav-text">Admin Command</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基础命令"><span class="nav-number">6.1.</span> <span class="nav-text">基础命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#扩展命令"><span class="nav-number">6.2.</span> <span class="nav-text">扩展命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#投票命令"><span class="nav-number">6.3.</span> <span class="nav-text">投票命令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#War-Mod"><span class="nav-number">7.</span> <span class="nav-text">War Mod</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Manage-Map"><span class="nav-number">8.</span> <span class="nav-text">Manage Map</span></a></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Bolin Shen</p>
+  <div class="site-description" itemprop="description">Edlison blog</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">359</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">189</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2VkbGlzb24=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;edlison"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmJvbGluLmVkbGlzb24uc2hlbkBnbWFpbC5jb20=" title="E-Mail → mailto:bolin.edlison.shen@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/intresting/games/csgo/csgo-addons-sm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CSGO Addons SourceMod
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 01-17-2022 20:10:54" itemprop="dateCreated datePublished" datetime="2022-01-17T20:10:54+08:00">01-17-2022</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 01-20-2022 03:00:17" itemprop="dateModified" datetime="2022-01-20T03:00:17+08:00">01-20-2022</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Game/" itemprop="url" rel="index"><span itemprop="name">Game</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p>CSGO SourceMod插件设定</p>
+<a id="more"></a>
+
+<h1 id="General"><a href="#General" class="headerlink" title="General"></a>General</h1><p>目录<code>csgo/addons</code></p>
+<h1 id="Config"><a href="#Config" class="headerlink" title="Config"></a>Config</h1><h2 id="添加管理"><a href="#添加管理" class="headerlink" title="添加管理"></a>添加管理</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vim csgo/addons/sourcemod/configs/admins_simple.ini</span><br><span class="line"></span><br><span class="line">auth:identity	flag</span><br></pre></td></tr></table></figure>
+
+<h2 id="添加插件"><a href="#添加插件" class="headerlink" title="添加插件"></a>添加插件</h2><p>直接复制到 <code>csgo/addons/sourcemod</code></p>
+<h2 id="自定义Menu"><a href="#自定义Menu" class="headerlink" title="自定义Menu"></a>自定义Menu</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim csgo/addons/sourcemod/configs/adminmenu_custom.txt</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&quot;Commands&quot;		&#x2F;&#x2F; 列表跟目录</span><br><span class="line">&#123;</span><br><span class="line">	&quot;ServerCommands&quot;		&#x2F;&#x2F; 添加在二级目录ServerCommands下</span><br><span class="line">	&#123;</span><br><span class="line">		&quot;Load Workshop Map&quot;		&#x2F;&#x2F; 自定义的名字</span><br><span class="line">		&#123;</span><br><span class="line">			&quot;cmd&quot;		&quot;sm_wml&quot;</span><br><span class="line">			&quot;admin&quot;		&quot;sm_changemap&quot;</span><br><span class="line">		&#125;</span><br><span class="line">		&quot;Refresh Workshop Map List&quot;</span><br><span class="line">		&#123;</span><br><span class="line">			&quot;cmd&quot;		&quot;sm_wml_reload&quot;</span><br><span class="line">			&quot;admin&quot;		&quot;sm_changemap&quot;</span><br><span class="line">		&#125;</span><br><span class="line">		&quot;Start Next Workshop Map Vote&quot;</span><br><span class="line">		&#123;</span><br><span class="line">			&quot;cmd&quot;		&quot;sm_wml_vote_now&quot;</span><br><span class="line">			&quot;admin&quot;		&quot;sm_changemap&quot;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>参考官方<span class="exturl" data-url="aHR0cDovL3dpa2kuYWxsaWVkbW9kcy5uZXQvQ3VzdG9tX0FkbWluX01lbnVfJTI4U291cmNlTW9kJTI5">wiki<i class="fa fa-external-link-alt"></i></span> </p>
+<h2 id="地图"><a href="#地图" class="headerlink" title="地图"></a>地图</h2><p>地图目录 <code>csgo/maps</code></p>
+<p>创意工坊 <code>csgo/maps/workshop/collection_id</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 切换地图指令</span><br><span class="line">rcon map workshop&#x2F;20xxxxxxxx&#x2F;squid_game</span><br><span class="line">rcon map de_dust2</span><br><span class="line"></span><br><span class="line">rcon changelevel2 workshop&#x2F;20xxxxxxxx&#x2F;squid_game</span><br><span class="line">rcon changelevel2 de_dust2</span><br></pre></td></tr></table></figure>
+
+<p>服务端和客户端的文件地址是完全一致的, 可以手动上传到服务器.</p>
+<h1 id="关闭插件"><a href="#关闭插件" class="headerlink" title="关闭插件"></a>关闭插件</h1><p>可以直接删除</p>
+<p>或者将<code>addons/plugins/xxx.smx</code> 移动到 <code>addons/plugins/disabled/xxx.smx</code> </p>
+<h1 id="Manage-SourceMod"><a href="#Manage-SourceMod" class="headerlink" title="Manage SourceMod"></a>Manage SourceMod</h1><p><span class="exturl" data-url="aHR0cHM6Ly93aWtpLmFsbGllZG1vZHMubmV0L01hbmFnaW5nX3lvdXJfU291cmNlbW9kX2luc3RhbGxhdGlvbi96aA==">link<i class="fa fa-external-link-alt"></i></span> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sm</span><br><span class="line">sm version</span><br><span class="line">sm plugins</span><br><span class="line">sm plugins list</span><br><span class="line">sm plugins reload 1</span><br><span class="line">sm plugins refresh</span><br><span class="line">sm plugins unload funvotes</span><br><span class="line">sm plugins load funvotes</span><br><span class="line">sm exts list</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>/configs 这是sourcemod和插件默认放置配置文件的地方。</p>
+</li>
+<li><p>/plugins 所有插件（.smx文件）都会在sourcemod启动时自动加载。当地图更改时如果文件发生了改变，也会重新加载。</p>
+</li>
+<li><p>/plugins/disabled 在这个子文件夹中的插件不会被加载。如果你想要禁用一个插件，就把它从父文件夹中剪切进去。反之亦然。你会发现这个文件夹中有一些你可能想安装的官方插件</p>
+</li>
+<li><p>/scripting 你能看到一些插件的源码。安装插件并不需要放置任何文件在这里，但是我们强烈推荐不要仅仅安装smx文件，最好也带上相应的sp文件。</p>
+</li>
+</ul>
+<h1 id="Admin-Command"><a href="#Admin-Command" class="headerlink" title="Admin Command"></a>Admin Command</h1><p><span class="exturl" data-url="aHR0cHM6Ly93aWtpLmFsbGllZG1vZHMubmV0L0FkbWluX0NvbW1hbmRzXyhTb3VyY2VNb2QpL3po">link<i class="fa fa-external-link-alt"></i></span> </p>
+<h2 id="基础命令"><a href="#基础命令" class="headerlink" title="基础命令"></a>基础命令</h2><p><img src="https://blogimg-1304875656.cos.ap-hongkong.myqcloud.com//20220120025315.png" alt=""></p>
+<h2 id="扩展命令"><a href="#扩展命令" class="headerlink" title="扩展命令"></a>扩展命令</h2><p><img src="https://blogimg-1304875656.cos.ap-hongkong.myqcloud.com//20220120025153.png" alt=""></p>
+<h2 id="投票命令"><a href="#投票命令" class="headerlink" title="投票命令"></a>投票命令</h2><p><img src="https://blogimg-1304875656.cos.ap-hongkong.myqcloud.com//20220120025419.png" alt=""></p>
+<h1 id="War-Mod"><a href="#War-Mod" class="headerlink" title="War Mod"></a>War Mod</h1><p><span class="exturl" data-url="aHR0cHM6Ly93aWtpLmFsbGllZG1vZHMubmV0L1dhcl9Nb2RlXyhTb3VyY2VNb2QpL3po">link<i class="fa fa-external-link-alt"></i></span> </p>
+<p><strong>模版文件</strong></p>
+<p><code>sm_warmode_on.cfg</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 本文件会卸载全部插件</span><br><span class="line">&#x2F;&#x2F; 重新加载“安全”的部分</span><br><span class="line">&#x2F;&#x2F; 然后再禁止其他插件的加载</span><br><span class="line">sm plugins unload_all</span><br><span class="line">sm plugins load basebans.smx</span><br><span class="line">sm plugins load basecommands.smx</span><br><span class="line">sm plugins load admin-flatfile.smx</span><br><span class="line">sm plugins load adminhelp.smx</span><br><span class="line">sm plugins load adminmenu.smx</span><br><span class="line">sm plugins load_lock</span><br></pre></td></tr></table></figure>
+
+<p><code>sm_warmode_off.cfg</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 本文件回解除插件的锁定</span><br><span class="line">&#x2F;&#x2F; 并刷新加载所有的插件</span><br><span class="line">sm plugins load_unlock</span><br><span class="line">sm plugins refresh</span><br></pre></td></tr></table></figure>
+
+<h1 id="Manage-Map"><a href="#Manage-Map" class="headerlink" title="Manage Map"></a>Manage Map</h1><p><span class="exturl" data-url="aHR0cHM6Ly93aWtpLmFsbGllZG1vZHMubmV0L01hbmFnaW5nX3lvdXJfU291cmNlbW9kX2luc3RhbGxhdGlvbi96aA==">link<i class="fa fa-external-link-alt"></i></span> </p>
+<hr>
+<p>References</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kcGlpLmNsdWIvYXJjaGl2ZXMvMjg3">https://dpii.club/archives/287<i class="fa fa-external-link-alt"></i></span></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/csgo/" rel="tag"># csgo</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/intresting/games/csgo/csgo-crazy-max/" rel="prev" title="CSGO Dedicated Server CrazyMax">
+                  <i class="fa fa-chevron-left"></i> CSGO Dedicated Server CrazyMax
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/intresting/games/csgo/csgo-cfg/" rel="next" title="CSGO 服务器配置文件">
+                  CSGO 服务器配置文件 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Edlison</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+  
+
+  
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
