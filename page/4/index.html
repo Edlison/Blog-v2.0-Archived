@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">359</span>
+          <span class="site-state-item-count">361</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -216,7 +216,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">189</span>
+        <span class="site-state-item-count">191</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -256,6 +256,232 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/GNN/survey_ad/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/academia/GNN/survey_ad/" class="post-title-link" itemprop="url">A Comprehensive Survey on Graph Anomaly Detection</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 03-06-2022 21:45:48" itemprop="dateCreated datePublished" datetime="2022-03-06T21:45:48+08:00">03-06-2022</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 03-07-2022 21:01:57" itemprop="dateModified" datetime="2022-03-07T21:01:57+08:00">03-07-2022</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Academia/" itemprop="url" rel="index"><span itemprop="name">Academia</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><h1 id="Challenges"><a href="#Challenges" class="headerlink" title="Challenges"></a>Challenges</h1><h2 id="Anomaly-aware-training-objectives"><a href="#Anomaly-aware-training-objectives" class="headerlink" title="Anomaly-aware training objectives"></a>Anomaly-aware training objectives</h2><p>在判断异常数据, 及设计Loss比较困难</p>
+<h2 id="Anomaly-interpretability"><a href="#Anomaly-interpretability" class="headerlink" title="Anomaly interpretability"></a>Anomaly interpretability</h2><p>异常检测的可解释性</p>
+<h2 id="High-training-cost"><a href="#High-training-cost" class="headerlink" title="High training cost"></a>High training cost</h2><p>图包含的信息更多, 需要消耗更多时间与空间资源</p>
+<h2 id="Hyperparameter-tuning"><a href="#Hyperparameter-tuning" class="headerlink" title="Hyperparameter tuning"></a>Hyperparameter tuning</h2><p>超参数调优, 特别是在非监督学习下, 通过没有打过标签的数据很难判断模型的性能.</p>
+<h1 id="Preliminaries"><a href="#Preliminaries" class="headerlink" title="Preliminaries"></a>Preliminaries</h1><h2 id="Plain-Graph"><a href="#Plain-Graph" class="headerlink" title="Plain Graph"></a>Plain Graph</h2><p>静态的图结构<br>$$<br>G={V,E}<br>$$</p>
+<p>$$<br>V={v_i}^n,<br>E={e_{i,j}}<br>$$</p>
+<p>$$<br>A=[a_{i,j}]_{n*n}<br>$$</p>
+<p>邻接矩阵存储结构信息</p>
+<h2 id="Attributed-Graph"><a href="#Attributed-Graph" class="headerlink" title="Attributed Graph"></a>Attributed Graph</h2><p>$$<br>G={V,E,X}<br>$$</p>
+<p>$$<br>X=[x_i]_{n*k}<br>$$</p>
+<p>X是节点上的特征向量, k维</p>
+<h2 id="Dynamic-Graph"><a href="#Dynamic-Graph" class="headerlink" title="Dynamic Graph"></a>Dynamic Graph</h2><p>$$<br>G(t)={V(t), E(t), X_v(t), X_e(t)}<br>$$</p>
+<p>代表t时刻图的结构, $X_v$是node的特征向量, $X_e$是edge的特征向量.</p>
+<h1 id="Anomalous-Node-Detection"><a href="#Anomalous-Node-Detection" class="headerlink" title="Anomalous Node Detection"></a>Anomalous Node Detection</h1><p><strong>Global anomalies</strong></p>
+<p>只考虑节点特征, 完全不同于其他节点的.</p>
+<p><strong>Structural anomalies</strong></p>
+<p>只考虑图结构信息, 有着不同连接模式的节点是异常节点.</p>
+<p><strong>Community anomalies</strong></p>
+<p>同时考虑节点属性和图结构信息, 在一个区域内与其他节点有着不同的特征.</p>
+<p>例</p>
+<p><img src="https://i.imgur.com/V1N6ugS.png" alt=""></p>
+<p>Node14是Global异常, 它有别于所有其他节点特征.</p>
+<p>Node5,6,11是Structural异常, 它们的结构信息与内部的其他节点不一样.</p>
+<p>Node2, 7是Community异常, 它有别于内部的其他节点特征.</p>
+<h2 id="on-Plain-Graphs"><a href="#on-Plain-Graphs" class="headerlink" title="on Plain Graphs"></a>on Plain Graphs</h2><h3 id="Non-Deep-Learning"><a href="#Non-Deep-Learning" class="headerlink" title="Non-Deep Learning"></a>Non-Deep Learning</h3><p>使用统计特征, 如in/out的度数.</p>
+<h3 id="Deep-Learning"><a href="#Deep-Learning" class="headerlink" title="Deep Learning"></a>Deep Learning</h3><p>深度学习的方法将图结构encode到一个embedding向量, 然后在对异常节点进行进一步分析.</p>
+<p>检测结构异常</p>
+<ol>
+<li>分割算法: node到d个communities</li>
+<li>使用一个embedding算法, 拿到节点link信息的embedding</li>
+<li>如果node属于community-c,yc的值就高.</li>
+<li>计算nodei到所有邻居节点的分数, 如果有link到community那么分数就高.</li>
+<li>Score把这些分数加起来, 如果link到了多个community异常分数就会很高.</li>
+</ol>
+<h2 id="on-Attribute-Graphs"><a href="#on-Attribute-Graphs" class="headerlink" title="on Attribute Graphs"></a>on Attribute Graphs</h2><h3 id="AutoEncoder-Based"><a href="#AutoEncoder-Based" class="headerlink" title="AutoEncoder Based"></a>AutoEncoder Based</h3><p>DONE这个无监督的方法计算异常值, Attribute和Structure两个AutoEncoder</p>
+<ol>
+<li>与不同community的nodes有相似的属性. o^a</li>
+<li>与其他community相连接. o^s</li>
+<li>结构上属于一个community但是属性和其他的community相似. o^com</li>
+</ol>
+<p>设计了5个Loss函数</p>
+<ol>
+<li>2个重建Loss函数</li>
+</ol>
+<p><img src="https://i.imgur.com/GONRj6h.png" alt=""></p>
+<ol start="2">
+<li>2个同质Loss函数</li>
+</ol>
+<p><img src="https://i.imgur.com/bJH72RF.png" alt=""></p>
+<p><img src="https://i.imgur.com/ltUrNBh.png" alt=""></p>
+<ol start="3">
+<li>结构异常与属性异常的互补Loss函数</li>
+</ol>
+<p><img src="https://i.imgur.com/q9cMLHx.png" alt=""></p>
+<p>不可能同时是attribute异常和community异常吗?</p>
+<ul>
+<li>前面的loss可以判断</li>
+</ul>
+<h3 id="GCN-based"><a href="#GCN-based" class="headerlink" title="GCN based"></a>GCN based</h3><ul>
+<li>DOMINANT 方法</li>
+</ul>
+<h3 id="Reinforcement-Learning-Based"><a href="#Reinforcement-Learning-Based" class="headerlink" title="Reinforcement Learning Based"></a>Reinforcement Learning Based</h3><ul>
+<li>GraphUCB 方法</li>
+</ul>
+<h3 id="GAT-based"><a href="#GAT-based" class="headerlink" title="GAT based"></a>GAT based</h3>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/knowledge/func/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/academia/knowledge/func/" class="post-title-link" itemprop="url">常用函数整理</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 03-04-2022 21:43:09 / Modified: 22:00:00" itemprop="dateCreated datePublished" datetime="2022-03-04T21:43:09+08:00">03-04-2022</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Academia/" itemprop="url" rel="index"><span itemprop="name">Academia</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p>整理了一些常用的函数, 及他们的导数</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/academia/knowledge/func/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -509,171 +735,10 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/knowledge/grad_van_exp/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/academia/knowledge/grad_van_exp/" class="post-title-link" itemprop="url">梯度消失&梯度爆炸</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 03-03-2022 20:12:57" itemprop="dateCreated datePublished" datetime="2022-03-03T20:12:57+08:00">03-03-2022</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 03-04-2022 21:55:19" itemprop="dateModified" datetime="2022-03-04T21:55:19+08:00">03-04-2022</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p>深度学习中梯度消失与梯度爆炸问题</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/academia/knowledge/grad_van_exp/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/knowledge/convex/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/academia/knowledge/convex/" class="post-title-link" itemprop="url">凸函数 非凸函数</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 03-03-2022 19:47:59 / Modified: 20:05:37" itemprop="dateCreated datePublished" datetime="2022-03-03T19:47:59+08:00">03-03-2022</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Academia/" itemprop="url" rel="index"><span itemprop="name">Academia</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p>凸函数和非凸函数的区别</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/academia/knowledge/convex/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/72/">72</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/73/">73</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
