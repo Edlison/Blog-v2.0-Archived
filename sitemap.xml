@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.edlison.com/academia/course/EECS551/linear_transformation_and_matrices/</loc>
+    
+    <lastmod>2022-09-25</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.edlison.com/academia/course/EECS551/combinations_span_basis/</loc>
     
     <lastmod>2022-09-25</lastmod>
@@ -3904,6 +3911,13 @@
   
   <url>
     <loc>https://blog.edlison.com/tags/LinearAlgebra/</loc>
+    <lastmod>2022-09-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.edlison.com/tags/3blue1brown/</loc>
     <lastmod>2022-09-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
