@@ -31,7 +31,7 @@
 <meta property="og:description" content="compose12345678910111213141516171819version: &quot;3.3&quot;services:  code-server:    image: lscr.io&#x2F;linuxserver&#x2F;code-server    container_name: code-server    environment:      - PUID&#x3D;1000      - PGID&#x3D;1000">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-10-22T13:19:03.258Z">
-<meta property="article:modified_time" content="2022-09-06T04:01:21.671Z">
+<meta property="article:modified_time" content="2022-09-09T03:26:23.128Z">
 <meta property="article:author" content="Bolin Shen">
 <meta property="article:tag" content="linux">
 <meta property="article:tag" content="code-server">
@@ -189,7 +189,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <section class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#compose"><span class="nav-number">1.</span> <span class="nav-text">compose</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Error-WebSocket-close-with-status-code-1006"><span class="nav-number">2.</span> <span class="nav-text">Error: WebSocket close with status code 1006</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#compose"><span class="nav-number">1.</span> <span class="nav-text">compose</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Error-WebSocket-close-with-status-code-1006"><span class="nav-number">2.</span> <span class="nav-text">Error: WebSocket close with status code 1006</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Terminal-not-showing"><span class="nav-number">3.</span> <span class="nav-text">Terminal not showing</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Environment-Julia-and-Python"><span class="nav-number">4.</span> <span class="nav-text">Environment: Julia and Python</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Julia"><span class="nav-number">4.1.</span> <span class="nav-text">Julia</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Python"><span class="nav-number">4.2.</span> <span class="nav-text">Python</span></a></li></ol></li></ol></div>
         </section>
         <!--/noindex-->
 
@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">361</span>
+          <span class="site-state-item-count">363</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -216,7 +216,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">191</span>
+        <span class="site-state-item-count">192</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -296,7 +296,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 09-06-2022 12:01:21" itemprop="dateModified" datetime="2022-09-06T12:01:21+08:00">09-06-2022</time>
+        <time title="Modified: 09-09-2022 11:26:23" itemprop="dateModified" datetime="2022-09-09T11:26:23+08:00">09-09-2022</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -332,6 +332,13 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">An unexpected error occurred that requires a reload of this page.</span><br><span class="line">The workbench failed to connect to the server (Error: WebSocket close with status code 1006)</span><br></pre></td></tr></table></figure>
 
 <p>可以在Nginx Manager中打开WebSockets Support，或者参考下面的文章。</p>
+<h1 id="Terminal-not-showing"><a href="#Terminal-not-showing" class="headerlink" title="Terminal not showing"></a>Terminal not showing</h1><p>turn off <code>GPU acceleration</code> in <code>settings</code></p>
+<h1 id="Environment-Julia-and-Python"><a href="#Environment-Julia-and-Python" class="headerlink" title="Environment: Julia and Python"></a>Environment: Julia and Python</h1><h2 id="Julia"><a href="#Julia" class="headerlink" title="Julia"></a>Julia</h2><p>Move compiled Julia to <code>./config/interpreter</code></p>
+<p>add julia path to system path.</p>
+<h2 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h2><p>Move source file to <code>./config/interpreter</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">apt update</span><br><span class="line"></span><br><span class="line"><span class="comment"># isntall cpp lib</span></span><br><span class="line">apt install gcc</span><br><span class="line">apt install zlib*</span><br><span class="line"></span><br><span class="line"><span class="comment"># enter python direction</span></span><br><span class="line">./configure</span><br><span class="line"></span><br><span class="line"><span class="comment"># make</span></span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+
+<p>add python path to system path</p>
 <hr>
 <p>References</p>
 <p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Noc3pzL2FydGljbGUvZGV0YWlscy8yNjM2OTI1Nw==">https://blog.csdn.net/chszs/article/details/26369257<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vcWlhbnh1bm1hbi9wLzEzNjU2ODc0Lmh0bWw=">https://www.cnblogs.com/qianxunman/p/13656874.html<i class="fa fa-external-link-alt"></i></span></p>
