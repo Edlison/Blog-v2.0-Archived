@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">369</span>
+          <span class="site-state-item-count">371</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -256,6 +256,155 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/machinelearning/ml_course/numpy-training/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/academia/machinelearning/ml_course/numpy-training/" class="post-title-link" itemprop="url">academia/machinelearning/ml_course/numpy-training</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 04-24-2020 22:42:57 / Modified: 22:46:01" itemprop="dateCreated datePublished" datetime="2020-04-24T22:42:57+08:00">04-24-2020</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Numpy训练实例"><a href="#Numpy训练实例" class="headerlink" title="Numpy训练实例"></a>Numpy训练实例</h1><h2 id="绘制Sigmoid函数与ReLU函数"><a href="#绘制Sigmoid函数与ReLU函数" class="headerlink" title="绘制Sigmoid函数与ReLU函数"></a>绘制Sigmoid函数与ReLU函数</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置图片大小</span></span><br><span class="line">plt.figure(figsize=(<span class="number">8</span>, <span class="number">3</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># x为1维数组</span></span><br><span class="line">x = np.arange(<span class="number">-10</span>, <span class="number">10</span>, <span class="number">0.1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Sigmoid函数</span></span><br><span class="line">s = <span class="number">1.</span> / (<span class="number">1</span> + np.exp(-x))</span><br><span class="line"></span><br><span class="line"><span class="comment"># ReLU函数</span></span><br><span class="line">y = np.clip(x, a_min=<span class="number">0.</span>, a_max=<span class="literal">None</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 绘制Sigmoid函数</span></span><br><span class="line">f = plt.subplot(<span class="number">121</span>)</span><br><span class="line">plt.plot(x, s, color=<span class="string">'r'</span>)</span><br><span class="line">plt.text(<span class="number">-5</span>, <span class="number">0.9</span>, <span class="string">r'$y=\sigma(x)$'</span>, fontsize=<span class="number">13</span>)</span><br><span class="line">currentAxis = plt.gca()</span><br><span class="line">currentAxis.xaxis.set_label_text(<span class="string">'x'</span>, fontsize=<span class="number">15</span>)</span><br><span class="line">currentAxis.yaxis.set_label_text(<span class="string">'y'</span>, fontsize=<span class="number">15</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 绘制ReLU函数</span></span><br><span class="line">f = plt.subplot(<span class="number">122</span>)</span><br><span class="line">plt.plot(x, y, color=<span class="string">'g'</span>)</span><br><span class="line">plt.text(<span class="number">-3</span>, <span class="number">9</span>, <span class="string">r'$y=ReLU(x)$'</span>, fontsize=<span class="number">13</span>)</span><br><span class="line">currentAxis = plt.gca()</span><br><span class="line">currentAxis.xaxis.set_label_text(<span class="string">'x'</span>, fontsize=<span class="number">15</span>)</span><br><span class="line">currentAxis.yaxis.set_label_text(<span class="string">'y'</span>, fontsize=<span class="number">15</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/code/linux/linux-mariadb/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/code/linux/linux-mariadb/" class="post-title-link" itemprop="url">Linux上的Mariadb</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 04-17-2020 22:03:46" itemprop="dateCreated datePublished" datetime="2020-04-17T22:03:46+08:00">04-17-2020</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 03-10-2021 03:02:06" itemprop="dateModified" datetime="2021-03-10T03:02:06+08:00">03-10-2021</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Mariadb的使用"><a href="#Mariadb的使用" class="headerlink" title="Mariadb的使用"></a>Mariadb的使用</h1><p>Linux上已经摒弃了Mysql，以下是一些Mariadb的基本用法。</p>
+<h2 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h2><p><code>CREATE USER &#39;username&#39;@&#39;host&#39; IDENTIFIED BY &#39;password&#39;;</code></p>
+<h2 id="用户权限"><a href="#用户权限" class="headerlink" title="用户权限"></a>用户权限</h2><p><code>GRANT ALL privileges ON databasename.tablename TO &#39;username&#39;@&#39;host&#39;</code></p>
+<h2 id="查看权限"><a href="#查看权限" class="headerlink" title="查看权限"></a>查看权限</h2><p><code>show grants for &#39;root&#39;@&#39;%&#39;;</code></p>
+<p>例:<br><code>MariaDB [(none)]&gt; grant all on *.* to &#39;root&#39;@&#39;%&#39;;</code><br><code>MariaDB [mysql]&gt; flush privileges;</code><br><code>MariaDB [(none)]&gt; grant all privileges on *.* to &#39;root&#39;@&#39;%&#39; identified by &#39;password&#39;;</code></p>
+<h2 id="查看用户"><a href="#查看用户" class="headerlink" title="查看用户"></a>查看用户</h2><p><code>select user from mysql.user;</code></p>
+<h2 id="查看当前用户"><a href="#查看当前用户" class="headerlink" title="查看当前用户"></a>查看当前用户</h2><p><code>select current_user;</code></p>
+<h2 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h2><p><code>delete from mysql.user where user=&#39;root&#39;;</code></p>
+<h2 id="撤销权限"><a href="#撤销权限" class="headerlink" title="撤销权限"></a>撤销权限</h2><p><code>REVOKE privileges ON databasename.tablename FROM &#39;username&#39;@&#39;host&#39;;</code></p>
+<h1 id="坑"><a href="#坑" class="headerlink" title="坑"></a>坑</h1><p>如果创建外网可以登陆的用户</p>
+<p><code>create user &#39;xxx&#39;@&#39;%&#39; identified by &#39;xxx&#39;</code></p>
+<p>想用这个用户在本地<code>localhost</code>登陆的话会被拒绝访问</p>
+<p>再新建一个可以<code>localhost</code>登陆的用户即可</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -463,257 +612,10 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/code/notebook/v2ray/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/code/notebook/v2ray/" class="post-title-link" itemprop="url">code/notebook/v2ray</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 04-03-2020 22:44:04" itemprop="dateCreated datePublished" datetime="2020-04-03T22:44:04+08:00">04-03-2020</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 04-04-2020 14:41:37" itemprop="dateModified" datetime="2020-04-04T14:41:37+08:00">04-04-2020</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="V2ray"><a href="#V2ray" class="headerlink" title="V2ray"></a>V2ray</h1><h2 id="安装V2ray"><a href="#安装V2ray" class="headerlink" title="安装V2ray"></a>安装V2ray</h2><ul>
-<li>安装脚本</li>
-</ul>
-<p>执行安装脚本</p>
-<p><code>$ wget https://install.direct/go.sh</code></p>
-<p>运行脚本</p>
-<p><code>$ sudo bash go.sh</code></p>
-<ul>
-<li>运行V2ray</li>
-</ul>
-<p><code>$ sudo systemctl start v2ray</code></p>
-<ul>
-<li>V2ray配置文件</li>
-</ul>
-<p><code>/etc/v2ray/config.json</code></p>
-<h2 id="TLS"><a href="#TLS" class="headerlink" title="TLS"></a>TLS</h2><ul>
-<li>安装脚本</li>
-</ul>
-<p>执行以下命令，acme.sh 会安装到 <code>~/.acme.sh</code> 目录下。<br><code>$ curl https://get.acme.sh | sh</code></p>
-<p>安装成功后执行 <code>source ~/.bashrc</code> 以确保脚本所设置的命令别名生效。</p>
-<p>如果安装报错，那么可能是因为系统缺少 acme.sh 所需要的依赖项，acme.sh 的依赖项主要是 socat，我们通过以下命令来安装这些依赖项，然后重新安装一遍 acme.sh:</p>
-<p><code>$ sudo apt-get install openssl cron socat curl</code></p>
-<ul>
-<li>分发证书</li>
-</ul>
-<p>使用Nginx监听80端口进行证书分发</p>
-<p><code>$ acme.sh --issue  -d tunnel.edlison.xyz  --nginx</code></p>
-<p>使用acme自带的standalone进行端口监听</p>
-<p><code>$ acme.sh --issue -d tunnel.edlieon.xyz --standalone</code></p>
-<p>Example</p>
-<p><code>$ acme.sh --issue -d tunnel.edlison.xyz --nginx --keylength ec-256</code></p>
-<p><code>--keylength</code> 表示密钥长度，后面的值可以是 ec-256 、ec-384、2048、3072、4096、8192，带有 ec 表示生成的是 ECC 证书，没有则是 RSA 证书。在安全性上 256 位的 ECC 证书等同于 3072 位的 RSA 证书</p>
-<ul>
-<li>更新证书</li>
-</ul>
-<p><code>$ acme.sh --renew -d tunnel.edlison.xyz --force --ecc</code></p>
-<p>由于 Let’s Encrypt 的证书有效期只有 3 个月，因此需要 90 天至少要更新一次证书，acme.sh 脚本会每 60 天自动更新证书。也可以手动更新。<code>--ecc</code>生成的ECC证书</p>
-<ul>
-<li>安装证书和密钥</li>
-</ul>
-<p>将证书安装到V2ray目录下</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ acme.sh --installcert -d tunnel.edlison.xyz --ecc \</span><br><span class="line">                          --fullchain-file /etc/v2ray/v2ray.crt \</span><br><span class="line">                          --key-file /etc/v2ray/v2ray.key</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>配置文件</li>
-</ul>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"inbounds"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"port"</span>: <span class="number">443</span>, <span class="comment">// 建议使用 443 端口</span></span><br><span class="line">      <span class="attr">"protocol"</span>: <span class="string">"vmess"</span>,    </span><br><span class="line">      <span class="attr">"settings"</span>: &#123;</span><br><span class="line">        <span class="attr">"clients"</span>: [</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="attr">"id"</span>: <span class="string">"23ad6b10-8d1a-40f7-8ad0-e3e35cd38297"</span>,  </span><br><span class="line">            <span class="attr">"alterId"</span>: <span class="number">64</span></span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">"streamSettings"</span>: &#123;</span><br><span class="line">        <span class="attr">"network"</span>: <span class="string">"tcp"</span>,</span><br><span class="line">        <span class="attr">"security"</span>: <span class="string">"tls"</span>, <span class="comment">// security 要设置为 tls 才会启用 TLS</span></span><br><span class="line">        <span class="attr">"tlsSettings"</span>: &#123;</span><br><span class="line">          <span class="attr">"certificates"</span>: [</span><br><span class="line">            &#123;</span><br><span class="line">              <span class="attr">"certificateFile"</span>: <span class="string">"/etc/v2ray/v2ray.crt"</span>, <span class="comment">// 证书文件</span></span><br><span class="line">              <span class="attr">"keyFile"</span>: <span class="string">"/etc/v2ray/v2ray.key"</span> <span class="comment">// 密钥文件</span></span><br><span class="line">            &#125;</span><br><span class="line">          ]</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"outbounds"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"protocol"</span>: <span class="string">"freedom"</span>,</span><br><span class="line">      <span class="attr">"settings"</span>: &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h2><ul>
-<li>Start</li>
-</ul>
-<p>配置文件</p>
-<p><code>$ nginx -c /etc/nginx/nginx.conf</code></p>
-<p>启动Nginx</p>
-<p><code>$ nginx -s reload</code></p>
-<ul>
-<li>config</li>
-</ul>
-<p>Nginx 仅需监听80端口</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">        <span class="attribute">listen</span>       <span class="number">80</span>;</span><br><span class="line">        <span class="attribute">listen</span>       [::]:<span class="number">80</span>;</span><br><span class="line">        <span class="attribute">server_name</span>  tunnel.edlison.xyz;</span><br><span class="line"></span><br><span class="line">        <span class="comment">#return  301 https://$server_name$request_uri; // 可以将流量转向https</span></span><br><span class="line"></span><br><span class="line">        <span class="attribute">root</span>         /usr/share/nginx/html;</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Load configuration files for the default server block.</span></span><br><span class="line">        <span class="attribute">include</span> /etc/nginx/default.d/<span class="regexp">*.conf</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">location</span> / &#123;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">error_page</span> <span class="number">404</span> /<span class="number">404</span>.html;</span><br><span class="line">            <span class="attribute">location</span> = /40x.html &#123;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">error_page</span> <span class="number">500</span> <span class="number">502</span> <span class="number">503</span> <span class="number">504</span> /50x.html;</span><br><span class="line">            <span class="attribute">location</span> = /50x.html &#123;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="WebSocket-TLS-Web"><a href="#WebSocket-TLS-Web" class="headerlink" title="WebSocket + TLS + Web"></a>WebSocket + TLS + Web</h2><p>这次 TLS 的配置将写入 Nginx/Caddy/Apache 配置中，由这些软件来监听 443 端口（443 比较常用，并非 443 不可），然后将流量转发到 V2Ray 的 WebSocket 所监听的内网端口（本例是 10000），V2Ray 服务器端不需要配置 TLS。</p>
-<ul>
-<li>V2ray Settings</li>
-</ul>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"inbounds"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"port"</span>: <span class="number">10000</span>,</span><br><span class="line">      <span class="attr">"listen"</span>:<span class="string">"127.0.0.1"</span>,<span class="comment">//只监听 127.0.0.1，避免除本机外的机器探测到开放了 10000 端口</span></span><br><span class="line">      <span class="attr">"protocol"</span>: <span class="string">"vmess"</span>,</span><br><span class="line">      <span class="attr">"settings"</span>: &#123;</span><br><span class="line">        <span class="attr">"clients"</span>: [</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="attr">"id"</span>: <span class="string">"b831381d-6324-4d53-ad4f-8cda48b30811"</span>,</span><br><span class="line">            <span class="attr">"alterId"</span>: <span class="number">64</span></span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">"streamSettings"</span>: &#123;</span><br><span class="line">        <span class="attr">"network"</span>: <span class="string">"ws"</span>,</span><br><span class="line">        <span class="attr">"wsSettings"</span>: &#123;</span><br><span class="line">        <span class="attr">"path"</span>: <span class="string">"/ray"</span>  <span class="comment">// 路径</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"outbounds"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"protocol"</span>: <span class="string">"freedom"</span>,</span><br><span class="line">      <span class="attr">"settings"</span>: &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>TLS</li>
-</ul>
-<p>证书生成见上文</p>
-<ul>
-<li>Nginx Setting</li>
-</ul>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">  <span class="attribute">listen</span> <span class="number">443</span> ssl;</span><br><span class="line">  <span class="attribute">listen</span> [::]:<span class="number">443</span> ssl;</span><br><span class="line">  </span><br><span class="line">  <span class="attribute">ssl_certificate</span>       /etc/v2ray/v2ray.crt;</span><br><span class="line">  <span class="attribute">ssl_certificate_key</span>   /etc/v2ray/v2ray.key;</span><br><span class="line">  <span class="attribute">ssl_session_timeout</span> <span class="number">1d</span>;</span><br><span class="line">  <span class="attribute">ssl_session_cache</span> shared:MozSSL:<span class="number">10m</span>;</span><br><span class="line">  <span class="attribute">ssl_session_tickets</span> <span class="literal">off</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="attribute">ssl_protocols</span>         TLSv1.<span class="number">2</span> TLSv1.<span class="number">3</span>;</span><br><span class="line">  <span class="attribute">ssl_ciphers</span>           ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384;</span><br><span class="line">  <span class="attribute">ssl_prefer_server_ciphers</span> <span class="literal">off</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="attribute">server_name</span>           tunnel.edlison.xyz;</span><br><span class="line">  <span class="attribute">location</span> /ray &#123; <span class="comment"># 与 V2Ray 配置中的 path 保持一致</span></span><br><span class="line">    <span class="attribute">if</span> (<span class="variable">$http_upgrade</span> != <span class="string">"websocket"</span>) &#123; <span class="comment"># WebSocket协商失败时返回404</span></span><br><span class="line">        <span class="attribute">return</span> <span class="number">404</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="attribute">proxy_redirect</span> <span class="literal">off</span>;</span><br><span class="line">    <span class="attribute">proxy_pass</span> http://127.0.0.1:10000; <span class="comment"># 假设WebSocket监听在环回地址的10000端口上</span></span><br><span class="line">    <span class="attribute">proxy_http_version</span> <span class="number">1</span>.<span class="number">1</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> Upgrade <span class="variable">$http_upgrade</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> Connection <span class="string">"upgrade"</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> Host <span class="variable">$host</span>;</span><br><span class="line">    <span class="comment"># Show real IP in v2ray access.log</span></span><br><span class="line">    <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Client Setting</li>
-</ul>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"inbounds"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"port"</span>: <span class="number">1080</span>,</span><br><span class="line">      <span class="attr">"listen"</span>: <span class="string">"127.0.0.1"</span>,</span><br><span class="line">      <span class="attr">"protocol"</span>: <span class="string">"socks"</span>,</span><br><span class="line">      <span class="attr">"sniffing"</span>: &#123;</span><br><span class="line">        <span class="attr">"enabled"</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">"destOverride"</span>: [<span class="string">"http"</span>, <span class="string">"tls"</span>]</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">"settings"</span>: &#123;</span><br><span class="line">        <span class="attr">"auth"</span>: <span class="string">"noauth"</span>,</span><br><span class="line">        <span class="attr">"udp"</span>: <span class="literal">false</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"outbounds"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"protocol"</span>: <span class="string">"vmess"</span>,</span><br><span class="line">      <span class="attr">"settings"</span>: &#123;</span><br><span class="line">        <span class="attr">"vnext"</span>: [</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="attr">"address"</span>: <span class="string">"mydomain.me"</span>,</span><br><span class="line">            <span class="attr">"port"</span>: <span class="number">443</span>,</span><br><span class="line">            <span class="attr">"users"</span>: [</span><br><span class="line">              &#123;</span><br><span class="line">                <span class="attr">"id"</span>: <span class="string">"b831381d-6324-4d53-ad4f-8cda48b30811"</span>,</span><br><span class="line">                <span class="attr">"alterId"</span>: <span class="number">64</span></span><br><span class="line">              &#125;</span><br><span class="line">            ]</span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">"streamSettings"</span>: &#123;</span><br><span class="line">        <span class="attr">"network"</span>: <span class="string">"ws"</span>,</span><br><span class="line">        <span class="attr">"security"</span>: <span class="string">"tls"</span>,</span><br><span class="line">        <span class="attr">"wsSettings"</span>: &#123;</span><br><span class="line">          <span class="attr">"path"</span>: <span class="string">"/ray"</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>注意事项</li>
-</ul>
-<p>注意事项<br>V2Ray 自 4.18.1 后支持 TLS1.3，如果开启并强制 TLS1.3 请注意 v2ray 客户端版本.<br>较低版本的 nginx 的 location 需要写为 /ray/ 才能正常工作<br>如果在设置完成之后不能成功使用，可能是由于 SElinux 机制(如果你是 CentOS 7 的用户请特别留意 SElinux 这一机制)阻止了 Nginx 转发向内网的数据。如果是这样的话，在 V2Ray 的日志里不会有访问信息，在 Nginx 的日志里会出现大量的 “Permission Denied” 字段，要解决这一问题需要在终端下键入以下命令：<br>setsebool -P httpd_can_network_connect 1<br>请保持服务器和客户端的 wsSettings 严格一致，对于 V2Ray，/ray 和 /ray/ 是不一样的<br>较低版本的系统/浏览器可能无法完成握手. 如 Chrome 49/XP SP3, Safari 8/iOS 8.4, Safari 8/OS X 10.10 及更低的版本. 如果你的设备比较旧, 则可以通过在配置中添加较旧的 TLS 协议以完成握手.</p>
-<h2 id="BBR"><a href="#BBR" class="headerlink" title="BBR"></a>BBR</h2><ul>
-<li>一键安装脚本</li>
-</ul>
-<p><code>$ wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh &amp;&amp; chmod +x bbr.sh &amp;&amp; ./bbr.sh</code></p>
-<ul>
-<li>检测内核</li>
-</ul>
-<p><code>$ uname -r</code></p>
-<ul>
-<li>检测安装情况</li>
-</ul>
-<p><code>$ sysctl net.ipv4.tcp_available_congestion_control</code></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/code/leetcode/v1/matching/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/code/leetcode/v1/matching/" class="post-title-link" itemprop="url">code/leetcode/v1/matching</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 03-31-2020 12:14:47 / Modified: 12:16:09" itemprop="dateCreated datePublished" datetime="2020-03-31T12:14:47+08:00">03-31-2020</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Wildcard-Matching"><a href="#Wildcard-Matching" class="headerlink" title="Wildcard Matching"></a>Wildcard Matching</h1><p>Given an input string (s) and a pattern (p), implement wildcard pattern matching with support for ‘?’ and ‘*’.</p>
-<p>‘?’ Matches any single character.<br>‘*’ Matches any sequence of characters (including the empty sequence).<br>The matching should cover the entire input string (not partial).</p>
-<p>Note:</p>
-<p>s could be empty and contains only lowercase letters a-z.<br>p could be empty and contains only lowercase letters a-z, and characters like ? or *.<br>Example 1:</p>
-<p>Input:<br>s = “aa”<br>p = “a”<br>Output: false<br>Explanation: “a” does not match the entire string “aa”.<br>Example 2:</p>
-<p>Input:<br>s = “aa”<br>p = “*”<br>Output: true<br>Explanation: ‘*’ matches any sequence.<br>Example 3:</p>
-<p>Input:<br>s = “cb”<br>p = “?a”<br>Output: false<br>Explanation: ‘?’ matches ‘c’, but the second letter is ‘a’, which does not match ‘b’.<br>Example 4:</p>
-<p>Input:<br>s = “adceb”<br>p = “<em>a</em>b”<br>Output: true<br>Explanation: The first ‘<em>‘ matches the empty sequence, while the second ‘</em>‘ matches the substring “dce”.<br>Example 5:</p>
-<p>Input:<br>s = “acdcb”<br>p = “a*c?b”<br>Output: false</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isMatch</span><span class="params">(String s, String p)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sLen = s.length(), pLen = p.length();</span><br><span class="line">    <span class="keyword">int</span> sIdx = <span class="number">0</span>, pIdx = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> starIdx = -<span class="number">1</span>, sTmpIdx = -<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (sIdx &lt; sLen) &#123;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (pIdx &lt; pLen &amp;&amp; (p.charAt(pIdx) == <span class="string">'?'</span> || p.charAt(pIdx) == s.charAt(sIdx)))&#123;</span><br><span class="line">        ++sIdx;</span><br><span class="line">        ++pIdx;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">else</span> <span class="keyword">if</span> (pIdx &lt; pLen &amp;&amp; p.charAt(pIdx) == <span class="string">'*'</span>) &#123;</span><br><span class="line"></span><br><span class="line">        starIdx = pIdx;</span><br><span class="line">        sTmpIdx = sIdx;</span><br><span class="line">        ++pIdx;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">else</span> <span class="keyword">if</span> (starIdx == -<span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">else</span> &#123;</span><br><span class="line"></span><br><span class="line">        pIdx = starIdx + <span class="number">1</span>;</span><br><span class="line">        sIdx = sTmpIdx + <span class="number">1</span>;</span><br><span class="line">        sTmpIdx = sIdx;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = pIdx; i &lt; pLen; i++)</span><br><span class="line">      <span class="keyword">if</span> (p.charAt(i) != <span class="string">'*'</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>Reference<br><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvd2lsZGNhcmQtbWF0Y2hpbmcv">https://leetcode-cn.com/problems/wildcard-matching/<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/65/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/65/">65</a><span class="page-number current">66</span><a class="page-number" href="/page/67/">67</a><span class="space">&hellip;</span><a class="page-number" href="/page/74/">74</a><a class="extend next" rel="next" href="/page/67/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/65/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/65/">65</a><span class="page-number current">66</span><a class="page-number" href="/page/67/">67</a><span class="space">&hellip;</span><a class="page-number" href="/page/75/">75</a><a class="extend next" rel="next" href="/page/67/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
