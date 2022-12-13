@@ -203,14 +203,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">373</span>
+          <span class="site-state-item-count">374</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-count">33</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -256,6 +256,90 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/code/notebook/git/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/code/notebook/git/" class="post-title-link" itemprop="url">Git日常使用笔记</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 11-16-2020 00:58:51 / Modified: 01:39:25" itemprop="dateCreated datePublished" datetime="2020-11-16T00:58:51+08:00">11-16-2020</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><img src="https://upload-images.jianshu.io/upload_images/8048507-9ea56a58f75ebc00.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/617/format/webp" alt="img"></p>
+<h2 id="reset"><a href="#reset" class="headerlink" title="reset"></a>reset</h2><p><code>git reset [--soft | --mixed | --hard] [HEAD]</code></p>
+<p><code>--soft</code><br>修改版本库，保留暂存区，保留工作区。头指针全部重置到指定版本，也会重置暂存区，并且会将工作区代码也回退到这个版本。</p>
+<p><code>--hard</code><br>修改版本库，修改暂存区，修改工作区。头指针全部重置到指定版本，且将这次提交之后的所有变更都移动到暂存区。</p>
+<p>Tips:<br>使用<code>git reset --hard HEAD</code>移除当前暂存区及工作区所有的修改。</p>
+<h2 id="tag"><a href="#tag" class="headerlink" title="tag"></a>tag</h2><p>给当前commit打标签。<br><code>git tag v1.0</code></p>
+<p>删除标签<br><code>git tag -d v1.0</code></p>
+<p>显示标签修改内容<br><code>git show v1.0</code></p>
+<h2 id="log"><a href="#log" class="headerlink" title="log"></a>log</h2><p>查看最近提交的文件差异，最近两篇。<br><code>git log -p -2</code></p>
+<h2 id="clean"><a href="#clean" class="headerlink" title="clean"></a>clean</h2><p>用于删除Untracked file, 常与<code>git reset --hard</code>一起使用，完全回复到指定commit。<br><code>git clean -df</code>d为文件夹，f为文件。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -695,85 +779,6 @@
 </ol>
 <p>子查询出现在FROM子句中时，这是子查询生成临时的派生表。</p>
 <p><strong>注意</strong>：必须为派生关系指定一个别名。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/machinelearning/deep_learning/BERT/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/academia/machinelearning/deep_learning/BERT/" class="post-title-link" itemprop="url">academia/machinelearning/deep_learning/BERT</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 09-23-2020 11:57:29 / Modified: 22:18:02" itemprop="dateCreated datePublished" datetime="2020-09-23T11:57:29+08:00">09-23-2020</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="BERT-概述"><a href="#BERT-概述" class="headerlink" title="BERT 概述"></a>BERT 概述</h1><p>BERT的全称是Bidirectional Encoder Representation from Transformers，即双向Transformer的Encoder，因为decoder是不能获要预测的信息的。模型的主要创新点都在pre-train方法上，即用了Masked LM和Next Sentence Prediction两种方法分别捕捉词语和句子级别的representation。</p>
-<p>训练方法：</p>
-<ul>
-<li>它在训练双向语言模型时以减小的概率把少量的词替成了Mask或另一个随机的单词。</li>
-<li>增加了一个预测下一句的loss。</li>
-</ul>
-<p>特点：</p>
-<ul>
-<li>模型深，12层，中间层只有1024wide。Transformer的中间层有2048。（深而窄 比 浅而宽 的模型更好？）</li>
-<li>MLM(Masked Language Model)，同时利用左侧和右侧的词语。</li>
-</ul>
-<hr>
-<p>Reference</p>
-<p>BERT | Bidirectional Encoder Representation from Transformers<br><span class="exturl" data-url="aHR0cHM6Ly9lYXN5YWkudGVjaC9haS1kZWZpbml0aW9uL2JlcnQv">https://easyai.tech/ai-definition/bert/<i class="fa fa-external-link-alt"></i></span></p>
 
       
     </div>

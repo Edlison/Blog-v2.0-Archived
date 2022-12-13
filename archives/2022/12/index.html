@@ -23,21 +23,23 @@
     var CONFIG = {"hostname":"blog.edlison.com","root":"/","images":"/images","scheme":"Muse","version":"8.0.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
   </script>
 
-  <meta name="description" content="参数的规则参数的顺序1：位置参数 - arg - *kwarg arg会把多出来的位置参数转化为tuple*kwarg会把关键字参数转化为dict 参数的顺序2：位置参数 - * - 关键字… 关键字亦看作位置参数，如果不传则会报错。 传参时的技巧获取参数时：可以看作是将参数打包成tuple*可以看作是将参数打包成dict 传参时：可以将tuple解压包并传入可以将*dict解压包并传入  Ref">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Python中的*arg与**kwarg">
-<meta property="og:url" content="https://blog.edlison.com/code/notebook/py-*args**kwargs/index.html">
+  <meta name="description" content="Edlison blog">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Edlison is talking here.">
+<meta property="og:url" content="https://blog.edlison.com/archives/2022/12/index.html">
 <meta property="og:site_name" content="Edlison is talking here.">
-<meta property="og:description" content="参数的规则参数的顺序1：位置参数 - arg - *kwarg arg会把多出来的位置参数转化为tuple*kwarg会把关键字参数转化为dict 参数的顺序2：位置参数 - * - 关键字… 关键字亦看作位置参数，如果不传则会报错。 传参时的技巧获取参数时：可以看作是将参数打包成tuple*可以看作是将参数打包成dict 传参时：可以将tuple解压包并传入可以将*dict解压包并传入  Ref">
+<meta property="og:description" content="Edlison blog">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-12-30T16:46:38.215Z">
-<meta property="article:modified_time" content="2020-12-30T16:54:37.837Z">
 <meta property="article:author" content="Bolin Shen">
-<meta property="article:tag" content="python">
+<meta property="article:tag" content="Edlison">
+<meta property="article:tag" content="edlison">
+<meta property="article:tag" content="blog">
+<meta property="article:tag" content="code">
+<meta property="article:tag" content="solution">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://blog.edlison.com/code/notebook/py-*args**kwargs/">
+<link rel="canonical" href="https://blog.edlison.com/archives/2022/12/">
 
 
 <script class="page-configurations">
@@ -45,12 +47,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : true,
+    isPost : false,
     lang   : 'en'
   };
 </script>
 
-  <title>Python中的*arg与**kwarg | Edlison is talking here.</title>
+  <title>Archive | Edlison is talking here.</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NC6FWQJNCW"></script>
     <script>
@@ -175,7 +177,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <div class="sidebar-inner sidebar-overview-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -188,7 +190,6 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <section class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#参数的规则"><span class="nav-number">1.</span> <span class="nav-text">参数的规则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#参数的顺序1："><span class="nav-number">1.1.</span> <span class="nav-text">参数的顺序1：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数的顺序2："><span class="nav-number">1.2.</span> <span class="nav-text">参数的顺序2：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#传参时的技巧"><span class="nav-number">2.</span> <span class="nav-text">传参时的技巧</span></a></li></ol></div>
         </section>
         <!--/noindex-->
 
@@ -202,14 +203,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">373</span>
+          <span class="site-state-item-count">374</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-count">33</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -251,113 +252,54 @@
 </noscript>
 
 
-    <div class="main-inner post posts-expand">
+    <div class="main-inner archive posts-collapse">
       
 
       
 
   
-
-
-<div class="post-block">
   
   
+  <div class="post-block">
+    <div class="post-content">
+      <div class="collection-title">
+        
+        <span class="collection-header">Excellent! 374 posts in total. Keep on posting.</span>
+      </div>
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/code/notebook/py-*args**kwargs/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          Python中的*arg与**kwarg
-        </h1>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
       
-
-      <time title="Created: 12-31-2020 00:46:38 / Modified: 00:54:37" itemprop="dateCreated datePublished" datetime="2020-12-31T00:46:38+08:00">12-31-2020</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">Views: </span>
-      <span id="busuanzi_value_page_pv"></span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-        <h2 id="参数的规则"><a href="#参数的规则" class="headerlink" title="参数的规则"></a>参数的规则</h2><h3 id="参数的顺序1："><a href="#参数的顺序1：" class="headerlink" title="参数的顺序1："></a>参数的顺序1：</h3><p>位置参数 - <em>arg - *</em>kwarg</p>
-<p><em>arg会把多出来的位置参数转化为<code>tuple</code><br>*</em>kwarg会把关键字参数转化为<code>dict</code></p>
-<h3 id="参数的顺序2："><a href="#参数的顺序2：" class="headerlink" title="参数的顺序2："></a>参数的顺序2：</h3><p>位置参数 - * - 关键字…</p>
-<p>关键字亦看作位置参数，如果<strong>不传则会报错</strong>。</p>
-<h2 id="传参时的技巧"><a href="#传参时的技巧" class="headerlink" title="传参时的技巧"></a>传参时的技巧</h2><p>获取参数时：<br><em>可以看作是将参数打包成<code>tuple</code><br>*</em>可以看作是将参数打包成<code>dict</code></p>
-<p>传参时：<br>可以将<em>tuple解压包并传入<br>可以将*</em>dict解压包并传入</p>
-<hr>
-<p>Reference: <span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC9lMGQ0NzA1ZTgyOTM=">https://www.jianshu.com/p/e0d4705e8293<i class="fa fa-external-link-alt"></i></span></p>
-
+    <div class="collection-year">
+      <span class="collection-header">2022</span>
     </div>
 
-    
-    
-    
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2022-12-13T12:31:30+08:00"
+              content="12-13-2022">
+          12-13
+        </time>
+      </div>
 
-    <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/python/" rel="tag"># python</a>
-          </div>
+      <div class="post-title">
+          <a class="post-title-link" href="/academia/course/EECS501/Intro/" itemprop="url">
+            <span itemprop="name">Intro to Probability and Random Process</span>
+          </a>
+      </div>
 
-        
-
-          <div class="post-nav">
-            <div class="post-nav-item">
-                <a href="/code/notebook/py-decorator/" rel="prev" title="Python装饰器(Decorator)">
-                  <i class="fa fa-chevron-left"></i> Python装饰器(Decorator)
-                </a>
-            </div>
-            <div class="post-nav-item">
-                <a href="/academia/others/AnomalyDetectionViaRobust/" rel="next" title="Multi-view Anomaly Detection via Robust Probabilistic Latent Variable Models">
-                  Multi-view Anomaly Detection via Robust Probabilistic Latent Variable Models <i class="fa fa-chevron-right"></i>
-                </a>
-            </div>
-          </div>
-    </footer>
+      
+    </header>
   </article>
-</div>
 
 
+    </div>
+  </div>
+  
+  
+  
 
+  
 
 
 
