@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">374</span>
+          <span class="site-state-item-count">375</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -216,7 +216,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">193</span>
+        <span class="site-state-item-count">194</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -256,6 +256,216 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/code/notebook/sql/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/code/notebook/sql/" class="post-title-link" itemprop="url">code/notebook/sql</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 10-25-2020 11:43:43" itemprop="dateCreated datePublished" datetime="2020-10-25T11:43:43+08:00">10-25-2020</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 10-26-2020 22:05:45" itemprop="dateModified" datetime="2020-10-26T22:05:45+08:00">10-26-2020</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="数据库笔记"><a href="#数据库笔记" class="headerlink" title="数据库笔记"></a>数据库笔记</h1><p>以下Mysql为例</p>
+<h2 id="数据库完整性"><a href="#数据库完整性" class="headerlink" title="数据库完整性"></a>数据库完整性</h2><h3 id="实体完整性"><a href="#实体完整性" class="headerlink" title="实体完整性"></a>实体完整性</h3><p>实体完整性即主码，用<code>PRIMARY KEY</code>定义.</p>
+<ul>
+<li>列级约束：只能应用于一列上。</li>
+<li>表级约束：可以应用于表的多个列上。</li>
+</ul>
+<p>简而言之，如果完整性约束涉及到该表的多个属性列，必须定义在表级上，否则既可以定义在列级也可以定义在表级。</p>
+<h3 id="参照完整性"><a href="#参照完整性" class="headerlink" title="参照完整性"></a>参照完整性</h3><p>参照完整性即外码，用<code>FOREIGN KEY (列名) REFERENCES &lt;表名&gt;(列名)</code>定义.</p>
+<p>用constraint指定约束名，约束不指定名称时，系统会给定一个名称。</p>
+<p><strong>注意</strong>：外码一定参照主码（可以是其他表的主码，也可以时自己的）,而且外码的列数一定要等于被参照表的主码列数。</p>
+<p><strong>违约处理</strong>：对被参照表进行<code>update</code>/<code>delete</code>/<code>insert</code>操作时会破坏参照完整性时，参照表需要告诉被参照表听改怎么做。需要对参照表定义外码时添加<code>on delete</code>/<code>on update[&lt;no action&gt;/&lt;cascade&gt;]</code></p>
+<ul>
+<li>CASCADE:在父表（被参照表）上update/delete记录时，同步子表（参照表）的匹配记录。</li>
+<li>SET NULL:在父表（被参照表）上update/delete记录时，将子表（参照表）上匹配的列设为null（子表的外键列不能为not null）。</li>
+<li>NO ACTION:如果子表中有匹配的记录，不允许对父表进行操作。</li>
+<li>RESTRICT:同NO ACTION，立即检查外键约束。</li>
+</ul>
+<p>NULL、RESTRICT、NO ACTION<br>删除：从表记录不存在时，主表才可以删除。删除从表，主表不变<br>更新：从表记录不存在时，主表才可以更新。更新从表，主表不变(无法更新从表)</p>
+<p>CASCADE<br>删除：删除主表时自动删除从表。删除从表，主表不变<br>更新：更新主表时自动更新从表。更新从表，主表不变(无法更新从表)</p>
+<p>SET NULL<br>删除：删除主表时自动更新从表值为NULL。删除从表，主表不变<br>更新：更新主表时自动更新从表值为NULL。更新从表，主表不变</p>
+<p>总结：CASCADE对主表操作 主表影响子表.<br>RESTRICT对主表操作 子表限制主表.<br>Mysql中均无法更新子表.</p>
+<h3 id="用户定义完整性"><a href="#用户定义完整性" class="headerlink" title="用户定义完整性"></a>用户定义完整性</h3><p>列值非空（not null），列值唯一（unique），列值需要满足条件表达式（check）.</p>
+<ul>
+<li>not null:列值不能为空，（列级完整性约束）</li>
+<li>unique:列值唯一，（列级或表级约束）</li>
+<li>check:列值应该满足的条件，（列级或表级约束）</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>a</th>
+<th>b</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>属性</td>
+<td>列级</td>
+</tr>
+<tr>
+<td>元组</td>
+<td>表级</td>
+</tr>
+</tbody></table>
+<h3 id="完整性约束命名子句"><a href="#完整性约束命名子句" class="headerlink" title="完整性约束命名子句"></a>完整性约束命名子句</h3><p>完整性约束命名子句是用来给完整性约束命名，这样我们就可以通过该名称对完整性约束进行删除、增加操作。</p>
+<h2 id="数据定义"><a href="#数据定义" class="headerlink" title="数据定义"></a>数据定义</h2><h3 id="索引类型"><a href="#索引类型" class="headerlink" title="索引类型"></a>索引类型</h3><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>普通索引</td>
+<td>是最基本的索引，它没有任何限制。</td>
+</tr>
+<tr>
+<td>唯一索引</td>
+<td>索引列的值必须唯一，但允许有空值。</td>
+</tr>
+<tr>
+<td>主键索引</td>
+<td>是一种特殊的唯一索引，一个表只能有一个主键，不允许有空值。</td>
+</tr>
+<tr>
+<td>组合索引</td>
+<td>指多个字段上创建的索引，只有在查询条件中使用了创建索引时的第一个字段，索引才会被使用。</td>
+</tr>
+<tr>
+<td>全文索引</td>
+<td>主要用来查找文本中的关键字，而不是直接与索引中的值相比较。fulltext索引配合match against操作使用，而不是一般的where语句加like。</td>
+</tr>
+</tbody></table>
+<h3 id="索引方法"><a href="#索引方法" class="headerlink" title="索引方法"></a>索引方法</h3><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>BTREE</td>
+<td>BTree索引是最常用的mysql数据库索引算法，因为它不仅可以被用在=,&gt;,&gt;=,&lt;,&lt;=和between这些比较操作符上，而且还可以用于like操作符，只要它的查询条件是一个不以通配符开头的常量</td>
+</tr>
+<tr>
+<td>HASH</td>
+<td>Hash索引只能用于对等比较，例如=,&lt;=&gt;（相当于=）操作符。由于是一次定位数据，不像BTree索引需要从根节点到枝节点，最后才能访问到页节点这样多次IO访问，所以检索效率远高于BTree索引。</td>
+</tr>
+</tbody></table>
+<h2 id="数据查询"><a href="#数据查询" class="headerlink" title="数据查询"></a>数据查询</h2><h3 id="连接查询"><a href="#连接查询" class="headerlink" title="连接查询"></a>连接查询</h3><ol>
+<li>等值与非等值连接查询</li>
+</ol>
+<p>=为等值连接，连接字段必须为可比的。</p>
+<ol start="2">
+<li>自身连接</li>
+</ol>
+<p>自己对自己相连，比如要查询先修课的先修课，要对自己查询两次。</p>
+<ol start="3">
+<li>外连接</li>
+</ol>
+<p><code>LEFT JOIN</code> 保存左侧所有元组，右侧不存在的用<code>NULL</code>补齐.(Mysql中<code>LEFT JOIN</code>与<code>LEFT OUTER JOIN</code>相同)</p>
+<ol start="4">
+<li>多表连接</li>
+</ol>
+<p>跨多个表进行连接查询。</p>
+<ol start="5">
+<li>*交叉连接</li>
+</ol>
+<p>笛卡尔积。<br><code>SELECT * FROM &lt;TABLE1&gt;, &lt;TABLE2&gt;</code>或<code>SELECT * FROM &lt;TABLE1&gt; CROSS JOIN &lt;TABLE2&gt;</code></p>
+<ol start="6">
+<li>*内连接</li>
+</ol>
+<p><strong>如果没有连接条件，INNER JOIN 和 CROSS JOIN 在语法上是等同的，两者可以互换。</strong></p>
+<p><code>SELECT &lt;字段名&gt; FROM &lt;表1&gt; INNER JOIN &lt;表2&gt; [ON子句]</code></p>
+<h3 id="嵌套查询"><a href="#嵌套查询" class="headerlink" title="嵌套查询"></a>嵌套查询</h3><ol>
+<li>不相关子查询</li>
+</ol>
+<p>子查询的查询条件不依赖于父查询。<br>有些嵌套查询可以使用连接运算替代，有些不可以。</p>
+<ol start="2">
+<li>相关子查询</li>
+</ol>
+<p>子查询的条件依赖于父查询。<br><code>SELECT Sno, Cno FROM SC x WHERE Grade &gt;= (SELECT AVG(Grade) FROM SC y WHERE y.Sno = x.Sno)</code></p>
+<ol start="3">
+<li>带有ANY(SOME)或ALL谓词的子查询</li>
+</ol>
+<p>子查询返回单值用比较运算符，返回多值时需要用ANY(SOME)或ALL谓词修饰符。且使用ANY或ALL时需要同时使用比较运算符。</p>
+<ol start="4">
+<li>带有EXISTS谓词的子查询</li>
+</ol>
+<p>子查询不返回任何数据，只产生逻辑真值<code>true</code>或<code>false</code>。</p>
+<p><strong>注意</strong>：全称量词可以通过否运算转换成存在量词。<br><strong>注意</strong>：蕴含式可以转换为析取式。</p>
+<ol start="5">
+<li>集合查询</li>
+</ol>
+<p>并操作<code>UNION</code>,交操作<code>INTERSECT</code>,差操作<code>EXCEPT</code>.</p>
+<ol start="6">
+<li>派生表查询</li>
+</ol>
+<p>子查询出现在FROM子句中时，这是子查询生成临时的派生表。</p>
+<p><strong>注意</strong>：必须为派生关系指定一个别名。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -641,152 +851,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/others/XLNet/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/academia/others/XLNet/" class="post-title-link" itemprop="url">XLNet</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 09-18-2020 17:33:11" itemprop="dateCreated datePublished" datetime="2020-09-18T17:33:11+08:00">09-18-2020</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 02-04-2021 13:49:16" itemprop="dateModified" datetime="2021-02-04T13:49:16+08:00">02-04-2021</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Paper/NLP/" itemprop="url" rel="index"><span itemprop="name">NLP</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="XLNet-Generalized-Autoregressive-Pretraining-for-Language-Understanding"><a href="#XLNet-Generalized-Autoregressive-Pretraining-for-Language-Understanding" class="headerlink" title="XLNet Generalized Autoregressive Pretraining for Language Understanding"></a>XLNet Generalized Autoregressive Pretraining for Language Understanding</h1><h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h1><p>Bert基于去噪自编码器的预训练模型，性能优于自回归语言模型的预训练方法。而由于mask一部分输入，bert忽略了被mask位置之间的依赖关系。</p>
-<p>XLNet基于此优缺点可以</p>
-<ul>
-<li>通过最大化所有可能的因式分解顺序的对数似然，学习双向语境信息</li>
-<li>用自回归本身的特点克服bert的缺点</li>
-<li>融合了自回归模型Transformer-XT的思路</li>
-</ul>
-<p>作者从自回归(autoregressive)和自编码(autoencoding)两大范式分析了当前的预训练语言模型。</p>
-<h1 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1 介绍"></a>1 介绍</h1><h2 id="1-1-AutoRegression与AutoEncoding两大阵营"><a href="#1-1-AutoRegression与AutoEncoding两大阵营" class="headerlink" title="1.1 AutoRegression与AutoEncoding两大阵营"></a>1.1 AutoRegression与AutoEncoding两大阵营</h2><p>XLNet是一个类似BERT的模型，XLNet是一种通用的自回归预训练方法。</p>
-<h3 id="自回归-AutoRegression-语言模型"><a href="#自回归-AutoRegression-语言模型" class="headerlink" title="自回归(AutoRegression)语言模型"></a>自回归(AutoRegression)语言模型</h3><p>AR语言模型是一种使用上下文词来预测下一个词的模型，但是上下文单词被限制在两个方向，前向和后向。(例如：GPT，GPT-2)</p>
-<p><img src="https://img-blog.csdnimg.cn/20190810224951812.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzk0NzE1Ng==,size_16,color_FFFFFF,t_70" alt="img-前向后向"></p>
-<p>AR语言模型擅长生成式NLP任务，生成上下文时总是前向的。</p>
-<p>但是AR只能使用前向上下文或后向上下文，这意味着它不能同时使用前向和后向上下文。</p>
-<h3 id="自编码-AutoEncoding-语言模型"><a href="#自编码-AutoEncoding-语言模型" class="headerlink" title="自编码(AutoEncoding)语言模型"></a>自编码(AutoEncoding)语言模型</h3><p>BERT被归类为自编码器语言模型。AE旨在从损坏的输入中重建原始数据。</p>
-<p>损坏的输入意味着我们在预训练阶段用[MASK]替换原始词，目标是预测得到原始句子。<br><img src="https://img-blog.csdnimg.cn/20190810225020688.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzk0NzE1Ng==,size_16,color_FFFFFF,t_70" alt="img-双向"></p>
-<p>AE语言模型的优势是，它可以从前向和后向的方向看到上下文。</p>
-<p>AE语言模型的缺点是</p>
-<ul>
-<li>[MASK]这种人为的符号在调优时在真实数据中并不存在，会导致预训练-调优的差异(pretrain-finetune discrepancy)</li>
-<li>[MASK]假设mask词在给定未mask词的情况下彼此独立（例：住房危机已经变成银行业危机。 其忽略了 银行业 与 危机 间的关系）。</li>
-</ul>
-<h2 id="1-2-两大阵营需要新的XLNet"><a href="#1-2-两大阵营需要新的XLNet" class="headerlink" title="1.2 两大阵营需要新的XLNet"></a>1.2 两大阵营需要新的XLNet</h2><p>XLNet提出了一种让AR语言模型从双向上下文中学习的新方法，以避免[MASK]方法在AE语言模型中带来的缺点。</p>
-<p>XLNet是一种泛化自回归(AR)方法，既集合了AR和AE方法的优势，又避免了二者的缺陷。</p>
-<ul>
-<li>XLNet不使用传统AR模型中固定的前向或后向因式分解顺序，而是最大化所有可能因式分解顺序的期望对数似然，由于对因式分解顺序的排列操作，每个位置的语境都包含来自左侧和右侧的token。因此，每个位置都能学习来自所有位置的语境信息，即捕获双向语境。</li>
-<li>作为一个泛化自回归(AR)模型，XLNet不依赖残缺数据。不会有BERT的预训练-微调差异。自回归目标提供一种自然的方式，来利用乘法法则对预测token的联合概率执行因式分解(factorize)，这消除了BERT中的独立性假设。</li>
-<li>XLNet将Transformer-XL的分割循环机制和相对编码范式整合到预训练中。</li>
-</ul>
-<h1 id="2-Proposed-Solution"><a href="#2-Proposed-Solution" class="headerlink" title="2 Proposed Solution"></a>2 Proposed Solution</h1><h2 id="2-1-在自回归模型中引入双向语言模型基本思想"><a href="#2-1-在自回归模型中引入双向语言模型基本思想" class="headerlink" title="2.1 在自回归模型中引入双向语言模型基本思想"></a>2.1 在自回归模型中引入双向语言模型基本思想</h2><p>XLNet仍然遵循两阶段的过程(pretrain fine-tune)。其主要希望改动第一阶段的过程，即不像BERT那样带[MASK]的Denoising-autoencoder的模式，而是采用AR语言模型的模式。</p>
-<p>简单来说就是，输入句子X仍然使自左向右的输入，看到Ti单词的上文Context-before来预测Ti这个单词，又希望Context-before例不仅看到上文单词又能看到后面的Context-after里的下文单词。这样一来BERT预训练阶段引入的[MASK]符号就不需要了。</p>
-<p>基本思想：在预训练阶段引入Permutation LM的训练目标。</p>
-<p>举例：比如包含单词Ti的当前输入的句子X，由顺序的几个单词构成x1, x2, x3, x4四个单词顺序组成。假设x3为要预测的单词Ti，其所在的位置为Position 3，要想让它能够在上文Context-before中，也就是Pos 1或Pos 2的位置看到Pos 4的单词x4。可以这么做，假设固定住x3的位置，也就是仍在x3，之后随机排列组合句子中的4个单词，在所有可能里训责一部分作为模型的预训练的输入X。比如随机排列组合后x4, x2, x3, x1这样一个排列组合作为模型的输入X。于是x3就能同时看到上文x2以及下文x4的内容了。</p>
-<p><img src="https://pic3.zhimg.com/80/v2-05d785e9d8f810d118e4fa93f8e9b39f_1440w.jpg" alt="img-permutation-language-model"></p>
-<p>看上去仍然是个自回归的从左到右的模型，但是其实通过对句子中单词排列组合，把一部分Ti下文的单词排到Ti上文位置中，于是就看到了上文和下文，但是形式上看上去仍然是从左到右在预测后一个单词。</p>
-<h2 id="2-2-具体实现"><a href="#2-2-具体实现" class="headerlink" title="2.2 具体实现"></a>2.2 具体实现</h2><p>尽管基本思想里提到把句子X的单词排列组合后，再随机抽取例子作为输入，但实际上不可以，因为Fine-tune阶段不可能去排列组合原始输入。所以必须让预训练阶段的输入部分<strong>看上去</strong>仍然是x1, x2, x3, x4这个顺序，但是可以在Transformer部分做些工作，来达成目标。</p>
-<p>XLNet采取了Attention掩码机制，输入的X没有任何变化，单词Ti还是第i个单词，前面有1到i-1个单词。但是Transformer内部，通过Attention掩码从X的输入单词里，也就是Ti的Context-before和Context-after中随机选择i-1个单词，放到Ti的Context-before上，把其他单词的输入通过Attention掩码隐藏掉。（当然这个所谓放到Ti的上文位置，只是一种形象的说法，其实在内部，就是通过Attention Mask，把其它没有被选到的单词Mask掉，不让它们在预测单词Ti的时候发生作用，如此而已。看着就类似于把这些被选中的单词放到了上文Context_before的位置了）。</p>
-<p>XLNet是用<strong>双流自注意力模型</strong>实现的。一个是内容流自注意力，其实就是标准的Transformer的计算过程，主要引入了Query流自注意力。其实就是用来替代[MASK]标记的，XLNet因为要抛弃[MASK]又不能看到x3的输入，于是Query流就直接忽略掉x3的输入，只保留这个位置信息，用参数w来代表位置的embedding编码。<strong>其实XLNet只是抛弃了[MASK]这个占位符号，内部还是引入Query流来忽略掉被MASK的这个单词。和BERT比只是实现方式不同而已</strong>。</p>
-<p><img src="https://picb.zhimg.com/80/v2-2bb1a60af4fe2fa751647fdce48e337c_1440w.jpg" alt="img-two-stream-attention"></p>
-<p>如图所示，输入序列仍是x1, x2, x3, x4，通过不同的掩码矩阵，让当前单词Xi只能看到被排列组合后的顺序x3-&gt;x2-&gt;x4-&gt;x1中自己前面的单词。</p>
-<h2 id="2-3-XLNet与BERT"><a href="#2-3-XLNet与BERT" class="headerlink" title="2.3 XLNet与BERT"></a>2.3 XLNet与BERT</h2><p>通过改造BERT预训练的过程，其实可以模拟XLNet的PLM过程。</p>
-<p>第一种思路：Bert目前的做法是，给定输入句子X，随机Mask掉15%的单词，然后要求利用剩下的85%的单词去预测任意一个被Mask掉的单词。对于输入句子，随机选择X中的任意i个单词，只用这i个单词去预测被Mask的单词。这个过程理论上可以在Transformer内采用Attention Mask来实现，这样BERT的预训练模型就和XLNet基本等价了。</p>
-<p>第二种思路：假设仍使用BERT目前的Mask机制，将Mask 15%改为，每次一个句子只Mask掉一个单词，利用剩下的单词来预测被Mask掉的单词。因为XLNet在实现的时候，为了提升效率，其实是选择每个句子最后末尾的1/K个单词被预测，假设K=7，意味着一个句子X，只有末尾的1/7的单词会被预测。这样两者基本是等价的。</p>
-<p>XLNet维持了自回归(AR)语言模型的从左向右的模式，这个BERT做不到。明显的好处是，对于生成类的任务，能够在维持表面从左向右的生成过程前提下，模型里隐含了上下文的信息。XLNet貌似应该对于生成类型的NLP任务，会比BERT又明显优势。此外，XLNet还引入了Transformer XL机制，所以对于长文档输入类型的NLP任务，也会比BERT有明显优势。</p>
-<h2 id="3-总结"><a href="#3-总结" class="headerlink" title="3 总结"></a>3 总结</h2><p>Permutation Language Model是XLNet的主要理论创新，<strong>它开启了自回归(AR)语言模型如何引入下文的一个思路</strong>。</p>
-<p>XLNet也相当于是BERT, GPT2.0, Transformer XL的综合体。</p>
-<ul>
-<li>通过Permutation LM 预训练目标，吸收了BERT的双向语言模型；</li>
-<li>吸收了GPT2.0使用更多更高质量的预训练数据；</li>
-<li>吸收了Transformer XL的主要思想。</li>
-</ul>
-<p>XLNet其实本质上还是ELMO/GPT/BERT这一系列两阶段模型的进一步延伸。在自回归(AR)语言模型方向引入双向语言模型打开了新思路。</p>
-<p>未来预期</p>
-<ul>
-<li>Transformer天然对长文档任务处理有弱点，所以XLNet对于长文档NLP任务相比BERT应该有直接且比较明显的性能提升；</li>
-<li>对于生成类的NLP任务，XLNet的预训练模式符合下游任务序列生成结果。</li>
-</ul>
-<hr>
-<p>Rreference</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC83MDI1NzQyNw==">https://zhuanlan.zhihu.com/p/70257427<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzk0NzE1Ni9hcnRpY2xlL2RldGFpbHMvOTMwMzU2MDc=">https://blog.csdn.net/weixin_37947156/article/details/93035607<i class="fa fa-external-link-alt"></i></span></p>
-<p>// AR AE LM 实现步骤？<br>// TODO Transformer 较于 RNN？<br>// TODO encoding decoding？<br>// TODO denoising-autoencoder?  </p>
-<p>// TODO Transformer-XL 分割循环机制 相对编码范式??<br>// TODO BERT 预训练-微调两阶段模式(pretrain fine-tune) 抛弃mask使两阶段保持一致？ fine-tune阶段？<br>// TODO AR模型前向后向因式分解顺序？  </p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
 
   
   <nav class="pagination">
@@ -831,7 +895,7 @@
 <div class="copyright">
   
   &copy; 2018 – 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
