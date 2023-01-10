@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.edlison.com/code/vim/vim-intermediate/</loc>
+    
+    <lastmod>2023-01-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.edlison.com/intresting/deployment/nginxmanager/</loc>
+    
+    <lastmod>2023-01-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.edlison.com/intresting/deployment/JupyterLab/</loc>
     
     <lastmod>2023-01-10</lastmod>
@@ -147,15 +165,6 @@
   
   <url>
     <loc>https://blog.edlison.com/intresting/deployment/code-server/</loc>
-    
-    <lastmod>2022-09-09</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.edlison.com/intresting/deployment/nginxmanager/</loc>
     
     <lastmod>2022-09-09</lastmod>
     
