@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">376</span>
+          <span class="site-state-item-count">379</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -216,7 +216,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">194</span>
+        <span class="site-state-item-count">195</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -256,6 +256,246 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/reproduction/pyg_env/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/academia/reproduction/pyg_env/" class="post-title-link" itemprop="url">Reproduce</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 02-20-2023 14:44:17 / Modified: 14:54:51" itemprop="dateCreated datePublished" datetime="2023-02-20T14:44:17+08:00">02-20-2023</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="pytorch-geometric">PyTorch Geometric</h1>
+<blockquote>
+<p>Traditionally, these libraries don’t do what they call “vendoring”, i.e. they expect you to have CUDA installed on your system.</p>
+<p>In our case, PyTorch Geometric doesn’t vendor CUDA, but PyTorch vendors its own CUDA. so when you install pytorch 1.11 with cuda 11.3, it means that pytorch calls its own cuda 11.3, not the system-wide one. In the case of Great Lakes, the system-wide one is 11.8.</p>
+<p>(pytorch does this b/c it’s a lot easier to install for users, especially researchers who are not as familiar with computer systems as engineers.)</p>
+<p>but notice that pytorch geometric doesn’t vendor, so it calls the system wide one.</p>
+<p>now pytorch geometric still expects a certain version of CUDA installed on the system. That’s why if you go to their website, it’ll tell you how to install versions of pytorch geometric that use different versions of CUDA.</p>
+<p>now it’s most likely that the segfault error you’re seeing is coming from the fact that pytorch produces some tensors using one version of cuda, but pytorch geometric is processing those tensors using another version of cuda.</p>
+<p>so you need to ensure that pytorch uses the same version of cuda as pytorch geometric.</p>
+<p>the system wide CUDA just has to be compatible with the version pytorch geometric is targeted to.</p>
+<p>alright, i just said a lot of things. do you follow? lol</p>
+</blockquote>
+<h1 id="make-sure">Make sure</h1>
+<p><span class="exturl" data-url="aHR0cHM6Ly9weXRvcmNoLWdlb21ldHJpYy5yZWFkdGhlZG9jcy5pby9lbi9sYXRlc3Qvbm90ZXMvaW5zdGFsbGF0aW9uLmh0bWw=">PyG Installation<i class="fa fa-external-link-alt"></i></span></p>
+<p>Using <code>pip</code> command: <code>pip install pyg-lib torch-scatter torch-sparse torch-cluster torch-spline-conv torch-geometric -f https://data.pyg.org/whl/torch-{torch_version}+cu{cuda_version}.html</code></p>
+<p><strong>Important</strong>: Sometimes we need to assign specific <code>torch-sparse</code>, <code>torch-scatter</code> version from <code>pyg wheel</code> website!</p>
+<hr />
+<p>Reference My mentor Yu</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/course/EECS553/diff_obj_loss_risk/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/academia/course/EECS553/diff_obj_loss_risk/" class="post-title-link" itemprop="url">Diffenrences bewteen Objective function, Loss function, Risk function</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 02-20-2023 11:45:33 / Modified: 12:10:09" itemprop="dateCreated datePublished" datetime="2023-02-20T11:45:33+08:00">02-20-2023</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Academic/" itemprop="url" rel="index"><span itemprop="name">Academic</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="some-quotings">Some quotings</h1>
+<p>&quot;Deep Learning&quot; by Goodfellow &gt; The function we want to minimize or maximize is called the <strong>objective function</strong>, or <strong>criterion</strong>. When we are minimizing it, we may also call it the <strong>cost function</strong>, <strong>loss function</strong>, or <strong>error function</strong>. In this book, we use these terms interchangeably, though some machine learning publications assign special meaning to some of these terms.</p>
+<p>Andrew NG &gt;&quot;Finally, the loss function was defined with respect to a single training example. It measures how well you're doing on a single training example. I'm now going to define something called the cost function, which measures how well you're doing an entire training set. So the cost function J which is applied to your parameters W and B is going to be the average with one of the m of the sum of the loss function applied to each of the training examples and turn.&quot;</p>
+<h1 id="conclusion">Conclusion</h1>
+<p>Objective function: is our target, whether minimize or maximize; e.g. MLE maximum likelihood estimation Cost function: is sum of loss function with additional regularization term. (on a trianing set scale); e.g. MSE mean squared error Loss function: is a function defined on data point, prediction and label, which measures penalty. (on a single sample). e.g. Square loss, hinge loss</p>
+<hr />
+<p>Reference https://stats.stackexchange.com/questions/179026/objective-function-cost-function-loss-function-are-they-the-same-thing</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/intresting/deployment/docker-sharelatex/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/intresting/deployment/docker-sharelatex/" class="post-title-link" itemprop="url">Sharelatex self-hosted</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 01-27-2023 10:23:27 / Modified: 10:24:29" itemprop="dateCreated datePublished" datetime="2023-01-27T10:23:27+08:00">01-27-2023</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="docker-compose.yml">docker-compose.yml</h1>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'2.2'</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line"></span><br><span class="line"><span class="attr">sharelatex:</span></span><br><span class="line"></span><br><span class="line"><span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Server Pro users:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># image: quay.io/sharelatex/sharelatex-pro</span></span><br><span class="line"></span><br><span class="line"><span class="attr">image:</span> <span class="string">sharelatex/sharelatex</span></span><br><span class="line"></span><br><span class="line"><span class="attr">container_name:</span> <span class="string">sharelatex</span></span><br><span class="line"></span><br><span class="line"><span class="attr">depends_on:</span></span><br><span class="line"></span><br><span class="line"><span class="attr">mongo:</span></span><br><span class="line"></span><br><span class="line"><span class="attr">condition:</span> <span class="string">service_healthy</span></span><br><span class="line"></span><br><span class="line"><span class="attr">redis:</span></span><br><span class="line"></span><br><span class="line"><span class="attr">condition:</span> <span class="string">service_started</span></span><br><span class="line"></span><br><span class="line"><span class="attr">ports:</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> <span class="number">80</span><span class="string">:80</span></span><br><span class="line"></span><br><span class="line"><span class="attr">links:</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> <span class="string">mongo</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> <span class="string">redis</span></span><br><span class="line"></span><br><span class="line"><span class="attr">volumes:</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> <span class="string">~/sharelatex_data:/var/lib/sharelatex</span></span><br><span class="line"></span><br><span class="line"><span class="comment">########################################################################</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#### Server Pro: Uncomment the following line to mount the docker ####</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#### socket, required for Sibling Containers to work ####</span></span><br><span class="line"></span><br><span class="line"><span class="comment">########################################################################</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># - /var/run/docker.sock:/var/run/docker.sock</span></span><br><span class="line"></span><br><span class="line"><span class="attr">environment:</span></span><br><span class="line"></span><br><span class="line"><span class="attr">SHARELATEX_APP_NAME:</span> <span class="string">Overleaf</span> <span class="string">Community</span> <span class="string">Edition</span></span><br><span class="line"></span><br><span class="line"><span class="attr">SHARELATEX_MONGO_URL:</span> <span class="string">mongodb://mongo/sharelatex</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Same property, unfortunately with different names in</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># different locations</span></span><br><span class="line"></span><br><span class="line"><span class="attr">SHARELATEX_REDIS_HOST:</span> <span class="string">redis</span></span><br><span class="line"></span><br><span class="line"><span class="attr">REDIS_HOST:</span> <span class="string">redis</span></span><br><span class="line"></span><br><span class="line"><span class="attr">ENABLED_LINKED_FILE_TYPES:</span> <span class="string">'project_file,project_output_file'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Enables Thumbnail generation using ImageMagick</span></span><br><span class="line"></span><br><span class="line"><span class="attr">ENABLE_CONVERSIONS:</span> <span class="string">'true'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Disables email confirmation requirement</span></span><br><span class="line"></span><br><span class="line"><span class="attr">EMAIL_CONFIRMATION_DISABLED:</span> <span class="string">'true'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># temporary fix for LuaLaTex compiles</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># see https://github.com/overleaf/overleaf/issues/695</span></span><br><span class="line"></span><br><span class="line"><span class="attr">TEXMFVAR:</span> <span class="string">/var/lib/sharelatex/tmp/texmf-var</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## Set for SSL via nginx-proxy</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#VIRTUAL_HOST: 103.112.212.22</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># SHARELATEX_SITE_URL: http://sharelatex.mydomain.com</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># SHARELATEX_NAV_TITLE: Our ShareLaTeX Instance</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># SHARELATEX_HEADER_IMAGE_URL: http://somewhere.com/mylogo.png</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># SHARELATEX_ADMIN_EMAIL: support@it.com</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># SHARELATEX_LEFT_FOOTER: '[&#123;"text": "Powered by &lt;a href=\"https://www.sharelatex.com\"&gt;ShareLaTeX&lt;/a&gt; 2016"&#125;,&#123;"text": "Another page I want to link to can be found &lt;a href=\"here\"&gt;here&lt;/a&gt;"&#125; ]'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># SHARELATEX_RIGHT_FOOTER: '[&#123;"text": "Hello I am on the Right"&#125; ]'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># SHARELATEX_EMAIL_FROM_ADDRESS: "team@sharelatex.com"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># SHARELATEX_EMAIL_AWS_SES_ACCESS_KEY_ID:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># SHARELATEX_EMAIL_AWS_SES_SECRET_KEY:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># SHARELATEX_EMAIL_SMTP_HOST: smtp.mydomain.com</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># SHARELATEX_EMAIL_SMTP_PORT: 587</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># SHARELATEX_EMAIL_SMTP_SECURE: false</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># SHARELATEX_EMAIL_SMTP_USER:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># SHARELATEX_EMAIL_SMTP_PASS:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># SHARELATEX_EMAIL_SMTP_TLS_REJECT_UNAUTH: true</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># SHARELATEX_EMAIL_SMTP_IGNORE_TLS: false</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># SHARELATEX_EMAIL_SMTP_NAME: '127.0.0.1'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># SHARELATEX_EMAIL_SMTP_LOGGER: true</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># SHARELATEX_CUSTOM_EMAIL_FOOTER: "This system is run by department x"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">################</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## Server Pro ##</span></span><br><span class="line"></span><br><span class="line"><span class="comment">################</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># SANDBOXED_COMPILES: 'true'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># SANDBOXED_COMPILES_SIBLING_CONTAINERS: 'true'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># SANDBOXED_COMPILES_HOST_DIR: '/var/sharelatex_data/data/compiles'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># DOCKER_RUNNER: 'false'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## Works with test LDAP server shown at bottom of docker compose</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># SHARELATEX_LDAP_URL: 'ldap://ldap:389'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># SHARELATEX_LDAP_SEARCH_BASE: 'ou=people,dc=planetexpress,dc=com'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># SHARELATEX_LDAP_SEARCH_FILTER: '(uid=&#123;&#123;username&#125;&#125;)'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># SHARELATEX_LDAP_BIND_DN: 'cn=admin,dc=planetexpress,dc=com'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># SHARELATEX_LDAP_BIND_CREDENTIALS: 'GoodNewsEveryone'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># SHARELATEX_LDAP_EMAIL_ATT: 'mail'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># SHARELATEX_LDAP_NAME_ATT: 'cn'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># SHARELATEX_LDAP_LAST_NAME_ATT: 'sn'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># SHARELATEX_LDAP_UPDATE_USER_DETAILS_ON_LOGIN: 'true'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># SHARELATEX_TEMPLATES_USER_ID: "578773160210479700917ee5"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># SHARELATEX_NEW_PROJECT_TEMPLATE_LINKS: '[ &#123;"name":"All Templates","url":"/templates/all"&#125;]'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># SHARELATEX_PROXY_LEARN: "true"</span></span><br><span class="line"></span><br><span class="line"><span class="attr">mongo:</span></span><br><span class="line"></span><br><span class="line"><span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line"></span><br><span class="line"><span class="attr">image:</span> <span class="string">mongo:4.4</span></span><br><span class="line"></span><br><span class="line"><span class="attr">container_name:</span> <span class="string">mongo</span></span><br><span class="line"></span><br><span class="line"><span class="attr">expose:</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> <span class="number">27017</span></span><br><span class="line"></span><br><span class="line"><span class="attr">volumes:</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> <span class="string">~/mongo_data:/data/db</span></span><br><span class="line"></span><br><span class="line"><span class="attr">healthcheck:</span></span><br><span class="line"></span><br><span class="line"><span class="attr">test:</span> <span class="string">echo</span> <span class="string">'db.stats().ok'</span> <span class="string">|</span> <span class="string">mongo</span> <span class="string">localhost:27017/test</span> <span class="string">--quiet</span></span><br><span class="line"></span><br><span class="line"><span class="attr">interval:</span> <span class="string">10s</span></span><br><span class="line"></span><br><span class="line"><span class="attr">timeout:</span> <span class="string">10s</span></span><br><span class="line"></span><br><span class="line"><span class="attr">retries:</span> <span class="number">5</span></span><br><span class="line"></span><br><span class="line"><span class="attr">redis:</span></span><br><span class="line"></span><br><span class="line"><span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line"></span><br><span class="line"><span class="attr">image:</span> <span class="string">redis:5</span></span><br><span class="line"></span><br><span class="line"><span class="attr">container_name:</span> <span class="string">redis</span></span><br><span class="line"></span><br><span class="line"><span class="attr">expose:</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> <span class="number">6379</span></span><br><span class="line"></span><br><span class="line"><span class="attr">volumes:</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> <span class="string">~/redis_data:/data</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -368,10 +608,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 01-10-2023 06:49:43 / Modified: 09:50:47" itemprop="dateCreated datePublished" datetime="2023-01-10T06:49:43+08:00">01-10-2023</time>
+      <time title="Created: 01-10-2023 06:49:43" itemprop="dateCreated datePublished" datetime="2023-01-10T06:49:43+08:00">01-10-2023</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 01-13-2023 06:40:50" itemprop="dateModified" datetime="2023-01-13T06:40:50+08:00">01-13-2023</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -398,249 +644,9 @@
 <h1 id="setting-password-for-jupyterlab">Setting password for JupyterLab</h1>
 <p>We can use token to change password for jupyterlab on first login, then restart server.</p>
 <h1 id="edit-kernel-in-jupyterlab">Edit kernel in JupyterLab</h1>
-<p>## Step 1 activate target environment ## Step 2 install ipykernel <code>conda install ipykernel</code> ## Step 3 set up kernel add kernel into jupyterlab <code>python -m ipykernel --name [kernel name]</code> ## Step 4 exsisting kernel <code>jupyter kernelspec list</code> ## Step 5 remove kernel <code>jupyter kernelspec remove [kernel name]</code></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/course/EECS501/Intro/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/academia/course/EECS501/Intro/" class="post-title-link" itemprop="url">Intro to Probability and Random Process</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 12-13-2022 12:31:30 / Modified: 12:32:29" itemprop="dateCreated datePublished" datetime="2022-12-13T12:31:30+08:00">12-13-2022</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Academic/" itemprop="url" rel="index"><span itemprop="name">Academic</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="syllabus">Syllabus</h1>
-<ul>
-<li>White noise, PSD</li>
-<li>Filter</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/course/EECS551/eigenvalue_eigenvector/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/academia/course/EECS551/eigenvalue_eigenvector/" class="post-title-link" itemprop="url">Eigenvalue and Eigenvector</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 09-28-2022 11:21:24 / Modified: 11:46:29" itemprop="dateCreated datePublished" datetime="2022-09-28T11:21:24+08:00">09-28-2022</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Academia/" itemprop="url" rel="index"><span itemprop="name">Academia</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Eigenvalue-and-Eigenvector"><a href="#Eigenvalue-and-Eigenvector" class="headerlink" title="Eigenvalue and Eigenvector"></a>Eigenvalue and Eigenvector</h1><p>Eigenvectors and Eigenvalues are those vectors don’t change direction only stretching with the multiplication of eigenvalue.<br><img src="https://i.imgur.com/c7QEuU8.png" alt=""></p>
-<p>For a transformation that have eigenvectors can span the space, we can use eigenvectors as basis.<br><img src="https://i.imgur.com/BO13FGo.png" alt=""></p>
-<p>If we do so, we can apply the eigenvectors to this transformation. The result must be a diagonal matrix, and the value equal to the eigenvalues. (eigenvector only stretch on its direction, so the value only shows on the diagonal)<br><img src="https://i.imgur.com/Hf6feBq.png" alt=""></p>
-<p>If we want to calculate 100-th power of this matrix, we can convert it to its system and calculate, then convert it back.</p>
-<p><strong>set of eigenvectors is also called eigenbasis.</strong></p>
-<hr>
-<p>Reference<br><span class="exturl" data-url="aHR0cHM6Ly93d3cuM2JsdWUxYnJvd24uY29tL3RvcGljcy9saW5lYXItYWxnZWJyYQ==">https://www.3blue1brown.com/topics/linear-algebra<i class="fa fa-external-link-alt"></i></span></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/course/EECS551/change_of_basis/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/academia/course/EECS551/change_of_basis/" class="post-title-link" itemprop="url">Change of basis</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 09-28-2022 10:41:11 / Modified: 10:59:54" itemprop="dateCreated datePublished" datetime="2022-09-28T10:41:11+08:00">09-28-2022</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Academia/" itemprop="url" rel="index"><span itemprop="name">Academia</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Change-of-basis"><a href="#Change-of-basis" class="headerlink" title="Change of basis"></a>Change of basis</h1><p>The basis in Jennifer’s grid represent a transformation as matrix below. It can convert the vector in Jennifer’s language into the vector in our language.<br><img src="https://i.imgur.com/YpkCFUy.png" alt=""></p>
-<p>The inverse switches the direction.<br><img src="https://i.imgur.com/j5WgP6B.png" alt=""></p>
-<p>If we apply the inversion of basis matrix to the vector in our language, we can obtain the vector in Jennifer’s language.<br><img src="https://i.imgur.com/hcERvqR.png" alt=""></p>
-<p>The function is inverse change of previous pic.<br><img src="https://i.imgur.com/XmL7BcJ.png" alt=""></p>
-<p>This transformation can be written in <code>A^(-1)MA</code>. This represent convert other language into our language, then apply a transformation to it, finally convert our language to origin language.<br><img src="https://i.imgur.com/MjHt1Wj.png" alt=""></p>
-<p>This transformation means a transformation on the other language.</p>
-<hr>
-<p>Reference<br><span class="exturl" data-url="aHR0cHM6Ly93d3cuM2JsdWUxYnJvd24uY29tL3RvcGljcy9saW5lYXItYWxnZWJyYQ==">https://www.3blue1brown.com/topics/linear-algebra<i class="fa fa-external-link-alt"></i></span></p>
+<p>## Step 1 activate target environment ## Step 2 install ipykernel <code>conda install ipykernel</code> ## Step 3 set up kernel add kernel into jupyterlab <code>python -m ipykernel install --name [kernel name]</code> ## Step 4 exsisting kernel <code>jupyter kernelspec list</code> ## Step 5 remove kernel <code>jupyter kernelspec remove [kernel name]</code></p>
+<h1 id="important">Important</h1>
+<p>The communication to the kernel goes through WebSockets, which means you need to support WebSockets when using Nginx!</p>
 
       
     </div>

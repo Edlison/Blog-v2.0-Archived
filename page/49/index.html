@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">376</span>
+          <span class="site-state-item-count">379</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -216,7 +216,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">194</span>
+        <span class="site-state-item-count">195</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -256,6 +256,299 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/knowledge/pt_save_load/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/academia/knowledge/pt_save_load/" class="post-title-link" itemprop="url">pytorch模型的保存与加载</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 02-21-2021 18:55:12" itemprop="dateCreated datePublished" datetime="2021-02-21T18:55:12+08:00">02-21-2021</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 03-04-2021 14:51:42" itemprop="dateModified" datetime="2021-03-04T14:51:42+08:00">03-04-2021</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="只保存网络的参数"><a href="#只保存网络的参数" class="headerlink" title="只保存网络的参数"></a>只保存网络的参数</h1><h2 id="Save"><a href="#Save" class="headerlink" title="Save"></a>Save</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.save(model.state_dict(), PATH)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Load"><a href="#Load" class="headerlink" title="Load"></a>Load</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model.load_state_dict(torch.load(PATH))</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong></p>
+<ul>
+<li>模型的加载需要使用<code>torch.load</code>加载路径下的文件，逆序列化dict</li>
+</ul>
+<h1 id="保存全部的信息"><a href="#保存全部的信息" class="headerlink" title="保存全部的信息"></a>保存全部的信息</h1><h2 id="Save-1"><a href="#Save-1" class="headerlink" title="Save"></a>Save</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">torch.save(&#123;</span><br><span class="line">  <span class="string">'epoch'</span>: epoch,</span><br><span class="line">  <span class="string">'model_state_dict'</span>: model.state_dict(),</span><br><span class="line">  ...</span><br><span class="line">&#125;, PATH)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Load-1"><a href="#Load-1" class="headerlink" title="Load"></a>Load</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">checkpoint = torch.load(PATH)</span><br><span class="line">epoch = checkpoint[<span class="string">'epoch'</span>]</span><br><span class="line">model.load_state_dict(checkpoint[<span class="string">'model_state_dict'</span>])</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<hr>
+<p>Reference</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Rzc19kc3Nzc2QvYXJ0aWNsZS9kZXRhaWxzLzg5NDA5MTgz">https://blog.csdn.net/dss_dssssd/article/details/89409183<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/code/notebook/live-bilibili/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/code/notebook/live-bilibili/" class="post-title-link" itemprop="url">Bilibili直播</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 02-21-2021 14:53:46 / Modified: 15:02:36" itemprop="dateCreated datePublished" datetime="2021-02-21T14:53:46+08:00">02-21-2021</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="OBS推流的设置"><a href="#OBS推流的设置" class="headerlink" title="OBS推流的设置"></a>OBS推流的设置</h1><h2 id="推流"><a href="#推流" class="headerlink" title="推流"></a>推流</h2><p>开始直播后把B站给的Server和StreamKey配置到OBS中。</p>
+<h2 id="音频设置"><a href="#音频设置" class="headerlink" title="音频设置"></a>音频设置</h2><p>播放电脑内部声音。</p>
+<ol>
+<li>下载Sound Flower捕捉电脑桌面的声音。</li>
+<li>设置MIDI，创建多输出。</li>
+<li>在OBS里设置音频输出就可以了。</li>
+</ol>
+<h1 id="自习室的一些东西"><a href="#自习室的一些东西" class="headerlink" title="自习室的一些东西"></a>自习室的一些东西</h1><h2 id="Video"><a href="#Video" class="headerlink" title="Video"></a>Video</h2><p>录制好的视频可以通过AE的Mocha特效变成卡通风格～</p>
+<h2 id="Audio"><a href="#Audio" class="headerlink" title="Audio"></a>Audio</h2><p>Chill &amp; Lofi Beats</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/code/notebook/ce-start/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/code/notebook/ce-start/" class="post-title-link" itemprop="url">Cheat Engine 入门</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 02-17-2021 13:44:06 / Modified: 15:23:13" itemprop="dateCreated datePublished" datetime="2021-02-17T13:44:06+08:00">02-17-2021</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>Cheat Engine通过修改内存的方式对应用程序进行修改。</p>
+<p>能够实现简单的逆向工程。</p>
+<h2 id="查找内存地址并修改值"><a href="#查找内存地址并修改值" class="headerlink" title="查找内存地址并修改值"></a>查找内存地址并修改值</h2><ol>
+<li>初始查找</li>
+</ol>
+<p>可以使用精确查找(exact)，比大小(bigger smaller)，间值(between)，未知(unknown)这几种方法。</p>
+<ol start="2">
+<li>进一步筛选</li>
+</ol>
+<p>可以使用精确，大于，小于，增减的具体值等等。</p>
+<p>通过不断筛选，可以得到我们需要的内存地址。</p>
+<ol start="3">
+<li>修改值</li>
+</ol>
+<p>对内存地址位置的值进行修改就可以了</p>
+<p><strong>注意</strong></p>
+<ul>
+<li>绿色的是基址，黑色的是动态地址。</li>
+<li>win程序中的变量一般都是4个字节。</li>
+</ul>
+<h2 id="代码替换"><a href="#代码替换" class="headerlink" title="代码替换"></a>代码替换</h2><p>首先找到内存地址。</p>
+<p><code>find out what writes to this address</code>找到改写这个地址的代码。直接点击<code>replace</code>就会将该条汇编代码用<code>nop</code>覆盖掉。</p>
+<h2 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h2><h3 id="多级指针"><a href="#多级指针" class="headerlink" title="多级指针"></a>多级指针</h3><p>先查找是什么访问了这个地址(代码)，再查找是什么访问了这个地址(寄存器)。</p>
+<p>一步一步找到最开始的<strong>基址</strong>。手动添加一个地址，在基址的基础上按照指针的顺序，依次可以找到需要改变的地址。</p>
+<h2 id="反汇编"><a href="#反汇编" class="headerlink" title="反汇编"></a>反汇编</h2><p>找到改写地址值的代码，显示反汇编程序。</p>
+<ul>
+<li>从模版导入CT表框架代码</li>
+<li>代码注入</li>
+<li>更改源码</li>
+<li>保存当前脚本</li>
+</ul>
+<h2 id="共享代码"><a href="#共享代码" class="headerlink" title="共享代码"></a>共享代码</h2><p>一个对象的所有实例的表结构都是一样的。因此获取实例的内存位置，可以看到该实例的其他属性。比如敌人，队友等。通过这个判断，加入到注入代码中，就可以实现对队友和敌人分开操作。</p>
+<hr>
+<p>Reference</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9jbmJsb2dzLmNvbS9MeVNoYXJr">https://cnblogs.com/LyShark<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -388,279 +681,6 @@
     
     <div class="post-body" itemprop="articleBody">
           <h1 id="卷积"><a href="#卷积" class="headerlink" title="卷积"></a>卷积</h1>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/intresting/deployment/docker-v2ray/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/intresting/deployment/docker-v2ray/" class="post-title-link" itemprop="url">制作V2ray的Dockerfile</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 02-13-2021 02:42:39 / Modified: 02:51:49" itemprop="dateCreated datePublished" datetime="2021-02-13T02:42:39+08:00">02-13-2021</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h1><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> ubuntu:latest</span><br><span class="line"></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> /root</span></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> v2ray.sh /root</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> mkdir -p /etc/v2ray /usr/<span class="built_in">local</span>/share/v2ray /var/<span class="built_in">log</span>/v2ray \</span></span><br><span class="line"><span class="bash">					&amp;&amp; chmod +x /root/v2ray.sh \</span></span><br><span class="line"><span class="bash">					&amp;&amp; /root/v2ray.sh</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">VOLUME</span><span class="bash"> /etc/v2ray</span></span><br><span class="line"><span class="keyword">CMD</span><span class="bash"> [ <span class="string">"v2ray"</span>, <span class="string">"-config"</span>, <span class="string">"/etc/v2ray/config.json"</span> ]</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="sh"><a href="#sh" class="headerlink" title="sh"></a>sh</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">apt update \</span><br><span class="line">&amp;&amp; apt install wget zip \</span><br><span class="line">&amp;&amp; wget https://github.com/v2fly/v2ray-core/releases/download/<span class="variable">$&#123;TAG&#125;</span>/<span class="variable">$&#123;V2RAY_FILE&#125;</span> \</span><br><span class="line">&amp;&amp; unzip v2ray.zip \</span><br><span class="line">&amp;&amp; chmod +x v2ray v2ctl \</span><br><span class="line">&amp;&amp; mv v2ray v2ctl /usr/bin \</span><br><span class="line">&amp;&amp; mv geosite.dat geoip.dat /usr/<span class="built_in">local</span>/share/v2ray \</span><br><span class="line">&amp;&amp; mv config.json /etc/v2ray/config.json</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">'Done'</span></span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/knowledge/mvadg/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/academia/knowledge/mvadg/" class="post-title-link" itemprop="url">搭建MVADG网络</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 02-11-2021 02:13:46" itemprop="dateCreated datePublished" datetime="2021-02-11T02:13:46+08:00">02-11-2021</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 03-18-2021 00:14:44" itemprop="dateModified" datetime="2021-03-18T00:14:44+08:00">03-18-2021</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="遇到的坑"><a href="#遇到的坑" class="headerlink" title="遇到的坑"></a>遇到的坑</h1><h2 id="1-np-prod"><a href="#1-np-prod" class="headerlink" title="1. np.prod()"></a>1. np.prod()</h2><p>对传入的list计算乘积，可以指定dim。</p>
-<h2 id="2-nn-ConvTranspose2d"><a href="#2-nn-ConvTranspose2d" class="headerlink" title="2. nn.ConvTranspose2d()"></a>2. nn.ConvTranspose2d()</h2><p>反卷积操作。</p>
-<h2 id="3-argument-after-must-be-an-iterable"><a href="#3-argument-after-must-be-an-iterable" class="headerlink" title="3. argument after * must be an iterable"></a>3. argument after * must be an iterable</h2><p>如果在函数内部使用了*, 对传入的参数进行unpack, 需要注意需要传入一个可以迭代的对象。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Reshape</span><span class="params">(input, shape)</span>:</span></span><br><span class="line">  <span class="keyword">return</span> input.view(input.shape[<span class="number">0</span>], *shape)</span><br></pre></td></tr></table></figure>
-
-<p>如果传的是一个标量，可以将它变为一个tuple传入。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">shape = np.prod([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line">Reshape(input, (shape,))</span><br></pre></td></tr></table></figure>
-
-<p>在传入的shape后加一个<code>,</code>就相当于是一个tuple了。</p>
-<h2 id="4-reduce-failed-to-synchronize-device-side-assert-triggered"><a href="#4-reduce-failed-to-synchronize-device-side-assert-triggered" class="headerlink" title="4. reduce failed to synchronize: device-side assert triggered."></a>4. reduce failed to synchronize: device-side assert triggered.</h2><p>这是神经网络最后一层没有normalize导致的，可以加一层Sigmoid()解决。</p>
-<h2 id="5-d-fake的batch-size一直是torch-Size-256-1"><a href="#5-d-fake的batch-size一直是torch-Size-256-1" class="headerlink" title="5. d_fake的batch_size一直是torch.Size([256, 1])"></a>5. d_fake的batch_size一直是torch.Size([256, 1])</h2><p>在计算<code>bce_loss(d_fake, real_label)</code>时，生成的d_fake没有与最后一个batch_size匹配。原因在于Net中d_fake是由gen_imgs输入D生成的，而一开始生成的噪声的batch_size决定了gen_imgs的第一维度的大小。</p>
-<p>问题出在一开始生成噪声的时候输入的是self.batch_size而不是imgs_batch.</p>
-<h2 id="6-std-evaluated-to-zero-after-conversion-to-torch-int64-leading-to-division-by-zero"><a href="#6-std-evaluated-to-zero-after-conversion-to-torch-int64-leading-to-division-by-zero" class="headerlink" title="6. std evaluated to zero after conversion to torch.int64, leading to division by zero."></a>6. std evaluated to zero after conversion to torch.int64, leading to division by zero.</h2><p>dataset在返回数据时通过<code>transform.Normalize()</code>时出现的问题。</p>
-<p>dataset在读取自制的数据集时，类型转换的问题。需要将文本的<code>str</code>格式转成<code>float</code>,而不是<code>int</code>.</p>
-<h2 id="7-output-with-shape-1-28-28-doesn’t-match-the-broadcast-shape-3-28-28"><a href="#7-output-with-shape-1-28-28-doesn’t-match-the-broadcast-shape-3-28-28" class="headerlink" title="7. output with shape [1, 28, 28] doesn’t match the broadcast shape [3, 28, 28]."></a>7. output with shape [1, 28, 28] doesn’t match the broadcast shape [3, 28, 28].</h2><p>由于MNIST数据集通道的问题。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">transforms.Normalize((<span class="number">0.5</span>, <span class="number">0.5</span>, <span class="number">0.5</span>), (<span class="number">0.5</span>, <span class="number">0.5</span>, <span class="number">0.5</span>))</span><br><span class="line"><span class="comment"># 改为</span></span><br><span class="line">transforms.Normalize((<span class="number">0.5</span>,), (<span class="number">0.5</span>,))</span><br></pre></td></tr></table></figure>
-
-<h2 id="8-pickle-UnpicklingError-A-load-persistent-id-instruction-was-encountered-but-no-persistent-load…"><a href="#8-pickle-UnpicklingError-A-load-persistent-id-instruction-was-encountered-but-no-persistent-load…" class="headerlink" title="8. _pickle.UnpicklingError: A load persistent id instruction was encountered, but no persistent_load…"></a>8. _pickle.UnpicklingError: A load persistent id instruction was encountered, but no persistent_load…</h2><p>由于pytorch版本所致，<code>torch.save()</code>, <code>torch.load()</code>里面保存了版本信息，不一样的话会报错。</p>
-<h2 id="9-Only-one-class-present-in-y-true-ROC-AUC-score-is-not-defined-in-that-case"><a href="#9-Only-one-class-present-in-y-true-ROC-AUC-score-is-not-defined-in-that-case" class="headerlink" title="9. Only one class present in y_true. ROC AUC score is not defined in that case."></a>9. Only one class present in y_true. ROC AUC score is not defined in that case.</h2><p>在计算ROC AUC时，如果一个batch中的类别都是同样的，就会报错。</p>
-<p>解决方案</p>
-<ul>
-<li>整理0，1标签数据较为均衡</li>
-<li>使用try except然后pass</li>
-</ul>
-<h2 id="10-one-of-the-variables-needed-for-gradient-computation-has-been-modified-by-an-inplace-operation-由于Pytorch版本的大坑"><a href="#10-one-of-the-variables-needed-for-gradient-computation-has-been-modified-by-an-inplace-operation-由于Pytorch版本的大坑" class="headerlink" title="10. one of the variables needed for gradient computation has been modified by an inplace operation 由于Pytorch版本的大坑"></a>10. one of the variables needed for gradient computation has been modified by an inplace operation 由于Pytorch版本的大坑</h2><p>由于pytorch版本不一样，因此报错！！！</p>
-<p>都是Python3.7</p>
-<p>Pytorch = 1.7.1 (报错)</p>
-<p>Pytorch = 1.0.0 (不报错)</p>
-<h2 id="11-Pytorch自带的mnist数据集读取库-由于Pytorch版本的坑"><a href="#11-Pytorch自带的mnist数据集读取库-由于Pytorch版本的坑" class="headerlink" title="11. Pytorch自带的mnist数据集读取库 由于Pytorch版本的坑"></a>11. Pytorch自带的mnist数据集读取库 由于Pytorch版本的坑</h2><p>Pytorch = 1.7.1 (指定到有mnist的目录)</p>
-<p>Pytorch = 1.0.0 (指定到有raw的目录)</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/code/notebook/py-init/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/code/notebook/py-init/" class="post-title-link" itemprop="url">Python的__init__.py文件</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 02-11-2021 00:18:04 / Modified: 01:12:44" itemprop="dateCreated datePublished" datetime="2021-02-11T00:18:04+08:00">02-11-2021</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notebook/" itemprop="url" rel="index"><span itemprop="name">Notebook</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="init-py文件的主要作用"><a href="#init-py文件的主要作用" class="headerlink" title="init.py文件的主要作用"></a>init.py文件的主要作用</h1><p>用来管理当前目录下的<code>.py</code>文件。</p>
-<ol>
-<li><code>__init__.py</code>是package的标识。</li>
-<li>其中<code>__all__</code>可以用来进行模糊导入(<code>import *</code>)。</li>
-</ol>
-<p>使用<code>import</code>导入包的时候，就相当于导入了这个包的<code>__init__.py</code>。</p>
-<h1 id="import的理解"><a href="#import的理解" class="headerlink" title="import的理解"></a>import的理解</h1><p>可以导入<strong>包</strong>或<strong>文件</strong>或<strong>变量</strong>。</p>
-<h1 id="from的理解"><a href="#from的理解" class="headerlink" title="from的理解"></a>from的理解</h1><p>只能<strong>包</strong>或<strong>文件</strong>。</p>
-<hr>
-<p>Reference</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vQmx1ZVNreXlqL3AvOTQxNTA4Ny5odG1s">https://www.cnblogs.com/BlueSkyyj/p/9415087.html<i class="fa fa-external-link-alt"></i></span></p>
-
       
     </div>
 
