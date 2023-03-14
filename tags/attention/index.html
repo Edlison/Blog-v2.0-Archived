@@ -26,7 +26,7 @@
   <meta name="description" content="Edlison blog">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Edlison is talking here.">
-<meta property="og:url" content="https://blog.edlison.com/tags/Attention/index.html">
+<meta property="og:url" content="https://blog.edlison.com/tags/attention/index.html">
 <meta property="og:site_name" content="Edlison is talking here.">
 <meta property="og:description" content="Edlison blog">
 <meta property="og:locale" content="en_US">
@@ -39,7 +39,7 @@
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://blog.edlison.com/tags/Attention/">
+<link rel="canonical" href="https://blog.edlison.com/tags/attention/">
 
 
 <script class="page-configurations">
@@ -52,7 +52,7 @@
   };
 </script>
 
-  <title>Tag: Attention | Edlison is talking here.</title>
+  <title>Tag: attention | Edlison is talking here.</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NC6FWQJNCW"></script>
     <script>
@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">379</span>
+          <span class="site-state-item-count">380</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -263,7 +263,7 @@
   <div class="post-block">
     <div class="post-content">
       <div class="collection-title">
-        <h2 class="collection-header">Attention
+        <h2 class="collection-header">attention
           <small>Tag</small>
         </h2>
       </div>
@@ -277,15 +277,15 @@
     <header class="post-header">
       <div class="post-meta-container">
         <time itemprop="dateCreated"
-              datetime="2022-03-07T11:38:30+08:00"
-              content="03-07-2022">
-          03-07
+              datetime="2022-03-28T15:55:53+08:00"
+              content="03-28-2022">
+          03-28
         </time>
       </div>
 
       <div class="post-title">
-          <a class="post-title-link" href="/academia/knowledge/attention/" itemprop="url">
-            <span itemprop="name">Attention 新理解</span>
+          <a class="post-title-link" href="/academia/GNN/attentionplus/" itemprop="url">
+            <span itemprop="name">Paper | Attention Plus</span>
           </a>
       </div>
 
@@ -297,15 +297,58 @@
     <header class="post-header">
       <div class="post-meta-container">
         <time itemprop="dateCreated"
-              datetime="2022-02-25T20:57:12+08:00"
-              content="02-25-2022">
-          02-25
+              datetime="2022-01-19T18:10:47+08:00"
+              content="01-19-2022">
+          01-19
         </time>
       </div>
 
       <div class="post-title">
-          <a class="post-title-link" href="/academia/reproduction/attention/" itemprop="url">
-            <span itemprop="name">Attention 复现</span>
+          <a class="post-title-link" href="/academia/GNN/gat/" itemprop="url">
+            <span itemprop="name">Paper | Graph Attention Networks</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2022-01-18T19:51:07+08:00"
+              content="01-18-2022">
+          01-18
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/academia/GNN/attention/" itemprop="url">
+            <span itemprop="name">Paper | Attention</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+    <div class="collection-year">
+      <span class="collection-header">2020</span>
+    </div>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2020-09-13T20:32:41+08:00"
+              content="09-13-2020">
+          09-13
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/academia/others/Attention/" itemprop="url">
+            <span itemprop="name">Attention Is All You Need</span>
           </a>
       </div>
 
@@ -443,45 +486,6 @@
         renderActions: {
           findScript: [10, doc => {
             document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-              const display = !!node.type.match(/; *mode=display/);
-              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-              const text = document.createTextNode('');
-              node.parentNode.replaceChild(text, node);
-              math.start = {node: text, delim: '', n: 0};
-              math.end = {node: text, delim: '', n: 0};
-              doc.math.push(math);
-            });
-          }, '', false],
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              const target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    const script = document.createElement('script');
-    script.src = '/true';
-    script.defer = true;
-    document.head.appendChild(script);
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.typesetClear();
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
-
-    
-
-  
-
-</body>
-</html>
-ctorAll('script[type^="math/tex"]').forEach(node => {
               const display = !!node.type.match(/; *mode=display/);
               const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
               const text = document.createTextNode('');

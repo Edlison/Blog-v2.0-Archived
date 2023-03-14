@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">379</span>
+          <span class="site-state-item-count">380</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -256,6 +256,95 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/intresting/deployment/JupyterLab/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bolin Shen">
+      <meta itemprop="description" content="Edlison blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Edlison is talking here.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/intresting/deployment/JupyterLab/" class="post-title-link" itemprop="url">Deploy Jupyter Lab in an Anaconda container with docker compose</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 01-10-2023 06:49:43" itemprop="dateCreated datePublished" datetime="2023-01-10T06:49:43+08:00">01-10-2023</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 01-13-2023 06:40:50" itemprop="dateModified" datetime="2023-01-13T06:40:50+08:00">01-13-2023</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/VPS/" itemprop="url" rel="index"><span itemprop="name">VPS</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="compose-yml">Compose YML</h1>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">"3.3"</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">anaconda:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">continuumio/anaconda3</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">anaconda</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">./notebooks:/opt/notebooks</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="number">16000</span><span class="string">:8888</span></span><br><span class="line">    <span class="attr">command:</span> <span class="string">bash</span> <span class="string">-c</span> <span class="string">"conda install jupyterlab -y --quiet &amp;&amp;  mkdir -p /opt/notebooks &amp;&amp; jupyter lab --notebook-dir=/opt/notebooks --ip='*' --port=8888 --no-browser --allow-root"</span></span><br></pre></td></tr></table></figure>
+<p>In docker-compose file, we need to use <code>bash -c</code> to run <strong>multi commands</strong>.</p>
+<h1 id="setting-password-for-jupyterlab">Setting password for JupyterLab</h1>
+<p>We can use token to change password for jupyterlab on first login, then restart server.</p>
+<h1 id="edit-kernel-in-jupyterlab">Edit kernel in JupyterLab</h1>
+<p>## Step 1 activate target environment ## Step 2 install ipykernel <code>conda install ipykernel</code> ## Step 3 set up kernel add kernel into jupyterlab <code>python -m ipykernel install --name [kernel name]</code> ## Step 4 exsisting kernel <code>jupyter kernelspec list</code> ## Step 5 remove kernel <code>jupyter kernelspec remove [kernel name]</code></p>
+<h1 id="important">Important</h1>
+<p>The communication to the kernel goes through WebSockets, which means you need to support WebSockets when using Nginx!</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -560,89 +649,6 @@
 <h1 id="Geometry"><a href="#Geometry" class="headerlink" title="Geometry"></a>Geometry</h1><p>By using duality, exist a vector p dot product [x, y, z] equals determinant.<br><img src="https://i.imgur.com/xg2mYVQ.png" alt=""></p>
 <p>3-D determinant means the volumn of the cube, we need to calculate component of [x, y, z] perpendicular to <code>v</code> and <code>w</code> times area of parallelogram.<br><img src="https://i.imgur.com/CZev1Nk.png" alt=""></p>
 <p>This equals to the vector p with the length of area of parallelogram by using duality.<br><img src="https://i.imgur.com/egtqkDx.png" alt=""></p>
-<hr>
-<p>Reference<br><span class="exturl" data-url="aHR0cHM6Ly93d3cuM2JsdWUxYnJvd24uY29tL3RvcGljcy9saW5lYXItYWxnZWJyYQ==">https://www.3blue1brown.com/topics/linear-algebra<i class="fa fa-external-link-alt"></i></span></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.edlison.com/academia/course/EECS551/dot_product_duality/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bolin Shen">
-      <meta itemprop="description" content="Edlison blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Edlison is talking here.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/academia/course/EECS551/dot_product_duality/" class="post-title-link" itemprop="url">Dot product and Duality</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 09-27-2022 10:10:36 / Modified: 11:20:01" itemprop="dateCreated datePublished" datetime="2022-09-27T10:10:36+08:00">09-27-2022</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Academia/" itemprop="url" rel="index"><span itemprop="name">Academia</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Dot-product"><a href="#Dot-product" class="headerlink" title="Dot product"></a>Dot product</h1><p>In similar directions <code>v*w &gt; 0</code><br><img src="https://i.imgur.com/UCHus4N.png" alt=""></p>
-<p>In perpendicular direction <code>v*w = 0</code></p>
-<p>In Opposing directions <code>v*w &lt; 0</code></p>
-<p>Dot product is translate one of the vector to the transformation.<br><img src="https://i.imgur.com/CJXja7H.png" alt=""></p>
-<p><img src="https://i.imgur.com/YmMslm5.png" alt="">]</p>
-<h1 id="Duality"><a href="#Duality" class="headerlink" title="Duality"></a>Duality</h1><p>Making a symmetric line which seperate basis vector and input vector equally.</p>
-<p>When you try find a linear transformation to map vectors in 2-D space into number line, you will be able to match it to some vector, which is called dual vector of the transformation.</p>
 <hr>
 <p>Reference<br><span class="exturl" data-url="aHR0cHM6Ly93d3cuM2JsdWUxYnJvd24uY29tL3RvcGljcy9saW5lYXItYWxnZWJyYQ==">https://www.3blue1brown.com/topics/linear-algebra<i class="fa fa-external-link-alt"></i></span></p>
 
